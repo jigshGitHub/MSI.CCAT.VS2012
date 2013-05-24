@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSI.CCAT.Business", "MSI.CCAT.Business\MSI.CCAT.Business.csproj", "{C7788B5B-C40F-4601-B71C-A5727E28D824}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSI.CCAT.Data", "MSI.CCAT.Data\MSI.CCAT.Data.csproj", "{5E0F907A-A55F-48CE-8611-A625207FB928}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSI.CCAT.WEB", "MSI.CCAT.WEB\MSI.CCAT.WEB.csproj", "{0263A610-47B2-407C-AC43-D195A682F463}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7788B5B-C40F-4601-B71C-A5727E28D824}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7788B5B-C40F-4601-B71C-A5727E28D824}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7788B5B-C40F-4601-B71C-A5727E28D824}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7788B5B-C40F-4601-B71C-A5727E28D824}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E0F907A-A55F-48CE-8611-A625207FB928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E0F907A-A55F-48CE-8611-A625207FB928}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E0F907A-A55F-48CE-8611-A625207FB928}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E0F907A-A55F-48CE-8611-A625207FB928}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0263A610-47B2-407C-AC43-D195A682F463}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0263A610-47B2-407C-AC43-D195A682F463}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0263A610-47B2-407C-AC43-D195A682F463}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0263A610-47B2-407C-AC43-D195A682F463}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
