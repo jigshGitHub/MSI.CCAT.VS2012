@@ -22,9 +22,24 @@ namespace MSI.CCAT.API.Controllers
             }
             catch (Exception ex)
             {
-                throw new Exception("MSI.CCAT.API.Controller.QuestionBankController:" + ex.Message);
+                throw new Exception("MSI.CCAT.API.Controller.AssessmentController:" + ex.Message);
             }
             return data;
+        }
+
+        public void Post(AssessmentResponse response)
+        {
+            AssessmentBus business;
+
+            try
+            {
+                business = new AssessmentBus();
+                business.UpdateResponse(response);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("MSI.CCAT.API.Controller.AssessmentController:" + ex.Message);
+            }
         }
     }
 }

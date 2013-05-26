@@ -12,31 +12,25 @@ namespace MSI.CCAT.Business
     {
         public IEnumerable<AssessmentResponse> GetResponse(Guid userId, int moduleId)
         {
-            QuestionBankRepository questionBankRepository;
-            QuestionResponseRepository responseRepository;
+            QuestionBus questionBus;
+            ResponseBus responseBus;
             IEnumerable<AssessmentResponse> assessmentResponses = null;
             IEnumerable<Tbl_QuestionBank> questions = null;
+            IEnumerable<Tbl_QuestionResponse> responses = null;
             try
             {
-                questionBankRepository = new QuestionBankRepository();
-                responseRepository = new QuestionResponseRepository();
+                questionBus = new QuestionBus();
+                responseBus = new ResponseBus();
 
-                questions = from questionBank in questionBankRepository.GetAll().Where(q => q.IsActive == true && q.ModuleId == moduleId)
-                            select questionBank;
+                questions = questionBus.GetQuestions(moduleId);
+                responses= responseBus.GetResponses(userId);
+
+                if (responses.Count() == 0)
+                    responses = CreateDefaultResponses(userId, questions);
 
                 assessmentResponses = from questionBank in questions
-                                      from questionResponse in responseRepository.GetAll().Where(r => r.QuestionId == questionBank.Id && r.CreatedBy == userId)
-                                      select new AssessmentResponse() { ModuleId = moduleId, Question = questionBank.Text, Response = questionResponse.Value, ResponseId = questionResponse.Id, SerialNumber = questionBank.SrNo, UserId = userId };
-
-                if (assessmentResponses.Count() == 0)
-                {
-                    CreateResponse(userId, questions);
-
-                    assessmentResponses = from questionBank in questions
-                                          from questionResponse in responseRepository.GetAll().Where(r => r.QuestionId == questionBank.Id && r.CreatedBy == userId)
-                                          select new AssessmentResponse() { ModuleId = moduleId, Question = questionBank.Text, Response = questionResponse.Value, ResponseId = questionResponse.Id, SerialNumber = questionBank.SrNo, UserId = userId };
-
-                }
+                                      from questionResponse in responses.Where(r => r.QuestionId == questionBank.Id && r.CreatedBy == userId)
+                                      select new AssessmentResponse() { QuestionId = questionBank.Id, ModuleId = moduleId, Question = questionBank.Text, Response = questionResponse.Value, ResponseId = questionResponse.Id, SerialNumber = questionBank.SrNo, UserId = userId };                
 
             }
             catch (Exception ex)
@@ -46,25 +40,38 @@ namespace MSI.CCAT.Business
             return assessmentResponses;
         }
 
-        private void CreateResponse(Guid userId, IEnumerable<Tbl_QuestionBank> defaultQuestions)
+        private IEnumerable<Tbl_QuestionResponse> CreateDefaultResponses(Guid userId, IEnumerable<Tbl_QuestionBank> defaultQuestions)
         {
-            QuestionResponseRepository responseRepository;
-            Tbl_QuestionResponse response;
+            ResponseBus responseBus;
+            List<Tbl_QuestionResponse> responses = null ;
             try
             {
-                responseRepository = new QuestionResponseRepository();
+                responseBus = new ResponseBus();
+                responses = new List<Tbl_QuestionResponse>();
                 foreach (Tbl_QuestionBank question in defaultQuestions)
-                {
-                    response = new Tbl_QuestionResponse();
-                    response.QuestionId = question.Id;
-                    response.CreatedBy = userId;
-                    response.CreatedOn = DateTime.Now;
-                    responseRepository.Add(response);
-                }
+                    responses.Add(responseBus.CreateResponse(userId, question.Id));
             }
             catch (Exception ex)
             {
+                throw ex;
             }
+            return responses.AsEnumerable<Tbl_QuestionResponse>();
+        }
+
+        public AssessmentResponse UpdateResponse(AssessmentResponse assessmentResponse)
+        {
+            ResponseBus responseBus;
+            Tbl_QuestionResponse response = null;
+            try
+            {
+                responseBus = new ResponseBus();
+                response = responseBus.UpdateResponse(assessmentResponse.UserId, assessmentResponse.Response, assessmentResponse.ResponseId);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return assessmentResponse;
         }
     }
 

@@ -24,7 +24,7 @@ namespace MSI.CCAT.Data.Models
         public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public string CreatedBy { get; set; }
-        public Nullable<int> displayOrder { get; set; }
+        public Nullable<int> DisplayOrder { get; set; }
     
         public virtual ICollection<Tbl_QuestionBank> Tbl_QuestionBank { get; set; }
     }

@@ -40,7 +40,7 @@
           <Property Name="IsActive" Type="bit" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
-          <Property Name="displayOrder" Type="int" />
+          <Property Name="DisplayOrder" Type="int" />
         </EntityType>
         <EntityType Name="Tbl_QuestionResponse">
           <Key>
@@ -51,6 +51,8 @@
           <Property Name="QuestionId" Type="int" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="CreatedBy" Type="uniqueidentifier" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="uniqueidentifier" />
         </EntityType>
         <Association Name="FK_Tbl_QuestionBank_Tbl_Module">
           <End Role="Tbl_QuestionModule" Type="CCATDBModel.Store.Tbl_QuestionModule" Multiplicity="0..1" />
@@ -117,8 +119,8 @@
           <Property Type="Boolean" Name="IsActive" />
           <Property Type="DateTime" Name="CreatedOn" Precision="3" />
           <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="displayOrder" />
           <NavigationProperty Name="Tbl_QuestionBank" Relationship="CCATDBModel.FK_Tbl_QuestionBank_Tbl_Module" FromRole="Tbl_QuestionModule" ToRole="Tbl_QuestionBank" />
+          <Property Type="Int32" Name="DisplayOrder" />
         </EntityType>
         <EntityType Name="Tbl_QuestionResponse">
           <Key>
@@ -130,6 +132,8 @@
           <Property Type="DateTime" Name="CreatedOn" Precision="3" />
           <Property Type="Guid" Name="CreatedBy" />
           <NavigationProperty Name="Tbl_QuestionBank" Relationship="CCATDBModel.FK_Tbl_Response_Tbl_QuestionBank" FromRole="Tbl_QuestionResponse" ToRole="Tbl_QuestionBank" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="Guid" Name="UpdatedBy" />
         </EntityType>
         <Association Name="FK_Tbl_QuestionBank_Tbl_Module">
           <End Type="CCATDBModel.Tbl_QuestionModule" Role="Tbl_QuestionModule" Multiplicity="0..1" />
@@ -178,7 +182,7 @@
           <EntitySetMapping Name="Tbl_QuestionModule">
             <EntityTypeMapping TypeName="CCATDBModel.Tbl_QuestionModule">
               <MappingFragment StoreEntitySet="Tbl_QuestionModule">
-                <ScalarProperty Name="displayOrder" ColumnName="displayOrder" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
@@ -190,6 +194,8 @@
           <EntitySetMapping Name="Tbl_QuestionResponse">
             <EntityTypeMapping TypeName="CCATDBModel.Tbl_QuestionResponse">
               <MappingFragment StoreEntitySet="Tbl_QuestionResponse">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />

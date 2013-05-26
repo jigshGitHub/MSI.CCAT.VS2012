@@ -19,6 +19,8 @@ namespace MSI.CCAT.Data.Models
         public Nullable<int> QuestionId { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.Guid> CreatedBy { get; set; }
+        public Nullable<System.DateTime> UpdatedOn { get; set; }
+        public Nullable<System.Guid> UpdatedBy { get; set; }
     
         public virtual Tbl_QuestionBank Tbl_QuestionBank { get; set; }
     }
