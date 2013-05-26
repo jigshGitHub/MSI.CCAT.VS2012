@@ -39,8 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="BusinessModels\AssessmentResponse.cs" />
+    <Compile Include="AssessmentBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MSI.CCAT.Data\MSI.CCAT.Data.csproj">
+      <Project>{5e0f907a-a55f-48ce-8611-a625207fb928}</Project>
+      <Name>MSI.CCAT.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

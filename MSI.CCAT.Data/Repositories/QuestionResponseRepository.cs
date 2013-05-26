@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MSI.CCAT.Data.Models;
 namespace MSI.CCAT.Data.Repositories
 {
-    public class QuestionResponseRepository : RepositoryBase<Tbl_QuestionBank>
+    public class QuestionResponseRepository : RepositoryBase<Tbl_QuestionResponse>
     {
         public QuestionResponseRepository(IDatabaseFactory dbFactory)
             : base(dbFactory)

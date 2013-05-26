@@ -19,14 +19,14 @@ namespace MSI.CCAT.Data.Models
             this.Tbl_QuestionResponse = new HashSet<Tbl_QuestionResponse>();
         }
     
-        public int questionId { get; set; }
-        public string questionSrNo { get; set; }
-        public string questionText { get; set; }
-        public Nullable<int> moduleId { get; set; }
+        public int Id { get; set; }
+        public string SrNo { get; set; }
+        public string Text { get; set; }
+        public Nullable<int> ModuleId { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public string CreatedBy { get; set; }
-        public Nullable<int> displayOrder { get; set; }
+        public Nullable<int> DisplayOrder { get; set; }
     
         public virtual Tbl_QuestionModule Tbl_QuestionModule { get; set; }
         public virtual ICollection<Tbl_QuestionResponse> Tbl_QuestionResponse { get; set; }

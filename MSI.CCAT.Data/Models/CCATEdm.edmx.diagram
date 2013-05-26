@@ -5,11 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="71df21096ff74fa58a26729ecf14bcc7" Name="Diagram1">
-        <EntityTypeShape EntityType="CCATDBModel.Tbl_QuestionBank" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCATDBModel.Tbl_QuestionModule" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCATDBModel.Tbl_QuestionResponse" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
-        <AssociationConnector Association="CCATDBModel.FK_Tbl_QuestionBank_Tbl_Module" ManuallyRouted="false" />
-        <AssociationConnector Association="CCATDBModel.FK_Tbl_Response_Tbl_QuestionBank" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_QuestionBank" Width="1.5" PointX="2.875" PointY="0.5" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_QuestionModule" Width="1.5" PointX="5.375" PointY="0.5" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_QuestionResponse" Width="1.5" PointX="5.75" PointY="3.375" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_QuestionBank_Tbl_Module" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_Response_Tbl_QuestionBank" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CCATDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CCATDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="CCATDBModelStoreContainer">
           <EntitySet Name="Tbl_QuestionBank" EntityType="CCATDBModel.Store.Tbl_QuestionBank" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_QuestionModule" EntityType="CCATDBModel.Store.Tbl_QuestionModule" store:Type="Tables" Schema="dbo" />
@@ -20,23 +20,23 @@
         </EntityContainer>
         <EntityType Name="Tbl_QuestionBank">
           <Key>
-            <PropertyRef Name="questionId" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="questionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="questionSrNo" Type="varchar" MaxLength="50" />
-          <Property Name="questionText" Type="varchar" MaxLength="500" />
-          <Property Name="moduleId" Type="int" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SrNo" Type="varchar" MaxLength="50" />
+          <Property Name="Text" Type="varchar" MaxLength="500" />
+          <Property Name="ModuleId" Type="int" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
-          <Property Name="displayOrder" Type="int" />
+          <Property Name="DisplayOrder" Type="int" />
         </EntityType>
         <EntityType Name="Tbl_QuestionModule">
           <Key>
-            <PropertyRef Name="moduleId" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="moduleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="moduleName" Type="varchar" MaxLength="150" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="150" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
@@ -44,11 +44,11 @@
         </EntityType>
         <EntityType Name="Tbl_QuestionResponse">
           <Key>
-            <PropertyRef Name="responseId" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="responseId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="response" Type="varchar" MaxLength="500" />
-          <Property Name="questionId" Type="int" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="varchar" MaxLength="500" />
+          <Property Name="QuestionId" Type="int" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="CreatedBy" Type="uniqueidentifier" />
         </EntityType>
@@ -57,10 +57,10 @@
           <End Role="Tbl_QuestionBank" Type="CCATDBModel.Store.Tbl_QuestionBank" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tbl_QuestionModule">
-              <PropertyRef Name="moduleId" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Tbl_QuestionBank">
-              <PropertyRef Name="moduleId" />
+              <PropertyRef Name="ModuleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -69,15 +69,14 @@
           <End Role="Tbl_QuestionResponse" Type="CCATDBModel.Store.Tbl_QuestionResponse" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tbl_QuestionBank">
-              <PropertyRef Name="questionId" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Tbl_QuestionResponse">
-              <PropertyRef Name="questionId" />
+              <PropertyRef Name="QuestionId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CCATDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -96,67 +95,67 @@
         </EntityContainer>
         <EntityType Name="Tbl_QuestionBank">
           <Key>
-            <PropertyRef Name="questionId" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="questionId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="questionSrNo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="questionText" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="moduleId" Type="Int32" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="displayOrder" Type="Int32" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="SrNo" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Text" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ModuleId" />
+          <Property Type="Boolean" Name="IsActive" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="DisplayOrder" />
           <NavigationProperty Name="Tbl_QuestionModule" Relationship="CCATDBModel.FK_Tbl_QuestionBank_Tbl_Module" FromRole="Tbl_QuestionBank" ToRole="Tbl_QuestionModule" />
           <NavigationProperty Name="Tbl_QuestionResponse" Relationship="CCATDBModel.FK_Tbl_Response_Tbl_QuestionBank" FromRole="Tbl_QuestionBank" ToRole="Tbl_QuestionResponse" />
         </EntityType>
         <EntityType Name="Tbl_QuestionModule">
           <Key>
-            <PropertyRef Name="moduleId" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="moduleId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="moduleName" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="displayOrder" Type="Int32" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsActive" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="displayOrder" />
           <NavigationProperty Name="Tbl_QuestionBank" Relationship="CCATDBModel.FK_Tbl_QuestionBank_Tbl_Module" FromRole="Tbl_QuestionModule" ToRole="Tbl_QuestionBank" />
         </EntityType>
         <EntityType Name="Tbl_QuestionResponse">
           <Key>
-            <PropertyRef Name="responseId" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="responseId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="response" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="questionId" Type="Int32" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="Guid" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Value" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="QuestionId" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="Guid" Name="CreatedBy" />
           <NavigationProperty Name="Tbl_QuestionBank" Relationship="CCATDBModel.FK_Tbl_Response_Tbl_QuestionBank" FromRole="Tbl_QuestionResponse" ToRole="Tbl_QuestionBank" />
         </EntityType>
         <Association Name="FK_Tbl_QuestionBank_Tbl_Module">
-          <End Role="Tbl_QuestionModule" Type="CCATDBModel.Tbl_QuestionModule" Multiplicity="0..1" />
-          <End Role="Tbl_QuestionBank" Type="CCATDBModel.Tbl_QuestionBank" Multiplicity="*" />
+          <End Type="CCATDBModel.Tbl_QuestionModule" Role="Tbl_QuestionModule" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_QuestionBank" Role="Tbl_QuestionBank" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tbl_QuestionModule">
-              <PropertyRef Name="moduleId" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Tbl_QuestionBank">
-              <PropertyRef Name="moduleId" />
+              <PropertyRef Name="ModuleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Tbl_Response_Tbl_QuestionBank">
-          <End Role="Tbl_QuestionBank" Type="CCATDBModel.Tbl_QuestionBank" Multiplicity="0..1" />
-          <End Role="Tbl_QuestionResponse" Type="CCATDBModel.Tbl_QuestionResponse" Multiplicity="*" />
+          <End Type="CCATDBModel.Tbl_QuestionBank" Role="Tbl_QuestionBank" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_QuestionResponse" Role="Tbl_QuestionResponse" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tbl_QuestionBank">
-              <PropertyRef Name="questionId" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Tbl_QuestionResponse">
-              <PropertyRef Name="questionId" />
+              <PropertyRef Name="QuestionId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -165,37 +164,37 @@
           <EntitySetMapping Name="Tbl_QuestionBank">
             <EntityTypeMapping TypeName="CCATDBModel.Tbl_QuestionBank">
               <MappingFragment StoreEntitySet="Tbl_QuestionBank">
-                <ScalarProperty Name="questionId" ColumnName="questionId" />
-                <ScalarProperty Name="questionSrNo" ColumnName="questionSrNo" />
-                <ScalarProperty Name="questionText" ColumnName="questionText" />
-                <ScalarProperty Name="moduleId" ColumnName="moduleId" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="displayOrder" ColumnName="displayOrder" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="SrNo" ColumnName="SrNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tbl_QuestionModule">
             <EntityTypeMapping TypeName="CCATDBModel.Tbl_QuestionModule">
               <MappingFragment StoreEntitySet="Tbl_QuestionModule">
-                <ScalarProperty Name="moduleId" ColumnName="moduleId" />
-                <ScalarProperty Name="moduleName" ColumnName="moduleName" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="displayOrder" ColumnName="displayOrder" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tbl_QuestionResponse">
             <EntityTypeMapping TypeName="CCATDBModel.Tbl_QuestionResponse">
               <MappingFragment StoreEntitySet="Tbl_QuestionResponse">
-                <ScalarProperty Name="responseId" ColumnName="responseId" />
-                <ScalarProperty Name="response" ColumnName="response" />
-                <ScalarProperty Name="questionId" ColumnName="questionId" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

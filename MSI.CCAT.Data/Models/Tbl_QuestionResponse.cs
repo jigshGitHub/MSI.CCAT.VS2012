@@ -14,9 +14,9 @@ namespace MSI.CCAT.Data.Models
     
     public partial class Tbl_QuestionResponse
     {
-        public int responseId { get; set; }
-        public string response { get; set; }
-        public Nullable<int> questionId { get; set; }
+        public int Id { get; set; }
+        public string Value { get; set; }
+        public Nullable<int> QuestionId { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.Guid> CreatedBy { get; set; }
     
