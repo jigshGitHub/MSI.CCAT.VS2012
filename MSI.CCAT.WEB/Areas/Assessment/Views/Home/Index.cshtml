@@ -3,6 +3,8 @@
 }
 
 @Html.Hidden("userId", (string)(@ViewBag.UserID))
+@Html.Hidden("moduleId", (string)(@ViewBag.ModuleId))
+    <span data-bind="text: selectedQuestionModule"></span>
 <table>
     <tbody data-bind="foreach: questions">
         <tr>
@@ -61,7 +63,7 @@
             self.name = ko.observable(_name);
         }
 
-        var pageViewModel = function (userId) {
+        var pageViewModel = function (userId, moduleId) {
             var self = this;
             self.userId = userId;
             self.modules = ko.observableArray([]);
@@ -70,12 +72,20 @@
             self.questionsDisplayStartIndex = ko.observable(0);
             self.questionsDisplayEndIndex = ko.observable(self.questionsDisplayCount);
             self.questionsCollection = ko.observableArray([]);
+            self.selectedQuestionModule = ko.computed(function () {
+                $.each(self.modules(), function (i, item) {
+                    if (item.id() == moduleId) {
+                        //log(item.name())
+                        return "test";//item.name();
+                    }
+                });
+            }, self);
             self.questions = ko.computed(function () {
                 return self.questionsCollection.slice(self.questionsDisplayStartIndex(), self.questionsDisplayEndIndex());
             }, self);
 
             self.nextClick = function () {
-                self.questionsDisplayStartIndex(self.questionsDisplayStartIndex()+self.questionsDisplayCount);
+                self.questionsDisplayStartIndex(self.questionsDisplayStartIndex() + self.questionsDisplayCount);
                 self.questionsDisplayEndIndex(self.questionsDisplayEndIndex() + self.questionsDisplayCount);
             };
 
@@ -92,18 +102,38 @@
                 return (self.questionsDisplayStartIndex() > 0 && self.questionsDisplayStartIndex() <= self.totalQuestionCount());
             }, self);
 
-            self.selectedModule = ko.computed(function () { return self.modules[0]; }, self);
-            
-            self.loadModules = function () {
-                self.modules.push(new questionModule(1, 'Entity Business Model'));
+            //self.selectedModule = ko.computed(function () { return self.modules[0]; }, self);
+
+            self.initialize = function () {
+                self.loadQuestions();
+                self.loadModules();
             }
 
+            self.loadModules = function () {
+                $.ajax({
+                    url: '/api/QuestionModule',
+                    type: 'GET',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.length > 0) {
+                            $.each(data, function (i, item) {
+                                //log(item)
+                                self.modules.push(new questionModule(item.Id, item.Name));
+                            });
+                        }
+                    },
+                    error: function (xhr, status, somthing) {
+                        log(status);
+                    }
+                });
+            }
             self.loadQuestions = function () {
                 $.ajax({
                     url: '/api/Assessment',
                     type: 'GET',
                     contentType: 'application/json',
-                    data: { moduleId: 1 , userId: userId},
+                    data: { moduleId: 1, userId: userId },
                     dataType: 'json',
                     success: function (data) {
                         self.totalQuestionCount(data.length);
@@ -118,14 +148,14 @@
                         log(status);
                     }
                 });
-            };            
+            };
         }
 
         $(document).ready(function () {
 
 
-            var vm = new pageViewModel($('#userId').val());
-            vm.loadQuestions();
+            var vm = new pageViewModel($('#userId').val(), $('#moduleId').val());
+            vm.initialize();
 
             ko.applyBindings(vm);
 

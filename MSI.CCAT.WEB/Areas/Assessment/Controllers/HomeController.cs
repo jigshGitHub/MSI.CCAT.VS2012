@@ -11,8 +11,9 @@ namespace MSI.CCAT.WEB.Areas.Assessment.Controllers
         //
         // GET: /Assessment/Home/
 
-        public ActionResult Index()
+        public ActionResult Index(int? moduleId)
         {
+            ViewBag.ModuleId = (moduleId.HasValue) ? moduleId.Value.ToString() :"1";
             return View();
         }
 

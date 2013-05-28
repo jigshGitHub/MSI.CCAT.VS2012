@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="BusinessModels\AssessmentResponse.cs" />
     <Compile Include="AssessmentBus.cs" />
+    <Compile Include="ModuleBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionBus.cs" />
     <Compile Include="ResponseBus.cs" />
