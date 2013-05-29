@@ -1,0 +1,217 @@
+﻿body
+{
+	font-family:'Open Sans', Verdana, sans-serif;
+}
+
+body.logon {
+  background-attachment:fixed;
+  background-color:#201303;
+  
+  background-position:50% 50%;
+  background-repeat:no-repeat no-repeat;
+  background-size:cover;
+  width:100%;
+  height:100%;
+}
+
+footer
+{
+	width: 100%;
+	padding:0;
+	height: 40px;
+    clear: both;
+    background-color: #d3d3d3; /*#444444;*/
+}
+
+.zone 
+{
+    padding: 12px;    
+} 
+
+.validation-summary-valid { display:none; }
+
+@media only screen and (min-height: 600px) {
+	.bottom-bar
+	{
+		position:fixed;
+		bottom:0;
+		left:0;
+		right:0;
+	}
+}
+
+/* (Twitter Bootstrap) Default Overwrite //////////////////////////////////////////// */
+
+#content-header {
+  margin-top:-28px;
+  min-height:70px;
+}
+
+.hero-unit.red
+{  
+  background-color:#9D261D;
+  color:White;
+  margin-bottom:20px;
+  padding:30px;
+}
+
+.modal.big		/* .big is an own */
+{
+	width:90%; height:90%; left:5%; top:5%; margin: auto;
+}
+
+.modal.big .modal-body
+{
+	max-height:85%;
+}
+
+.btn.condensed
+{
+	font-family:'Open Sans Condensed', Verdana, sans-serif;
+}
+footer .container 
+{
+	width:auto;
+}
+
+.sidebar-nav {
+	padding: 9px 0;
+}
+
+.tooltip {
+    z-index: 2000
+}
+
+.accordion
+{
+	opacity: 0.9;
+}
+
+.accordion-heading
+{
+	/*text-shadow: 0px 1px 1px #ffffff;*/
+	background-color: #f0f1f6;
+	/*background-image: linear-gradient(#FFFFFF, #F2F2F2);*/
+}
+
+.accordion-body
+{
+	/*padding-bottom: 10px;*/
+}
+
+.accordion-toggle
+{
+	text-decoration: none;
+}
+
+.accordion-inner {
+	border: none;
+	padding:15px 15px 5px 15px;
+}
+
+.accordion-inner button
+{
+	/*font-family:'Open Sans Condensed', Verdana, sans-serif;*/
+	text-align:left;
+	padding: 7px;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    background:none;
+  }
+
+/* End of (Twitter Bootstrap) Default Overwrite ////////////////////////////////////// */
+
+.image_circle {	border-radius: 50%;}
+
+.smallline { font-size: 0.7em; }
+
+.fontsize90p { font-size:90%; }
+
+.page-title, .page-subtitle, .page-description { font-family:'Open Sans Condensed', Verdana, sans-serif; }
+.page-title { font-size:22px; text-transform:uppercase; display:inline-block;}
+.page-title span { font-weight:bold; }
+.page-subtitle {  font-size:18px; }
+.page-description {  font-size:14px; }
+
+.xxBig-font,.xBig-font, .Big-font
+{
+	font-family:'Open Sans condensed', sans-serif;
+
+	margin-bottom: 15px;     
+}
+.xxBig-font { font-size: 400%; }
+.xBig-font { font-size: 300%; }
+.Big-font { font-size: 200%; }
+
+.HeaderText
+{
+	font-family:'Open Sans condensed', sans-serif;
+	font-size:300%;
+	color:white;
+	text-align:center;
+	opacity:0.9;
+}
+
+.arrow 
+{
+	height:40px;
+	width:40px;
+	background-image: url('/contents/_shared/image/circled_upArrow.png');	
+	background-size:100% 100%;
+	background-repeat:no-repeat;
+	display:inline-block;
+}
+.arrow.up	{ background-image: url('/contents/_shared/image/circled_upArrow.png');	}
+.arrow.down { background-image: url('/contents/_shared/image/circled_downArrow.png'); }
+
+div .alignCenter { text-align:center;}
+
+center { text-align: center; }
+
+.opacity50
+{
+	opacity: 0.5;
+}
+
+div#loading
+ { 
+    width: 235px; 
+    height: 175px; 
+    position: fixed; 
+    top: 50%; 
+    left: 50%;
+    background: no-repeat center transparent; 
+    text-align:center; 
+    padding:2px; 
+    font:normal 14px Tahoma, Geneva, sans-serif;    
+    margin-left: -50px; 
+    margin-top: -50px; 
+    z-index:2000; 
+    overflow: auto; 
+ }
+
+.validation-summary
+{
+    color:Red;
+}
+.validation-summary-valid
+{
+    display: none;
+} 
+
+.modal.bigint /* Created for Initiative Partial View Modal Page */
+{
+       width:75%; height:auto; left:15%; top:10%; margin: auto;
+}
+
+.modal.bigint .modal-body
+{
+       max-height:95%;
+}
+
+.modal.bigspl /* Created for Other functionalities in Settings module */
+{
+       width:40%; height:auto; left:30%; top:30%; margin: auto;
+}
+

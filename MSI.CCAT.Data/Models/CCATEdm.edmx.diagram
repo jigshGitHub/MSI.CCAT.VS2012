@@ -10,6 +10,9 @@
         <EntityTypeShape EntityType="CCATDBModel.Tbl_QuestionResponse" Width="1.5" PointX="5.75" PointY="3.375" />
         <AssociationConnector Association="CCATDBModel.FK_Tbl_QuestionBank_Tbl_Module" />
         <AssociationConnector Association="CCATDBModel.FK_Tbl_Response_Tbl_QuestionBank" />
+        <EntityTypeShape EntityType="CCATDBModel.module" Width="1.5" PointX="9.8512740479089658" PointY="8.7344089787147983" />
+        <EntityTypeShape EntityType="CCATDBModel.pageMenu" Width="1.5" PointX="0.72720962796695976" PointY="25.446051251816588" />
+        <EntityTypeShape EntityType="CCATDBModel.pageMenuGroup" Width="1.5" PointX="10.355558171102572" PointY="31.052695899760675" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

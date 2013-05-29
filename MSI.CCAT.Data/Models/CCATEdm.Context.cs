@@ -28,5 +28,8 @@ namespace MSI.CCAT.Data.Models
         public DbSet<Tbl_QuestionBank> Tbl_QuestionBank { get; set; }
         public DbSet<Tbl_QuestionModule> Tbl_QuestionModule { get; set; }
         public DbSet<Tbl_QuestionResponse> Tbl_QuestionResponse { get; set; }
+        public DbSet<module> modules { get; set; }
+        public DbSet<pageMenu> pageMenus { get; set; }
+        public DbSet<pageMenuGroup> pageMenuGroups { get; set; }
     }
 }

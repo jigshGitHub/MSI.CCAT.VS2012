@@ -6,6 +6,9 @@
     <edmx:StorageModels>
     <Schema Namespace="CCATDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="CCATDBModelStoreContainer">
+          <EntitySet Name="module" EntityType="CCATDBModel.Store.module" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="pageMenu" EntityType="CCATDBModel.Store.pageMenu" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="pageMenuGroup" EntityType="CCATDBModel.Store.pageMenuGroup" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_QuestionBank" EntityType="CCATDBModel.Store.Tbl_QuestionBank" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_QuestionModule" EntityType="CCATDBModel.Store.Tbl_QuestionModule" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_QuestionResponse" EntityType="CCATDBModel.Store.Tbl_QuestionResponse" store:Type="Tables" Schema="dbo" />
@@ -18,6 +21,44 @@
             <End Role="Tbl_QuestionResponse" EntitySet="Tbl_QuestionResponse" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="module">
+          <Key>
+            <PropertyRef Name="moduleId" />
+          </Key>
+          <Property Name="moduleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="pageMenuGroups" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="pageMenu">
+          <Key>
+            <PropertyRef Name="pageMenuId" />
+          </Key>
+          <Property Name="pageMenuId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="appId" Type="int" />
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="shortCaption" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="longCaption" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="iconPath" Type="nvarchar" MaxLength="250" />
+          <Property Name="pagePath" Type="nvarchar" MaxLength="250" />
+          <Property Name="pageParams" Type="nvarchar" MaxLength="500" />
+          <Property Name="isNewWindow" Type="bit" />
+          <Property Name="isModal" Type="bit" />
+          <Property Name="inIFRAME" Type="bit" />
+          <Property Name="aElementIdentifier" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="pageMenuGroup">
+          <Key>
+            <PropertyRef Name="pageMenuGroupId" />
+          </Key>
+          <Property Name="pageMenuGroupId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="appId" Type="int" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="caption" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="iconPath" Type="nvarchar" MaxLength="250" />
+          <Property Name="iconClass" Type="nvarchar" MaxLength="50" />
+          <Property Name="pageMenuIds" Type="varchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="Tbl_QuestionBank">
           <Key>
             <PropertyRef Name="Id" />
@@ -94,6 +135,9 @@
             <End Role="Tbl_QuestionBank" EntitySet="Tbl_QuestionBank" />
             <End Role="Tbl_QuestionResponse" EntitySet="Tbl_QuestionResponse" />
           </AssociationSet>
+          <EntitySet Name="modules" EntityType="CCATDBModel.module" />
+          <EntitySet Name="pageMenus" EntityType="CCATDBModel.pageMenu" />
+          <EntitySet Name="pageMenuGroups" EntityType="CCATDBModel.pageMenuGroup" />
         </EntityContainer>
         <EntityType Name="Tbl_QuestionBank">
           <Key>
@@ -159,6 +203,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="module">
+          <Key>
+            <PropertyRef Name="moduleId" />
+          </Key>
+          <Property Type="Int32" Name="moduleId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="pageMenuGroups" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="pageMenu">
+          <Key>
+            <PropertyRef Name="pageMenuId" />
+          </Key>
+          <Property Type="Int32" Name="pageMenuId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="appId" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="shortCaption" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="longCaption" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="iconPath" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="pagePath" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="pageParams" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="isNewWindow" />
+          <Property Type="Boolean" Name="isModal" />
+          <Property Type="Boolean" Name="inIFRAME" />
+          <Property Type="String" Name="aElementIdentifier" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="pageMenuGroup">
+          <Key>
+            <PropertyRef Name="pageMenuGroupId" />
+          </Key>
+          <Property Type="Int32" Name="pageMenuGroupId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="appId" />
+          <Property Type="String" Name="name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="caption" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="iconPath" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="iconClass" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="pageMenuIds" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -201,6 +283,47 @@
                 <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="modules">
+            <EntityTypeMapping TypeName="CCATDBModel.module">
+              <MappingFragment StoreEntitySet="module">
+                <ScalarProperty Name="pageMenuGroups" ColumnName="pageMenuGroups" />
+                <ScalarProperty Name="moduleId" ColumnName="moduleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pageMenus">
+            <EntityTypeMapping TypeName="CCATDBModel.pageMenu">
+              <MappingFragment StoreEntitySet="pageMenu">
+                <ScalarProperty Name="aElementIdentifier" ColumnName="aElementIdentifier" />
+                <ScalarProperty Name="inIFRAME" ColumnName="inIFRAME" />
+                <ScalarProperty Name="isModal" ColumnName="isModal" />
+                <ScalarProperty Name="isNewWindow" ColumnName="isNewWindow" />
+                <ScalarProperty Name="pageParams" ColumnName="pageParams" />
+                <ScalarProperty Name="pagePath" ColumnName="pagePath" />
+                <ScalarProperty Name="iconPath" ColumnName="iconPath" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="longCaption" ColumnName="longCaption" />
+                <ScalarProperty Name="shortCaption" ColumnName="shortCaption" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="appId" ColumnName="appId" />
+                <ScalarProperty Name="pageMenuId" ColumnName="pageMenuId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pageMenuGroups">
+            <EntityTypeMapping TypeName="CCATDBModel.pageMenuGroup">
+              <MappingFragment StoreEntitySet="pageMenuGroup">
+                <ScalarProperty Name="pageMenuIds" ColumnName="pageMenuIds" />
+                <ScalarProperty Name="iconClass" ColumnName="iconClass" />
+                <ScalarProperty Name="iconPath" ColumnName="iconPath" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="caption" ColumnName="caption" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="appId" ColumnName="appId" />
+                <ScalarProperty Name="pageMenuGroupId" ColumnName="pageMenuGroupId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

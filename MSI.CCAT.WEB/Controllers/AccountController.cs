@@ -63,6 +63,48 @@ namespace MSI.CCAT.WEB.Controllers
             return PartialView("login");
         }
 
+        [AllowAnonymous]
+        public ActionResult LogOn(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View();
+        }
+
+        //
+        // POST: /Account/Login
+
+        [HttpPost]
+        [AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        public ActionResult LogOn(LogOnModel model, string returnUrl)
+        {
+             if (ModelState.IsValid)
+            {
+                if (Membership.ValidateUser(model.UserName, model.Password))
+                {
+                    FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
+                    MembershipUser loggedInUser = Membership.GetUser(model.UserName);
+                    //if (loggedInUser.CreationDate == loggedInUser.LastPasswordChangedDate)
+                    //    return RedirectToAction("ChangePassword", "account", new { isIntialPasswordChange = true });
+                    if (Url.IsLocalUrl(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+            //return View(model);
+            return PartialView("logon");
+        }
         //
         // GET: /Account/LogOff
 

@@ -3,30 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using MSI.CCAT.WEB.Models;
 namespace MSI.CCAT.WEB.Controllers
 {
     public class HomeController : BaseController
     {
-        public ActionResult Index()
+        public ActionResult Index(int? workspaceId, int? moduleId, int? pageMenuId)
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            workspaceId = workspaceId ?? 0;
+            moduleId = moduleId ?? 0;
+            pageMenuId = pageMenuId ?? 0;
 
-            return View();
+            pageInfo p = new pageInfo()
+            {
+                title = "Mined System Compliance Tracking Tool",
+                currentWorkspaceId = workspaceId.Value,
+                currentModuleId = moduleId.Value,
+                currentPageMenuId = pageMenuId.Value
+            };
+            return View("Index", p);
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your app description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

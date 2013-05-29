@@ -67,6 +67,31 @@ namespace MSI.CCAT.WEB.Models
         public string ConfirmPassword { get; set; }
     }
 
+    public class LogOnModel
+    {
+        [Required]
+        [Display(Name = "Username or Email")]
+        public string UserName { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+
+        [Display(Name = "Remember me?")]
+        public bool RememberMe { get; set; }
+    }
+
+    public class pageInfo
+    {
+        public string title { get; set; }
+
+        public int currentWorkspaceId { get; set; }
+        public int currentModuleId { get; set; }
+        public int currentPageMenuId { get; set; }
+        public string LayoutPage { get; set; }
+    }
+
     [Serializable]
     public class UserModel
     {
