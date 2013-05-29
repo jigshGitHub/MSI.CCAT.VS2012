@@ -4,7 +4,7 @@
 
 @Html.Hidden("userId", (string)(@ViewBag.UserID))
 @Html.Hidden("moduleId", (string)(@ViewBag.ModuleId))
-    <span data-bind="text: selectedQuestionModule"></span>
+<div data-bind="with:selectedQuestionModule"><span data-bind="text:name"></span></div>
 <table>
     <tbody data-bind="foreach: questions">
         <tr>
@@ -73,12 +73,14 @@
             self.questionsDisplayEndIndex = ko.observable(self.questionsDisplayCount);
             self.questionsCollection = ko.observableArray([]);
             self.selectedQuestionModule = ko.computed(function () {
-                $.each(self.modules(), function (i, item) {
+                var module;
+                $.each(self.modules(), function (i, item) {                    
                     if (item.id() == moduleId) {
-                        //log(item.name())
-                        return "test";//item.name();
+                        module = item;
+                        return;
                     }
                 });
+                return module;
             }, self);
             self.questions = ko.computed(function () {
                 return self.questionsCollection.slice(self.questionsDisplayStartIndex(), self.questionsDisplayEndIndex());
