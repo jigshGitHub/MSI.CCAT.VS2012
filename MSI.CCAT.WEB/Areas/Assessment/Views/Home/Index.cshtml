@@ -1,169 +1,172 @@
-﻿@{
-    ViewBag.Title = "Index";
-}
-
+﻿
 @Html.Hidden("userId", (string)(@ViewBag.UserID))
 @Html.Hidden("moduleId", (string)(@ViewBag.ModuleId))
-<div data-bind="with:selectedQuestionModule"><span data-bind="text:name"></span></div>
-<table>
-    <tbody data-bind="foreach: questions">
-        <tr>
-            <td data-bind="text: serialNumber"></td>
-            <td>
-                <select data-bind="options: responses, optionsValue: 'Value', optionsCaption: ' ', optionsText: 'Value', value: response">
-                </select>
-            </td>
-            <td data-bind="text: text"></td>
-        </tr>
-    </tbody>
-</table>
-<input type="button" data-bind="click: previousClick, visible: previousVisible" value="Previous" />&nbsp;<input type="button" data-bind="    click: nextClick, visible: nextVisible" value="Next" />
+<div id="someSection">
+    <div data-bind="with: selectedQuestionModule"><span data-bind="    text: name"></span></div>
+    <table>
+        <tbody data-bind="foreach: questions">
+            <tr>
+                <td data-bind="text: serialNumber"></td>
+                <td>
+                    <select data-bind="options: responses, optionsValue: 'Value', optionsCaption: ' ', optionsText: 'Value', value: response">
+                    </select>
+                </td>
+                <td data-bind="text: text"></td>
+            </tr>
+        </tbody>
+    </table>
+    <input type="button" data-bind="click: previousClick, visible: previousVisible" value="Previous" />&nbsp;<input type="button" data-bind="    click: nextClick, visible: nextVisible" value="Next" />
+</div>
+    
 
-@section scripts{
-    <script type="text/javascript">
-        var answerOptions = [{ Text: 'Not Compliant', Value: '0' }, { Text: 'Unsure', Value: '1' }, { Text: 'Slightly Agree', Value: '2' }, { Text: 'Agree', Value: '3' }, { Text: 'Strongly Agree', Value: '4' }, { Text: 'Fully Compliant', Value: '5' }];
-        var assessmentResponse = function (_id, _text, _srNo, _response, _responseId, _userId) {
-            var self = this;
-            self.id = ko.observable(_id);
-            self.response = ko.observable(_response);
-            self.responses = ko.observableArray(answerOptions);
-            self.text = ko.observable(_text);
-            self.serialNumber = ko.observable(_srNo);
-            self.responseId = ko.observable(_responseId);
-            self.userId = _userId;
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/knockout")
 
-            self.response.subscribe(function (responseSelected) {
-                if (responseSelected != '' && responseSelected != undefined) {
-                    self.updateResponse(JSON.stringify({
-                        ResponseId: self.responseId(),
-                        Response: responseSelected,
-                        UserId: self.userId
-                    }));
+    @Scripts.Render("~/bundles/external")
+<script type="text/javascript">
+    var answerOptions = [{ Text: 'Not Compliant', Value: '0' }, { Text: 'Unsure', Value: '1' }, { Text: 'Slightly Agree', Value: '2' }, { Text: 'Agree', Value: '3' }, { Text: 'Strongly Agree', Value: '4' }, { Text: 'Fully Compliant', Value: '5' }];
+    var assessmentResponse = function (_id, _text, _srNo, _response, _responseId, _userId) {
+        var self = this;
+        self.id = ko.observable(_id);
+        self.response = ko.observable(_response);
+        self.responses = ko.observableArray(answerOptions);
+        self.text = ko.observable(_text);
+        self.serialNumber = ko.observable(_srNo);
+        self.responseId = ko.observable(_responseId);
+        self.userId = _userId;
+
+        self.response.subscribe(function (responseSelected) {
+            log(responseSelected);
+            if (responseSelected != '' && responseSelected != undefined) {
+                self.updateResponse(JSON.stringify({
+                    ResponseId: self.responseId(),
+                    Response: responseSelected,
+                    UserId: self.userId
+                }));
+            }
+        }, self);
+
+        self.updateResponse = function (assessmentResponse) {
+            $.ajax({
+                url: '/api/Assessment/',
+                type: "POST",
+                data: assessmentResponse,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                },
+                error: function (response, errorText) {
+                    return false;
                 }
-            }, self);
-
-            self.updateResponse = function (assessmentResponse) {
-                $.ajax({
-                    url: '/api/Assessment/',
-                    type: "POST",
-                    data: assessmentResponse,
-                    dataType: "json",
-                    contentType: "application/json; charset=utf-8",
-                    success: function (response) {
-                    },
-                    error: function (response, errorText) {
-                        return false;
-                    }
-                });
-            }
+            });
         }
-        var questionModule = function (_id, _name) {
-            var self = this;
-            self.id = ko.observable(_id);
-            self.name = ko.observable(_name);
-        }
+    }
+    var questionModule = function (_id, _name) {
+        var self = this;
+        self.id = ko.observable(_id);
+        self.name = ko.observable(_name);
+    }
 
-        var pageViewModel = function (userId, moduleId) {
-            var self = this;
-            self.userId = userId;
-            self.modules = ko.observableArray([]);
-            self.totalQuestionCount = ko.observable();;
-            self.questionsDisplayCount = 10;
-            self.questionsDisplayStartIndex = ko.observable(0);
-            self.questionsDisplayEndIndex = ko.observable(self.questionsDisplayCount);
-            self.questionsCollection = ko.observableArray([]);
-            self.selectedQuestionModule = ko.computed(function () {
-                var module;
-                $.each(self.modules(), function (i, item) {                    
-                    if (item.id() == moduleId) {
-                        module = item;
-                        return;
-                    }
-                });
-                return module;
-            }, self);
-            self.questions = ko.computed(function () {
-                return self.questionsCollection.slice(self.questionsDisplayStartIndex(), self.questionsDisplayEndIndex());
-            }, self);
+    var pageViewModel = function (userId, moduleId) {
+        var self = this;
+        self.userId = userId;
+        self.modules = ko.observableArray([]);
+        self.totalQuestionCount = ko.observable();;
+        self.questionsDisplayCount = 10;
+        self.questionsDisplayStartIndex = ko.observable(0);
+        self.questionsDisplayEndIndex = ko.observable(self.questionsDisplayCount);
+        self.questionsCollection = ko.observableArray([]);
+        self.selectedQuestionModule = ko.computed(function () {
+            var module;
+            $.each(self.modules(), function (i, item) {
+                if (item.id() == moduleId) {
+                    module = item;
+                    return;
+                }
+            });
+            return module;
+        }, self);
+        self.questions = ko.computed(function () {
+            return self.questionsCollection.slice(self.questionsDisplayStartIndex(), self.questionsDisplayEndIndex());
+        }, self);
 
-            self.nextClick = function () {
-                self.questionsDisplayStartIndex(self.questionsDisplayStartIndex() + self.questionsDisplayCount);
-                self.questionsDisplayEndIndex(self.questionsDisplayEndIndex() + self.questionsDisplayCount);
-            };
+        self.nextClick = function () {
+            self.questionsDisplayStartIndex(self.questionsDisplayStartIndex() + self.questionsDisplayCount);
+            self.questionsDisplayEndIndex(self.questionsDisplayEndIndex() + self.questionsDisplayCount);
+        };
 
-            self.nextVisible = ko.computed(function () {
-                return (self.questionsDisplayEndIndex() <= self.totalQuestionCount());
-            }, self);
+        self.nextVisible = ko.computed(function () {
+            return (self.questionsDisplayEndIndex() <= self.totalQuestionCount());
+        }, self);
 
-            self.previousClick = function () {
-                self.questionsDisplayStartIndex(self.questionsDisplayStartIndex() - self.questionsDisplayCount);
-                self.questionsDisplayEndIndex(self.questionsDisplayEndIndex() - self.questionsDisplayCount);
-            };
+        self.previousClick = function () {
+            self.questionsDisplayStartIndex(self.questionsDisplayStartIndex() - self.questionsDisplayCount);
+            self.questionsDisplayEndIndex(self.questionsDisplayEndIndex() - self.questionsDisplayCount);
+        };
 
-            self.previousVisible = ko.computed(function () {
-                return (self.questionsDisplayStartIndex() > 0 && self.questionsDisplayStartIndex() <= self.totalQuestionCount());
-            }, self);
+        self.previousVisible = ko.computed(function () {
+            return (self.questionsDisplayStartIndex() > 0 && self.questionsDisplayStartIndex() <= self.totalQuestionCount());
+        }, self);
 
-            //self.selectedModule = ko.computed(function () { return self.modules[0]; }, self);
+        //self.selectedModule = ko.computed(function () { return self.modules[0]; }, self);
 
-            self.initialize = function () {
-                self.loadQuestions();
-                self.loadModules();
-            }
-
-            self.loadModules = function () {
-                $.ajax({
-                    url: '/api/QuestionModule',
-                    type: 'GET',
-                    contentType: 'application/json',
-                    dataType: 'json',
-                    success: function (data) {
-                        if (data.length > 0) {
-                            $.each(data, function (i, item) {
-                                //log(item)
-                                self.modules.push(new questionModule(item.Id, item.Name));
-                            });
-                        }
-                    },
-                    error: function (xhr, status, somthing) {
-                        log(status);
-                    }
-                });
-            }
-            self.loadQuestions = function () {
-                $.ajax({
-                    url: '/api/Assessment',
-                    type: 'GET',
-                    contentType: 'application/json',
-                    data: { moduleId: 1, userId: userId },
-                    dataType: 'json',
-                    success: function (data) {
-                        self.totalQuestionCount(data.length);
-                        if (data.length > 0) {
-                            $.each(data, function (i, item) {
-                                //log(item);
-                                self.questionsCollection.push(new assessmentResponse(item.QuestionId, item.Question, item.SerialNumber, item.Response, item.ResponseId, userId));
-                            });
-                        }
-                    },
-                    error: function (xhr, status, somthing) {
-                        log(status);
-                    }
-                });
-            };
+        self.initialize = function () {
+            self.loadModules();
+            self.loadQuestions();
         }
 
-        $(document).ready(function () {
+        self.loadModules = function () {
+            $.ajax({
+                url: '/api/QuestionModule',
+                type: 'GET',
+                contentType: 'application/json',
+                async:false,
+                dataType: 'json',
+                success: function (data) {
+                    if (data.length > 0) {
+                        $.each(data, function (i, item) {
+                            //log(item)
+                            self.modules.push(new questionModule(item.Id, item.Name));
+                        });
+                    }
+                },
+                error: function (xhr, status, somthing) {
+                    log(status);
+                }
+            });
+        }
+        self.loadQuestions = function () {
+            log(self.selectedQuestionModule());
+            $.ajax({
+                url: '/api/Assessment',
+                type: 'GET',
+                contentType: 'application/json',
+                data: { moduleId: self.selectedQuestionModule().id(), userId: userId },
+                dataType: 'json',
+                success: function (data) {
+                    self.totalQuestionCount(data.length);
+                    if (data.length > 0) {
+                        $.each(data, function (i, item) {
+                            //log(item);
+                            self.questionsCollection.push(new assessmentResponse(item.QuestionId, item.Question, item.SerialNumber, item.Response, item.ResponseId, userId));
+                        });
+                    }
+                },
+                error: function (xhr, status, somthing) {
+                    log(status);
+                }
+            });
+        };
+    }
+
+    $(document).ready(function () {
 
 
-            var vm = new pageViewModel($('#userId').val(), $('#moduleId').val());
-            vm.initialize();
+        var vm = new pageViewModel($('#userId').val(), $('#moduleId').val());
+        vm.initialize();
 
-            ko.applyBindings(vm);
+        ko.applyBindings(vm, $('#someSection')[0]);
 
 
-        });
+    });
     </script>
-}
-
-<h2>Index</h2>

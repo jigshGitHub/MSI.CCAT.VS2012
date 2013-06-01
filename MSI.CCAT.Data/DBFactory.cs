@@ -45,6 +45,7 @@ namespace MSI.CCAT.Data.Repositories
     public interface IDatabaseFactory : IDisposable
     {
         DbContext Get();
+        int SaveChanges();
     }
 
     public class DBFactory : IDatabaseFactory
@@ -428,6 +429,12 @@ namespace MSI.CCAT.Data.Repositories
         public void Dispose()
         {
             throw new System.NotImplementedException();
+        }
+
+        public int SaveChanges()
+        {
+            //this.ApplyStateChanges();
+            return Get().SaveChanges();
         }
     }
 

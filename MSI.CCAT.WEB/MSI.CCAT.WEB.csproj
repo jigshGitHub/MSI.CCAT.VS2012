@@ -183,6 +183,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Assessment\AssessmentAreaRegistration.cs" />
     <Compile Include="Areas\Assessment\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\APIs\AssessmentController.cs" />
     <Compile Include="Controllers\APIs\QuestionModuleController.cs" />
@@ -1825,13 +1827,17 @@
     <Content Include="Global.asax" />
     <Content Include="Areas\Assessment\Views\Web.config" />
     <Content Include="Areas\Assessment\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Assessment\Views\Home\Index.cshtml" />
     <Content Include="Content\kendo\styles\images\KendoUI.ttf" />
     <Content Include="Content\kendo\styles\images\KendoUI.woff" />
     <Content Include="Content\_shared\dataSource\internet-users.json" />
     <Content Include="contents\kendo\styles\images\KendoUI.ttf" />
     <Content Include="contents\kendo\styles\images\KendoUI.woff" />
     <Content Include="contents\_shared\dataSource\internet-users.json" />
+    <Content Include="Areas\Dashboard\Views\Web.config" />
+    <Content Include="Areas\Dashboard\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Assessment\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Assessment\Views\Home\Test.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -1896,6 +1902,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Assessment\Models\" />
     <Folder Include="Areas\Assessment\Views\Shared\" />
+    <Folder Include="Areas\Dashboard\Models\" />
+    <Folder Include="Areas\Dashboard\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1926,7 +1934,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>58791</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:53815/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

@@ -12,12 +12,13 @@ namespace MSI.CCAT.Business
     {
         public IEnumerable<Tbl_QuestionBank> GetQuestions(int moduleId)
         {
-            QuestionBankRepository questionBankRepository;
+            //QuestionBankRepository questionBankRepository;
             IEnumerable<Tbl_QuestionBank> questions = null;
             try
             {
-                questionBankRepository = new QuestionBankRepository();
-                questions = from questionBank in questionBankRepository.GetAll().Where(q => q.IsActive == true && q.ModuleId == moduleId)
+                //questionBankRepository = new QuestionBankRepository();
+                IUnitOfWork uo = new UnitOfWork();
+                questions = from questionBank in uo.Repository<Tbl_QuestionBank>().GetAll().Where(q => q.IsActive == true && q.ModuleId == moduleId)
                             select questionBank;
             }
             catch (Exception ex)

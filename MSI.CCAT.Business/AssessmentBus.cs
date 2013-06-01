@@ -23,7 +23,7 @@ namespace MSI.CCAT.Business
                 responseBus = new ResponseBus();
 
                 questions = questionBus.GetQuestions(moduleId);
-                responses= responseBus.GetResponses(userId);
+                responses= responseBus.GetResponses(userId,moduleId);
 
                 if (responses.Count() == 0)
                     responses = CreateDefaultResponses(userId, questions);

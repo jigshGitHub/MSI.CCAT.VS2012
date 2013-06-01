@@ -10,14 +10,16 @@ namespace MSI.CCAT.Business
 {
     public class ResponseBus
     {
-        public IEnumerable<Tbl_QuestionResponse> GetResponses(Guid userId)
+        public IEnumerable<Tbl_QuestionResponse> GetResponses(Guid userId, int moduleId)
         {
-            QuestionResponseRepository repsonseRepository;
+            //QuestionResponseRepository repsonseRepository;
             IEnumerable<Tbl_QuestionResponse> responses = null;
             try
             {
-                repsonseRepository = new QuestionResponseRepository();
-                responses = from response in repsonseRepository.GetAll().Where(r => r.CreatedBy == userId)
+                //repsonseRepository = new QuestionResponseRepository();
+                IUnitOfWork uo = new UnitOfWork();
+                responses = from response in uo.Repository<Tbl_QuestionResponse>().GetAll().Where(r => r.CreatedBy == userId)
+                            from question in uo.Repository<Tbl_QuestionBank>().GetAll().Where(r=> r.Id == response.QuestionId && r.ModuleId == moduleId)
                             select response;
             }
             catch (Exception ex)
@@ -29,16 +31,19 @@ namespace MSI.CCAT.Business
 
         public Tbl_QuestionResponse CreateResponse(Guid userId, int questionId)
         {
-            QuestionResponseRepository responseRepository;
+            //QuestionResponseRepository responseRepository;
             Tbl_QuestionResponse response;
             try
             {
-                responseRepository = new QuestionResponseRepository();
+                //responseRepository = new QuestionResponseRepository();
+                IUnitOfWork uo = new UnitOfWork();
+
                 response = new Tbl_QuestionResponse();
                 response.QuestionId = questionId;
                 response.CreatedBy = userId;
                 response.CreatedOn = DateTime.Now;
-                responseRepository.Add(response);
+                uo.Repository<Tbl_QuestionResponse>().Add(response);
+                uo.Save();
             }
             catch (Exception ex)
             {
@@ -49,18 +54,20 @@ namespace MSI.CCAT.Business
 
         public Tbl_QuestionResponse UpdateResponse(Guid userId, string value, int responseId)
         {
-            QuestionResponseRepository responseRepository;
+            //QuestionResponseRepository responseRepository;
             Tbl_QuestionResponse response = null;
             try
             {
-                responseRepository = new QuestionResponseRepository();
-                response = responseRepository.GetById(responseId);
+                //responseRepository = new QuestionResponseRepository();
+                IUnitOfWork uo = new UnitOfWork();
+                response = uo.Repository<Tbl_QuestionResponse>().GetById(responseId);
                 if (response != null)
                 {
                     response.Value = value;
                     response.UpdatedBy = userId;
                     response.UpdatedOn = DateTime.Now;
-                    responseRepository.Update(response);
+                    uo.Repository<Tbl_QuestionResponse>().Update(response);
+                    uo.Save();
                 }
             }
             catch (Exception ex)

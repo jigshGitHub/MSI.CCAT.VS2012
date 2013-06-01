@@ -10,14 +10,32 @@ using System.Linq.Expressions;
 using MSI.CCAT.Data.Models;
 namespace MSI.CCAT.Data.Repositories
 {
-    public abstract class RepositoryBase<T> where T : class
+    public interface IRepository<T> where T : class
+    {
+        void Add(T entity);
+        void Update(T entity);
+        void Delete(T entity);
+        void Delete(Expression<Func<T, bool>> where);
+        T GetById(long id);
+        T GetById(string id);
+        T GetById(int id);
+        IEnumerable<T> GetAll();
+        IEnumerable<T> GetMany(Expression<Func<T, bool>> where);
+        T Get(Expression<Func<T, bool>> where);
+    }
+    public  class RepositoryBase<T> :
+        IRepository<T> where T : class
     {
         private DbContext dataContext;
         private readonly IDbSet<T> dbset;
-        protected RepositoryBase(IDatabaseFactory databaseFactory)
+        public RepositoryBase(IDatabaseFactory databaseFactory)
         {
             DatabaseFactory = databaseFactory;
             dbset = DataContext.Set<T>();
+        }
+        public RepositoryBase():this(new DBFactory())
+        {
+            
         }
 
         protected IDatabaseFactory DatabaseFactory
@@ -33,18 +51,18 @@ namespace MSI.CCAT.Data.Repositories
         public void Add(T entity)
         {
             dbset.Add(entity);
-            dataContext.SaveChanges();
+            //dataContext.SaveChanges();
         }
         public void Update(T entity)
         {
             dbset.Attach(entity);
             dataContext.Entry(entity).State = EntityState.Modified;
-            dataContext.SaveChanges();
+            //dataContext.SaveChanges();
         }
         public void Delete(T entity)
         {
             dbset.Remove(entity);
-            dataContext.SaveChanges();
+            //dataContext.SaveChanges();
         }
         public void Delete(Expression<Func<T, bool>> where)
         {

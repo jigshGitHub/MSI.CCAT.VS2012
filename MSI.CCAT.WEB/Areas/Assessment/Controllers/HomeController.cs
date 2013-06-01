@@ -13,8 +13,8 @@ namespace MSI.CCAT.WEB.Areas.Assessment.Controllers
 
         public ActionResult Index(int? moduleId)
         {
-            ViewBag.ModuleId = (moduleId.HasValue) ? moduleId.Value.ToString() :"1";
-            return View();
+            ViewBag.ModuleId = (moduleId.HasValue) ? moduleId.Value.ToString() : "1";
+            return PartialView();
         }
 
     }

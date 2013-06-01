@@ -12,12 +12,15 @@ namespace MSI.CCAT.Business
         public IEnumerable<Tbl_QuestionModule> GetModules()
         {
             IEnumerable<Tbl_QuestionModule> modules = null;
-            QuestionModuleRepository moduleRepository;
+            //QuestionModuleRepository moduleRepository;
 
             try
             {
-                moduleRepository = new QuestionModuleRepository();
-                modules = moduleRepository.GetAll().Where(r => r.IsActive == true);
+                //moduleRepository = new QuestionModuleRepository();
+                //modules = moduleRepository.GetAll().Where(r => r.IsActive == true);
+                IUnitOfWork uo = new UnitOfWork();
+                modules = uo.Repository<Tbl_QuestionModule>().GetAll().Where(r => r.IsActive == true);
+
             }
             catch (Exception ex)
             {
@@ -29,12 +32,13 @@ namespace MSI.CCAT.Business
         public Tbl_QuestionModule GetModuleDetails(int moduleId)
         {
             Tbl_QuestionModule module  = null;
-            QuestionModuleRepository moduleRepository;
+            //QuestionModuleRepository moduleRepository;
 
             try
             {
-                moduleRepository = new QuestionModuleRepository();
-                module = moduleRepository.GetById(moduleId);
+                //moduleRepository = new QuestionModuleRepository();
+                IUnitOfWork uo = new UnitOfWork();
+                module = uo.Repository<Tbl_QuestionModule>().GetById(moduleId);
             }
             catch (Exception ex)
             {
