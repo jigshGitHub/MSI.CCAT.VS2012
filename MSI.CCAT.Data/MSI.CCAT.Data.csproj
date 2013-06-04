@@ -49,6 +49,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBFactory.cs" />
+    <Compile Include="Models\CascadeEDM.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CascadeEDM.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CascadeEDM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CascadeEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CascadeEDM.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CascadeEDM.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\CCATEdm.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -67,12 +82,17 @@
     <Compile Include="Models\module.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MSI_ComplaintMain.cs">
+      <DependentUpon>CascadeEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSI_Debtor.cs" />
     <Compile Include="Models\pageMenu.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pageMenuGroup.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Models\Tbl_QuestionBank.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
@@ -85,6 +105,7 @@
     <Compile Include="module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Base.cs" />
+    <Compile Include="Repositories\DataQueries.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="Repositories\menuTablesRepository.cs" />
     <Compile Include="Repositories\QuestionBankRepository.cs" />
@@ -98,6 +119,23 @@
       <LastGenOutput>CCATEdm.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="App.Config" />
+    <EntityDeploy Include="Models\CascadeEDM.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CascadeEDM.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\CascadeEDM.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CascadeEDM.edmx</DependentUpon>
+      <LastGenOutput>CascadeEDM.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Models\CascadeEDM.edmx.diagram">
+      <DependentUpon>CascadeEDM.edmx</DependentUpon>
+    </None>
+    <None Include="Models\CascadeEDM.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CascadeEDM.edmx</DependentUpon>
+      <LastGenOutput>CascadeEDM.cs</LastGenOutput>
+    </None>
     <None Include="Models\CCATEdm.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CCATEdm.edmx</DependentUpon>

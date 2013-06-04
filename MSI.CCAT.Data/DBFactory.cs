@@ -50,17 +50,22 @@ namespace MSI.CCAT.Data.Repositories
 
     public class DBFactory : IDatabaseFactory
     {
-        private CCATDBEntities dbContext;
+        private DbContext dbContext;
+        private string _dbEntities;
+        public DBFactory(string dbEntities)
+        {
+            _dbEntities = dbEntities;
+            //mCN = ConfigurationManager.ConnectionStrings[dbEntities] .ToString(); ;
+            System.Data.EntityClient.EntityConnection con = new System.Data.EntityClient.EntityConnection(ConfigurationManager.ConnectionStrings[dbEntities].ToString());
+            mCN = con.StoreConnection.ConnectionString;
+        }
 
-        public DBFactory()
-        {
-        }
         private string mCN;
-        public DBFactory(string ConnectionString)
-        {
-            //Allows us to use a CN String Other then the Default
-            mCN = ConnectionString;
-        }
+        //public DBFactory()
+        //{
+        //    //Allows us to use a CN String Other then the Default
+        //    mCN = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString(); ;
+        //}
 
         protected SqlConnection GetConnection()
         {
@@ -416,15 +421,42 @@ namespace MSI.CCAT.Data.Repositories
 
         public System.Data.Entity.DbContext Get()
         {
-            dbContext = (CCATDBEntities)UnitOfWorkStore.GetInstance("DBEntities");
-            if (dbContext == null)
+            if (_dbEntities == "CCATDBEntities")
             {
-                dbContext = new CCATDBEntities();
-                dbContext.Configuration.ProxyCreationEnabled = false;
-                UnitOfWorkStore.SetInstance("DBEntities", dbContext);
+                dbContext = (CCATDBEntities)UnitOfWorkStore.GetInstance("CCATDBEntities");
+                if (dbContext == null)
+                {
+                    dbContext = new CCATDBEntities();
+                    dbContext.Configuration.ProxyCreationEnabled = false;
+                    UnitOfWorkStore.SetInstance("CCATDBEntities", dbContext);
+                }
+                return dbContext;
             }
-            return dbContext;
+            else if (_dbEntities == "CascadeDBEntities")
+            {
+                dbContext = (CascadeDBEntities)UnitOfWorkStore.GetInstance("CascadeDBEntities");
+                if (dbContext == null)
+                {
+                    dbContext = new CCATDBEntities();
+                    dbContext.Configuration.ProxyCreationEnabled = false;
+                    UnitOfWorkStore.SetInstance("CascadeDBEntities", dbContext);
+                }
+                return dbContext;
+            }
+            return null;
         }
+
+        //public System.Data.Entity.DbContext Get()
+        //{
+        //    dbContext = (CCATDBEntities)UnitOfWorkStore.GetInstance("DBEntities");
+        //    if (dbContext == null)
+        //    {
+        //        dbContext = new CCATDBEntities();
+        //        dbContext.Configuration.ProxyCreationEnabled = false;
+        //        UnitOfWorkStore.SetInstance("DBEntities", dbContext);
+        //    }
+        //    return dbContext;
+        //}
 
         public void Dispose()
         {

@@ -17,7 +17,7 @@ namespace MSI.CCAT.Business
             try
             {
                 //repsonseRepository = new QuestionResponseRepository();
-                IUnitOfWork uo = new UnitOfWork();
+                IUnitOfWork uo = new UnitOfWork("CCATDBEntities");
                 responses = from response in uo.Repository<Tbl_QuestionResponse>().GetAll().Where(r => r.CreatedBy == userId)
                             from question in uo.Repository<Tbl_QuestionBank>().GetAll().Where(r=> r.Id == response.QuestionId && r.ModuleId == moduleId)
                             select response;
@@ -36,7 +36,7 @@ namespace MSI.CCAT.Business
             try
             {
                 //responseRepository = new QuestionResponseRepository();
-                IUnitOfWork uo = new UnitOfWork();
+                IUnitOfWork uo = new UnitOfWork("CCATDBEntities");
 
                 response = new Tbl_QuestionResponse();
                 response.QuestionId = questionId;
@@ -59,7 +59,7 @@ namespace MSI.CCAT.Business
             try
             {
                 //responseRepository = new QuestionResponseRepository();
-                IUnitOfWork uo = new UnitOfWork();
+                IUnitOfWork uo = new UnitOfWork("CCATDBEntities");
                 response = uo.Repository<Tbl_QuestionResponse>().GetById(responseId);
                 if (response != null)
                 {

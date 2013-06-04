@@ -17,7 +17,7 @@ namespace MSI.CCAT.Business
             try
             {
                 //questionBankRepository = new QuestionBankRepository();
-                IUnitOfWork uo = new UnitOfWork();
+                IUnitOfWork uo = new UnitOfWork("CCATDBEntities");
                 questions = from questionBank in uo.Repository<Tbl_QuestionBank>().GetAll().Where(q => q.IsActive == true && q.ModuleId == moduleId)
                             select questionBank;
             }

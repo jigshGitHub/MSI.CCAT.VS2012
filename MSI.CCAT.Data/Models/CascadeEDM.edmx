@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CascadeDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="CascadeDBModelStoreContainer">
+          <EntitySet Name="MSI_ComplaintMain" EntityType="CascadeDBModel.Store.MSI_ComplaintMain" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="MSI_ComplaintMain">
+          <Key>
+            <PropertyRef Name="Account" />
+          </Key>
+          <Property Name="AgencyId" Type="varchar" MaxLength="20" />
+          <Property Name="Account" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="500" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="Zip" Type="varchar" MaxLength="10" />
+          <Property Name="HomePhone" Type="varchar" MaxLength="50" />
+          <Property Name="WorkPhone" Type="varchar" MaxLength="50" />
+          <Property Name="MobilePhone" Type="varchar" MaxLength="50" />
+          <Property Name="LastFourSSN" Type="varchar" Nullable="false" MaxLength="4" />
+          <Property Name="DebtorIdentityVerifiedYN" Type="bit" />
+          <Property Name="ContactMethodId" Type="int" />
+          <Property Name="ContactTimeId" Type="int" />
+          <Property Name="CreditorName" Type="varchar" MaxLength="500" />
+          <Property Name="DebtProductId" Type="int" />
+          <Property Name="DebtPurchaseBalance" Type="varchar" MaxLength="50" />
+          <Property Name="DebtCurrentBalance" Type="varchar" MaxLength="50" />
+          <Property Name="DisputeDebtYN" Type="bit" />
+          <Property Name="DisputeDebtAmountYN" Type="bit" />
+          <Property Name="DisputeDebtDueDateYN" Type="bit" />
+          <Property Name="ComplaintID" Type="varchar" MaxLength="50" />
+          <Property Name="ComplaintDate" Type="datetime" Nullable="false" />
+          <Property Name="ComplaintReceivedByMethodId" Type="int" />
+          <Property Name="ComplaintIssueId" Type="int" Nullable="false" />
+          <Property Name="ComplaintNotes" Type="varchar" MaxLength="1000" />
+          <Property Name="ComplaintSubmitedToAgencyYN" Type="bit" />
+          <Property Name="ComplaintSubmitedToAgencyDate" Type="datetime" />
+          <Property Name="MoreInfoReqdFromDebtorYN" Type="bit" />
+          <Property Name="MoreInfoRequestedDate" Type="datetime" />
+          <Property Name="MoreInfoRequested" Type="varchar" MaxLength="1000" />
+          <Property Name="MoreInfoReceivedFromDebtorYN" Type="bit" />
+          <Property Name="MoreInfoReceivedDate" Type="datetime" />
+          <Property Name="MoreInfoReceived" Type="varchar" MaxLength="1000" />
+          <Property Name="ComplaintSubmittedToOwnerYN" Type="bit" />
+          <Property Name="ComplaintSubmittedDate" Type="datetime" />
+          <Property Name="TimeToSubmitDays" Type="int" />
+          <Property Name="MoreInfoFromAgencyYN" Type="bit" />
+          <Property Name="MoreInfoFromAgencyRequestedDate" Type="datetime" />
+          <Property Name="MoreInfoFromAgencyRequested" Type="varchar" MaxLength="1000" />
+          <Property Name="MoreInfoFromAgencyReceivedYN" Type="bit" />
+          <Property Name="MoreInfoFromAgencyReceived" Type="varchar" MaxLength="1000" />
+          <Property Name="MoreInfoFromAgencyReceivedDate" Type="datetime" />
+          <Property Name="OwnerResponseId" Type="int" />
+          <Property Name="OwnerResponseDate" Type="datetime" />
+          <Property Name="OwnerResponseDays" Type="int" />
+          <Property Name="AgencyResponseToDebtorDate" Type="datetime" />
+          <Property Name="TotalResponseTimeDays" Type="int" />
+          <Property Name="DebtorAgreeYN" Type="bit" />
+          <Property Name="NeedFurtherActionYN" Type="bit" />
+          <Property Name="FinalActionStepId" Type="int" />
+          <Property Name="IsViewedByOwner" Type="bit" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" />
+          <Property Name="IsViewedByAgency" Type="bit" />
+          <Property Name="ComplaintDocument" Type="varchar" MaxLength="500" />
+          <Property Name="DebtOwnerProcessDocument" Type="varchar" MaxLength="500" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CascadeDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CascadeDBEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="MSI_ComplaintMain" EntityType="CascadeDBModel.MSI_ComplaintMain" />
+        </EntityContainer>
+        <EntityType Name="MSI_ComplaintMain">
+          <Key>
+            <PropertyRef Name="Account" />
+          </Key>
+          <Property Name="AgencyId" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Account" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="State" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Zip" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="HomePhone" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="WorkPhone" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="MobilePhone" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LastFourSSN" Type="String" Nullable="false" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="DebtorIdentityVerifiedYN" Type="Boolean" />
+          <Property Name="ContactMethodId" Type="Int32" />
+          <Property Name="ContactTimeId" Type="Int32" />
+          <Property Name="CreditorName" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="DebtProductId" Type="Int32" />
+          <Property Name="DebtPurchaseBalance" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DebtCurrentBalance" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DisputeDebtYN" Type="Boolean" />
+          <Property Name="DisputeDebtAmountYN" Type="Boolean" />
+          <Property Name="DisputeDebtDueDateYN" Type="Boolean" />
+          <Property Name="ComplaintID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ComplaintDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ComplaintReceivedByMethodId" Type="Int32" />
+          <Property Name="ComplaintIssueId" Type="Int32" Nullable="false" />
+          <Property Name="ComplaintNotes" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="ComplaintSubmitedToAgencyYN" Type="Boolean" />
+          <Property Name="ComplaintSubmitedToAgencyDate" Type="DateTime" Precision="3" />
+          <Property Name="MoreInfoReqdFromDebtorYN" Type="Boolean" />
+          <Property Name="MoreInfoRequestedDate" Type="DateTime" Precision="3" />
+          <Property Name="MoreInfoRequested" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="MoreInfoReceivedFromDebtorYN" Type="Boolean" />
+          <Property Name="MoreInfoReceivedDate" Type="DateTime" Precision="3" />
+          <Property Name="MoreInfoReceived" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="ComplaintSubmittedToOwnerYN" Type="Boolean" />
+          <Property Name="ComplaintSubmittedDate" Type="DateTime" Precision="3" />
+          <Property Name="TimeToSubmitDays" Type="Int32" />
+          <Property Name="MoreInfoFromAgencyYN" Type="Boolean" />
+          <Property Name="MoreInfoFromAgencyRequestedDate" Type="DateTime" Precision="3" />
+          <Property Name="MoreInfoFromAgencyRequested" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="MoreInfoFromAgencyReceivedYN" Type="Boolean" />
+          <Property Name="MoreInfoFromAgencyReceived" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="MoreInfoFromAgencyReceivedDate" Type="DateTime" Precision="3" />
+          <Property Name="OwnerResponseId" Type="Int32" />
+          <Property Name="OwnerResponseDate" Type="DateTime" Precision="3" />
+          <Property Name="OwnerResponseDays" Type="Int32" />
+          <Property Name="AgencyResponseToDebtorDate" Type="DateTime" Precision="3" />
+          <Property Name="TotalResponseTimeDays" Type="Int32" />
+          <Property Name="DebtorAgreeYN" Type="Boolean" />
+          <Property Name="NeedFurtherActionYN" Type="Boolean" />
+          <Property Name="FinalActionStepId" Type="Int32" />
+          <Property Name="IsViewedByOwner" Type="Boolean" />
+          <Property Name="CreatedBy" Type="Guid" />
+          <Property Name="IsViewedByAgency" Type="Boolean" />
+          <Property Name="ComplaintDocument" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="DebtOwnerProcessDocument" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CascadeDBModelStoreContainer" CdmEntityContainer="CascadeDBEntities">
+          <EntitySetMapping Name="MSI_ComplaintMain">
+            <EntityTypeMapping TypeName="CascadeDBModel.MSI_ComplaintMain">
+              <MappingFragment StoreEntitySet="MSI_ComplaintMain">
+                <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
+                <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="LastFourSSN" ColumnName="LastFourSSN" />
+                <ScalarProperty Name="DebtorIdentityVerifiedYN" ColumnName="DebtorIdentityVerifiedYN" />
+                <ScalarProperty Name="ContactMethodId" ColumnName="ContactMethodId" />
+                <ScalarProperty Name="ContactTimeId" ColumnName="ContactTimeId" />
+                <ScalarProperty Name="CreditorName" ColumnName="CreditorName" />
+                <ScalarProperty Name="DebtProductId" ColumnName="DebtProductId" />
+                <ScalarProperty Name="DebtPurchaseBalance" ColumnName="DebtPurchaseBalance" />
+                <ScalarProperty Name="DebtCurrentBalance" ColumnName="DebtCurrentBalance" />
+                <ScalarProperty Name="DisputeDebtYN" ColumnName="DisputeDebtYN" />
+                <ScalarProperty Name="DisputeDebtAmountYN" ColumnName="DisputeDebtAmountYN" />
+                <ScalarProperty Name="DisputeDebtDueDateYN" ColumnName="DisputeDebtDueDateYN" />
+                <ScalarProperty Name="ComplaintID" ColumnName="ComplaintID" />
+                <ScalarProperty Name="ComplaintDate" ColumnName="ComplaintDate" />
+                <ScalarProperty Name="ComplaintReceivedByMethodId" ColumnName="ComplaintReceivedByMethodId" />
+                <ScalarProperty Name="ComplaintIssueId" ColumnName="ComplaintIssueId" />
+                <ScalarProperty Name="ComplaintNotes" ColumnName="ComplaintNotes" />
+                <ScalarProperty Name="ComplaintSubmitedToAgencyYN" ColumnName="ComplaintSubmitedToAgencyYN" />
+                <ScalarProperty Name="ComplaintSubmitedToAgencyDate" ColumnName="ComplaintSubmitedToAgencyDate" />
+                <ScalarProperty Name="MoreInfoReqdFromDebtorYN" ColumnName="MoreInfoReqdFromDebtorYN" />
+                <ScalarProperty Name="MoreInfoRequestedDate" ColumnName="MoreInfoRequestedDate" />
+                <ScalarProperty Name="MoreInfoRequested" ColumnName="MoreInfoRequested" />
+                <ScalarProperty Name="MoreInfoReceivedFromDebtorYN" ColumnName="MoreInfoReceivedFromDebtorYN" />
+                <ScalarProperty Name="MoreInfoReceivedDate" ColumnName="MoreInfoReceivedDate" />
+                <ScalarProperty Name="MoreInfoReceived" ColumnName="MoreInfoReceived" />
+                <ScalarProperty Name="ComplaintSubmittedToOwnerYN" ColumnName="ComplaintSubmittedToOwnerYN" />
+                <ScalarProperty Name="ComplaintSubmittedDate" ColumnName="ComplaintSubmittedDate" />
+                <ScalarProperty Name="TimeToSubmitDays" ColumnName="TimeToSubmitDays" />
+                <ScalarProperty Name="MoreInfoFromAgencyYN" ColumnName="MoreInfoFromAgencyYN" />
+                <ScalarProperty Name="MoreInfoFromAgencyRequestedDate" ColumnName="MoreInfoFromAgencyRequestedDate" />
+                <ScalarProperty Name="MoreInfoFromAgencyRequested" ColumnName="MoreInfoFromAgencyRequested" />
+                <ScalarProperty Name="MoreInfoFromAgencyReceivedYN" ColumnName="MoreInfoFromAgencyReceivedYN" />
+                <ScalarProperty Name="MoreInfoFromAgencyReceived" ColumnName="MoreInfoFromAgencyReceived" />
+                <ScalarProperty Name="MoreInfoFromAgencyReceivedDate" ColumnName="MoreInfoFromAgencyReceivedDate" />
+                <ScalarProperty Name="OwnerResponseId" ColumnName="OwnerResponseId" />
+                <ScalarProperty Name="OwnerResponseDate" ColumnName="OwnerResponseDate" />
+                <ScalarProperty Name="OwnerResponseDays" ColumnName="OwnerResponseDays" />
+                <ScalarProperty Name="AgencyResponseToDebtorDate" ColumnName="AgencyResponseToDebtorDate" />
+                <ScalarProperty Name="TotalResponseTimeDays" ColumnName="TotalResponseTimeDays" />
+                <ScalarProperty Name="DebtorAgreeYN" ColumnName="DebtorAgreeYN" />
+                <ScalarProperty Name="NeedFurtherActionYN" ColumnName="NeedFurtherActionYN" />
+                <ScalarProperty Name="FinalActionStepId" ColumnName="FinalActionStepId" />
+                <ScalarProperty Name="IsViewedByOwner" ColumnName="IsViewedByOwner" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsViewedByAgency" ColumnName="IsViewedByAgency" />
+                <ScalarProperty Name="ComplaintDocument" ColumnName="ComplaintDocument" />
+                <ScalarProperty Name="DebtOwnerProcessDocument" ColumnName="DebtOwnerProcessDocument" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

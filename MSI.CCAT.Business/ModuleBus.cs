@@ -18,7 +18,7 @@ namespace MSI.CCAT.Business
             {
                 //moduleRepository = new QuestionModuleRepository();
                 //modules = moduleRepository.GetAll().Where(r => r.IsActive == true);
-                IUnitOfWork uo = new UnitOfWork();
+                IUnitOfWork uo = new UnitOfWork("CCATDBEntities");
                 modules = uo.Repository<Tbl_QuestionModule>().GetAll().Where(r => r.IsActive == true);
 
             }
@@ -37,7 +37,7 @@ namespace MSI.CCAT.Business
             try
             {
                 //moduleRepository = new QuestionModuleRepository();
-                IUnitOfWork uo = new UnitOfWork();
+                IUnitOfWork uo = new UnitOfWork("CCATDBEntities");
                 module = uo.Repository<Tbl_QuestionModule>().GetById(moduleId);
             }
             catch (Exception ex)

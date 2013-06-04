@@ -24,7 +24,7 @@ namespace MSI.CCAT.WEB.Controllers
             List<pageMenuGroupId_and_pageMenuId> data = null;
             try
             {
-                db = new DBFactory();
+                db = new DBFactory("CCATDBEntities");
                 rdr = db.ExecuteReader("MSI_GetMenuDetails", new SqlParameter("@appId", _appId));
                 data = new List<pageMenuGroupId_and_pageMenuId>();
                 pageMenuGroupId_and_pageMenuId record;

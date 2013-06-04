@@ -27,9 +27,14 @@ namespace MSI.CCAT.Data.Repositories
             dbFactory = context;
         }
 
-        public UnitOfWork()
+        //public UnitOfWork()
+        //{
+        //    dbFactory = new DBFactory();
+        //}
+
+        public UnitOfWork(string dbEntities)
         {
-            dbFactory = new DBFactory();
+            dbFactory = new DBFactory(dbEntities);
         }
 
         public void Dispose()

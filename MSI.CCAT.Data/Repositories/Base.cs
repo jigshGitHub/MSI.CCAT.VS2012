@@ -10,6 +10,17 @@ using System.Linq.Expressions;
 using MSI.CCAT.Data.Models;
 namespace MSI.CCAT.Data.Repositories
 {
+    public class DateHelper
+    {
+        public static DateTime GetDateWithTimings(DateTime dt)
+        {
+            dt = dt.AddHours(DateTime.Now.Hour);
+            dt = dt.AddMinutes(DateTime.Now.Minute);
+            dt = dt.AddSeconds(DateTime.Now.Second);
+            dt = dt.AddMilliseconds(DateTime.Now.Millisecond);
+            return dt;
+        }
+    }
     public interface IRepository<T> where T : class
     {
         void Add(T entity);
@@ -33,10 +44,10 @@ namespace MSI.CCAT.Data.Repositories
             DatabaseFactory = databaseFactory;
             dbset = DataContext.Set<T>();
         }
-        public RepositoryBase():this(new DBFactory())
-        {
+        //public RepositoryBase():this(new DBFactory())
+        //{
             
-        }
+        //}
 
         protected IDatabaseFactory DatabaseFactory
         {
