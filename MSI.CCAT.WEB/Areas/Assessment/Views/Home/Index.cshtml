@@ -1,7 +1,7 @@
 ﻿
 @Html.Hidden("userId", (string)(@ViewBag.UserID))
 @Html.Hidden("moduleId", (string)(@ViewBag.ModuleId))
-<div id="someSection">
+<div id="workspaceContainer">
     <div data-bind="with: selectedQuestionModule"><span data-bind="    text: name"></span></div>
     <table>
         <tbody data-bind="foreach: questions">
@@ -165,7 +165,7 @@
         var vm = new pageViewModel($('#userId').val(), $('#moduleId').val());
         vm.initialize();
 
-        ko.applyBindings(vm, $('#someSection')[0]);
+        ko.applyBindings(vm, $('#workspaceContainer')[0]);
 
 
     });

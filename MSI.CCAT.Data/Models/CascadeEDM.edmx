@@ -4,10 +4,31 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CascadeDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CascadeDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="CascadeDBModelStoreContainer">
+          <EntitySet Name="MSI_ComplaintIssues" EntityType="CascadeDBModel.Store.MSI_ComplaintIssues" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MSI_ComplaintMain" EntityType="CascadeDBModel.Store.MSI_ComplaintMain" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MSI_ComplaintReceviedBy" EntityType="CascadeDBModel.Store.MSI_ComplaintReceviedBy" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MSI_DebtorContactMethods" EntityType="CascadeDBModel.Store.MSI_DebtorContactMethods" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MSI_DebtorContactTime" EntityType="CascadeDBModel.Store.MSI_DebtorContactTime" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MSI_DebtorProducts" EntityType="CascadeDBModel.Store.MSI_DebtorProducts" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MSI_FinalActionsteps" EntityType="CascadeDBModel.Store.MSI_FinalActionsteps" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MSI_OwnerResponses" EntityType="CascadeDBModel.Store.MSI_OwnerResponses" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MSI_USStates" EntityType="CascadeDBModel.Store.MSI_USStates" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RACCOUNT" EntityType="CascadeDBModel.Store.RACCOUNT" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RAGENCY" EntityType="CascadeDBModel.Store.RAGENCY" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_RACCOUNT_RAGENCY" Association="CascadeDBModel.Store.FK_RACCOUNT_RAGENCY">
+            <End Role="RAGENCY" EntitySet="RAGENCY" />
+            <End Role="RACCOUNT" EntitySet="RACCOUNT" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="MSI_ComplaintIssues">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
         <EntityType Name="MSI_ComplaintMain">
           <Key>
             <PropertyRef Name="Account" />
@@ -70,13 +91,367 @@
           <Property Name="ComplaintDocument" Type="varchar" MaxLength="500" />
           <Property Name="DebtOwnerProcessDocument" Type="varchar" MaxLength="500" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+        <EntityType Name="MSI_ComplaintReceviedBy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Media" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MSI_DebtorContactMethods">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Method" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MSI_DebtorContactTime">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Time" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MSI_DebtorProducts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Product" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MSI_FinalActionsteps">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Step" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MSI_OwnerResponses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Response" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MSI_USStates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Value" Type="varchar" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="RACCOUNT">
+          <Key>
+            <PropertyRef Name="DIVISION_ID" />
+            <PropertyRef Name="ACCOUNT" />
+          </Key>
+          <Property Name="DIVISION_ID" Type="varchar" Nullable="false" MaxLength="6" />
+          <Property Name="ACCOUNT" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="PrimaryAccount" Type="varchar" MaxLength="20" />
+          <Property Name="InvoiceID" Type="int" />
+          <Property Name="ToolSetID" Type="int" />
+          <Property Name="WorkStatusID" Type="int" />
+          <Property Name="DateWorked" Type="smalldatetime" />
+          <Property Name="DEBT_TYPE" Type="varchar" MaxLength="50" />
+          <Property Name="PRODUCT_CODE" Type="varchar" MaxLength="6" />
+          <Property Name="BRANCH_NUMBER" Type="varchar" MaxLength="6" />
+          <Property Name="CREDIT_LIMIT" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="CONTRACT_DATE" Type="datetime" />
+          <Property Name="INT_RATE_CODE" Type="varchar" MaxLength="8" />
+          <Property Name="INT_START_DATE" Type="datetime" />
+          <Property Name="CYCLE_CODE" Type="decimal" Precision="2" />
+          <Property Name="LAST_POST_DATE" Type="datetime" />
+          <Property Name="CHGOFF_DATE" Type="datetime" />
+          <Property Name="CHGOFF_RSN_CODE" Type="varchar" MaxLength="3" />
+          <Property Name="CHGOFF_PRINCPAL" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="CHGOFF_INTEREST" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="CHGOFF_OTH_AMTS" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="REASON_INTO_COL" Type="varchar" MaxLength="3" />
+          <Property Name="FIRST_PAY_DEFAULT" Type="char" MaxLength="1" />
+          <Property Name="CYCLES_DELQ" Type="decimal" Precision="3" />
+          <Property Name="LAST_PAY_DATE" Type="datetime" />
+          <Property Name="LAST_CONT_DATE" Type="datetime" />
+          <Property Name="LAST_NOTE_DATE" Type="datetime" />
+          <Property Name="LAST_NOTE_CODE" Type="varchar" MaxLength="6" />
+          <Property Name="Transfer_By" Type="varchar" MaxLength="6" />
+          <Property Name="Previous_Responsibility" Type="varchar" MaxLength="6" />
+          <Property Name="Previous_Date_Placed" Type="datetime" />
+          <Property Name="RESPONSIBILITY" Type="varchar" MaxLength="6" />
+          <Property Name="RESP_TYPE" Type="char" MaxLength="1" />
+          <Property Name="STATUS" Type="varchar" MaxLength="6" />
+          <Property Name="Status_Change_Date" Type="datetime" />
+          <Property Name="Previous_Status" Type="varchar" MaxLength="6" />
+          <Property Name="Previous_Status_Date" Type="datetime" />
+          <Property Name="ALLOC_CODE" Type="varchar" MaxLength="6" />
+          <Property Name="TOT_CHARGES" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="TOT_PRINCIPAL" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="TOT_INTEREST" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="TOT_COST" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="TOT_OTHER" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="TOT_NUM_PMTS" Type="decimal" Precision="8" />
+          <Property Name="TOT_PTD" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="TOT_PRIN_PTD" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="TOT_INT_PTD" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="TOT_COST_PTD" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="TOT_OTH_INC_PTD" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="TOT_DELQ_AMT" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="TOT_DUE_AMT" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="TOT_PRIN_DUE" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="TOT_INT_DUE" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="TOT_COSTS_DUE" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="TOT_OTHER_DUE" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="SETTLE_ALLOW" Type="float" />
+          <Property Name="TOT_NSF_AMT" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="NUM_NSF_PMNTS" Type="decimal" Precision="4" />
+          <Property Name="DATE_LAST_NSF" Type="datetime" />
+          <Property Name="LAST_NSF_AMT" Type="money" />
+          <Property Name="FRST_PMT_DATE" Type="datetime" />
+          <Property Name="FIRST_PMT_AMOUNT" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="NEXT_CYCLE" Type="varchar" MaxLength="6" />
+          <Property Name="CALL_ATMPS_CONT" Type="decimal" Precision="6" />
+          <Property Name="WKDY_CALL_ATMPS" Type="decimal" Precision="6" />
+          <Property Name="WKNT_CALL_ATMPS" Type="decimal" Precision="6" />
+          <Property Name="WKND_CALL_ATMPS" Type="decimal" Precision="6" />
+          <Property Name="PLACEMENT_CODE" Type="varchar" MaxLength="10" />
+          <Property Name="DATE_SENT_AGENCY" Type="datetime" />
+          <Property Name="DATE_LAST_RECALL" Type="datetime" />
+          <Property Name="BAD_PHONE_FLAG" Type="char" MaxLength="1" />
+          <Property Name="BAD_ADDR_FLAG" Type="char" MaxLength="1" />
+          <Property Name="HOME_OWN_FLAG" Type="char" MaxLength="1" />
+          <Property Name="HOLD_FLAG" Type="char" MaxLength="1" />
+          <Property Name="FIRST_CONT_FLAG" Type="char" MaxLength="1" />
+          <Property Name="LAST_CALL_NUM" Type="varchar" MaxLength="20" />
+          <Property Name="LAST_CALL_DATE" Type="datetime" />
+          <Property Name="LAST_CALL_TIME" Type="varchar" MaxLength="15" />
+          <Property Name="LAST_CALL_RESULT" Type="varchar" MaxLength="50" />
+          <Property Name="LAST_CALL_STATUS" Type="varchar" MaxLength="50" />
+          <Property Name="LAST_LETTER_GENERATED" Type="varchar" MaxLength="255" />
+          <Property Name="LAST_LETTER_GENERATED_DATE" Type="datetime" />
+          <Property Name="LAST_LETTER_PRINTED" Type="varchar" MaxLength="255" />
+          <Property Name="LAST_LETTER_PRINTED_DATE" Type="datetime" />
+          <Property Name="HEADER_NOTE" Type="varchar" MaxLength="3000" />
+          <Property Name="UPDATE_DATE" Type="datetime" />
+          <Property Name="UPDATE_TYPE" Type="char" MaxLength="1" />
+          <Property Name="UPDATE_ID" Type="varchar" MaxLength="6" />
+          <Property Name="FLAGS" Type="varchar" MaxLength="26" />
+          <Property Name="LAST_PMT_AMT" Type="decimal" Precision="14" Scale="4" />
+          <Property Name="REPORT_TO_BUREAU" Type="bit" />
+          <Property Name="BUR_UPDATE_DATE" Type="datetime" />
+          <Property Name="BUR_UPDATE_TIME" Type="decimal" Precision="6" />
+          <Property Name="BUR_STATUS" Type="varchar" MaxLength="6" />
+          <Property Name="BUR_DISPUTE_STATUS" Type="varchar" MaxLength="6" />
+          <Property Name="BUR_BKT_STATUS" Type="varchar" MaxLength="6" />
+          <Property Name="BUR_SPECIAL_STATUS" Type="varchar" MaxLength="6" />
+          <Property Name="BUR_STATUS_DATE" Type="datetime" />
+          <Property Name="SCORE_STRATEGY" Type="varchar" MaxLength="6" />
+          <Property Name="CREDIT_SCORE" Type="varchar" MaxLength="10" />
+          <Property Name="BEHAVIOR_SCORE" Type="decimal" Precision="5" />
+          <Property Name="PurchaseDate" Type="datetime" />
+          <Property Name="PutbackDeadline" Type="datetime" />
+          <Property Name="Putback" Type="bit" />
+          <Property Name="PutbackDate" Type="datetime" />
+          <Property Name="SoldTo" Type="varchar" MaxLength="60" />
+          <Property Name="Sold" Type="bit" />
+          <Property Name="SoldDate" Type="datetime" />
+          <Property Name="Buyback" Type="bit" />
+          <Property Name="BuybackDate" Type="datetime" />
+          <Property Name="PreviousOwner" Type="varchar" MaxLength="35" />
+          <Property Name="PreviousAcct" Type="varchar" MaxLength="35" />
+          <Property Name="OriginalBalance" Type="money" />
+          <Property Name="OriginalPrincipal" Type="money" />
+          <Property Name="OriginalInterest" Type="money" />
+          <Property Name="Originator" Type="varchar" MaxLength="50" />
+          <Property Name="OriginalAccount" Type="varchar" MaxLength="50" />
+          <Property Name="oLastPayDate" Type="datetime" />
+          <Property Name="oLastPayAmt" Type="money" />
+          <Property Name="Client" Type="varchar" MaxLength="255" />
+          <Property Name="ClientAccount" Type="varchar" MaxLength="50" />
+          <Property Name="cLastPayDate" Type="datetime" />
+          <Property Name="cLastPayAmt" Type="money" />
+          <Property Name="Commission" Type="varchar" MaxLength="4" />
+          <Property Name="Seller" Type="varchar" MaxLength="255" />
+          <Property Name="SellerAccount" Type="varchar" MaxLength="50" />
+          <Property Name="sLastPayDate" Type="datetime" />
+          <Property Name="sLastPayAmt" Type="money" />
+          <Property Name="Bankrupt" Type="bit" />
+          <Property Name="POE" Type="char" MaxLength="1" />
+          <Property Name="Stage" Type="varchar" MaxLength="255" />
+          <Property Name="Legal" Type="bit" />
+          <Property Name="LegalReject" Type="bit" />
+          <Property Name="PreLegalReject" Type="bit" />
+          <Property Name="Note" Type="varchar" MaxLength="2000" />
+          <Property Name="RetailVendor" Type="varchar" MaxLength="50" />
+          <Property Name="WIP" Type="bit" />
+          <Property Name="WIPDate" Type="datetime" />
+          <Property Name="PortfolioID" Type="int" />
+          <Property Name="User1" Type="varchar" MaxLength="50" />
+          <Property Name="User2" Type="varchar" MaxLength="50" />
+          <Property Name="User3" Type="varchar" MaxLength="50" />
+          <Property Name="User4" Type="varchar" MaxLength="50" />
+          <Property Name="User5" Type="varchar" MaxLength="50" />
+          <Property Name="User6" Type="varchar" MaxLength="50" />
+          <Property Name="User7" Type="varchar" MaxLength="50" />
+          <Property Name="User8" Type="varchar" MaxLength="50" />
+          <Property Name="User9" Type="varchar" MaxLength="50" />
+          <Property Name="User10" Type="varchar" MaxLength="50" />
+          <Property Name="LastChargeDate" Type="datetime" />
+          <Property Name="LastChargeAmt" Type="money" />
+          <Property Name="DateOfOccur" Type="datetime" />
+          <Property Name="YearsSinceLastActivity" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="FileID" Type="int" />
+          <Property Name="LastCashAdvance" Type="datetime" />
+          <Property Name="LastCashAdvanceAmt" Type="money" />
+          <Property Name="LastPDCDate" Type="datetime" />
+          <Property Name="LastPDCAmount" Type="money" />
+          <Property Name="insight_score" Type="varchar" MaxLength="50" />
+          <Property Name="FieldParse" Type="text" />
+          <Property Name="Archive" Type="bit" />
+          <Property Name="Purge" Type="bit" />
+          <Property Name="MonthlyPayment" Type="money" />
+          <Property Name="Terms" Type="int" />
+          <Property Name="MatureDate" Type="datetime" />
+          <Property Name="ScriptID" Type="int" Nullable="false" />
+          <Property Name="StartingPayments" Type="int" Nullable="false" />
+          <Property Name="StartingPaymentAmount" Type="money" Nullable="false" />
+          <Property Name="PaymentPlanDate" Type="datetime" />
+          <Property Name="LAST_LETTER_CODE" Type="varchar" MaxLength="10" />
+          <Property Name="LAST_LETTER_DATE" Type="datetime" />
+          <Property Name="MEDIA_FLAG" Type="char" MaxLength="1" />
+          <Property Name="OriginalInterestDate" Type="datetime" />
+          <Property Name="ClientID" Type="int" />
+          <Property Name="CollectorCommission" Type="varchar" MaxLength="4" />
+          <Property Name="User11" Type="varchar" MaxLength="50" />
+          <Property Name="User12" Type="varchar" MaxLength="50" />
+          <Property Name="User13" Type="varchar" MaxLength="50" />
+          <Property Name="User14" Type="varchar" MaxLength="50" />
+          <Property Name="User15" Type="varchar" MaxLength="50" />
+          <Property Name="User16" Type="varchar" MaxLength="50" />
+          <Property Name="User17" Type="varchar" MaxLength="50" />
+          <Property Name="User18" Type="varchar" MaxLength="50" />
+          <Property Name="User19" Type="varchar" MaxLength="50" />
+          <Property Name="User20" Type="varchar" MaxLength="50" />
+          <Property Name="LastCCDDate" Type="datetime" />
+          <Property Name="LastCCDAmount" Type="money" />
+          <Property Name="LastPRMDate" Type="datetime" />
+          <Property Name="LastPRMAmount" Type="money" />
+          <Property Name="DateLastPRMEntered" Type="datetime" />
+          <Property Name="FileNo" Type="varchar" MaxLength="10" />
+          <Property Name="Forw_File" Type="varchar" MaxLength="20" />
+          <Property Name="Masco_File" Type="varchar" MaxLength="15" />
+          <Property Name="Forw_ID" Type="varchar" MaxLength="10" />
+          <Property Name="Firm_ID" Type="varchar" MaxLength="10" />
+          <Property Name="AssignDate" Type="datetime" />
+          <Property Name="CheckFeeType" Type="int" />
+          <Property Name="CreditCardFeeType" Type="int" />
+          <Property Name="CheckFee" Type="money" />
+          <Property Name="CreditCardFee" Type="money" />
+          <Property Name="Claim_Date" Type="datetime" />
+          <Property Name="Law_List" Type="varchar" MaxLength="4" />
+          <Property Name="sFee" Type="varchar" MaxLength="4" />
+          <Property Name="Rate_Pre" Type="varchar" MaxLength="16" />
+          <Property Name="Rates_Post" Type="varchar" MaxLength="16" />
+          <Property Name="CreditorName" Type="varchar" MaxLength="25" />
+          <Property Name="CreditorName2" Type="varchar" MaxLength="25" />
+          <Property Name="CreditorStreet" Type="varchar" MaxLength="25" />
+          <Property Name="CreditorCS" Type="varchar" MaxLength="15" />
+          <Property Name="CreditorZip" Type="varchar" MaxLength="9" />
+          <Property Name="Debt_Bal" Type="varchar" MaxLength="16" />
+          <Property Name="Debtor_No" Type="varchar" MaxLength="20" />
+          <Property Name="Batch_No" Type="varchar" MaxLength="2" />
+          <Property Name="SOL_Date" Type="varchar" MaxLength="8" />
+          <Property Name="TU_Score" Type="varchar" MaxLength="4" />
+          <Property Name="PimsLoadDate" Type="datetime" />
+          <Property Name="Closed" Type="bit" />
+          <Property Name="DateClosed" Type="datetime" />
+          <Property Name="LastTranCode" Type="varchar" MaxLength="10" />
+          <Property Name="LastTranSource" Type="varchar" MaxLength="1" />
+          <Property Name="LastReturnCode" Type="varchar" MaxLength="3" />
+          <Property Name="AnnualRateCodeID" Type="int" />
+          <Property Name="LastMediaAttachDate" Type="datetime" />
+          <Property Name="StatuteTypeID" Type="int" />
+          <Property Name="RestrictedAccount" Type="bit" />
+          <Property Name="Previous_WorkStatusID" Type="int" />
+          <Property Name="WorkStatusID_ChangeDate" Type="datetime" />
+          <Property Name="WorkStatusID_UpdateID" Type="varchar" MaxLength="6" />
+          <Property Name="CitationCount" Type="int" />
+          <Property Name="DONOTACH" Type="bit" Nullable="false" />
+          <Property Name="Liquidation" Type="money" />
+          <Property Name="AgencyAccount" Type="varchar" MaxLength="20" />
+          <Property Name="PurchasePrice" Type="decimal" Precision="8" Scale="6" />
+          <Property Name="SalesPrice" Type="decimal" Precision="8" Scale="6" />
+        </EntityType>
+        <EntityType Name="RAGENCY">
+          <Key>
+            <PropertyRef Name="AGENCY_ID" />
+          </Key>
+          <Property Name="RecordID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AGENCY_ID" Type="varchar" Nullable="false" MaxLength="6" />
+          <Property Name="ResponsibilityTypeID" Type="int" />
+          <Property Name="USERNAME" Type="varchar" MaxLength="6" />
+          <Property Name="ACTIVE_YN" Type="bit" />
+          <Property Name="GROSS_PAYMENTS" Type="char" MaxLength="1" />
+          <Property Name="NAME" Type="varchar" MaxLength="255" />
+          <Property Name="ADDRESS1" Type="varchar" MaxLength="50" />
+          <Property Name="ADDRESS2" Type="varchar" MaxLength="35" />
+          <Property Name="CITY" Type="varchar" MaxLength="35" />
+          <Property Name="STATE" Type="varchar" MaxLength="3" />
+          <Property Name="ZIP_CODE" Type="varchar" MaxLength="10" />
+          <Property Name="COUNTRY" Type="varchar" MaxLength="15" />
+          <Property Name="PHONE" Type="varchar" MaxLength="50" />
+          <Property Name="Fax" Type="varchar" MaxLength="20" />
+          <Property Name="CONTACT_NAME" Type="varchar" MaxLength="35" />
+          <Property Name="CONTACT_EMAIL" Type="varchar" MaxLength="500" />
+          <Property Name="CONTACT_DESC" Type="varchar" MaxLength="255" />
+          <Property Name="TERRITORIES" Type="varchar" MaxLength="192" />
+          <Property Name="TaxID" Type="varchar" MaxLength="20" />
+          <Property Name="AGENCY_TYPE" Type="char" MaxLength="1" />
+          <Property Name="CREATE_BANKRUPT" Type="char" MaxLength="1" />
+          <Property Name="UPDATE_BANKRUPT" Type="char" MaxLength="1" />
+          <Property Name="CREATE_LEGAL" Type="char" MaxLength="1" />
+          <Property Name="UPDATE_LEGAL" Type="char" MaxLength="1" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="6" />
+          <Property Name="VALIDATE_BAL" Type="char" MaxLength="1" />
+          <Property Name="UPDATE_ID" Type="varchar" MaxLength="6" />
+          <Property Name="UPDATE_DATE" Type="datetime" />
+          <Property Name="OpenDesk" Type="bit" />
+          <Property Name="Budget" Type="money" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="Restricted" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_RACCOUNT_RAGENCY">
+          <End Role="RAGENCY" Type="CascadeDBModel.Store.RAGENCY" Multiplicity="0..1" />
+          <End Role="RACCOUNT" Type="CascadeDBModel.Store.RACCOUNT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RAGENCY">
+              <PropertyRef Name="AGENCY_ID" />
+            </Principal>
+            <Dependent Role="RACCOUNT">
+              <PropertyRef Name="RESPONSIBILITY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CascadeDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="CascadeDBEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="MSI_ComplaintMain" EntityType="CascadeDBModel.MSI_ComplaintMain" />
+          <EntitySet Name="RACCOUNTs" EntityType="CascadeDBModel.RACCOUNT" />
+          <EntitySet Name="MSI_ComplaintIssues" EntityType="CascadeDBModel.MSI_ComplaintIssues" />
+          <EntitySet Name="MSI_ComplaintReceviedBy" EntityType="CascadeDBModel.MSI_ComplaintReceviedBy" />
+          <EntitySet Name="MSI_DebtorContactMethods" EntityType="CascadeDBModel.MSI_DebtorContactMethods" />
+          <EntitySet Name="MSI_DebtorContactTime" EntityType="CascadeDBModel.MSI_DebtorContactTime" />
+          <EntitySet Name="MSI_FinalActionsteps" EntityType="CascadeDBModel.MSI_FinalActionsteps" />
+          <EntitySet Name="MSI_DebtorProducts" EntityType="CascadeDBModel.MSI_DebtorProducts" />
+          <EntitySet Name="MSI_OwnerResponses" EntityType="CascadeDBModel.MSI_OwnerResponses" />
+          <EntitySet Name="MSI_USStates" EntityType="CascadeDBModel.MSI_USStates" />
+          <EntitySet Name="RAGENCies" EntityType="CascadeDBModel.RAGENCY" />
+          <AssociationSet Name="FK_RACCOUNT_RAGENCY" Association="CascadeDBModel.FK_RACCOUNT_RAGENCY">
+            <End Role="RAGENCY" EntitySet="RAGENCies" />
+            <End Role="RACCOUNT" EntitySet="RACCOUNTs" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="MSI_ComplaintMain">
           <Key>
@@ -140,6 +515,356 @@
           <Property Name="ComplaintDocument" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
           <Property Name="DebtOwnerProcessDocument" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
         </EntityType>
+        <EntityType Name="RACCOUNT">
+          <Key>
+            <PropertyRef Name="DIVISION_ID" />
+            <PropertyRef Name="ACCOUNT" />
+          </Key>
+          <Property Type="String" Name="DIVISION_ID" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ACCOUNT" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PrimaryAccount" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="InvoiceID" />
+          <Property Type="Int32" Name="ToolSetID" />
+          <Property Type="Int32" Name="WorkStatusID" />
+          <Property Type="DateTime" Name="DateWorked" Precision="0" />
+          <Property Type="String" Name="DEBT_TYPE" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PRODUCT_CODE" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="BRANCH_NUMBER" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="CREDIT_LIMIT" Precision="14" Scale="4" />
+          <Property Type="DateTime" Name="CONTRACT_DATE" Precision="3" />
+          <Property Type="String" Name="INT_RATE_CODE" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="INT_START_DATE" Precision="3" />
+          <Property Type="Decimal" Name="CYCLE_CODE" Precision="2" Scale="0" />
+          <Property Type="DateTime" Name="LAST_POST_DATE" Precision="3" />
+          <Property Type="DateTime" Name="CHGOFF_DATE" Precision="3" />
+          <Property Type="String" Name="CHGOFF_RSN_CODE" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="CHGOFF_PRINCPAL" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="CHGOFF_INTEREST" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="CHGOFF_OTH_AMTS" Precision="14" Scale="4" />
+          <Property Type="String" Name="REASON_INTO_COL" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FIRST_PAY_DEFAULT" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Decimal" Name="CYCLES_DELQ" Precision="3" Scale="0" />
+          <Property Type="DateTime" Name="LAST_PAY_DATE" Precision="3" />
+          <Property Type="DateTime" Name="LAST_CONT_DATE" Precision="3" />
+          <Property Type="DateTime" Name="LAST_NOTE_DATE" Precision="3" />
+          <Property Type="String" Name="LAST_NOTE_CODE" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Transfer_By" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Previous_Responsibility" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Previous_Date_Placed" Precision="3" />
+          <Property Type="String" Name="RESPONSIBILITY" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RESP_TYPE" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="STATUS" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Status_Change_Date" Precision="3" />
+          <Property Type="String" Name="Previous_Status" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Previous_Status_Date" Precision="3" />
+          <Property Type="String" Name="ALLOC_CODE" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="TOT_CHARGES" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="TOT_PRINCIPAL" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="TOT_INTEREST" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="TOT_COST" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="TOT_OTHER" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="TOT_NUM_PMTS" Precision="8" Scale="0" />
+          <Property Type="Decimal" Name="TOT_PTD" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="TOT_PRIN_PTD" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="TOT_INT_PTD" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="TOT_COST_PTD" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="TOT_OTH_INC_PTD" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="TOT_DELQ_AMT" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="TOT_DUE_AMT" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="TOT_PRIN_DUE" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="TOT_INT_DUE" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="TOT_COSTS_DUE" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="TOT_OTHER_DUE" Precision="14" Scale="4" />
+          <Property Type="Double" Name="SETTLE_ALLOW" />
+          <Property Type="Decimal" Name="TOT_NSF_AMT" Precision="14" Scale="4" />
+          <Property Type="Decimal" Name="NUM_NSF_PMNTS" Precision="4" Scale="0" />
+          <Property Type="DateTime" Name="DATE_LAST_NSF" Precision="3" />
+          <Property Type="Decimal" Name="LAST_NSF_AMT" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="FRST_PMT_DATE" Precision="3" />
+          <Property Type="Decimal" Name="FIRST_PMT_AMOUNT" Precision="14" Scale="4" />
+          <Property Type="String" Name="NEXT_CYCLE" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="CALL_ATMPS_CONT" Precision="6" Scale="0" />
+          <Property Type="Decimal" Name="WKDY_CALL_ATMPS" Precision="6" Scale="0" />
+          <Property Type="Decimal" Name="WKNT_CALL_ATMPS" Precision="6" Scale="0" />
+          <Property Type="Decimal" Name="WKND_CALL_ATMPS" Precision="6" Scale="0" />
+          <Property Type="String" Name="PLACEMENT_CODE" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DATE_SENT_AGENCY" Precision="3" />
+          <Property Type="DateTime" Name="DATE_LAST_RECALL" Precision="3" />
+          <Property Type="String" Name="BAD_PHONE_FLAG" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="BAD_ADDR_FLAG" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="HOME_OWN_FLAG" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="HOLD_FLAG" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="FIRST_CONT_FLAG" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="LAST_CALL_NUM" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="LAST_CALL_DATE" Precision="3" />
+          <Property Type="String" Name="LAST_CALL_TIME" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LAST_CALL_RESULT" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LAST_CALL_STATUS" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LAST_LETTER_GENERATED" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="LAST_LETTER_GENERATED_DATE" Precision="3" />
+          <Property Type="String" Name="LAST_LETTER_PRINTED" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="LAST_LETTER_PRINTED_DATE" Precision="3" />
+          <Property Type="String" Name="HEADER_NOTE" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="3" />
+          <Property Type="String" Name="UPDATE_TYPE" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="UPDATE_ID" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FLAGS" MaxLength="26" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="LAST_PMT_AMT" Precision="14" Scale="4" />
+          <Property Type="Boolean" Name="REPORT_TO_BUREAU" />
+          <Property Type="DateTime" Name="BUR_UPDATE_DATE" Precision="3" />
+          <Property Type="Decimal" Name="BUR_UPDATE_TIME" Precision="6" Scale="0" />
+          <Property Type="String" Name="BUR_STATUS" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="BUR_DISPUTE_STATUS" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="BUR_BKT_STATUS" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="BUR_SPECIAL_STATUS" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="BUR_STATUS_DATE" Precision="3" />
+          <Property Type="String" Name="SCORE_STRATEGY" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CREDIT_SCORE" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="BEHAVIOR_SCORE" Precision="5" Scale="0" />
+          <Property Type="DateTime" Name="PurchaseDate" Precision="3" />
+          <Property Type="DateTime" Name="PutbackDeadline" Precision="3" />
+          <Property Type="Boolean" Name="Putback" />
+          <Property Type="DateTime" Name="PutbackDate" Precision="3" />
+          <Property Type="String" Name="SoldTo" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Sold" />
+          <Property Type="DateTime" Name="SoldDate" Precision="3" />
+          <Property Type="Boolean" Name="Buyback" />
+          <Property Type="DateTime" Name="BuybackDate" Precision="3" />
+          <Property Type="String" Name="PreviousOwner" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PreviousAcct" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="OriginalBalance" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="OriginalPrincipal" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="OriginalInterest" Precision="19" Scale="4" />
+          <Property Type="String" Name="Originator" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OriginalAccount" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="oLastPayDate" Precision="3" />
+          <Property Type="Decimal" Name="oLastPayAmt" Precision="19" Scale="4" />
+          <Property Type="String" Name="Client" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ClientAccount" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="cLastPayDate" Precision="3" />
+          <Property Type="Decimal" Name="cLastPayAmt" Precision="19" Scale="4" />
+          <Property Type="String" Name="Commission" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Seller" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SellerAccount" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="sLastPayDate" Precision="3" />
+          <Property Type="Decimal" Name="sLastPayAmt" Precision="19" Scale="4" />
+          <Property Type="Boolean" Name="Bankrupt" />
+          <Property Type="String" Name="POE" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Stage" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Legal" />
+          <Property Type="Boolean" Name="LegalReject" />
+          <Property Type="Boolean" Name="PreLegalReject" />
+          <Property Type="String" Name="Note" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RetailVendor" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="WIP" />
+          <Property Type="DateTime" Name="WIPDate" Precision="3" />
+          <Property Type="Int32" Name="PortfolioID" />
+          <Property Type="String" Name="User1" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="User2" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="User3" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="User4" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="User5" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="User6" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="User7" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="User8" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="User9" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="User10" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="LastChargeDate" Precision="3" />
+          <Property Type="Decimal" Name="LastChargeAmt" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="DateOfOccur" Precision="3" />
+          <Property Type="Int32" Name="YearsSinceLastActivity" />
+          <Property Type="DateTime" Name="CreateDate" Precision="3" />
+          <Property Type="Int32" Name="FileID" />
+          <Property Type="DateTime" Name="LastCashAdvance" Precision="3" />
+          <Property Type="Decimal" Name="LastCashAdvanceAmt" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="LastPDCDate" Precision="3" />
+          <Property Type="Decimal" Name="LastPDCAmount" Precision="19" Scale="4" />
+          <Property Type="String" Name="insight_score" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FieldParse" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Archive" />
+          <Property Type="Boolean" Name="Purge" />
+          <Property Type="Decimal" Name="MonthlyPayment" Precision="19" Scale="4" />
+          <Property Type="Int32" Name="Terms" />
+          <Property Type="DateTime" Name="MatureDate" Precision="3" />
+          <Property Type="Int32" Name="ScriptID" Nullable="false" />
+          <Property Type="Int32" Name="StartingPayments" Nullable="false" />
+          <Property Type="Decimal" Name="StartingPaymentAmount" Nullable="false" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="PaymentPlanDate" Precision="3" />
+          <Property Type="String" Name="LAST_LETTER_CODE" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="LAST_LETTER_DATE" Precision="3" />
+          <Property Type="String" Name="MEDIA_FLAG" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="DateTime" Name="OriginalInterestDate" Precision="3" />
+          <Property Type="Int32" Name="ClientID" />
+          <Property Type="String" Name="CollectorCommission" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="User11" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="User12" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="User13" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="User14" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="User15" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="User16" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="User17" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="User18" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="User19" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="User20" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="LastCCDDate" Precision="3" />
+          <Property Type="Decimal" Name="LastCCDAmount" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="LastPRMDate" Precision="3" />
+          <Property Type="Decimal" Name="LastPRMAmount" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="DateLastPRMEntered" Precision="3" />
+          <Property Type="String" Name="FileNo" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Forw_File" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Masco_File" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Forw_ID" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Firm_ID" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="AssignDate" Precision="3" />
+          <Property Type="Int32" Name="CheckFeeType" />
+          <Property Type="Int32" Name="CreditCardFeeType" />
+          <Property Type="Decimal" Name="CheckFee" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="CreditCardFee" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="Claim_Date" Precision="3" />
+          <Property Type="String" Name="Law_List" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="sFee" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Rate_Pre" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Rates_Post" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CreditorName" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CreditorName2" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CreditorStreet" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CreditorCS" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CreditorZip" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Debt_Bal" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Debtor_No" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Batch_No" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SOL_Date" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TU_Score" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="PimsLoadDate" Precision="3" />
+          <Property Type="Boolean" Name="Closed" />
+          <Property Type="DateTime" Name="DateClosed" Precision="3" />
+          <Property Type="String" Name="LastTranCode" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastTranSource" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastReturnCode" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="AnnualRateCodeID" />
+          <Property Type="DateTime" Name="LastMediaAttachDate" Precision="3" />
+          <Property Type="Int32" Name="StatuteTypeID" />
+          <Property Type="Boolean" Name="RestrictedAccount" />
+          <Property Type="Int32" Name="Previous_WorkStatusID" />
+          <Property Type="DateTime" Name="WorkStatusID_ChangeDate" Precision="3" />
+          <Property Type="String" Name="WorkStatusID_UpdateID" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CitationCount" />
+          <Property Type="Boolean" Name="DONOTACH" Nullable="false" />
+          <Property Type="Decimal" Name="Liquidation" Precision="19" Scale="4" />
+          <Property Type="String" Name="AgencyAccount" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="PurchasePrice" Precision="8" Scale="6" />
+          <Property Type="Decimal" Name="SalesPrice" Precision="8" Scale="6" />
+          <NavigationProperty Name="RAGENCY" Relationship="CascadeDBModel.FK_RACCOUNT_RAGENCY" FromRole="RACCOUNT" ToRole="RAGENCY" />
+        </EntityType>
+        <EntityType Name="MSI_ComplaintIssues">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MSI_ComplaintReceviedBy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Media" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MSI_DebtorContactMethods">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Method" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MSI_DebtorContactTime">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Time" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MSI_FinalActionsteps">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Step" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MSI_DebtorProducts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Product" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MSI_OwnerResponses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Response" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MSI_USStates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Value" MaxLength="2" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="RAGENCY">
+          <Key>
+            <PropertyRef Name="AGENCY_ID" />
+          </Key>
+          <Property Type="Int32" Name="RecordID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="AGENCY_ID" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ResponsibilityTypeID" />
+          <Property Type="String" Name="USERNAME" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="ACTIVE_YN" />
+          <Property Type="String" Name="GROSS_PAYMENTS" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="NAME" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ADDRESS1" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ADDRESS2" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CITY" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="STATE" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ZIP_CODE" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="COUNTRY" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PHONE" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Fax" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CONTACT_NAME" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CONTACT_EMAIL" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CONTACT_DESC" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TERRITORIES" MaxLength="192" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TaxID" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AGENCY_TYPE" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="CREATE_BANKRUPT" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="UPDATE_BANKRUPT" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="CREATE_LEGAL" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="UPDATE_LEGAL" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="PASSWORD" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="VALIDATE_BAL" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="UPDATE_ID" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="UPDATE_DATE" Precision="3" />
+          <Property Type="Boolean" Name="OpenDesk" />
+          <Property Type="Decimal" Name="Budget" Nullable="false" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="CreateDate" Precision="3" />
+          <Property Type="Boolean" Name="Restricted" Nullable="false" />
+          <NavigationProperty Name="RACCOUNTs" Relationship="CascadeDBModel.FK_RACCOUNT_RAGENCY" FromRole="RAGENCY" ToRole="RACCOUNT" />
+        </EntityType>
+        <Association Name="FK_RACCOUNT_RAGENCY">
+          <End Type="CascadeDBModel.RAGENCY" Role="RAGENCY" Multiplicity="0..1" />
+          <End Type="CascadeDBModel.RACCOUNT" Role="RACCOUNT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RAGENCY">
+              <PropertyRef Name="AGENCY_ID" />
+            </Principal>
+            <Dependent Role="RACCOUNT">
+              <PropertyRef Name="RESPONSIBILITY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -206,6 +931,351 @@
                 <ScalarProperty Name="IsViewedByAgency" ColumnName="IsViewedByAgency" />
                 <ScalarProperty Name="ComplaintDocument" ColumnName="ComplaintDocument" />
                 <ScalarProperty Name="DebtOwnerProcessDocument" ColumnName="DebtOwnerProcessDocument" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RACCOUNTs">
+            <EntityTypeMapping TypeName="CascadeDBModel.RACCOUNT">
+              <MappingFragment StoreEntitySet="RACCOUNT">
+                <ScalarProperty Name="SalesPrice" ColumnName="SalesPrice" />
+                <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
+                <ScalarProperty Name="AgencyAccount" ColumnName="AgencyAccount" />
+                <ScalarProperty Name="Liquidation" ColumnName="Liquidation" />
+                <ScalarProperty Name="DONOTACH" ColumnName="DONOTACH" />
+                <ScalarProperty Name="CitationCount" ColumnName="CitationCount" />
+                <ScalarProperty Name="WorkStatusID_UpdateID" ColumnName="WorkStatusID_UpdateID" />
+                <ScalarProperty Name="WorkStatusID_ChangeDate" ColumnName="WorkStatusID_ChangeDate" />
+                <ScalarProperty Name="Previous_WorkStatusID" ColumnName="Previous_WorkStatusID" />
+                <ScalarProperty Name="RestrictedAccount" ColumnName="RestrictedAccount" />
+                <ScalarProperty Name="StatuteTypeID" ColumnName="StatuteTypeID" />
+                <ScalarProperty Name="LastMediaAttachDate" ColumnName="LastMediaAttachDate" />
+                <ScalarProperty Name="AnnualRateCodeID" ColumnName="AnnualRateCodeID" />
+                <ScalarProperty Name="LastReturnCode" ColumnName="LastReturnCode" />
+                <ScalarProperty Name="LastTranSource" ColumnName="LastTranSource" />
+                <ScalarProperty Name="LastTranCode" ColumnName="LastTranCode" />
+                <ScalarProperty Name="DateClosed" ColumnName="DateClosed" />
+                <ScalarProperty Name="Closed" ColumnName="Closed" />
+                <ScalarProperty Name="PimsLoadDate" ColumnName="PimsLoadDate" />
+                <ScalarProperty Name="TU_Score" ColumnName="TU_Score" />
+                <ScalarProperty Name="SOL_Date" ColumnName="SOL_Date" />
+                <ScalarProperty Name="Batch_No" ColumnName="Batch_No" />
+                <ScalarProperty Name="Debtor_No" ColumnName="Debtor_No" />
+                <ScalarProperty Name="Debt_Bal" ColumnName="Debt_Bal" />
+                <ScalarProperty Name="CreditorZip" ColumnName="CreditorZip" />
+                <ScalarProperty Name="CreditorCS" ColumnName="CreditorCS" />
+                <ScalarProperty Name="CreditorStreet" ColumnName="CreditorStreet" />
+                <ScalarProperty Name="CreditorName2" ColumnName="CreditorName2" />
+                <ScalarProperty Name="CreditorName" ColumnName="CreditorName" />
+                <ScalarProperty Name="Rates_Post" ColumnName="Rates_Post" />
+                <ScalarProperty Name="Rate_Pre" ColumnName="Rate_Pre" />
+                <ScalarProperty Name="sFee" ColumnName="sFee" />
+                <ScalarProperty Name="Law_List" ColumnName="Law_List" />
+                <ScalarProperty Name="Claim_Date" ColumnName="Claim_Date" />
+                <ScalarProperty Name="CreditCardFee" ColumnName="CreditCardFee" />
+                <ScalarProperty Name="CheckFee" ColumnName="CheckFee" />
+                <ScalarProperty Name="CreditCardFeeType" ColumnName="CreditCardFeeType" />
+                <ScalarProperty Name="CheckFeeType" ColumnName="CheckFeeType" />
+                <ScalarProperty Name="AssignDate" ColumnName="AssignDate" />
+                <ScalarProperty Name="Firm_ID" ColumnName="Firm_ID" />
+                <ScalarProperty Name="Forw_ID" ColumnName="Forw_ID" />
+                <ScalarProperty Name="Masco_File" ColumnName="Masco_File" />
+                <ScalarProperty Name="Forw_File" ColumnName="Forw_File" />
+                <ScalarProperty Name="FileNo" ColumnName="FileNo" />
+                <ScalarProperty Name="DateLastPRMEntered" ColumnName="DateLastPRMEntered" />
+                <ScalarProperty Name="LastPRMAmount" ColumnName="LastPRMAmount" />
+                <ScalarProperty Name="LastPRMDate" ColumnName="LastPRMDate" />
+                <ScalarProperty Name="LastCCDAmount" ColumnName="LastCCDAmount" />
+                <ScalarProperty Name="LastCCDDate" ColumnName="LastCCDDate" />
+                <ScalarProperty Name="User20" ColumnName="User20" />
+                <ScalarProperty Name="User19" ColumnName="User19" />
+                <ScalarProperty Name="User18" ColumnName="User18" />
+                <ScalarProperty Name="User17" ColumnName="User17" />
+                <ScalarProperty Name="User16" ColumnName="User16" />
+                <ScalarProperty Name="User15" ColumnName="User15" />
+                <ScalarProperty Name="User14" ColumnName="User14" />
+                <ScalarProperty Name="User13" ColumnName="User13" />
+                <ScalarProperty Name="User12" ColumnName="User12" />
+                <ScalarProperty Name="User11" ColumnName="User11" />
+                <ScalarProperty Name="CollectorCommission" ColumnName="CollectorCommission" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="OriginalInterestDate" ColumnName="OriginalInterestDate" />
+                <ScalarProperty Name="MEDIA_FLAG" ColumnName="MEDIA_FLAG" />
+                <ScalarProperty Name="LAST_LETTER_DATE" ColumnName="LAST_LETTER_DATE" />
+                <ScalarProperty Name="LAST_LETTER_CODE" ColumnName="LAST_LETTER_CODE" />
+                <ScalarProperty Name="PaymentPlanDate" ColumnName="PaymentPlanDate" />
+                <ScalarProperty Name="StartingPaymentAmount" ColumnName="StartingPaymentAmount" />
+                <ScalarProperty Name="StartingPayments" ColumnName="StartingPayments" />
+                <ScalarProperty Name="ScriptID" ColumnName="ScriptID" />
+                <ScalarProperty Name="MatureDate" ColumnName="MatureDate" />
+                <ScalarProperty Name="Terms" ColumnName="Terms" />
+                <ScalarProperty Name="MonthlyPayment" ColumnName="MonthlyPayment" />
+                <ScalarProperty Name="Purge" ColumnName="Purge" />
+                <ScalarProperty Name="Archive" ColumnName="Archive" />
+                <ScalarProperty Name="FieldParse" ColumnName="FieldParse" />
+                <ScalarProperty Name="insight_score" ColumnName="insight_score" />
+                <ScalarProperty Name="LastPDCAmount" ColumnName="LastPDCAmount" />
+                <ScalarProperty Name="LastPDCDate" ColumnName="LastPDCDate" />
+                <ScalarProperty Name="LastCashAdvanceAmt" ColumnName="LastCashAdvanceAmt" />
+                <ScalarProperty Name="LastCashAdvance" ColumnName="LastCashAdvance" />
+                <ScalarProperty Name="FileID" ColumnName="FileID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="YearsSinceLastActivity" ColumnName="YearsSinceLastActivity" />
+                <ScalarProperty Name="DateOfOccur" ColumnName="DateOfOccur" />
+                <ScalarProperty Name="LastChargeAmt" ColumnName="LastChargeAmt" />
+                <ScalarProperty Name="LastChargeDate" ColumnName="LastChargeDate" />
+                <ScalarProperty Name="User10" ColumnName="User10" />
+                <ScalarProperty Name="User9" ColumnName="User9" />
+                <ScalarProperty Name="User8" ColumnName="User8" />
+                <ScalarProperty Name="User7" ColumnName="User7" />
+                <ScalarProperty Name="User6" ColumnName="User6" />
+                <ScalarProperty Name="User5" ColumnName="User5" />
+                <ScalarProperty Name="User4" ColumnName="User4" />
+                <ScalarProperty Name="User3" ColumnName="User3" />
+                <ScalarProperty Name="User2" ColumnName="User2" />
+                <ScalarProperty Name="User1" ColumnName="User1" />
+                <ScalarProperty Name="PortfolioID" ColumnName="PortfolioID" />
+                <ScalarProperty Name="WIPDate" ColumnName="WIPDate" />
+                <ScalarProperty Name="WIP" ColumnName="WIP" />
+                <ScalarProperty Name="RetailVendor" ColumnName="RetailVendor" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="PreLegalReject" ColumnName="PreLegalReject" />
+                <ScalarProperty Name="LegalReject" ColumnName="LegalReject" />
+                <ScalarProperty Name="Legal" ColumnName="Legal" />
+                <ScalarProperty Name="Stage" ColumnName="Stage" />
+                <ScalarProperty Name="POE" ColumnName="POE" />
+                <ScalarProperty Name="Bankrupt" ColumnName="Bankrupt" />
+                <ScalarProperty Name="sLastPayAmt" ColumnName="sLastPayAmt" />
+                <ScalarProperty Name="sLastPayDate" ColumnName="sLastPayDate" />
+                <ScalarProperty Name="SellerAccount" ColumnName="SellerAccount" />
+                <ScalarProperty Name="Seller" ColumnName="Seller" />
+                <ScalarProperty Name="Commission" ColumnName="Commission" />
+                <ScalarProperty Name="cLastPayAmt" ColumnName="cLastPayAmt" />
+                <ScalarProperty Name="cLastPayDate" ColumnName="cLastPayDate" />
+                <ScalarProperty Name="ClientAccount" ColumnName="ClientAccount" />
+                <ScalarProperty Name="Client" ColumnName="Client" />
+                <ScalarProperty Name="oLastPayAmt" ColumnName="oLastPayAmt" />
+                <ScalarProperty Name="oLastPayDate" ColumnName="oLastPayDate" />
+                <ScalarProperty Name="OriginalAccount" ColumnName="OriginalAccount" />
+                <ScalarProperty Name="Originator" ColumnName="Originator" />
+                <ScalarProperty Name="OriginalInterest" ColumnName="OriginalInterest" />
+                <ScalarProperty Name="OriginalPrincipal" ColumnName="OriginalPrincipal" />
+                <ScalarProperty Name="OriginalBalance" ColumnName="OriginalBalance" />
+                <ScalarProperty Name="PreviousAcct" ColumnName="PreviousAcct" />
+                <ScalarProperty Name="PreviousOwner" ColumnName="PreviousOwner" />
+                <ScalarProperty Name="BuybackDate" ColumnName="BuybackDate" />
+                <ScalarProperty Name="Buyback" ColumnName="Buyback" />
+                <ScalarProperty Name="SoldDate" ColumnName="SoldDate" />
+                <ScalarProperty Name="Sold" ColumnName="Sold" />
+                <ScalarProperty Name="SoldTo" ColumnName="SoldTo" />
+                <ScalarProperty Name="PutbackDate" ColumnName="PutbackDate" />
+                <ScalarProperty Name="Putback" ColumnName="Putback" />
+                <ScalarProperty Name="PutbackDeadline" ColumnName="PutbackDeadline" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="BEHAVIOR_SCORE" ColumnName="BEHAVIOR_SCORE" />
+                <ScalarProperty Name="CREDIT_SCORE" ColumnName="CREDIT_SCORE" />
+                <ScalarProperty Name="SCORE_STRATEGY" ColumnName="SCORE_STRATEGY" />
+                <ScalarProperty Name="BUR_STATUS_DATE" ColumnName="BUR_STATUS_DATE" />
+                <ScalarProperty Name="BUR_SPECIAL_STATUS" ColumnName="BUR_SPECIAL_STATUS" />
+                <ScalarProperty Name="BUR_BKT_STATUS" ColumnName="BUR_BKT_STATUS" />
+                <ScalarProperty Name="BUR_DISPUTE_STATUS" ColumnName="BUR_DISPUTE_STATUS" />
+                <ScalarProperty Name="BUR_STATUS" ColumnName="BUR_STATUS" />
+                <ScalarProperty Name="BUR_UPDATE_TIME" ColumnName="BUR_UPDATE_TIME" />
+                <ScalarProperty Name="BUR_UPDATE_DATE" ColumnName="BUR_UPDATE_DATE" />
+                <ScalarProperty Name="REPORT_TO_BUREAU" ColumnName="REPORT_TO_BUREAU" />
+                <ScalarProperty Name="LAST_PMT_AMT" ColumnName="LAST_PMT_AMT" />
+                <ScalarProperty Name="FLAGS" ColumnName="FLAGS" />
+                <ScalarProperty Name="UPDATE_ID" ColumnName="UPDATE_ID" />
+                <ScalarProperty Name="UPDATE_TYPE" ColumnName="UPDATE_TYPE" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="HEADER_NOTE" ColumnName="HEADER_NOTE" />
+                <ScalarProperty Name="LAST_LETTER_PRINTED_DATE" ColumnName="LAST_LETTER_PRINTED_DATE" />
+                <ScalarProperty Name="LAST_LETTER_PRINTED" ColumnName="LAST_LETTER_PRINTED" />
+                <ScalarProperty Name="LAST_LETTER_GENERATED_DATE" ColumnName="LAST_LETTER_GENERATED_DATE" />
+                <ScalarProperty Name="LAST_LETTER_GENERATED" ColumnName="LAST_LETTER_GENERATED" />
+                <ScalarProperty Name="LAST_CALL_STATUS" ColumnName="LAST_CALL_STATUS" />
+                <ScalarProperty Name="LAST_CALL_RESULT" ColumnName="LAST_CALL_RESULT" />
+                <ScalarProperty Name="LAST_CALL_TIME" ColumnName="LAST_CALL_TIME" />
+                <ScalarProperty Name="LAST_CALL_DATE" ColumnName="LAST_CALL_DATE" />
+                <ScalarProperty Name="LAST_CALL_NUM" ColumnName="LAST_CALL_NUM" />
+                <ScalarProperty Name="FIRST_CONT_FLAG" ColumnName="FIRST_CONT_FLAG" />
+                <ScalarProperty Name="HOLD_FLAG" ColumnName="HOLD_FLAG" />
+                <ScalarProperty Name="HOME_OWN_FLAG" ColumnName="HOME_OWN_FLAG" />
+                <ScalarProperty Name="BAD_ADDR_FLAG" ColumnName="BAD_ADDR_FLAG" />
+                <ScalarProperty Name="BAD_PHONE_FLAG" ColumnName="BAD_PHONE_FLAG" />
+                <ScalarProperty Name="DATE_LAST_RECALL" ColumnName="DATE_LAST_RECALL" />
+                <ScalarProperty Name="DATE_SENT_AGENCY" ColumnName="DATE_SENT_AGENCY" />
+                <ScalarProperty Name="PLACEMENT_CODE" ColumnName="PLACEMENT_CODE" />
+                <ScalarProperty Name="WKND_CALL_ATMPS" ColumnName="WKND_CALL_ATMPS" />
+                <ScalarProperty Name="WKNT_CALL_ATMPS" ColumnName="WKNT_CALL_ATMPS" />
+                <ScalarProperty Name="WKDY_CALL_ATMPS" ColumnName="WKDY_CALL_ATMPS" />
+                <ScalarProperty Name="CALL_ATMPS_CONT" ColumnName="CALL_ATMPS_CONT" />
+                <ScalarProperty Name="NEXT_CYCLE" ColumnName="NEXT_CYCLE" />
+                <ScalarProperty Name="FIRST_PMT_AMOUNT" ColumnName="FIRST_PMT_AMOUNT" />
+                <ScalarProperty Name="FRST_PMT_DATE" ColumnName="FRST_PMT_DATE" />
+                <ScalarProperty Name="LAST_NSF_AMT" ColumnName="LAST_NSF_AMT" />
+                <ScalarProperty Name="DATE_LAST_NSF" ColumnName="DATE_LAST_NSF" />
+                <ScalarProperty Name="NUM_NSF_PMNTS" ColumnName="NUM_NSF_PMNTS" />
+                <ScalarProperty Name="TOT_NSF_AMT" ColumnName="TOT_NSF_AMT" />
+                <ScalarProperty Name="SETTLE_ALLOW" ColumnName="SETTLE_ALLOW" />
+                <ScalarProperty Name="TOT_OTHER_DUE" ColumnName="TOT_OTHER_DUE" />
+                <ScalarProperty Name="TOT_COSTS_DUE" ColumnName="TOT_COSTS_DUE" />
+                <ScalarProperty Name="TOT_INT_DUE" ColumnName="TOT_INT_DUE" />
+                <ScalarProperty Name="TOT_PRIN_DUE" ColumnName="TOT_PRIN_DUE" />
+                <ScalarProperty Name="TOT_DUE_AMT" ColumnName="TOT_DUE_AMT" />
+                <ScalarProperty Name="TOT_DELQ_AMT" ColumnName="TOT_DELQ_AMT" />
+                <ScalarProperty Name="TOT_OTH_INC_PTD" ColumnName="TOT_OTH_INC_PTD" />
+                <ScalarProperty Name="TOT_COST_PTD" ColumnName="TOT_COST_PTD" />
+                <ScalarProperty Name="TOT_INT_PTD" ColumnName="TOT_INT_PTD" />
+                <ScalarProperty Name="TOT_PRIN_PTD" ColumnName="TOT_PRIN_PTD" />
+                <ScalarProperty Name="TOT_PTD" ColumnName="TOT_PTD" />
+                <ScalarProperty Name="TOT_NUM_PMTS" ColumnName="TOT_NUM_PMTS" />
+                <ScalarProperty Name="TOT_OTHER" ColumnName="TOT_OTHER" />
+                <ScalarProperty Name="TOT_COST" ColumnName="TOT_COST" />
+                <ScalarProperty Name="TOT_INTEREST" ColumnName="TOT_INTEREST" />
+                <ScalarProperty Name="TOT_PRINCIPAL" ColumnName="TOT_PRINCIPAL" />
+                <ScalarProperty Name="TOT_CHARGES" ColumnName="TOT_CHARGES" />
+                <ScalarProperty Name="ALLOC_CODE" ColumnName="ALLOC_CODE" />
+                <ScalarProperty Name="Previous_Status_Date" ColumnName="Previous_Status_Date" />
+                <ScalarProperty Name="Previous_Status" ColumnName="Previous_Status" />
+                <ScalarProperty Name="Status_Change_Date" ColumnName="Status_Change_Date" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="RESP_TYPE" ColumnName="RESP_TYPE" />
+                <ScalarProperty Name="RESPONSIBILITY" ColumnName="RESPONSIBILITY" />
+                <ScalarProperty Name="Previous_Date_Placed" ColumnName="Previous_Date_Placed" />
+                <ScalarProperty Name="Previous_Responsibility" ColumnName="Previous_Responsibility" />
+                <ScalarProperty Name="Transfer_By" ColumnName="Transfer_By" />
+                <ScalarProperty Name="LAST_NOTE_CODE" ColumnName="LAST_NOTE_CODE" />
+                <ScalarProperty Name="LAST_NOTE_DATE" ColumnName="LAST_NOTE_DATE" />
+                <ScalarProperty Name="LAST_CONT_DATE" ColumnName="LAST_CONT_DATE" />
+                <ScalarProperty Name="LAST_PAY_DATE" ColumnName="LAST_PAY_DATE" />
+                <ScalarProperty Name="CYCLES_DELQ" ColumnName="CYCLES_DELQ" />
+                <ScalarProperty Name="FIRST_PAY_DEFAULT" ColumnName="FIRST_PAY_DEFAULT" />
+                <ScalarProperty Name="REASON_INTO_COL" ColumnName="REASON_INTO_COL" />
+                <ScalarProperty Name="CHGOFF_OTH_AMTS" ColumnName="CHGOFF_OTH_AMTS" />
+                <ScalarProperty Name="CHGOFF_INTEREST" ColumnName="CHGOFF_INTEREST" />
+                <ScalarProperty Name="CHGOFF_PRINCPAL" ColumnName="CHGOFF_PRINCPAL" />
+                <ScalarProperty Name="CHGOFF_RSN_CODE" ColumnName="CHGOFF_RSN_CODE" />
+                <ScalarProperty Name="CHGOFF_DATE" ColumnName="CHGOFF_DATE" />
+                <ScalarProperty Name="LAST_POST_DATE" ColumnName="LAST_POST_DATE" />
+                <ScalarProperty Name="CYCLE_CODE" ColumnName="CYCLE_CODE" />
+                <ScalarProperty Name="INT_START_DATE" ColumnName="INT_START_DATE" />
+                <ScalarProperty Name="INT_RATE_CODE" ColumnName="INT_RATE_CODE" />
+                <ScalarProperty Name="CONTRACT_DATE" ColumnName="CONTRACT_DATE" />
+                <ScalarProperty Name="CREDIT_LIMIT" ColumnName="CREDIT_LIMIT" />
+                <ScalarProperty Name="BRANCH_NUMBER" ColumnName="BRANCH_NUMBER" />
+                <ScalarProperty Name="PRODUCT_CODE" ColumnName="PRODUCT_CODE" />
+                <ScalarProperty Name="DEBT_TYPE" ColumnName="DEBT_TYPE" />
+                <ScalarProperty Name="DateWorked" ColumnName="DateWorked" />
+                <ScalarProperty Name="WorkStatusID" ColumnName="WorkStatusID" />
+                <ScalarProperty Name="ToolSetID" ColumnName="ToolSetID" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="PrimaryAccount" ColumnName="PrimaryAccount" />
+                <ScalarProperty Name="ACCOUNT" ColumnName="ACCOUNT" />
+                <ScalarProperty Name="DIVISION_ID" ColumnName="DIVISION_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSI_ComplaintIssues">
+            <EntityTypeMapping TypeName="CascadeDBModel.MSI_ComplaintIssues">
+              <MappingFragment StoreEntitySet="MSI_ComplaintIssues">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSI_ComplaintReceviedBy">
+            <EntityTypeMapping TypeName="CascadeDBModel.MSI_ComplaintReceviedBy">
+              <MappingFragment StoreEntitySet="MSI_ComplaintReceviedBy">
+                <ScalarProperty Name="Media" ColumnName="Media" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSI_DebtorContactMethods">
+            <EntityTypeMapping TypeName="CascadeDBModel.MSI_DebtorContactMethods">
+              <MappingFragment StoreEntitySet="MSI_DebtorContactMethods">
+                <ScalarProperty Name="Method" ColumnName="Method" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSI_DebtorContactTime">
+            <EntityTypeMapping TypeName="CascadeDBModel.MSI_DebtorContactTime">
+              <MappingFragment StoreEntitySet="MSI_DebtorContactTime">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSI_FinalActionsteps">
+            <EntityTypeMapping TypeName="CascadeDBModel.MSI_FinalActionsteps">
+              <MappingFragment StoreEntitySet="MSI_FinalActionsteps">
+                <ScalarProperty Name="Step" ColumnName="Step" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSI_DebtorProducts">
+            <EntityTypeMapping TypeName="CascadeDBModel.MSI_DebtorProducts">
+              <MappingFragment StoreEntitySet="MSI_DebtorProducts">
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSI_OwnerResponses">
+            <EntityTypeMapping TypeName="CascadeDBModel.MSI_OwnerResponses">
+              <MappingFragment StoreEntitySet="MSI_OwnerResponses">
+                <ScalarProperty Name="Response" ColumnName="Response" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MSI_USStates">
+            <EntityTypeMapping TypeName="CascadeDBModel.MSI_USStates">
+              <MappingFragment StoreEntitySet="MSI_USStates">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RAGENCies">
+            <EntityTypeMapping TypeName="CascadeDBModel.RAGENCY">
+              <MappingFragment StoreEntitySet="RAGENCY">
+                <ScalarProperty Name="Restricted" ColumnName="Restricted" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Budget" ColumnName="Budget" />
+                <ScalarProperty Name="OpenDesk" ColumnName="OpenDesk" />
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="UPDATE_ID" ColumnName="UPDATE_ID" />
+                <ScalarProperty Name="VALIDATE_BAL" ColumnName="VALIDATE_BAL" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="UPDATE_LEGAL" ColumnName="UPDATE_LEGAL" />
+                <ScalarProperty Name="CREATE_LEGAL" ColumnName="CREATE_LEGAL" />
+                <ScalarProperty Name="UPDATE_BANKRUPT" ColumnName="UPDATE_BANKRUPT" />
+                <ScalarProperty Name="CREATE_BANKRUPT" ColumnName="CREATE_BANKRUPT" />
+                <ScalarProperty Name="AGENCY_TYPE" ColumnName="AGENCY_TYPE" />
+                <ScalarProperty Name="TaxID" ColumnName="TaxID" />
+                <ScalarProperty Name="TERRITORIES" ColumnName="TERRITORIES" />
+                <ScalarProperty Name="CONTACT_DESC" ColumnName="CONTACT_DESC" />
+                <ScalarProperty Name="CONTACT_EMAIL" ColumnName="CONTACT_EMAIL" />
+                <ScalarProperty Name="CONTACT_NAME" ColumnName="CONTACT_NAME" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+                <ScalarProperty Name="ZIP_CODE" ColumnName="ZIP_CODE" />
+                <ScalarProperty Name="STATE" ColumnName="STATE" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="ADDRESS2" ColumnName="ADDRESS2" />
+                <ScalarProperty Name="ADDRESS1" ColumnName="ADDRESS1" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="GROSS_PAYMENTS" ColumnName="GROSS_PAYMENTS" />
+                <ScalarProperty Name="ACTIVE_YN" ColumnName="ACTIVE_YN" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="ResponsibilityTypeID" ColumnName="ResponsibilityTypeID" />
+                <ScalarProperty Name="AGENCY_ID" ColumnName="AGENCY_ID" />
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

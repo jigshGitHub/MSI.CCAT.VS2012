@@ -4,10 +4,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using MSI.CCAT.Data.Models;
 using Cascade.Data.Models;
+using MSI.CCAT.Data.Models;
 using Cascade.Data.Repositories;
 using MSI.CCAT.Data.Repositories;
+//using Cascade.Helpers;
 namespace Cascade.Web.Controllers
 {
     public class DebtorsController : ApiController
@@ -49,7 +50,7 @@ namespace Cascade.Web.Controllers
 
         public MSI_ComplaintMain Get(string accountNumber, string agencyId="", string userRole="")
         {
-           // MSI_ComplaintMainRepository repository = null;
+            //MSI_ComplaintMainRepository repository = null;
             UnitOfWork uo = null;
             MSI_ComplaintMain complaint = null; ;
             try
@@ -57,7 +58,7 @@ namespace Cascade.Web.Controllers
 
                 //repository = new MSI_ComplaintMainRepository();
                 uo = new UnitOfWork("CascadeDBEntities");
-                IEnumerable<MSI_ComplaintMain> data = (from existingComplaint in uo.Repository<MSI_ComplaintMain>().GetAll().Where(record => record.AgencyId == agencyId && record.Account == accountNumber)
+                IEnumerable<MSI_ComplaintMain> data = (from existingComplaint in uo.Repository<MSI_ComplaintMain>() .GetAll().Where(record => record.AgencyId == agencyId && record.Account == accountNumber)
                                                        select existingComplaint);
 
                 if (data.Count() > 0)
@@ -70,6 +71,7 @@ namespace Cascade.Web.Controllers
                         if (userRole == "agency")
                             complaint.IsViewedByAgency = true;
                         uo.Repository<MSI_ComplaintMain>().Update(complaint);
+                        uo.Save();
                     }
                 }
                 else
@@ -110,7 +112,8 @@ namespace Cascade.Web.Controllers
             try
             {
 
-               // repository = new MSI_ComplaintMainRepository();
+                //repository = new MSI_ComplaintMainRepository();
+                uo = new UnitOfWork("CascadeDBEntities");
                 IEnumerable<MSI_ComplaintMain> data = (from existingComplaint in uo.Repository<MSI_ComplaintMain>().GetAll().Where(record => record.AgencyId == complaint.AgencyId && record.Account == complaint.Account)
                                                        select existingComplaint);
 
@@ -243,6 +246,17 @@ namespace Cascade.Web.Controllers
 
                 complaint.ComplaintID = complaint.AgencyId + "-" + complaint.Account.Substring(5, 10) + "-" + rnd.Next(101, 999).ToString();
             }
+        }
+    }
+    public class DateHelper
+    {
+        public static DateTime GetDateWithTimings(DateTime dt)
+        {
+            dt = dt.AddHours(DateTime.Now.Hour);
+            dt = dt.AddMinutes(DateTime.Now.Minute);
+            dt = dt.AddSeconds(DateTime.Now.Second);
+            dt = dt.AddMilliseconds(DateTime.Now.Millisecond);
+            return dt;
         }
     }
 }

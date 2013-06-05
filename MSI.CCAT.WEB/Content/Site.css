@@ -1,1 +1,18 @@
 ﻿
+.confirmBtnContainer
+    {
+        padding-top: 10px;
+        padding-right: 10px;
+        text-align: right;
+    }
+
+#refreshBtn
+ {
+     background-image: url('../Content/images/refresh.png'); 
+     background-color: transparent;
+                background-repeat: no-repeat;
+                border: none;
+                cursor: pointer;
+                height: 30px;
+                padding-left: 24px;
+ }

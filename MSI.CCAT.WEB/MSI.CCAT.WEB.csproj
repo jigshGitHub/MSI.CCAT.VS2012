@@ -192,6 +192,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\APIs\AssessmentController.cs" />
     <Compile Include="Controllers\APIs\ComplianceController.cs" />
+    <Compile Include="Controllers\APIs\LookupController.cs" />
     <Compile Include="Controllers\APIs\QuestionModuleController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1163,6 +1164,8 @@
     <Content Include="Content\bootstrap_ua\tables.html" />
     <Content Include="Content\bootstrap_ua\widgets.html" />
     <Content Include="Content\Copy of Site.css" />
+    <Content Include="Content\images\refresh.png" />
+    <Content Include="Content\images\savebutton.png" />
     <Content Include="Content\kendo\js\cultures\kendo.culture.af-ZA.min.js" />
     <Content Include="Content\kendo\js\cultures\kendo.culture.af.min.js" />
     <Content Include="Content\kendo\js\cultures\kendo.culture.am-ET.min.js" />
@@ -1840,7 +1843,7 @@
     <Content Include="contents\_shared\dataSource\internet-users.json" />
     <Content Include="Areas\Dashboard\Views\Web.config" />
     <Content Include="Areas\Dashboard\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Dashboard\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Home\Overview.cshtml" />
     <Content Include="Areas\Assessment\Views\Home\Index.cshtml" />
     <Content Include="Areas\Assessment\Views\Home\Test.cshtml" />
     <Content Include="Areas\Compliance\Views\Home\Create.cshtml" />

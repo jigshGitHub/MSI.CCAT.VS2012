@@ -4,8 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="af1634f8c116422a8426a5a65e793a66" Name="Diagram1" ZoomLevel="47">
+      <Diagram DiagramId="af1634f8c116422a8426a5a65e793a66" Name="Diagram1" ZoomLevel="95">
         <EntityTypeShape EntityType="CascadeDBModel.MSI_ComplaintMain" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CascadeDBModel.RACCOUNT" Width="1.5" PointX="8.3268722930582584" PointY="5.3079123372714561" />
+        <EntityTypeShape EntityType="CascadeDBModel.MSI_ComplaintIssues" Width="1.5" PointX="9.30927972556524" PointY="15.054866201735505" />
+        <EntityTypeShape EntityType="CascadeDBModel.MSI_ComplaintReceviedBy" Width="1.5" PointX="2.0126997446700461" PointY="9.56410547046182" />
+        <EntityTypeShape EntityType="CascadeDBModel.MSI_DebtorContactMethods" Width="1.5" PointX="5.2806065386536565" PointY="24.411609392804841" />
+        <EntityTypeShape EntityType="CascadeDBModel.MSI_DebtorContactTime" Width="1.5" PointX="10.113424507022568" PointY="21.308070103315668" />
+        <EntityTypeShape EntityType="CascadeDBModel.MSI_FinalActionsteps" Width="1.5" PointX="8.0168291758824282" PointY="21.814425582911085" />
+        <EntityTypeShape EntityType="CascadeDBModel.MSI_DebtorProducts" Width="1.5" PointX="9.9195438278464341" PointY="27.513721016940529" />
+        <EntityTypeShape EntityType="CascadeDBModel.MSI_OwnerResponses" Width="1.5" PointX="7.1154119945668679" PointY="7.5491945033656407" />
+        <EntityTypeShape EntityType="CascadeDBModel.MSI_USStates" Width="1.5" PointX="10.682386429366837" PointY="14.403580076249121" />
+        <EntityTypeShape EntityType="CascadeDBModel.RAGENCY" Width="1.5" PointX="2.4112951431476022" PointY="25.664072838455471" />
+        <AssociationConnector Association="CascadeDBModel.FK_RACCOUNT_RAGENCY" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

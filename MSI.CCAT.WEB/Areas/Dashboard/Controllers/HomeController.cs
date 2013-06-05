@@ -11,7 +11,7 @@ namespace MSI.CCAT.WEB.Areas.Dashboard.Controllers
 {
     public class HomeController : BaseController
     {
-        public ActionResult Index()
+        public ActionResult Overview()
         {
            return PartialView();
         }

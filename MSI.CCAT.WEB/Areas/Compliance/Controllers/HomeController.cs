@@ -101,18 +101,18 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.UserID = UserId.ToString();
-            ViewBag.AgencyID = "";
-            ViewBag.UserRole = UserRoles.First().ToLower();
-            return View();
+            //ViewBag.UserID = UserId.ToString();
+            //ViewBag.AgencyID = "";
+            //ViewBag.UserRole = UserRoles.First().ToLower();
+            return PartialView();
         }
 
         public ActionResult ViewEdit(string id, string agency)
         {
-            ViewBag.UserID = UserId.ToString();
+            //ViewBag.UserID = UserId.ToString();
             ViewBag.Account = (string.IsNullOrEmpty(id)) ? "" : id; ;
-            ViewBag.AgencyID = (string.IsNullOrEmpty("agency")) ? "" : agency;
-            ViewBag.UserRole = UserRoles.First().ToLower();
+//            ViewBag.AgencyID = (string.IsNullOrEmpty("agency")) ? "" : agency;
+  //          ViewBag.UserRole = UserRoles.First().ToLower();
             return View();
         }
 

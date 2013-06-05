@@ -79,18 +79,49 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CCATEdm.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\LookUp.cs" />
     <Compile Include="Models\module.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSI_ComplaintIssues.cs">
+      <DependentUpon>CascadeEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MSI_ComplaintMain.cs">
       <DependentUpon>CascadeEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MSI_ComplaintReceviedBy.cs">
+      <DependentUpon>CascadeEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MSI_Debtor.cs" />
+    <Compile Include="Models\MSI_DebtorContactMethods.cs">
+      <DependentUpon>CascadeEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSI_DebtorContactTime.cs">
+      <DependentUpon>CascadeEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSI_DebtorProducts.cs">
+      <DependentUpon>CascadeEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSI_FinalActionsteps.cs">
+      <DependentUpon>CascadeEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSI_OwnerResponses.cs">
+      <DependentUpon>CascadeEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSI_USStates.cs">
+      <DependentUpon>CascadeEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\pageMenu.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\pageMenuGroup.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RACCOUNT.cs">
+      <DependentUpon>CascadeEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RAGENCY.cs">
+      <DependentUpon>CascadeEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Models\Tbl_QuestionBank.cs">

@@ -26,5 +26,15 @@ namespace MSI.CCAT.Data.Models
         }
     
         public DbSet<MSI_ComplaintMain> MSI_ComplaintMain { get; set; }
+        public DbSet<RACCOUNT> RACCOUNTs { get; set; }
+        public DbSet<MSI_ComplaintIssues> MSI_ComplaintIssues { get; set; }
+        public DbSet<MSI_ComplaintReceviedBy> MSI_ComplaintReceviedBy { get; set; }
+        public DbSet<MSI_DebtorContactMethods> MSI_DebtorContactMethods { get; set; }
+        public DbSet<MSI_DebtorContactTime> MSI_DebtorContactTime { get; set; }
+        public DbSet<MSI_FinalActionsteps> MSI_FinalActionsteps { get; set; }
+        public DbSet<MSI_DebtorProducts> MSI_DebtorProducts { get; set; }
+        public DbSet<MSI_OwnerResponses> MSI_OwnerResponses { get; set; }
+        public DbSet<MSI_USStates> MSI_USStates { get; set; }
+        public DbSet<RAGENCY> RAGENCies { get; set; }
     }
 }

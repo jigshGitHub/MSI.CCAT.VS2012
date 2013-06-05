@@ -437,7 +437,7 @@ namespace MSI.CCAT.Data.Repositories
                 dbContext = (CascadeDBEntities)UnitOfWorkStore.GetInstance("CascadeDBEntities");
                 if (dbContext == null)
                 {
-                    dbContext = new CCATDBEntities();
+                    dbContext = new CascadeDBEntities();
                     dbContext.Configuration.ProxyCreationEnabled = false;
                     UnitOfWorkStore.SetInstance("CascadeDBEntities", dbContext);
                 }
