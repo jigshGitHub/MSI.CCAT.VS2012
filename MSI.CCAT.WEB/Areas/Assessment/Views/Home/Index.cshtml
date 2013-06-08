@@ -1,14 +1,17 @@
-﻿
-@Html.Hidden("userId", (string)(@ViewBag.UserID))
+﻿@Html.Hidden("userId", (string)(@ViewBag.UserID))
 @Html.Hidden("moduleId", (string)(@ViewBag.ModuleId))
 <div id="workspaceContainer">
-    <div data-bind="with: selectedQuestionModule"><span data-bind="    text: name"></span></div>
     <table>
+        <tr>
+            <td colspan="3" style="width:100%">
+                <div id="moduleTitle" data-bind="with: selectedQuestionModule"><span data-bind="    text: name"></span></div>
+            </td>
+        </tr>
         <tbody data-bind="foreach: questions">
             <tr>
                 <td data-bind="text: serialNumber"></td>
                 <td>
-                    <select data-bind="options: responses, optionsValue: 'Value', optionsCaption: ' ', optionsText: 'Value', value: response">
+                    <select style="width: 50px" data-bind="options: responses, optionsValue: 'Value', optionsCaption: ' ', optionsText: 'Value', value: response">
                     </select>
                 </td>
                 <td data-bind="text: text"></td>
@@ -17,14 +20,14 @@
     </table>
     <input type="button" data-bind="click: previousClick, visible: previousVisible" value="Previous" />&nbsp;<input type="button" data-bind="    click: nextClick, visible: nextVisible" value="Next" />
 </div>
-    
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/knockout")
 
-    @Scripts.Render("~/bundles/external")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/knockout")
+
+@Scripts.Render("~/bundles/external")
 <script type="text/javascript">
-    var answerOptions = [{ Text: 'Not Compliant', Value: '0' }, { Text: 'Unsure', Value: '1' }, { Text: 'Slightly Agree', Value: '2' }, { Text: 'Agree', Value: '3' }, { Text: 'Strongly Agree', Value: '4' }, { Text: 'Fully Compliant', Value: '5' }];
+    var answerOptions = [{ Text: 'Unsure', Value: '1' }, { Text: 'Slightly Agree', Value: '2' }, { Text: 'Agree', Value: '3' }, { Text: 'Strongly Agree', Value: '4' }, { Text: 'Fully Compliant', Value: '5' }, { Text: 'Not applicable', Value: 'N/A' }];
     var assessmentResponse = function (_id, _text, _srNo, _response, _responseId, _userId) {
         var self = this;
         self.id = ko.observable(_id);
@@ -120,7 +123,7 @@
                 url: '/api/QuestionModule',
                 type: 'GET',
                 contentType: 'application/json',
-                async:false,
+                async: false,
                 dataType: 'json',
                 success: function (data) {
                     if (data.length > 0) {
@@ -169,4 +172,4 @@
 
 
     });
-    </script>
+</script>
