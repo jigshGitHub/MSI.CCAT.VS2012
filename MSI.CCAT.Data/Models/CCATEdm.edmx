@@ -71,6 +71,7 @@
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
           <Property Name="DisplayOrder" Type="int" />
+          <Property Name="ToolTipText" Type="varchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="Tbl_QuestionModule">
           <Key>
@@ -153,6 +154,7 @@
           <Property Type="Int32" Name="DisplayOrder" />
           <NavigationProperty Name="Tbl_QuestionModule" Relationship="CCATDBModel.FK_Tbl_QuestionBank_Tbl_Module" FromRole="Tbl_QuestionBank" ToRole="Tbl_QuestionModule" />
           <NavigationProperty Name="Tbl_QuestionResponse" Relationship="CCATDBModel.FK_Tbl_Response_Tbl_QuestionBank" FromRole="Tbl_QuestionBank" ToRole="Tbl_QuestionResponse" />
+          <Property Type="String" Name="ToolTipText" MaxLength="1000" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Tbl_QuestionModule">
           <Key>
@@ -250,6 +252,7 @@
           <EntitySetMapping Name="Tbl_QuestionBank">
             <EntityTypeMapping TypeName="CCATDBModel.Tbl_QuestionBank">
               <MappingFragment StoreEntitySet="Tbl_QuestionBank">
+                <ScalarProperty Name="ToolTipText" ColumnName="ToolTipText" />
                 <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
