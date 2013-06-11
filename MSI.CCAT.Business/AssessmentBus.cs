@@ -30,7 +30,7 @@ namespace MSI.CCAT.Business
 
                 assessmentResponses = from questionBank in questions
                                       from questionResponse in responses.Where(r => r.QuestionId == questionBank.Id && r.CreatedBy == userId)
-                                      select new AssessmentResponse() { QuestionId = questionBank.Id, ModuleId = moduleId, Question = questionBank.Text, Response = questionResponse.Value, ResponseId = questionResponse.Id, SerialNumber = questionBank.SrNo, UserId = userId };                
+                                      select new AssessmentResponse() { QuestionId = questionBank.Id, ModuleId = moduleId, Question = questionBank.Text, QuestionTooltip = questionBank.ToolTipText, Response = questionResponse.Value, ResponseId = questionResponse.Id, SerialNumber = questionBank.SrNo, UserId = userId };                
 
             }
             catch (Exception ex)

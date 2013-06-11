@@ -3,7 +3,7 @@
 
 @{Html.RenderPartial("~/Views/Shared/_LayoutHeader.cshtml");}
 
-<body @(!Request.IsAuthenticated ? string.Format("class=logon style=background-image:url(../Images/bg-capitol.jpg);") : "")>
+<body @(!Request.IsAuthenticated ? string.Format("class=logon style=background-image:url(../Images/bg-capitol.png);") : "")>
 
     @*///// Logo/Brand /////////////////*@
     <div id="header" style="height:55px;">
@@ -17,6 +17,8 @@
         <ul class="nav btn-group">
             @if (Request.IsAuthenticated)
             {
+                <li class="btn btn-inverse">@Html.ActionLink(User.Identity.Name, "ChangePassword", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Change password" })</li>
+        
                 <li class="btn btn-inverse" ><a title="" href="#"><i class="icon icon-user" style="background:none;"></i> <span class="text">Account</span></a></li>            
                 
                 <li class="btn btn-inverse"><a title="" href="/Account/LogOff"><i class="icon icon-share-alt" style="background:none;"></i> <span class="text">Logout</span></a></li>
@@ -42,7 +44,7 @@
                 <span>Mined System Compliance Tracking Tool</span> 
             </div>
             <div class="pull-right" style="margin:5px; text-align:right;">
-                <span class="poweredby">Powered by <a href="http://www.minedsystems.com" target="_blank">MSI</a></span> 
+                <span class="poweredby">Powered by <a href="http://www.minedsystems.com" target="_blank">Mined Systems Inc.</a></span> 
                 <span class="copyright">&#169; 2013.</span>
             </div>
         </div>               

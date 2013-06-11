@@ -9,6 +9,7 @@ namespace MSI.CCAT.Business.BusinessModels
     public class AssessmentResponse
     {
         public string Question { get; set; }
+        public string QuestionTooltip { get; set; }
         public int QuestionId { get; set; }
         public int ModuleId { get; set; }
         public string SerialNumber { get; set; }
