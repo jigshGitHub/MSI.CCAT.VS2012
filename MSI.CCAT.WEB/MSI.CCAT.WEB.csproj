@@ -1845,7 +1845,6 @@
     <Content Include="Areas\Dashboard\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Dashboard\Views\Home\Overview.cshtml" />
     <Content Include="Areas\Assessment\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Assessment\Views\Home\Test.cshtml" />
     <Content Include="Areas\Compliance\Views\Home\Create.cshtml" />
     <Content Include="Areas\Compliance\Views\Home\Export.cshtml" />
     <Content Include="Areas\Compliance\Views\Home\Index.cshtml" />

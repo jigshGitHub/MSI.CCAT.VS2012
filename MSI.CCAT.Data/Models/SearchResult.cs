@@ -530,6 +530,31 @@ namespace Cascade.Data.Models
     #endregion
 
 
+    public class ComplianceReportResult_Ext
+    {
+        public string AgencyId;
+        public string AgencyName;
+        public string LastName;
+        public string FirstName;
+        public string PIMSAccount;
+        public string ComPlaintId;
+        public string HomePhone;
+        public string WorkPhone;
+        public string MobilePhone;
+        public string LastFourSSN;
+        public DateTime? ComplaintDate;
+        public DateTime? AgencyResponseToDebtorDate;
+        public DateTime? MoreInfoRequestedDate;
+        public DateTime? ComplaintSubmittedDate;
+        public int TotalResponseTimeDays;
+        public int count_ { get; set; }
+        public Int64 rowNo { get; set; }
+        public ComplianceReportResult_Ext()
+        {
+        }
+
+    }
+
 
     #region Testing
     public class PeopleViewEditResult
