@@ -41,7 +41,7 @@
         }
     }
 </script>
-
+<script src="~/Scripts/application.js" type="text/javascript"></script>
 @* Kendo Grid Data Source *@
 <script>
     function get_gridDataSource(searchText) {
@@ -49,7 +49,7 @@
             type: "json",
             transport: {
                 read: {
-                    url: "Compliance/Home/GetComplianceReportData",
+                    url: baseUrl + "/Compliance/Home/GetComplianceReportData",
                     dataType: "json",
                     data: { searchText: searchText, reportType: $('#reportType').val() },
                     cache: false //This is required othewise grid does not refresh after Edit operation in IE
@@ -131,6 +131,18 @@
 @* Document Ready *@
 <script>
     $(document).ready(function () {
+        @*Edit record*@
+        $('#ORPSearchgrid').on('click', '.editsa', function (e) {
+            e.preventDefault();
+            var dataItem = $("#ORPSearchgrid").data("kendoGrid").dataItem($(this).closest("tr"));
+            @*Now let us clear what we have on this page*@
+            $('#clubSearch').children().remove();
+            var path = baseUrl + "/Compliance/Home/ViewEdit?id=" + dataItem.PIMSAccount + "&agency=" + dataItem.AgencyId;
+            $.get(path, function (data) {
+                @*Now Refill the data*@
+                $('#clubSearch').html(data);
+            });
+        });
         showProgress("Please wait...Report is being generated.");
         @*First time Grid Binding*@
         var kendoGridData = get_kendoGridData("");

@@ -1,4 +1,4 @@
-﻿@Scripts.Render("~/bundles/jquery")
+﻿
 <h2>
     Create</h2>
 @Html.Hidden("userId", (string)(@ViewBag.UserID))
@@ -1080,7 +1080,7 @@
                         $('#fileUploadContainer').dialog('open');
                     }
                 }
-                window.location.reload();
+                //window.location.reload();
 
             }
             self.showMessage = ko.observable(false);

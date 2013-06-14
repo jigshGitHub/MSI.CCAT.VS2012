@@ -41,7 +41,7 @@
         }
     }
 </script>
-
+<script src="~/Scripts/application.js" type="text/javascript"></script>
 @* Kendo Grid Data Source *@
 <script>
     function get_gridDataSource(searchText) {
@@ -49,7 +49,7 @@
             type: "json",
             transport: {
                 read: {
-                    url: "Compliance/Home/GetComplianceReportData",
+                    url: baseUrl + "/Compliance/Home/GetComplianceReportData",
                     dataType: "json",
                     data: { searchText: searchText, reportType: $('#reportType').val() },
                     cache: false //This is required othewise grid does not refresh after Edit operation in IE
@@ -109,16 +109,16 @@
                 {
                     command: [
                                 { id: "edit", name: "edit", template: "<a class='k-button k-grid-edit editsa' title='View/Edit' style='min-width:16px;'><span class='k-icon k-edit'></span></a>" },
-                           ],  title: " ", width: "30px"
+                    ], title: " ", width: "30px"
                 },
                 { field: "ComPlaintId", title: "Complaint ID", width: "80px" },
                 { field: "PIMSAccount", title: "Account#", width: "100px" },
                 { field: "LastName", title: "Last Name", width: "80px" },
                 { field: "FirstName", title: "First Name", width: "80px" },
                 { field: "LastFourSSN", title: "Last 4 SSN", width: "80px" },
-                { field: "ComplaintDate", title: "Complaint Date", width: "80px",format: "{0:MM/dd/yy}" }
-            
-                
+                { field: "ComplaintDate", title: "Complaint Date", width: "80px", format: "{0:MM/dd/yy}" }
+
+
             ]
         }
         return kendoGridData;
@@ -129,6 +129,20 @@
 @* Document Ready *@
 <script>
     $(document).ready(function () {
+
+        @*Edit record*@
+        $('#NCRASearchgrid').on('click', '.editsa', function (e) {
+            e.preventDefault();
+            var dataItem = $("#NCRASearchgrid").data("kendoGrid").dataItem($(this).closest("tr"));
+            @*Now let us clear what we have on this page*@
+            $('#clubSearch').children().remove();
+            var path = baseUrl + "/Compliance/Home/ViewEdit?id=" + dataItem.PIMSAccount + "&agency=" + dataItem.AgencyId;
+            $.get(path, function (data) {
+                @*Now Refill the data*@
+                $('#clubSearch').html(data);
+            });
+        });
+
         showProgress("Please wait...Report is being generated.");
         @*First time Grid Binding*@
         var kendoGridData = get_kendoGridData("");

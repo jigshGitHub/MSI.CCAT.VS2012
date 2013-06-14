@@ -409,9 +409,9 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
         {
             //ViewBag.UserID = UserId.ToString();
             ViewBag.Account = (string.IsNullOrEmpty(id)) ? "" : id; ;
-//            ViewBag.AgencyID = (string.IsNullOrEmpty("agency")) ? "" : agency;
+            ViewBag.AgencyID = (string.IsNullOrEmpty("agency")) ? "" : agency;
   //          ViewBag.UserRole = UserRoles.First().ToLower();
-            return View();
+            return PartialView();
         }
 
         //
