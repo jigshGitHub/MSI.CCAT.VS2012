@@ -114,7 +114,10 @@ namespace Cascade.Web.Controllers
 
                 //repository = new MSI_ComplaintMainRepository();
                 uo = new UnitOfWork("CascadeDBEntities");
-                IEnumerable<MSI_ComplaintMain> data = (from existingComplaint in uo.Repository<MSI_ComplaintMain>().GetAll().Where(record => record.AgencyId == complaint.AgencyId && record.Account == complaint.Account)
+                //IEnumerable<MSI_ComplaintMain> data = (from existingComplaint in uo.Repository<MSI_ComplaintMain>().GetAll().Where(record => record.AgencyId == complaint.AgencyId && record.Account == complaint.Account)
+                //                                       select existingComplaint);
+
+                IEnumerable<MSI_ComplaintMain> data = (from existingComplaint in uo.Repository<MSI_ComplaintMain>().GetAll().Where(record => record.Account == complaint.Account)
                                                        select existingComplaint);
 
                 if (data.Count() > 0)

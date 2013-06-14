@@ -183,6 +183,8 @@
         }
 
         self.loadModules = function () {
+
+            showProgress("Getting Module details...Please wait.");
             $.ajax({
                 url: baseUrl +  '/api/QuestionModule',
                 type: 'GET',
@@ -195,6 +197,7 @@
                             //log(item)
                             self.modules.push(new questionModule(item.Id, item.Name));
                         });
+                        hideProgress();
                     }
                 },
                 error: function (xhr, status, somthing) {
@@ -204,6 +207,7 @@
         }
         self.loadQuestions = function () {
             log(self.selectedQuestionModule());
+            showProgress("Getting Questions...Please wait.");
             $.ajax({
                 url: baseUrl +  '/api/Assessment',
                 type: 'GET',
@@ -220,6 +224,7 @@
                             }
                             self.questionsCollection.push(new assessmentResponse(item.QuestionId, item.Question, item.QuestionTooltip, item.SerialNumber, item.Response, item.ResponseId, userId));
                         });
+                        hideProgress();
                     }
                 },
                 error: function (xhr, status, somthing) {

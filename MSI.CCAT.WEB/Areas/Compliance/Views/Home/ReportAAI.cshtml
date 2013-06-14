@@ -14,7 +14,7 @@
         <div class='page-title'>Awaiting Additional Information</div>
     </div>
     <br />
-     @*Search button*@
+     @*Search button
     <div class="row-fluid">
         <div class="span12">
             <div class="span8 input-append">
@@ -23,7 +23,7 @@
             </div>
         </div>
     </div>
-
+     *@
     <div class="row-fluid" style="margin-top:10px">
         <div id="searchGrid" class="k-content">
             <div id="AAISearchgrid"></div>
@@ -130,18 +130,21 @@
 @* Document Ready *@
 <script>
     $(document).ready(function () {
-        
+        showProgress("Please wait...Report is being generated.");
         @*First time Grid Binding*@
         var kendoGridData = get_kendoGridData("");
         $("#AAISearchgrid").kendoGrid(kendoGridData);
+        hideProgress();
 
         @* When Search Button is clicked *@
         $("#btnSearch").click(function () {
+            showProgress("Please wait...Report is being generated.");
             var searchText = $("#searchBox").attr('value');
             var grid = $("#AAISearchgrid").data("kendoGrid");
             var dataSource = get_gridDataSource(searchText);
             grid.dataSource.transport.options.read.data = { searchText: searchText, reportType: $('#reportType').val() };
             grid.dataSource.read();
+            hideProgress();
         });
 
     });

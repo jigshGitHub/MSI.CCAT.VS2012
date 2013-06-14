@@ -263,8 +263,7 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
 			inner join RAGENCY ra on ra.AGENCY_ID = cm.AgencyId
 			where cm.ComplaintSubmitedToAgencyYN = 1
 			and cm.ComplaintSubmitedToAgencyDate is not null
-			and cm.ComplaintSubmittedToOwnerYN = 0 
-            ";
+			";
         const string _sql_base_RCReport =
                 @"Select 
 			cm.AgencyId,  ra.NAME as AgencyName,
@@ -285,8 +284,8 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
 			inner join RAGENCY ra on ra.AGENCY_ID = cm.AgencyId
 			where cm.DebtorAgreeYN=1 and FinalActionStepId is not null 
             ";
-         const string _sql_base_AAIReport =
-                @"Select 
+        const string _sql_base_AAIReport =
+               @"Select 
 			cm.AgencyId,  ra.NAME as AgencyName,
 			Isnull(cm.LastName,'') as LastName, 
 			Isnull(cm.FirstName,'') as FirstName,
@@ -304,12 +303,11 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
 			from MSI_ComplaintMain cm
 			inner join RAGENCY ra on ra.AGENCY_ID = cm.AgencyId
 			where cm.ComplaintSubmitedToAgencyDate is not null
-			and cm.ComplaintSubmittedToOwnerYN=0
-			and cm.ComplaintSubmittedDate is null and cm.MoreInfoReqdFromDebtorYN=1 
+			and cm.MoreInfoReqdFromDebtorYN=1 
             ";
 
-         const string _sql_base_NCPReport =
-                 @"Select 
+        const string _sql_base_NCPReport =
+                @"Select 
 			cm.AgencyId,  ra.NAME as AgencyName,
 			Isnull(cm.LastName,'') as LastName, 
 			Isnull(cm.FirstName,'') as FirstName,
@@ -327,12 +325,11 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
 			from MSI_ComplaintMain cm
 			inner join RAGENCY ra on ra.AGENCY_ID = cm.AgencyId
 			where cm.ComplaintSubmitedToAgencyDate is not null
-			 and cm.ComplaintSubmittedToOwnerYN=0
-			 and cm.ComplaintSubmittedDate is null and cm.IsViewedByAgency=1
-         ";
+			and ISNULL(cm.ComplaintSubmittedToOwnerYN,0) = 0
+			";
 
-         const string _sql_base_ORPReport =
-                  @"Select 
+        const string _sql_base_ORPReport =
+                 @"Select 
 			cm.AgencyId,  ra.NAME as AgencyName,
 			Isnull(cm.LastName,'') as LastName, 
 			Isnull(cm.FirstName,'') as FirstName,
@@ -353,8 +350,8 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
           ";
 
 
-         const string _sql_base_SOAReport =
-                   @"Select 
+        const string _sql_base_SOAReport =
+                  @"Select 
 			cm.AgencyId,  ra.NAME as AgencyName,
 			Isnull(cm.LastName,'') as LastName, 
 			Isnull(cm.FirstName,'') as FirstName,
@@ -371,7 +368,7 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
 			cm.TotalResponseTimeDays
 			from MSI_ComplaintMain cm
 			inner join RAGENCY ra on ra.AGENCY_ID = cm.AgencyId
-			where cm.ComplaintSubmittedToOwnerYN=1 and cm.IsViewedByOwner=0
+			where cm.ComplaintSubmittedToOwnerYN=1 
             ";
 
         #endregion
