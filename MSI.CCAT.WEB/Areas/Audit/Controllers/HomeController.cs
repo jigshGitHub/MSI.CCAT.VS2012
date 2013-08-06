@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace MSI.CCAT.WEB.Areas.Audit.Controllers
+{
+    public class HomeController : Controller
+    {
+        //
+        // GET: /Audit/Home/
+
+        public ActionResult Index()
+        {
+            return PartialView();
+        }
+
+
+    }
+}
