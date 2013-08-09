@@ -13,6 +13,8 @@
         <EntityTypeShape EntityType="CCATDBModel.module" Width="1.5" PointX="9.8512740479089658" PointY="8.7344089787147983" />
         <EntityTypeShape EntityType="CCATDBModel.pageMenu" Width="1.5" PointX="0.72720962796695976" PointY="25.446051251816588" />
         <EntityTypeShape EntityType="CCATDBModel.pageMenuGroup" Width="1.5" PointX="10.355558171102572" PointY="31.052695899760675" />
+        <EntityTypeShape EntityType="CCATDBModel.TBL_CHART" Width="1.5" PointX="1.5934829477190426" PointY="15.508746646115904" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_QuestionDeficient" Width="1.5" PointX="6.4393165309165212" PointY="16.82150309571135" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

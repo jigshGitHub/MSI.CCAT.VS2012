@@ -11,6 +11,7 @@ namespace MSI.CCAT.WEB.Controllers.APIs
 {
     public class QuestionModuleController : ApiController
     {
+        [HttpGet]
         public IEnumerable<Tbl_QuestionModule> Get()
         {
             IEnumerable<Tbl_QuestionModule> modules = null;

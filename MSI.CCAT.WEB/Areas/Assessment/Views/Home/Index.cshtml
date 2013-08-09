@@ -111,7 +111,7 @@
 
         self.updateResponse = function (assessmentResponse) {
             $.ajax({
-                url: baseUrl +  '/api/Assessment/',
+                url: baseUrl + '/api/Assessment/Post',
                 type: "POST",
                 data: assessmentResponse,
                 dataType: "json",
@@ -186,7 +186,7 @@
 
             showProgress("Getting Module details...Please wait.");
             $.ajax({
-                url: baseUrl +  '/api/QuestionModule',
+                url: baseUrl + '/api/QuestionModule/Get',
                 type: 'GET',
                 contentType: 'application/json',
                 async: false,
@@ -209,7 +209,7 @@
             log(self.selectedQuestionModule());
             showProgress("Getting Questions...Please wait.");
             $.ajax({
-                url: baseUrl +  '/api/Assessment',
+                url: baseUrl +  '/api/Assessment/Get',
                 type: 'GET',
                 contentType: 'application/json',
                 data: { moduleId: self.selectedQuestionModule().id(), userId: userId },

@@ -29,6 +29,22 @@ namespace MSI.CCAT.Business
             return responses;
         }
 
+        public IEnumerable<Tbl_QuestionDeficient> GetDeficiences()
+        {
+            IEnumerable<Tbl_QuestionDeficient> deficiences = null;
+            try
+            {
+                IUnitOfWork uo = new UnitOfWork("CCATDBEntities");
+                deficiences = from deficient in uo.Repository<Tbl_QuestionDeficient>().GetAll()
+                            select deficient;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return deficiences;
+        }
+
         public Tbl_QuestionResponse CreateResponse(Guid userId, int questionId)
         {
             //QuestionResponseRepository responseRepository;

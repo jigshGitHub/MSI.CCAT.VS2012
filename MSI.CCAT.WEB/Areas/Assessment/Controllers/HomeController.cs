@@ -16,6 +16,10 @@ namespace MSI.CCAT.WEB.Areas.Assessment.Controllers
             ViewBag.ModuleId = (moduleId.HasValue) ? moduleId.Value.ToString() : "1";
             return PartialView();
         }
-
+        public ActionResult DeficientQuestions(int? moduleId)
+        {
+            ViewBag.ModuleId = (moduleId.HasValue) ? moduleId.Value.ToString() : "1";
+            return PartialView();
+        }
     }
 }

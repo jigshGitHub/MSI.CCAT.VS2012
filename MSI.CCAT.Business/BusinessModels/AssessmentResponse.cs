@@ -16,5 +16,6 @@ namespace MSI.CCAT.Business.BusinessModels
         public int ResponseId { get; set; }
         public string Response { get; set; }
         public Guid UserId { get; set; }
+        public bool IsDeficient { get; set; }
     }
 }

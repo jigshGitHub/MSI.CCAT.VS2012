@@ -40,6 +40,39 @@ namespace MSI.CCAT.Business
             return assessmentResponses;
         }
 
+        public IEnumerable<AssessmentResponse> GetResponseWithDeficiencies(Guid userId, int moduleId)
+        {
+            QuestionBus questionBus;
+            ResponseBus responseBus;
+            IEnumerable<AssessmentResponse> assessmentResponses = null;
+            IEnumerable<Tbl_QuestionBank> questions = null;
+            IEnumerable<Tbl_QuestionResponse> responses = null;
+            IEnumerable<Tbl_QuestionDeficient> deficiences = null;
+            try
+            {
+                questionBus = new QuestionBus();
+                responseBus = new ResponseBus();
+
+                questions = questionBus.GetQuestions(moduleId);
+                responses = responseBus.GetResponses(userId, moduleId);
+                deficiences = responseBus.GetDeficiences();
+
+                if (responses.Count() == 0)
+                    responses = CreateDefaultResponses(userId, questions);
+
+                assessmentResponses = from questionBank in questions
+                                      from questionResponse in responses.Where(r => r.QuestionId == questionBank.Id && r.CreatedBy == userId)
+                                      from questionDeficient in deficiences.Where(d => d.UserResponseValue == questionResponse.Value && d.IsDeficient.Value == true)
+                                      select new AssessmentResponse() { QuestionId = questionBank.Id, ModuleId = moduleId, Question = questionBank.Text, QuestionTooltip = questionBank.ToolTipText, Response = questionResponse.Value, ResponseId = questionResponse.Id, SerialNumber = questionBank.SrNo, UserId = userId, IsDeficient = questionDeficient .IsDeficient.Value};
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return assessmentResponses;
+        }
+
         private IEnumerable<Tbl_QuestionResponse> CreateDefaultResponses(Guid userId, IEnumerable<Tbl_QuestionBank> defaultQuestions)
         {
             ResponseBus responseBus;

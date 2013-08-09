@@ -9,7 +9,9 @@
           <EntitySet Name="module" EntityType="CCATDBModel.Store.module" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="pageMenu" EntityType="CCATDBModel.Store.pageMenu" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="pageMenuGroup" EntityType="CCATDBModel.Store.pageMenuGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TBL_CHART" EntityType="CCATDBModel.Store.TBL_CHART" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_QuestionBank" EntityType="CCATDBModel.Store.Tbl_QuestionBank" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_QuestionDeficient" EntityType="CCATDBModel.Store.Tbl_QuestionDeficient" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_QuestionModule" EntityType="CCATDBModel.Store.Tbl_QuestionModule" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_QuestionResponse" EntityType="CCATDBModel.Store.Tbl_QuestionResponse" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Tbl_QuestionBank_Tbl_Module" Association="CCATDBModel.Store.FK_Tbl_QuestionBank_Tbl_Module">
@@ -59,6 +61,35 @@
           <Property Name="iconClass" Type="nvarchar" MaxLength="50" />
           <Property Name="pageMenuIds" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="TBL_CHART">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TypeOfChart" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Caption" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="SWFile" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="ChartID" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="NumberSuffix" Type="char" MaxLength="1" />
+          <Property Name="SNumberSuffix" Type="char" MaxLength="1" />
+          <Property Name="XaxisName" Type="varchar" MaxLength="500" />
+          <Property Name="YaxisName" Type="varchar" MaxLength="500" />
+          <Property Name="CanvasBgColor" Type="char" MaxLength="6" />
+          <Property Name="BgColor" Type="char" MaxLength="6" />
+          <Property Name="CanvasBgAlpha" Type="varchar" MaxLength="10" />
+          <Property Name="BgAlpha" Type="varchar" MaxLength="10" />
+          <Property Name="PieRadius" Type="varchar" MaxLength="10" />
+          <Property Name="EnableRotation" Type="char" MaxLength="1" />
+          <Property Name="ShowLegend" Type="char" MaxLength="1" />
+          <Property Name="ShowLabels" Type="char" MaxLength="1" />
+          <Property Name="PlotGradientColor" Type="char" MaxLength="6" />
+          <Property Name="DrillLevelChartIDs" Type="varchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="LastUpdatedDate" Type="datetime" />
+          <Property Name="LastCreatedDate" Type="datetime" />
+          <Property Name="LastUpdatedBy" Type="uniqueidentifier" />
+          <Property Name="LastCreatedBy" Type="uniqueidentifier" />
+        </EntityType>
         <EntityType Name="Tbl_QuestionBank">
           <Key>
             <PropertyRef Name="Id" />
@@ -66,12 +97,24 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="SrNo" Type="varchar" MaxLength="50" />
           <Property Name="Text" Type="varchar" MaxLength="500" />
+          <Property Name="ToolTipText" Type="varchar" MaxLength="1000" />
           <Property Name="ModuleId" Type="int" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
           <Property Name="DisplayOrder" Type="int" />
-          <Property Name="ToolTipText" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Tbl_QuestionDeficient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserResponseValue" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="IsDeficient" Type="bit" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Tbl_QuestionModule">
           <Key>
@@ -83,6 +126,8 @@
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
           <Property Name="DisplayOrder" Type="int" />
+          <Property Name="IndustryAverage" Type="varchar" MaxLength="10" />
+          <Property Name="QuetionQuantity" Type="int" />
         </EntityType>
         <EntityType Name="Tbl_QuestionResponse">
           <Key>
@@ -139,6 +184,8 @@
           <EntitySet Name="modules" EntityType="CCATDBModel.module" />
           <EntitySet Name="pageMenus" EntityType="CCATDBModel.pageMenu" />
           <EntitySet Name="pageMenuGroups" EntityType="CCATDBModel.pageMenuGroup" />
+          <EntitySet Name="TBL_CHART" EntityType="CCATDBModel.TBL_CHART" />
+          <EntitySet Name="Tbl_QuestionDeficient" EntityType="CCATDBModel.Tbl_QuestionDeficient" />
         </EntityContainer>
         <EntityType Name="Tbl_QuestionBank">
           <Key>
@@ -167,6 +214,8 @@
           <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Tbl_QuestionBank" Relationship="CCATDBModel.FK_Tbl_QuestionBank_Tbl_Module" FromRole="Tbl_QuestionModule" ToRole="Tbl_QuestionBank" />
           <Property Type="Int32" Name="DisplayOrder" />
+          <Property Type="String" Name="IndustryAverage" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="QuetionQuantity" />
         </EntityType>
         <EntityType Name="Tbl_QuestionResponse">
           <Key>
@@ -243,6 +292,47 @@
           <Property Type="String" Name="iconClass" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="pageMenuIds" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="TBL_CHART">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="TypeOfChart" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Caption" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SWFile" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ChartID" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NumberSuffix" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="SNumberSuffix" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="XaxisName" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="YaxisName" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CanvasBgColor" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="BgColor" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="CanvasBgAlpha" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="BgAlpha" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PieRadius" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EnableRotation" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="ShowLegend" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="ShowLabels" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="PlotGradientColor" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="DrillLevelChartIDs" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsActive" />
+          <Property Type="DateTime" Name="LastUpdatedDate" Precision="3" />
+          <Property Type="DateTime" Name="LastCreatedDate" Precision="3" />
+          <Property Type="Guid" Name="LastUpdatedBy" />
+          <Property Type="Guid" Name="LastCreatedBy" />
+        </EntityType>
+        <EntityType Name="Tbl_QuestionDeficient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserResponseValue" MaxLength="500" Unicode="false" FixedLength="false" Nullable="false" />
+          <Property Type="Boolean" Name="IsDeficient" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -267,6 +357,8 @@
           <EntitySetMapping Name="Tbl_QuestionModule">
             <EntityTypeMapping TypeName="CCATDBModel.Tbl_QuestionModule">
               <MappingFragment StoreEntitySet="Tbl_QuestionModule">
+                <ScalarProperty Name="QuetionQuantity" ColumnName="QuetionQuantity" />
+                <ScalarProperty Name="IndustryAverage" ColumnName="IndustryAverage" />
                 <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
@@ -327,6 +419,49 @@
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="appId" ColumnName="appId" />
                 <ScalarProperty Name="pageMenuGroupId" ColumnName="pageMenuGroupId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_CHART">
+            <EntityTypeMapping TypeName="CCATDBModel.TBL_CHART">
+              <MappingFragment StoreEntitySet="TBL_CHART">
+                <ScalarProperty Name="LastCreatedBy" ColumnName="LastCreatedBy" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+                <ScalarProperty Name="LastCreatedDate" ColumnName="LastCreatedDate" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DrillLevelChartIDs" ColumnName="DrillLevelChartIDs" />
+                <ScalarProperty Name="PlotGradientColor" ColumnName="PlotGradientColor" />
+                <ScalarProperty Name="ShowLabels" ColumnName="ShowLabels" />
+                <ScalarProperty Name="ShowLegend" ColumnName="ShowLegend" />
+                <ScalarProperty Name="EnableRotation" ColumnName="EnableRotation" />
+                <ScalarProperty Name="PieRadius" ColumnName="PieRadius" />
+                <ScalarProperty Name="BgAlpha" ColumnName="BgAlpha" />
+                <ScalarProperty Name="CanvasBgAlpha" ColumnName="CanvasBgAlpha" />
+                <ScalarProperty Name="BgColor" ColumnName="BgColor" />
+                <ScalarProperty Name="CanvasBgColor" ColumnName="CanvasBgColor" />
+                <ScalarProperty Name="YaxisName" ColumnName="YaxisName" />
+                <ScalarProperty Name="XaxisName" ColumnName="XaxisName" />
+                <ScalarProperty Name="SNumberSuffix" ColumnName="SNumberSuffix" />
+                <ScalarProperty Name="NumberSuffix" ColumnName="NumberSuffix" />
+                <ScalarProperty Name="ChartID" ColumnName="ChartID" />
+                <ScalarProperty Name="SWFile" ColumnName="SWFile" />
+                <ScalarProperty Name="Caption" ColumnName="Caption" />
+                <ScalarProperty Name="TypeOfChart" ColumnName="TypeOfChart" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_QuestionDeficient">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_QuestionDeficient">
+              <MappingFragment StoreEntitySet="Tbl_QuestionDeficient">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsDeficient" ColumnName="IsDeficient" />
+                <ScalarProperty Name="UserResponseValue" ColumnName="UserResponseValue" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

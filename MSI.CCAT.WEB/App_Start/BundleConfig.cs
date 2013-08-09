@@ -42,7 +42,10 @@ namespace MSI.CCAT.WEB
             bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
                         "~/Scripts/knockout-{version}.js"));
             bundles.Add(new ScriptBundle("~/bundles/external").Include(
-                        "~/Scripts/external/*.js"));
+                        "~/Scripts/external/*.js",
+                        "~/FusionChartLib/FusionCharts.js",
+                        "~/FusionChartLib/FusionCharts.HC.js",
+                        "~/FusionChartLib/FusionCharts.jqueryplugin"));
         }
     }
 }

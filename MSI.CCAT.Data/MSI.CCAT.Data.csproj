@@ -124,7 +124,13 @@
       <DependentUpon>CascadeEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SearchResult.cs" />
+    <Compile Include="Models\TBL_CHART.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tbl_QuestionBank.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_QuestionDeficient.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_QuestionModule.cs">

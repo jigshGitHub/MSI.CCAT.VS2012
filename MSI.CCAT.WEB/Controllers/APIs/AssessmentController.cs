@@ -10,6 +10,7 @@ namespace MSI.CCAT.API.Controllers
 {
     public class AssessmentController : ApiController
     {
+        [HttpGet()]
         public IEnumerable<AssessmentResponse> Get(int moduleId, string userId)
         {
             AssessmentBus business;
@@ -19,6 +20,25 @@ namespace MSI.CCAT.API.Controllers
             {
                 business = new AssessmentBus();
                 data = business.GetResponse(Guid.Parse(userId), moduleId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("MSI.CCAT.API.Controller.AssessmentController:" + ex.Message);
+            }
+            return data;
+        }
+
+        [HttpGet()]
+        [ActionName("GetDeficients")]
+        public IEnumerable<AssessmentResponse> GetDeficients(int moduleId, string userId)
+        {
+            AssessmentBus business;
+            IEnumerable<AssessmentResponse> data = null;
+
+            try
+            {
+                business = new AssessmentBus();
+                data = business.GetResponseWithDeficiencies(Guid.Parse(userId), moduleId);
             }
             catch (Exception ex)
             {

@@ -195,6 +195,7 @@
     <Compile Include="Areas\Scorecard\ScorecardAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\APIs\AssessmentController.cs" />
+    <Compile Include="Controllers\APIs\ChartController.cs" />
     <Compile Include="Controllers\APIs\ComplianceController.cs" />
     <Compile Include="Controllers\APIs\LookupController.cs" />
     <Compile Include="Controllers\APIs\QuestionModuleController.cs" />
@@ -1862,6 +1863,7 @@
     <Content Include="Areas\Audit\Views\Web.config" />
     <Content Include="Areas\Audit\Views\Home\Index.cshtml" />
     <Content Include="Areas\Audit\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Assessment\Views\Home\DeficientQuestions.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -1948,6 +1950,10 @@
     <ProjectReference Include="..\MSI.CCAT.Data\MSI.CCAT.Data.csproj">
       <Project>{5e0f907a-a55f-48ce-8611-a625207fb928}</Project>
       <Name>MSI.CCAT.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MSI.Charts\MSI.Charts.csproj">
+      <Project>{636ff9a7-c957-42bb-b4cd-473f8f102452}</Project>
+      <Name>MSI.Charts</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
