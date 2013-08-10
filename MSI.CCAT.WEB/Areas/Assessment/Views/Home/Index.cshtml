@@ -1,5 +1,7 @@
 ﻿@Html.Hidden("userId", (string)(@ViewBag.UserID))
 @Html.Hidden("moduleId", (string)(@ViewBag.ModuleId))
+@Html.Hidden("onlyDeficient", (bool)(@ViewBag.OnlyDeficient))
+
 <style>
     .ui-tooltip, .arrow:after {
         background: black;
@@ -99,7 +101,7 @@
         self.userId = _userId;
 
         self.response.subscribe(function (responseSelected) {
-            log(responseSelected);
+            //log(responseSelected);
             if (responseSelected != '' && responseSelected != undefined) {
                 self.updateResponse(JSON.stringify({
                     ResponseId: self.responseId(),
@@ -130,16 +132,25 @@
         self.name = ko.observable(_name);
     }
 
-    var pageViewModel = function (userId, moduleId) {
+    var pageViewModel = function (userId, moduleId, onlyDeficient) {
         var self = this;
+        self.onlyDeficient = onlyDeficient;
         self.userId = userId;
         self.modules = ko.observableArray([]);
         self.totalQuestionCount = ko.observable();
-        self.completeCount = ko.observable(0);
+        
         self.questionsDisplayCount = 10;
         self.questionsDisplayStartIndex = ko.observable(0);
         self.questionsDisplayEndIndex = ko.observable(self.questionsDisplayCount);
         self.questionsCollection = ko.observableArray([]);
+        self.completeCount = ko.computed(function () {
+            var count = 0;
+            ko.utils.arrayForEach(self.questionsCollection(), function (answer) {
+                if (answer.response())
+                    count++;
+            });
+            return count;
+        }, self);
         self.completeCountLabel = ko.computed(function () {
             return 'Complete ' + self.completeCount() + ' / ' + self.totalQuestionCount();
         }, self);
@@ -206,26 +217,30 @@
             });
         }
         self.loadQuestions = function () {
-            log(self.selectedQuestionModule());
+            //log(self.selectedQuestionModule());
             showProgress("Getting Questions...Please wait.");
+            var url = baseUrl + '/api/Assessment/';
+            //log(self.onlyDeficient);
+            if(self.onlyDeficient == 'true') 
+                url = url + 'GetDeficients' ;
+            else
+                url = url + 'Get';
+
             $.ajax({
-                url: baseUrl +  '/api/Assessment/Get',
+                url:url,
                 type: 'GET',
                 contentType: 'application/json',
                 data: { moduleId: self.selectedQuestionModule().id(), userId: userId },
                 dataType: 'json',
                 success: function (data) {
                     self.totalQuestionCount(data.length);
+                    //log(data);
                     if (data.length > 0) {
                         $.each(data, function (i, item) {
-                            if (item.Response) {
-                                //if(item.Response == answerOptions[5].Value)
-                                self.completeCount(self.completeCount() + 1);
-                            }
                             self.questionsCollection.push(new assessmentResponse(item.QuestionId, item.Question, item.QuestionTooltip, item.SerialNumber, item.Response, item.ResponseId, userId));
                         });
-                        hideProgress();
                     }
+                    hideProgress();
                 },
                 error: function (xhr, status, somthing) {
                     log(status);
@@ -235,7 +250,7 @@
     }
 
     $(document).ready(function () {
-        var vm = new pageViewModel($('#userId').val(), $('#moduleId').val());
+        var vm = new pageViewModel($('#userId').val(), $('#moduleId').val(), $('#onlyDeficient').val());
         vm.initialize();
         ko.applyBindings(vm, $('#workspaceContainer')[0]);
         $('#workspaceContainer').tooltip({

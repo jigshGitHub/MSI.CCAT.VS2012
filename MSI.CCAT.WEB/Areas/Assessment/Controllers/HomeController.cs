@@ -11,14 +11,10 @@ namespace MSI.CCAT.WEB.Areas.Assessment.Controllers
         //
         // GET: /Assessment/Home/
 
-        public ActionResult Index(int? moduleId)
+        public ActionResult Index(int? moduleId, bool? onlyDeficient)
         {
             ViewBag.ModuleId = (moduleId.HasValue) ? moduleId.Value.ToString() : "1";
-            return PartialView();
-        }
-        public ActionResult DeficientQuestions(int? moduleId)
-        {
-            ViewBag.ModuleId = (moduleId.HasValue) ? moduleId.Value.ToString() : "1";
+            ViewBag.OnlyDeficient = (onlyDeficient.HasValue) ? onlyDeficient.Value : false;
             return PartialView();
         }
     }

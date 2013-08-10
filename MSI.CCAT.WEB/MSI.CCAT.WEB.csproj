@@ -1863,7 +1863,6 @@
     <Content Include="Areas\Audit\Views\Web.config" />
     <Content Include="Areas\Audit\Views\Home\Index.cshtml" />
     <Content Include="Areas\Audit\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Assessment\Views\Home\DeficientQuestions.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />

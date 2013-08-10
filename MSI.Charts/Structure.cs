@@ -92,78 +92,19 @@ namespace MSI.Charts
                         this.DataSetCollection.Add(new ChartDataSet { Color = "8A4B08", SeriesName = "Industry Average" });
 
                         decimal percentValue;
+                        string link = "";
                         foreach (var value in data)
                         {
                             this.Categories.Add(new Category { Label = value.name });
 
                             percentValue = (value.value * 20) / value.totalQuestions.Value;
-                            this.DataSetCollection[0].SetsCollection.Add(new SetValue { Label = value.name, Value = Math.Round(percentValue, 2).ToString(), Link = "/#/Assessment/Home/DeficientQuestions?moduleId=" + value.Id.ToString() });
+                            link = ((string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["applicationRootDirectory"])) ? "" : "/" + System.Configuration.ConfigurationManager.AppSettings["applicationRootDirectory"]) + "/Assessment/Home/DeficientQuestions?moduleId=" + value.Id.ToString();
+                            //this.DataSetCollection[0].SetsCollection.Add(new SetValue { Label = value.name, Value = Math.Round(percentValue, 2).ToString(), Link = link });
+                            link = "JavaScript:test(" + value.Id.ToString() + ");";
+                            this.DataSetCollection[0].SetsCollection.Add(new SetValue { Label = value.name, Value = Math.Round(percentValue, 2).ToString(), Link = link });
                             this.DataSetCollection[1].SetsCollection.Add(new SetValue { Label = value.name, Value = value.indAvg.ToString().Substring(0, value.indAvg.ToString().Length - 1) });
 
                         }
-                        //var data = from response in uo.Repository<Tbl_QuestionResponse>().GetAll().Where(record => record.CreatedBy == new Guid(this.SearchParameters.First()) && record.Value != null)
-                        //           join question in uo.Repository<Tbl_QuestionBank>().GetAll() on response.QuestionId equals question.Id
-                        //           join _module in uo.Repository<Tbl_QuestionModule>().GetAll() on question.ModuleId equals _module.Id
-                        //           group response by new { _module.Id, _module.Name, _module.IndustryAverage, _module.QuetionQuantity }
-                        //               into grp
-                        //               select new { grp.Key.Id, value = grp.Sum(r => (r.Value == "N/A") ? 0 : Convert.ToDecimal(r.Value)), indAvg = grp.Key.IndustryAverage, name = grp.Key.Name, totalQuestions = grp.Key.QuetionQuantity };
-
-                        //foreach (Tbl_QuestionModule module in uo.Repository<Tbl_QuestionModule>().GetAll())
-                        //{
-                        //    this.Categories.Add(new Category { Label = module.Name });
-                        //}
-                        //foreach (Category category in Categories)
-                        //{
-                        //    var value = data.Where(r => r.name == category.Label).SingleOrDefault();
-                        //    if (value != null)
-                        //    {
-                        //        percentValue = (value.value * 20) / value.totalQuestions.Value;
-                        //        this.DataSetCollection[0].SetsCollection.Add(new SetValue { Label = category.Label, Value = Math.Round(percentValue, 2).ToString(), Link = "/#/Assessment/Home/DeficientQuestions?moduleId=" + value.Id.ToString() });
-                        //        this.DataSetCollection[1].SetsCollection.Add(new SetValue { Label = category.Label, Value = value.indAvg.ToString().Substring(0, value.indAvg.ToString().Length - 1) });
-                        //    }
-                        //    else
-                        //    {
-                        //        this.DataSetCollection[0].SetsCollection.Add(new SetValue { Label = category.Label, Value = "0", Link = "/#/Assessment/Home/DeficientQuestions?moduleId=" + value.Id.ToString() });
-                        //        this.DataSetCollection[1].SetsCollection.Add(new SetValue { Label = category.Label, Value = value.indAvg.ToString().Substring(0, value.indAvg.ToString().Length - 1) });
-                        //    }
-                        //}
-                        //this.Categories.Add(new Category { Label = DateTime.Now.AddMonths(-2).ToString("MMM") });
-                        //this.Categories.Add(new Category { Label = DateTime.Now.AddMonths(-1).ToString("MMM") });
-                        //this.Categories.Add(new Category { Label = DateTime.Now.AddMonths(0).ToString("MMM") });
-
-                        //chartParams = new List<ChartParameter>();
-                        //chartParams.Add(new ChartParameter { Value = "jshah", Color = "2908AD" });
-                        //chartParams.Add(new ChartParameter { Value = "Industry Average", Color = "B54908" });
-
-                        //values = "30,20,35,30,45,50,40,45,80,50,30,50,80,45".Split(new char[] { ',' });
-                        //index = 0;
-                        //foreach (ChartParameter parameter in chartParams)
-                        //{
-                        //    try
-                        //    {
-                        //        this.DataSetCollection.Add(new ChartDataSet { Color = parameter.Color, SeriesName = parameter.Value });
-
-                        //        foreach (Category category in this.Categories)
-                        //        {
-                        //            lastDs = this.DataSetCollection.Last();
-                        //            lastDs.SetsCollection.Add(new SetValue { Label = category.Label });
-                        //        }
-
-                        //        do
-                        //        {
-                        //            foreach (SetValue set in lastDs.SetsCollection)
-                        //            {
-                        //                set.Value = values[index].ToString();
-                        //                index++;
-                        //            }
-                        //        } while (index % 7 != 0);
-                        //    }
-                        //    catch (Exception ex)
-                        //    {
-                        //        throw new Exception("Error in ChartID.MediaPaidByCheck:" + ex.Message);
-                        //    }
-                        //    //}
-                        //}
                         break;
                     default:
                         break;
