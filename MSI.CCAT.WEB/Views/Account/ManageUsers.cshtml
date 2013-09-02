@@ -1,0 +1,192 @@
+﻿<div id="clubSearch" class="container-fluid">
+    <div class="row-fluid">
+        <div class='page-title'>New Complaint Requiring Action</div>
+    </div>
+    <br />
+
+    <div class="row-fluid" style="margin-top:10px">
+        <div id="searchGrid" class="k-content">
+            <div id="usersGrid"></div>
+        </div>
+    </div>
+ </div>
+
+@Scripts.Render("~/bundles/external")
+
+<script src="~/Scripts/application.js" type="text/javascript"></script>
+@* Kendo Grid Data Source *@
+
+
+@* Kendo Grid Data *@
+
+
+
+@* Document Ready *@
+<script>
+
+    $(document).ready(function () {
+        $(document).ready(function () {
+            var applicationRoles = [];
+            $.ajax({
+                url: baseUrl + '/Account/GetApplicationRoles/',
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                async: false,
+                success: function (data) {
+                    //log(data);
+                    applicationRoles.push({ text: 'Select Role', value: '' });
+                    if (data.length > 0) {
+                        $.each(data, function (i, item) {
+                            console.log(item);
+                            applicationRoles.push({ text: item, value: item });
+                        });
+                    }
+                },
+                error: function (response, errorText) {
+                    log(errorText);
+                }
+            });
+            var crudServiceBaseUrl = "http://demos.kendoui.com/service",
+                dataSource = new kendo.data.DataSource({
+                    transport: {
+                        read: {
+                            url: baseUrl + '/Account/GetAllUsers',
+                            dataType: "json"
+                        },
+                        //update: {
+                        //    url: baseUrl + "/Account/UpdateUser",
+                        //    dataType: "json"
+                        //},
+                        //destroy: {
+                        //    url: baseUrl + "/Products/Destroy",
+                        //    dataType: "json"
+                        //},
+                        //create: {
+                        //    url: baseUrl + "/Products/Create",
+                        //    dataType: "json"
+                        //},
+                        parameterMap: function (options, operation) {
+                            if (operation !== "read" && options.models) {
+                                //return { UserModel: kendo.stringify(options.models) };
+                            }
+                        }
+                    },
+                    batch: true,
+                    pageSize: 20,
+                    schema: {
+                        model: {
+                            id: "UserId",
+                            fields: {
+                                FirstName: { type: "string", validation: { required: true } },
+                                LastName: { type: "string", validation: { required: true } },
+                                Email: { validation: { required: true } },
+                                UserName: { type: "string", validation: { required: true }, editable: false },
+                                Role: { type: "string"}
+                            }
+                        }
+                    }
+                });
+
+            $("#usersGrid").kendoGrid({
+                dataSource: dataSource,
+                pageable: true,
+                height: 430,
+                toolbar: ["create"],
+                columns: [
+                    { field: "FirstName", title: "First Name", width: "100px" },
+                    { field: "LastName", title: "Last Name", width: "100px" },
+                    { field: "Email", title: "Email", width: "100px" },
+                    { field: "UserName", title: "User Name", width: "100px" },
+                    { field: "Role", title: "Role", values: applicationRoles, width: "100px" },
+                    { command: ["edit"], title: "&nbsp;", width: "172px" }],
+                editable: "inline",
+                save: function (e) {
+                    console.log(this);
+                    var json = JSON.stringify({
+                        userId: e.model.UserId, firstName: e.model.FirstName, lastName: e.model.LastName, email: e.model.Email, role: e.model.Role, roleEntityValue: e.model.RoleKeyValue
+                    });
+                    $.ajax({
+                        url: baseUrl + '/Account/UpdateUser/',
+                        type: "POST",
+                        data: json,
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        async: true,
+                        success: function (response) {
+                        },
+                        error: function (response, errorText) {
+                            console.log(errorText);
+                        }
+                    });
+                }
+            });
+        });
+        //$.ajax({
+        //    url: baseUrl + '/Account/GetAllUsers',
+        //    type: 'GET',
+        //    contentType: 'application/json',
+        //    async: false,
+        //    dataType: 'json',
+        //    success: function (data) {
+        //        console.log(data);
+        //    },
+        //    error: function (xhr, status, somthing) {
+        //        log(status);
+        //    }
+        //});
+        //var crudServiceBaseUrl = baseUrl + "/Account/Home/GetComplianceReportData",
+        //    dataSource = new kendo.data.DataSource({
+        //        transport: {
+        //            read: {
+        //                url: crudServiceBaseUrl + "/Products",
+        //                dataType: "jsonp"
+        //            },
+        //            update: {
+        //                url: crudServiceBaseUrl + "/Products/Update",
+        //                dataType: "jsonp"
+        //            },
+        //            destroy: {
+        //                url: crudServiceBaseUrl + "/Products/Destroy",
+        //                dataType: "jsonp"
+        //            },
+        //            create: {
+        //                url: crudServiceBaseUrl + "/Products/Create",
+        //                dataType: "jsonp"
+        //            },
+        //            parameterMap: function (options, operation) {
+        //                if (operation !== "read" && options.models) {
+        //                    return { models: kendo.stringify(options.models) };
+        //                }
+        //            }
+        //        },
+        //        batch: true,
+        //        pageSize: 20,
+        //        schema: {
+        //            model: {
+        //                id: "ProductID",
+        //                fields: {
+        //                    ProductID: { editable: false, nullable: true },
+        //                    ProductName: { validation: { required: true } },
+        //                    UnitPrice: { type: "number", validation: { required: true, min: 1 } },
+        //                    Discontinued: { type: "boolean" },
+        //                    UnitsInStock: { type: "number", validation: { min: 0, required: true } }
+        //                }
+        //            }
+        //        }
+        //    });
+
+        //$("#grid").kendoGrid({
+        //    dataSource: dataSource,
+        //    pageable: true,
+        //    height: 430,
+        //    toolbar: ["create"],
+        //    columns: [
+        //        "ProductName",
+        //        { field: "UnitPrice", title: "Unit Price", format: "{0:c}", width: "100px" },
+        //        { field: "UnitsInStock", title: "Units In Stock", width: "100px" },
+        //        { field: "Discontinued", width: "100px" },
+        //        { command: ["edit", "destroy"], title: "&nbsp;", width: "172px" }],
+        //    editable: "inline"
+        //});
+    });
+</script>

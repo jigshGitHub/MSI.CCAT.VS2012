@@ -10,6 +10,7 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using MSI.CCAT.WEB.Filters;
 using MSI.CCAT.WEB.Models;
+using MSI.CCAT.WEB.ApplicationIntegration;
 
 namespace MSI.CCAT.WEB.Controllers
 {
@@ -259,6 +260,57 @@ namespace MSI.CCAT.WEB.Controllers
         }
         #endregion
 
+        public ActionResult ManageUsers()
+        {
+            return PartialView();
+        }
+        public JsonResult GetApplicationRoles()
+        {
+            return Json(Roles.GetAllRoles(), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult GetAllUsers()
+        {
+            try
+            {
+                MSI.CCAT.Data.Repositories.IUnitOfWork uo = new MSI.CCAT.Data.Repositories.UnitOfWork("CCATDBEntities");
+                var data = from m in uo.Repository<MSI.CCAT.Data.Models.aspnet_Membership>().GetAll()
+                           from user in uo.Repository<MSI.CCAT.Data.Models.aspnet_Users>().GetAll().Where(userRecord => userRecord.UserId == m.UserId)
+                           select new UserModel(user.UserId);
+                return Json(data, JsonRequestBehavior.AllowGet); ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        [HttpPost]
+        public void UpdateUser(string userId, string firstName, string lastName, string email, string role, string roleEntityValue)
+        {
+            string userName = firstName.ToLower() + "." + lastName.ToLower();
+            AccountProfile profile;
+            if (!string.IsNullOrEmpty(userId))
+            {
+                profile = new AccountProfile(UserEntitiesDataFactory.GetUser(Guid.Parse(userId)).UserName);
+                UserEntitiesDataFactory.UpdateUser(userId, email);
+                UserEntitiesDataFactory.UpdateRole(userId, role);
+            }
+            else
+            {
+                if (UserEntitiesDataFactory.IsUserExits(userName))
+                {
+                    userName = UserEntitiesDataFactory.GetUsername(userName);
+                }
+
+                userId = UserEntitiesDataFactory.CreateUserWithRoles(userName, email, role).ToString();
+                profile = new AccountProfile(userName);
+            }
+
+            profile.FirstName = firstName;
+            profile.LastName = lastName;
+            if (!string.IsNullOrEmpty(roleEntityValue))
+                profile.RoleEntityValue = roleEntityValue;
+        }
     }
     #region Original Code Genereted
     //[Authorize]

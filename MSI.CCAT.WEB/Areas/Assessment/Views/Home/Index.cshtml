@@ -63,6 +63,11 @@
                 <div id="moduleTitle" data-bind="with: selectedQuestionModule"><span data-bind="    text: name"></span></div>
             </td>
         </tr>
+        <tr data-bind="visible: displayModuleMessage">
+            <td colspan="3" style="width: 100%">
+                <span data-bind="text: moduleMessage"></span>
+            </td>
+        </tr>
         <tr>
             <td colspan="3" style="width: 100%">
                 <span data-bind="text: completeCountLabel" />
@@ -79,7 +84,7 @@
             </tr>
         </tbody>
     </table>
-    <input type="button" data-bind="click: previousClick, visible: previousVisible" value="Previous" />&nbsp;<input type="button" data-bind="    click: nextClick, visible: nextVisible" value="Next" />
+    <input type="button" data-bind="click: previousClick, visible: previousVisible" value="Previous" />&nbsp;<input type="button" data-bind="    click: nextClick, visible: nextVisible" value="Next" />    
 </div>
 
 
@@ -135,10 +140,12 @@
     var pageViewModel = function (userId, moduleId, onlyDeficient) {
         var self = this;
         self.onlyDeficient = onlyDeficient;
+        self.displayModuleMessage = ko.observable(self.onlyDeficient);
+        self.moduleMessage = ko.observable('');
         self.userId = userId;
         self.modules = ko.observableArray([]);
         self.totalQuestionCount = ko.observable();
-        
+
         self.questionsDisplayCount = 10;
         self.questionsDisplayStartIndex = ko.observable(0);
         self.questionsDisplayEndIndex = ko.observable(self.questionsDisplayCount);
@@ -221,13 +228,15 @@
             showProgress("Getting Questions...Please wait.");
             var url = baseUrl + '/api/Assessment/';
             //log(self.onlyDeficient);
-            if(self.onlyDeficient == 'true') 
-                url = url + 'GetDeficients' ;
+            if (self.onlyDeficient == 'true') {
+                url = url + 'GetDeficients';
+                self.moduleMessage('The system has identified the following areas of weakness based upon your responses.');
+            }
             else
                 url = url + 'Get';
 
             $.ajax({
-                url:url,
+                url: url,
                 type: 'GET',
                 contentType: 'application/json',
                 data: { moduleId: self.selectedQuestionModule().id(), userId: userId },

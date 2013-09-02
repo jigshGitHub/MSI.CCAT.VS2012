@@ -49,6 +49,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBFactory.cs" />
+    <Compile Include="Models\aspnet_Membership.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\aspnet_Roles.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\aspnet_Users.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CascadeEDM.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

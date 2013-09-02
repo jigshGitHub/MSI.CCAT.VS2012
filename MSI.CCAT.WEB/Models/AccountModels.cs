@@ -97,6 +97,7 @@ namespace MSI.CCAT.WEB.Models
     {
         MembershipUser user { get; set; }
         AccountProfile profile;
+
         public UserModel(Guid userId)
         {
             user = Membership.GetUser(userId);

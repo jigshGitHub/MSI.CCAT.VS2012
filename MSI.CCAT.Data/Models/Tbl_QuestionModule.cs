@@ -27,6 +27,7 @@ namespace MSI.CCAT.Data.Models
         public Nullable<int> DisplayOrder { get; set; }
         public string IndustryAverage { get; set; }
         public Nullable<int> QuetionQuantity { get; set; }
+        public string Recommendation { get; set; }
     
         public virtual ICollection<Tbl_QuestionBank> Tbl_QuestionBank { get; set; }
     }

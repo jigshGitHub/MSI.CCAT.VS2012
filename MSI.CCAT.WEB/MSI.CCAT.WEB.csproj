@@ -177,6 +177,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationIntegration\UserEntitiesDataFactory.cs" />
     <Compile Include="ApplicationIntegration\FileProcessor.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -198,10 +199,12 @@
     <Compile Include="Controllers\APIs\ChartController.cs" />
     <Compile Include="Controllers\APIs\ComplianceController.cs" />
     <Compile Include="Controllers\APIs\LookupController.cs" />
+    <Compile Include="Controllers\APIs\MembershipController.cs" />
     <Compile Include="Controllers\APIs\QuestionModuleController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\moduleController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1924,6 +1927,8 @@
     <Content Include="Views\Account\Copy of Login.cshtml" />
     <Content Include="Views\Account\LogOn.cshtml" />
     <Content Include="Views\Shared\_LayoutHeader.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Account\ManageUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

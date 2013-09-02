@@ -33,5 +33,8 @@ namespace MSI.CCAT.Data.Models
         public DbSet<pageMenuGroup> pageMenuGroups { get; set; }
         public DbSet<TBL_CHART> TBL_CHART { get; set; }
         public DbSet<Tbl_QuestionDeficient> Tbl_QuestionDeficient { get; set; }
+        public DbSet<aspnet_Membership> aspnet_Membership { get; set; }
+        public DbSet<aspnet_Roles> aspnet_Roles { get; set; }
+        public DbSet<aspnet_Users> aspnet_Users { get; set; }
     }
 }
