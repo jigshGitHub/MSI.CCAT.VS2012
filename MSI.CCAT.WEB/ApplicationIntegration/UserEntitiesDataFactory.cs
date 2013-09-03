@@ -33,7 +33,7 @@ namespace MSI.CCAT.WEB.ApplicationIntegration
         {
             MembershipUser user = Membership.GetUser(new Guid(userId));
 
-            if (!string.IsNullOrEmpty(role.Trim()))
+            if (!string.IsNullOrEmpty(role))
             {
                 if (!Roles.IsUserInRole(role))
                 {

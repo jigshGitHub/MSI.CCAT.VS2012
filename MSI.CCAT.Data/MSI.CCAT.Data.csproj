@@ -133,7 +133,46 @@
       <DependentUpon>CascadeEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SearchResult.cs" />
+    <Compile Include="Models\Tbl_Account.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_Agency.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TBL_CHART.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_ComplaintIssues.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_ComplaintMain.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_ComplaintReceivedBy.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_CreditIssuer.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_DebtorContactMethods.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_DebtorContactTime.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_DebtorProducts.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_FinalActionSteps.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_LawFirm.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_Owner.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_OwnerResponses.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_QuestionBank.cs">
@@ -146,6 +185,9 @@
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_QuestionResponse.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_States.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
     <Compile Include="module.cs" />

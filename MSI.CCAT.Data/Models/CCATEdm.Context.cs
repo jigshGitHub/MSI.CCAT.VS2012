@@ -36,5 +36,19 @@ namespace MSI.CCAT.Data.Models
         public DbSet<aspnet_Membership> aspnet_Membership { get; set; }
         public DbSet<aspnet_Roles> aspnet_Roles { get; set; }
         public DbSet<aspnet_Users> aspnet_Users { get; set; }
+        public DbSet<Tbl_Account> Tbl_Account { get; set; }
+        public DbSet<Tbl_Agency> Tbl_Agency { get; set; }
+        public DbSet<Tbl_ComplaintIssues> Tbl_ComplaintIssues { get; set; }
+        public DbSet<Tbl_ComplaintMain> Tbl_ComplaintMain { get; set; }
+        public DbSet<Tbl_ComplaintReceivedBy> Tbl_ComplaintReceivedBy { get; set; }
+        public DbSet<Tbl_CreditIssuer> Tbl_CreditIssuer { get; set; }
+        public DbSet<Tbl_DebtorContactMethods> Tbl_DebtorContactMethods { get; set; }
+        public DbSet<Tbl_DebtorContactTime> Tbl_DebtorContactTime { get; set; }
+        public DbSet<Tbl_DebtorProducts> Tbl_DebtorProducts { get; set; }
+        public DbSet<Tbl_FinalActionSteps> Tbl_FinalActionSteps { get; set; }
+        public DbSet<Tbl_LawFirm> Tbl_LawFirm { get; set; }
+        public DbSet<Tbl_Owner> Tbl_Owner { get; set; }
+        public DbSet<Tbl_OwnerResponses> Tbl_OwnerResponses { get; set; }
+        public DbSet<Tbl_States> Tbl_States { get; set; }
     }
 }

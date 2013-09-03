@@ -7,6 +7,7 @@ using Cascade.Data.Models;
 using System.Data.SqlClient;
 using System.Data;
 using MSI.CCAT.Data.Repositories;
+using MSI.CCAT.Data.Models;
 namespace Cascade.Data.Repositories
 {
     public class DataQueries
@@ -63,6 +64,30 @@ namespace Cascade.Data.Repositories
                 throw ex;
             }
             return debtors.AsEnumerable<MSI_Debtor>();
+        }
+
+        public IEnumerable<Tbl_Account> GetAccounts(string firstOrLastName, string accountNumber, string creditorName, string accountOriginal)
+        {
+            IEnumerable<Tbl_Account> accounts = null;
+            try
+            {
+                IUnitOfWork uow = new UnitOfWork("CCATDBEntities");
+                accounts = uow.Repository<Tbl_Account>().GetAll();
+                if (!string.IsNullOrEmpty(firstOrLastName))
+                    return accounts.Where(record => record.FirstName == firstOrLastName || record.LastName == firstOrLastName);
+                if (!string.IsNullOrEmpty(accountNumber))
+                    return accounts.Where(record => record.AccountNumber == accountNumber);
+                if (!string.IsNullOrEmpty(creditorName))
+                    return accounts.Where(record => record.CreditorName == creditorName);
+                if (!string.IsNullOrEmpty(accountOriginal))
+                    return accounts.Where(record => record.AccountOriginal == accountOriginal);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return accounts;
         }
         public IEnumerable<ComplianceViewResult> GetComplianceReportRecords(string AgencyId, string reportType)
         {

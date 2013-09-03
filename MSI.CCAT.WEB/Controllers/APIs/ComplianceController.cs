@@ -28,37 +28,71 @@ namespace Cascade.Web.Controllers
             return debtors;
         }
     }
+    public class AccountssController : ApiController
+    {
+        public IEnumerable<Tbl_Account> Get(string firstOrLastName="", string accountNumber="", string creditorName="", string accountOriginal="")
+        {
+            IEnumerable<Tbl_Account> accounts = null;
+
+            try
+            {
+                DataQueries query = new DataQueries();
+                accounts = query.GetAccounts(firstOrLastName, accountNumber,  creditorName, accountOriginal);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return accounts;
+        }
+    }
     public class ComplianceController : ApiController
     {
-        private void PopulateDebtInfo(MSI_Debtor debtor, MSI_ComplaintMain complaint)
+        //private void PopulateDebtInfo(MSI_Debtor debtor, MSI_ComplaintMain complaint)
+        //{
+        //    complaint.Account = debtor.Account;
+        //    complaint.FirstName = debtor.FirstName;
+        //    complaint.LastName = debtor.LastName;
+        //    complaint.Address = debtor.Address1 + " " + debtor.Address2;
+        //    complaint.City = debtor.City;
+        //    complaint.State = debtor.State;
+        //    complaint.Zip = debtor.Zip;
+        //    complaint.LastFourSSN = debtor.LastFourSSN;
+        //    complaint.MobilePhone = debtor.MobilePhone;
+        //    complaint.HomePhone = debtor.HomePhone;
+        //    complaint.WorkPhone = debtor.WorkPhone;
+        //    complaint.DebtCurrentBalance = debtor.DebtCurrentBalance;
+        //    complaint.DebtPurchaseBalance = debtor.DebtPurchaseBalance;
+        //    complaint.CreditorName = debtor.CreditorName;
+        //}
+        private void PopulateDebtInfo(Tbl_Account account, Tbl_ComplaintMain complaint)
         {
-            complaint.Account = debtor.Account;
-            complaint.FirstName = debtor.FirstName;
-            complaint.LastName = debtor.LastName;
-            complaint.Address = debtor.Address1 + " " + debtor.Address2;
-            complaint.City = debtor.City;
-            complaint.State = debtor.State;
-            complaint.Zip = debtor.Zip;
-            complaint.LastFourSSN = debtor.LastFourSSN;
-            complaint.MobilePhone = debtor.MobilePhone;
-            complaint.HomePhone = debtor.HomePhone;
-            complaint.WorkPhone = debtor.WorkPhone;
-            complaint.DebtCurrentBalance = debtor.DebtCurrentBalance;
-            complaint.DebtPurchaseBalance = debtor.DebtPurchaseBalance;
-            complaint.CreditorName = debtor.CreditorName;
+            complaint.Tbl_Account.AccountNumber = account.AccountNumber;
+            complaint.Tbl_Account.FirstName = account.FirstName;
+            complaint.Tbl_Account.LastName = account.LastName;
+            complaint.Tbl_Account.Address = account.Address;
+            complaint.Tbl_Account.City = account.City;
+            complaint.Tbl_Account.StateId = account.StateId;
+            complaint.Tbl_Account.Zip = account.Zip;
+            complaint.Tbl_Account.LastFourSSN = account.LastFourSSN;
+            complaint.Tbl_Account.MobilePhone = account.MobilePhone;
+            complaint.Tbl_Account.HomePhone = account.HomePhone;
+            complaint.Tbl_Account.WorkPhone = account.WorkPhone;
+            complaint.Tbl_Account.DebtCurrentBalance = account.DebtCurrentBalance;
+            complaint.Tbl_Account.DebtPurchaseBalance = account.DebtPurchaseBalance;
+            complaint.Tbl_Account.CreditorName = account.CreditorName;
         }
 
-        public MSI_ComplaintMain Get(string accountNumber, string agencyId="", string userRole="")
+        public Tbl_ComplaintMain Get(string accountNumber, string agencyId = "", string userRole = "")
         {
             //MSI_ComplaintMainRepository repository = null;
             UnitOfWork uo = null;
-            MSI_ComplaintMain complaint = null; ;
+            Tbl_ComplaintMain complaint = null; ;
             try
             {
-
                 //repository = new MSI_ComplaintMainRepository();
                 uo = new UnitOfWork("CascadeDBEntities");
-                IEnumerable<MSI_ComplaintMain> data = (from existingComplaint in uo.Repository<MSI_ComplaintMain>() .GetAll().Where(record => record.AgencyId == agencyId && record.Account == accountNumber)
+                IEnumerable<Tbl_ComplaintMain> data = (from existingComplaint in uo.Repository<Tbl_ComplaintMain>().GetAll().Where(record => record.AgencyID == int.Parse(agencyId) && record.AccountNumber == accountNumber)
                                                        select existingComplaint);
 
                 if (data.Count() > 0)
@@ -66,24 +100,24 @@ namespace Cascade.Web.Controllers
                     complaint = data.First();
                     if (!string.IsNullOrEmpty(userRole))
                     {
-                        if (userRole == "user")
-                            complaint.IsViewedByOwner = true;
-                        if (userRole == "agency")
-                            complaint.IsViewedByAgency = true;
-                        uo.Repository<MSI_ComplaintMain>().Update(complaint);
-                        uo.Save();
+                        //if (userRole == "user")
+                        //    complaint.IsViewedByOwner = true;
+                        //if (userRole == "agency")
+                        //    complaint.IsViewedByAgency = true;
+                        //uo.Repository<MSI_ComplaintMain>().Update(complaint);
+                        //uo.Save();
                     }
                 }
                 else
                 {
-                    complaint = new MSI_ComplaintMain();
-                    complaint.AgencyId = agencyId;
+                    complaint = new Tbl_ComplaintMain();
+                    complaint.AgencyID = int.Parse(agencyId);
                     complaint.ComplaintDate = DateTime.Now;
-                    IEnumerable<MSI_Debtor> debtors = null;
+                    IEnumerable<Tbl_Account> accounts = null;
                     DataQueries query = new DataQueries();
-                    debtors = query.GetDebtors(accountNumber);
+                    accounts = query.GetAccounts("",accountNumber,"","");
 
-                    PopulateDebtInfo(debtors.First(), complaint);
+                    PopulateDebtInfo(accounts.First(), complaint);
                     //PopulateComplaintID(complaint);
                 }
             }
@@ -94,14 +128,71 @@ namespace Cascade.Web.Controllers
                     foreach (System.Data.Entity.Validation.DbValidationError error in errorResult.ValidationErrors)
                     {
                         string data = error.ErrorMessage;
+                        throw new Exception(data);
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex)    
             {
+                throw ex;
             }
             return complaint;
         }
+
+        //public MSI_ComplaintMain Get(string accountNumber, string agencyId="", string userRole="")
+        //{
+        //    //MSI_ComplaintMainRepository repository = null;
+        //    UnitOfWork uo = null;
+        //    MSI_ComplaintMain complaint = null; ;
+        //    try
+        //    {
+
+        //        //repository = new MSI_ComplaintMainRepository();
+        //        uo = new UnitOfWork("CascadeDBEntities");
+        //        IEnumerable<MSI_ComplaintMain> data = (from existingComplaint in uo.Repository<MSI_ComplaintMain>() .GetAll().Where(record => record.AgencyId == agencyId && record.Account == accountNumber)
+        //                                               select existingComplaint);
+
+        //        if (data.Count() > 0)
+        //        {
+        //            complaint = data.First();
+        //            if (!string.IsNullOrEmpty(userRole))
+        //            {
+        //                if (userRole == "user")
+        //                    complaint.IsViewedByOwner = true;
+        //                if (userRole == "agency")
+        //                    complaint.IsViewedByAgency = true;
+        //                uo.Repository<MSI_ComplaintMain>().Update(complaint);
+        //                uo.Save();
+        //            }
+        //        }
+        //        else
+        //        {
+        //            complaint = new MSI_ComplaintMain();
+        //            complaint.AgencyId = agencyId;
+        //            complaint.ComplaintDate = DateTime.Now;
+        //            IEnumerable<MSI_Debtor> debtors = null;
+        //            DataQueries query = new DataQueries();
+        //            debtors = query.GetDebtors(accountNumber);
+
+        //            PopulateDebtInfo(debtors.First(), complaint);
+        //            //PopulateComplaintID(complaint);
+        //        }
+        //    }
+        //    catch (System.Data.Entity.Validation.DbEntityValidationException validationException)
+        //    {
+        //        foreach (System.Data.Entity.Validation.DbEntityValidationResult errorResult in validationException.EntityValidationErrors)
+        //        {
+        //            foreach (System.Data.Entity.Validation.DbValidationError error in errorResult.ValidationErrors)
+        //            {
+        //                string data = error.ErrorMessage;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //    }
+        //    return complaint;
+        //}
 
         public MSI_ComplaintMain Post(MSI_ComplaintMain complaint)
         {

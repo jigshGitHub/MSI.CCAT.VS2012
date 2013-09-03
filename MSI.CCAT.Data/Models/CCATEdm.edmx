@@ -13,11 +13,25 @@
           <EntitySet Name="module" EntityType="CCATDBModel.Store.module" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="pageMenu" EntityType="CCATDBModel.Store.pageMenu" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="pageMenuGroup" EntityType="CCATDBModel.Store.pageMenuGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_Account" EntityType="CCATDBModel.Store.Tbl_Account" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_Agency" EntityType="CCATDBModel.Store.Tbl_Agency" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TBL_CHART" EntityType="CCATDBModel.Store.TBL_CHART" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_ComplaintIssues" EntityType="CCATDBModel.Store.Tbl_ComplaintIssues" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_ComplaintMain" EntityType="CCATDBModel.Store.Tbl_ComplaintMain" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_ComplaintReceivedBy" EntityType="CCATDBModel.Store.Tbl_ComplaintReceivedBy" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_CreditIssuer" EntityType="CCATDBModel.Store.Tbl_CreditIssuer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_DebtorContactMethods" EntityType="CCATDBModel.Store.Tbl_DebtorContactMethods" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_DebtorContactTime" EntityType="CCATDBModel.Store.Tbl_DebtorContactTime" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_DebtorProducts" EntityType="CCATDBModel.Store.Tbl_DebtorProducts" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_FinalActionSteps" EntityType="CCATDBModel.Store.Tbl_FinalActionSteps" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_LawFirm" EntityType="CCATDBModel.Store.Tbl_LawFirm" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_Owner" EntityType="CCATDBModel.Store.Tbl_Owner" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_OwnerResponses" EntityType="CCATDBModel.Store.Tbl_OwnerResponses" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_QuestionBank" EntityType="CCATDBModel.Store.Tbl_QuestionBank" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_QuestionDeficient" EntityType="CCATDBModel.Store.Tbl_QuestionDeficient" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_QuestionModule" EntityType="CCATDBModel.Store.Tbl_QuestionModule" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_QuestionResponse" EntityType="CCATDBModel.Store.Tbl_QuestionResponse" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_States" EntityType="CCATDBModel.Store.Tbl_States" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK__aspnet_Me__UserI__33D4B598" Association="CCATDBModel.Store.FK__aspnet_Me__UserI__33D4B598">
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
             <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
@@ -29,6 +43,90 @@
           <AssociationSet Name="FK__aspnet_Us__UserI__5AEE82B9" Association="CCATDBModel.Store.FK__aspnet_Us__UserI__5AEE82B9">
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
             <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account12_Tbl_Agency" Association="CCATDBModel.Store.FK_Tbl_Account12_Tbl_Agency">
+            <End Role="Tbl_Agency" EntitySet="Tbl_Agency" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account12_Tbl_CreditIssuer" Association="CCATDBModel.Store.FK_Tbl_Account12_Tbl_CreditIssuer">
+            <End Role="Tbl_CreditIssuer" EntitySet="Tbl_CreditIssuer" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account12_Tbl_LawFirm" Association="CCATDBModel.Store.FK_Tbl_Account12_Tbl_LawFirm">
+            <End Role="Tbl_LawFirm" EntitySet="Tbl_LawFirm" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account12_Tbl_Owner" Association="CCATDBModel.Store.FK_Tbl_Account12_Tbl_Owner">
+            <End Role="Tbl_Owner" EntitySet="Tbl_Owner" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account12_Tbl_States" Association="CCATDBModel.Store.FK_Tbl_Account12_Tbl_States">
+            <End Role="Tbl_States" EntitySet="Tbl_States" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Agency_Tbl_Owner" Association="CCATDBModel.Store.FK_Tbl_Agency_Tbl_Owner">
+            <End Role="Tbl_Owner" EntitySet="Tbl_Owner" />
+            <End Role="Tbl_Agency" EntitySet="Tbl_Agency" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Agency_Tbl_States" Association="CCATDBModel.Store.FK_Tbl_Agency_Tbl_States">
+            <End Role="Tbl_States" EntitySet="Tbl_States" />
+            <End Role="Tbl_Agency" EntitySet="Tbl_Agency" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_Account" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_Tbl_Account">
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_Agency" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_Tbl_Agency">
+            <End Role="Tbl_Agency" EntitySet="Tbl_Agency" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_ComplaintIssues" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_Tbl_ComplaintIssues">
+            <End Role="Tbl_ComplaintIssues" EntitySet="Tbl_ComplaintIssues" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_ComplaintReceivedBy" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_Tbl_ComplaintReceivedBy">
+            <End Role="Tbl_ComplaintReceivedBy" EntitySet="Tbl_ComplaintReceivedBy" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_DebtorContactMethods" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_Tbl_DebtorContactMethods">
+            <End Role="Tbl_DebtorContactMethods" EntitySet="Tbl_DebtorContactMethods" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_DebtorContactTime" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_Tbl_DebtorContactTime">
+            <End Role="Tbl_DebtorContactTime" EntitySet="Tbl_DebtorContactTime" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_DebtorProducts" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_Tbl_DebtorProducts">
+            <End Role="Tbl_DebtorProducts" EntitySet="Tbl_DebtorProducts" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_FinalActionSteps" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_Tbl_FinalActionSteps">
+            <End Role="Tbl_FinalActionSteps" EntitySet="Tbl_FinalActionSteps" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_OwnerResponses" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_Tbl_OwnerResponses">
+            <End Role="Tbl_OwnerResponses" EntitySet="Tbl_OwnerResponses" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_CreditIssuer_Tbl_Owner" Association="CCATDBModel.Store.FK_Tbl_CreditIssuer_Tbl_Owner">
+            <End Role="Tbl_Owner" EntitySet="Tbl_Owner" />
+            <End Role="Tbl_CreditIssuer" EntitySet="Tbl_CreditIssuer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_CreditIssuer_Tbl_States" Association="CCATDBModel.Store.FK_Tbl_CreditIssuer_Tbl_States">
+            <End Role="Tbl_States" EntitySet="Tbl_States" />
+            <End Role="Tbl_CreditIssuer" EntitySet="Tbl_CreditIssuer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_LawFirm_Tbl_Owner" Association="CCATDBModel.Store.FK_Tbl_LawFirm_Tbl_Owner">
+            <End Role="Tbl_Owner" EntitySet="Tbl_Owner" />
+            <End Role="Tbl_LawFirm" EntitySet="Tbl_LawFirm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_LawFirm_Tbl_States" Association="CCATDBModel.Store.FK_Tbl_LawFirm_Tbl_States">
+            <End Role="Tbl_States" EntitySet="Tbl_States" />
+            <End Role="Tbl_LawFirm" EntitySet="Tbl_LawFirm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Owner_Tbl_States" Association="CCATDBModel.Store.FK_Tbl_Owner_Tbl_States">
+            <End Role="Tbl_States" EntitySet="Tbl_States" />
+            <End Role="Tbl_Owner" EntitySet="Tbl_Owner" />
           </AssociationSet>
           <AssociationSet Name="FK_Tbl_QuestionBank_Tbl_Module" Association="CCATDBModel.Store.FK_Tbl_QuestionBank_Tbl_Module">
             <End Role="Tbl_QuestionModule" EntitySet="Tbl_QuestionModule" />
@@ -133,6 +231,56 @@
           <Property Name="iconClass" Type="nvarchar" MaxLength="50" />
           <Property Name="pageMenuIds" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="Tbl_Account">
+          <Key>
+            <PropertyRef Name="AccountNumber" />
+          </Key>
+          <Property Name="AccountNumber" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="CreditorName" Type="varchar" MaxLength="150" />
+          <Property Name="AccountOriginal" Type="varchar" MaxLength="25" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="150" />
+          <Property Name="Zip" Type="varchar" MaxLength="50" />
+          <Property Name="HomePhone" Type="varchar" MaxLength="50" />
+          <Property Name="WorkPhone" Type="varchar" MaxLength="50" />
+          <Property Name="MobilePhone" Type="varchar" MaxLength="50" />
+          <Property Name="LastFourSSN" Type="varchar" MaxLength="50" />
+          <Property Name="DebtPurchaseBalance" Type="money" />
+          <Property Name="DebtCurrentBalance" Type="money" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="AgencyId" Type="int" />
+          <Property Name="OwnerId" Type="int" />
+          <Property Name="LawFirmId" Type="int" />
+          <Property Name="CreditIssuerId" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_Agency">
+          <Key>
+            <PropertyRef Name="AgencyId" />
+          </Key>
+          <Property Name="AgencyId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="OwnerId" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="150" />
+          <Property Name="Zipcode" Type="varchar" MaxLength="50" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="Fax" Type="varchar" MaxLength="50" />
+          <Property Name="AgencyContact_LastName" Type="varchar" MaxLength="150" />
+          <Property Name="AgencyContact_FirstName" Type="varchar" MaxLength="150" />
+          <Property Name="AgencyContact_Email" Type="varchar" MaxLength="150" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="TBL_CHART">
           <Key>
             <PropertyRef Name="Id" />
@@ -161,6 +309,169 @@
           <Property Name="LastCreatedDate" Type="datetime" />
           <Property Name="LastUpdatedBy" Type="uniqueidentifier" />
           <Property Name="LastCreatedBy" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Tbl_ComplaintIssues">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_ComplaintMain">
+          <Key>
+            <PropertyRef Name="ComplaintId" />
+          </Key>
+          <Property Name="ComplaintId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ComplaintDate" Type="datetime" />
+          <Property Name="ReceivedByMethodId" Type="int" />
+          <Property Name="IssuesId" Type="int" />
+          <Property Name="ComplaintNotes" Type="varchar(max)" />
+          <Property Name="ComplaintDocument" Type="varchar(max)" />
+          <Property Name="ComplaintSubmittedToAgencyYN" Type="bit" />
+          <Property Name="ComplaintSubmittedToAgencyDate" Type="datetime" />
+          <Property Name="MoreInfoReqdFromDebtorYN" Type="bit" />
+          <Property Name="MoreInfoRequestedDate" Type="datetime" />
+          <Property Name="MoreInfoRequested" Type="varchar(max)" />
+          <Property Name="MoreInfoReceivedFromDebtorYN" Type="bit" />
+          <Property Name="MoreInfoReceivedDate" Type="datetime" />
+          <Property Name="MoreInfoReceived" Type="varchar(max)" />
+          <Property Name="ComplaintSubmittedToOwnerYN" Type="bit" />
+          <Property Name="ComplaintSubmittedDate" Type="datetime" />
+          <Property Name="TimeToSubmitDays" Type="int" />
+          <Property Name="DebtOwnerProcessDocument" Type="varchar(max)" />
+          <Property Name="MoreInfoFromAgencyYN" Type="bit" />
+          <Property Name="MoreInfoFromAgencyRequestedDate" Type="datetime" />
+          <Property Name="MoreInfoFromAgencyRequested" Type="varchar(max)" />
+          <Property Name="MoreInfoFromAgencyReceivedYN" Type="bit" />
+          <Property Name="MoreInfoFromAgencyReceivedDate" Type="datetime" />
+          <Property Name="MoreInfoFromAgencyReceived" Type="varchar(max)" />
+          <Property Name="OwnerResponseId" Type="int" />
+          <Property Name="OwnerResponseDate" Type="datetime" />
+          <Property Name="OwnerResponseDays" Type="int" />
+          <Property Name="AgencyResponseToDebtorDate" Type="datetime" />
+          <Property Name="TotalResponseTimeDays" Type="int" />
+          <Property Name="DebtorAgreeYN" Type="bit" />
+          <Property Name="NeedFurtherActionYN" Type="bit" />
+          <Property Name="FinalActionStepId" Type="int" />
+          <Property Name="DebtorIdentityVerifiedYN" Type="bit" />
+          <Property Name="DebtorContactMethodId" Type="int" />
+          <Property Name="DebtorContactTimeId" Type="int" />
+          <Property Name="DebtorProductId" Type="int" />
+          <Property Name="DisputeDebtYN" Type="bit" />
+          <Property Name="DisputeDebtAmountYN" Type="bit" />
+          <Property Name="DisputeDebtDueDateYN" Type="bit" />
+          <Property Name="AccountNumber" Type="varchar" MaxLength="25" />
+          <Property Name="AgencyID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_ComplaintReceivedBy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Media" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_CreditIssuer">
+          <Key>
+            <PropertyRef Name="CreditIssuerId" />
+          </Key>
+          <Property Name="CreditIssuerId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="OwnerId" Type="int" />
+          <Property Name="CreditorName" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="150" />
+          <Property Name="Zipcode" Type="varchar" MaxLength="50" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="Fax" Type="varchar" MaxLength="50" />
+          <Property Name="Contact_LastName" Type="varchar" MaxLength="150" />
+          <Property Name="Contact_FirstName" Type="varchar" MaxLength="150" />
+          <Property Name="Contact_Email" Type="varchar" MaxLength="150" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_DebtorContactMethods">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Method" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_DebtorContactTime">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Time" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_DebtorProducts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Product" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_FinalActionSteps">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Step" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_LawFirm">
+          <Key>
+            <PropertyRef Name="LawFirmId" />
+          </Key>
+          <Property Name="LawFirmId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="OwnerId" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="150" />
+          <Property Name="Zipcode" Type="varchar" MaxLength="50" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="Fax" Type="varchar" MaxLength="50" />
+          <Property Name="Contact_LastName" Type="varchar" MaxLength="150" />
+          <Property Name="Contact_FirstName" Type="varchar" MaxLength="150" />
+          <Property Name="Contact_Email" Type="varchar" MaxLength="150" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_Owner">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+          </Key>
+          <Property Name="OwnerId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="150" />
+          <Property Name="Address" Type="varchar" MaxLength="150" />
+          <Property Name="Zipcode" Type="varchar" MaxLength="50" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="Fax" Type="varchar" MaxLength="50" />
+          <Property Name="OwnerContact_LastName" Type="varchar" MaxLength="150" />
+          <Property Name="OwnerContact_FirstName" Type="varchar" MaxLength="150" />
+          <Property Name="OwnerContact_Email" Type="varchar" MaxLength="150" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_OwnerResponses">
+          <Key>
+            <PropertyRef Name="OwnerResponseId" />
+          </Key>
+          <Property Name="OwnerResponseId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Response" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Tbl_QuestionBank">
           <Key>
@@ -214,6 +525,14 @@
           <Property Name="UpdatedOn" Type="datetime" />
           <Property Name="UpdatedBy" Type="uniqueidentifier" />
         </EntityType>
+        <EntityType Name="Tbl_States">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Value" Type="varchar" MaxLength="2" />
+        </EntityType>
         <Association Name="FK__aspnet_Me__UserI__33D4B598">
           <End Role="aspnet_Users" Type="CCATDBModel.Store.aspnet_Users" Multiplicity="1" />
           <End Role="aspnet_Membership" Type="CCATDBModel.Store.aspnet_Membership" Multiplicity="0..1" />
@@ -247,6 +566,258 @@
             </Principal>
             <Dependent Role="aspnet_UsersInRoles">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account12_Tbl_Agency">
+          <End Role="Tbl_Agency" Type="CCATDBModel.Store.Tbl_Agency" Multiplicity="0..1" />
+          <End Role="Tbl_Account" Type="CCATDBModel.Store.Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Agency">
+              <PropertyRef Name="AgencyId" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="AgencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account12_Tbl_CreditIssuer">
+          <End Role="Tbl_CreditIssuer" Type="CCATDBModel.Store.Tbl_CreditIssuer" Multiplicity="0..1" />
+          <End Role="Tbl_Account" Type="CCATDBModel.Store.Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_CreditIssuer">
+              <PropertyRef Name="CreditIssuerId" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="CreditIssuerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account12_Tbl_LawFirm">
+          <End Role="Tbl_LawFirm" Type="CCATDBModel.Store.Tbl_LawFirm" Multiplicity="0..1" />
+          <End Role="Tbl_Account" Type="CCATDBModel.Store.Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_LawFirm">
+              <PropertyRef Name="LawFirmId" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="LawFirmId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account12_Tbl_Owner">
+          <End Role="Tbl_Owner" Type="CCATDBModel.Store.Tbl_Owner" Multiplicity="0..1" />
+          <End Role="Tbl_Account" Type="CCATDBModel.Store.Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Owner">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account12_Tbl_States">
+          <End Role="Tbl_States" Type="CCATDBModel.Store.Tbl_States" Multiplicity="0..1" />
+          <End Role="Tbl_Account" Type="CCATDBModel.Store.Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Agency_Tbl_Owner">
+          <End Role="Tbl_Owner" Type="CCATDBModel.Store.Tbl_Owner" Multiplicity="0..1" />
+          <End Role="Tbl_Agency" Type="CCATDBModel.Store.Tbl_Agency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Owner">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="Tbl_Agency">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Agency_Tbl_States">
+          <End Role="Tbl_States" Type="CCATDBModel.Store.Tbl_States" Multiplicity="0..1" />
+          <End Role="Tbl_Agency" Type="CCATDBModel.Store.Tbl_Agency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Agency">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_Tbl_Account">
+          <End Role="Tbl_Account" Type="CCATDBModel.Store.Tbl_Account" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Account">
+              <PropertyRef Name="AccountNumber" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="AccountNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_Tbl_Agency">
+          <End Role="Tbl_Agency" Type="CCATDBModel.Store.Tbl_Agency" Multiplicity="1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Agency">
+              <PropertyRef Name="AgencyId" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="AgencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_Tbl_ComplaintIssues">
+          <End Role="Tbl_ComplaintIssues" Type="CCATDBModel.Store.Tbl_ComplaintIssues" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_ComplaintIssues">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="IssuesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_Tbl_ComplaintReceivedBy">
+          <End Role="Tbl_ComplaintReceivedBy" Type="CCATDBModel.Store.Tbl_ComplaintReceivedBy" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_ComplaintReceivedBy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="ReceivedByMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_Tbl_DebtorContactMethods">
+          <End Role="Tbl_DebtorContactMethods" Type="CCATDBModel.Store.Tbl_DebtorContactMethods" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_DebtorContactMethods">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="DebtorContactMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_Tbl_DebtorContactTime">
+          <End Role="Tbl_DebtorContactTime" Type="CCATDBModel.Store.Tbl_DebtorContactTime" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_DebtorContactTime">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="DebtorContactTimeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_Tbl_DebtorProducts">
+          <End Role="Tbl_DebtorProducts" Type="CCATDBModel.Store.Tbl_DebtorProducts" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_DebtorProducts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="DebtorProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_Tbl_FinalActionSteps">
+          <End Role="Tbl_FinalActionSteps" Type="CCATDBModel.Store.Tbl_FinalActionSteps" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_FinalActionSteps">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="FinalActionStepId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_Tbl_OwnerResponses">
+          <End Role="Tbl_OwnerResponses" Type="CCATDBModel.Store.Tbl_OwnerResponses" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_OwnerResponses">
+              <PropertyRef Name="OwnerResponseId" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="OwnerResponseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_CreditIssuer_Tbl_Owner">
+          <End Role="Tbl_Owner" Type="CCATDBModel.Store.Tbl_Owner" Multiplicity="0..1" />
+          <End Role="Tbl_CreditIssuer" Type="CCATDBModel.Store.Tbl_CreditIssuer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Owner">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="Tbl_CreditIssuer">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_CreditIssuer_Tbl_States">
+          <End Role="Tbl_States" Type="CCATDBModel.Store.Tbl_States" Multiplicity="0..1" />
+          <End Role="Tbl_CreditIssuer" Type="CCATDBModel.Store.Tbl_CreditIssuer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_CreditIssuer">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_LawFirm_Tbl_Owner">
+          <End Role="Tbl_Owner" Type="CCATDBModel.Store.Tbl_Owner" Multiplicity="0..1" />
+          <End Role="Tbl_LawFirm" Type="CCATDBModel.Store.Tbl_LawFirm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Owner">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="Tbl_LawFirm">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_LawFirm_Tbl_States">
+          <End Role="Tbl_States" Type="CCATDBModel.Store.Tbl_States" Multiplicity="0..1" />
+          <End Role="Tbl_LawFirm" Type="CCATDBModel.Store.Tbl_LawFirm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_LawFirm">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Owner_Tbl_States">
+          <End Role="Tbl_States" Type="CCATDBModel.Store.Tbl_States" Multiplicity="0..1" />
+          <End Role="Tbl_Owner" Type="CCATDBModel.Store.Tbl_Owner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Owner">
+              <PropertyRef Name="StateId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -305,6 +876,104 @@
           <AssociationSet Name="aspnet_UsersInRoles" Association="CCATDBModel.aspnet_UsersInRoles">
             <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+          </AssociationSet>
+          <EntitySet Name="Tbl_Account" EntityType="CCATDBModel.Tbl_Account" />
+          <EntitySet Name="Tbl_Agency" EntityType="CCATDBModel.Tbl_Agency" />
+          <EntitySet Name="Tbl_ComplaintIssues" EntityType="CCATDBModel.Tbl_ComplaintIssues" />
+          <EntitySet Name="Tbl_ComplaintMain" EntityType="CCATDBModel.Tbl_ComplaintMain" />
+          <EntitySet Name="Tbl_ComplaintReceivedBy" EntityType="CCATDBModel.Tbl_ComplaintReceivedBy" />
+          <EntitySet Name="Tbl_CreditIssuer" EntityType="CCATDBModel.Tbl_CreditIssuer" />
+          <EntitySet Name="Tbl_DebtorContactMethods" EntityType="CCATDBModel.Tbl_DebtorContactMethods" />
+          <EntitySet Name="Tbl_DebtorContactTime" EntityType="CCATDBModel.Tbl_DebtorContactTime" />
+          <EntitySet Name="Tbl_DebtorProducts" EntityType="CCATDBModel.Tbl_DebtorProducts" />
+          <EntitySet Name="Tbl_FinalActionSteps" EntityType="CCATDBModel.Tbl_FinalActionSteps" />
+          <EntitySet Name="Tbl_LawFirm" EntityType="CCATDBModel.Tbl_LawFirm" />
+          <EntitySet Name="Tbl_Owner" EntityType="CCATDBModel.Tbl_Owner" />
+          <EntitySet Name="Tbl_OwnerResponses" EntityType="CCATDBModel.Tbl_OwnerResponses" />
+          <EntitySet Name="Tbl_States" EntityType="CCATDBModel.Tbl_States" />
+          <AssociationSet Name="FK_Tbl_Account12_Tbl_Agency" Association="CCATDBModel.FK_Tbl_Account12_Tbl_Agency">
+            <End Role="Tbl_Agency" EntitySet="Tbl_Agency" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account12_Tbl_CreditIssuer" Association="CCATDBModel.FK_Tbl_Account12_Tbl_CreditIssuer">
+            <End Role="Tbl_CreditIssuer" EntitySet="Tbl_CreditIssuer" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account12_Tbl_LawFirm" Association="CCATDBModel.FK_Tbl_Account12_Tbl_LawFirm">
+            <End Role="Tbl_LawFirm" EntitySet="Tbl_LawFirm" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account12_Tbl_Owner" Association="CCATDBModel.FK_Tbl_Account12_Tbl_Owner">
+            <End Role="Tbl_Owner" EntitySet="Tbl_Owner" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account12_Tbl_States" Association="CCATDBModel.FK_Tbl_Account12_Tbl_States">
+            <End Role="Tbl_States" EntitySet="Tbl_States" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Agency_Tbl_Owner" Association="CCATDBModel.FK_Tbl_Agency_Tbl_Owner">
+            <End Role="Tbl_Owner" EntitySet="Tbl_Owner" />
+            <End Role="Tbl_Agency" EntitySet="Tbl_Agency" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Agency_Tbl_States" Association="CCATDBModel.FK_Tbl_Agency_Tbl_States">
+            <End Role="Tbl_States" EntitySet="Tbl_States" />
+            <End Role="Tbl_Agency" EntitySet="Tbl_Agency" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_ComplaintIssues" Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_ComplaintIssues">
+            <End Role="Tbl_ComplaintIssues" EntitySet="Tbl_ComplaintIssues" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_ComplaintReceivedBy" Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_ComplaintReceivedBy">
+            <End Role="Tbl_ComplaintReceivedBy" EntitySet="Tbl_ComplaintReceivedBy" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_DebtorContactMethods" Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_DebtorContactMethods">
+            <End Role="Tbl_DebtorContactMethods" EntitySet="Tbl_DebtorContactMethods" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_DebtorContactTime" Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_DebtorContactTime">
+            <End Role="Tbl_DebtorContactTime" EntitySet="Tbl_DebtorContactTime" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_DebtorProducts" Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_DebtorProducts">
+            <End Role="Tbl_DebtorProducts" EntitySet="Tbl_DebtorProducts" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_FinalActionSteps" Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_FinalActionSteps">
+            <End Role="Tbl_FinalActionSteps" EntitySet="Tbl_FinalActionSteps" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_OwnerResponses" Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_OwnerResponses">
+            <End Role="Tbl_OwnerResponses" EntitySet="Tbl_OwnerResponses" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_CreditIssuer_Tbl_Owner" Association="CCATDBModel.FK_Tbl_CreditIssuer_Tbl_Owner">
+            <End Role="Tbl_Owner" EntitySet="Tbl_Owner" />
+            <End Role="Tbl_CreditIssuer" EntitySet="Tbl_CreditIssuer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_CreditIssuer_Tbl_States" Association="CCATDBModel.FK_Tbl_CreditIssuer_Tbl_States">
+            <End Role="Tbl_States" EntitySet="Tbl_States" />
+            <End Role="Tbl_CreditIssuer" EntitySet="Tbl_CreditIssuer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_LawFirm_Tbl_Owner" Association="CCATDBModel.FK_Tbl_LawFirm_Tbl_Owner">
+            <End Role="Tbl_Owner" EntitySet="Tbl_Owner" />
+            <End Role="Tbl_LawFirm" EntitySet="Tbl_LawFirm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_LawFirm_Tbl_States" Association="CCATDBModel.FK_Tbl_LawFirm_Tbl_States">
+            <End Role="Tbl_States" EntitySet="Tbl_States" />
+            <End Role="Tbl_LawFirm" EntitySet="Tbl_LawFirm" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Owner_Tbl_States" Association="CCATDBModel.FK_Tbl_Owner_Tbl_States">
+            <End Role="Tbl_States" EntitySet="Tbl_States" />
+            <End Role="Tbl_Owner" EntitySet="Tbl_Owner" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_Account" Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_Account">
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_Agency" Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_Agency">
+            <End Role="Tbl_Agency" EntitySet="Tbl_Agency" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Tbl_QuestionBank">
@@ -522,6 +1191,521 @@
           <End Type="CCATDBModel.aspnet_Roles" Role="aspnet_Roles" Multiplicity="*" />
           <End Type="CCATDBModel.aspnet_Users" Role="aspnet_Users" Multiplicity="*" />
         </Association>
+        <EntityType Name="Tbl_Account">
+          <Key>
+            <PropertyRef Name="AccountNumber" />
+          </Key>
+          <Property Type="String" Name="AccountNumber" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CreditorName" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AccountOriginal" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FirstName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Address" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Zip" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="HomePhone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="WorkPhone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MobilePhone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastFourSSN" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="DebtPurchaseBalance" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="DebtCurrentBalance" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="StateId" />
+          <Property Type="Int32" Name="AgencyId" />
+          <Property Type="Int32" Name="OwnerId" />
+          <Property Type="Int32" Name="LawFirmId" />
+          <Property Type="Int32" Name="CreditIssuerId" />
+          <NavigationProperty Name="Tbl_Agency" Relationship="CCATDBModel.FK_Tbl_Account12_Tbl_Agency" FromRole="Tbl_Account" ToRole="Tbl_Agency" />
+          <NavigationProperty Name="Tbl_CreditIssuer" Relationship="CCATDBModel.FK_Tbl_Account12_Tbl_CreditIssuer" FromRole="Tbl_Account" ToRole="Tbl_CreditIssuer" />
+          <NavigationProperty Name="Tbl_LawFirm" Relationship="CCATDBModel.FK_Tbl_Account12_Tbl_LawFirm" FromRole="Tbl_Account" ToRole="Tbl_LawFirm" />
+          <NavigationProperty Name="Tbl_Owner" Relationship="CCATDBModel.FK_Tbl_Account12_Tbl_Owner" FromRole="Tbl_Account" ToRole="Tbl_Owner" />
+          <NavigationProperty Name="Tbl_States" Relationship="CCATDBModel.FK_Tbl_Account12_Tbl_States" FromRole="Tbl_Account" ToRole="Tbl_States" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_Account" FromRole="Tbl_Account" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="Tbl_Agency">
+          <Key>
+            <PropertyRef Name="AgencyId" />
+          </Key>
+          <Property Type="Int32" Name="AgencyId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="IsActive" />
+          <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="StateId" />
+          <Property Type="Int32" Name="OwnerId" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Address" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Zipcode" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Phone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Fax" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AgencyContact_LastName" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AgencyContact_FirstName" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AgencyContact_Email" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Account" Relationship="CCATDBModel.FK_Tbl_Account12_Tbl_Agency" FromRole="Tbl_Agency" ToRole="Tbl_Account" />
+          <NavigationProperty Name="Tbl_Owner" Relationship="CCATDBModel.FK_Tbl_Agency_Tbl_Owner" FromRole="Tbl_Agency" ToRole="Tbl_Owner" />
+          <NavigationProperty Name="Tbl_States" Relationship="CCATDBModel.FK_Tbl_Agency_Tbl_States" FromRole="Tbl_Agency" ToRole="Tbl_States" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_Agency" FromRole="Tbl_Agency" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="Tbl_ComplaintIssues">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_ComplaintIssues" FromRole="Tbl_ComplaintIssues" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="Tbl_ComplaintMain">
+          <Key>
+            <PropertyRef Name="ComplaintId" />
+          </Key>
+          <Property Type="Int32" Name="ComplaintId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="ComplaintDate" Precision="3" />
+          <Property Type="Int32" Name="ReceivedByMethodId" />
+          <Property Type="Int32" Name="IssuesId" />
+          <Property Type="String" Name="ComplaintNotes" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ComplaintDocument" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="ComplaintSubmittedToAgencyYN" />
+          <Property Type="DateTime" Name="ComplaintSubmittedToAgencyDate" Precision="3" />
+          <Property Type="Boolean" Name="MoreInfoReqdFromDebtorYN" />
+          <Property Type="DateTime" Name="MoreInfoRequestedDate" Precision="3" />
+          <Property Type="String" Name="MoreInfoRequested" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="MoreInfoReceivedFromDebtorYN" />
+          <Property Type="DateTime" Name="MoreInfoReceivedDate" Precision="3" />
+          <Property Type="String" Name="MoreInfoReceived" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="ComplaintSubmittedToOwnerYN" />
+          <Property Type="DateTime" Name="ComplaintSubmittedDate" Precision="3" />
+          <Property Type="Int32" Name="TimeToSubmitDays" />
+          <Property Type="String" Name="DebtOwnerProcessDocument" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="MoreInfoFromAgencyYN" />
+          <Property Type="DateTime" Name="MoreInfoFromAgencyRequestedDate" Precision="3" />
+          <Property Type="String" Name="MoreInfoFromAgencyRequested" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="MoreInfoFromAgencyReceivedYN" />
+          <Property Type="DateTime" Name="MoreInfoFromAgencyReceivedDate" Precision="3" />
+          <Property Type="String" Name="MoreInfoFromAgencyReceived" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="OwnerResponseId" />
+          <Property Type="DateTime" Name="OwnerResponseDate" Precision="3" />
+          <Property Type="Int32" Name="OwnerResponseDays" />
+          <Property Type="DateTime" Name="AgencyResponseToDebtorDate" Precision="3" />
+          <Property Type="Int32" Name="TotalResponseTimeDays" />
+          <Property Type="Boolean" Name="DebtorAgreeYN" />
+          <Property Type="Boolean" Name="NeedFurtherActionYN" />
+          <Property Type="Int32" Name="FinalActionStepId" />
+          <Property Type="Boolean" Name="DebtorIdentityVerifiedYN" />
+          <Property Type="Int32" Name="DebtorContactMethodId" />
+          <Property Type="Int32" Name="DebtorContactTimeId" />
+          <Property Type="Int32" Name="DebtorProductId" />
+          <Property Type="Boolean" Name="DisputeDebtYN" />
+          <Property Type="Boolean" Name="DisputeDebtAmountYN" />
+          <Property Type="Boolean" Name="DisputeDebtDueDateYN" />
+          <Property Type="String" Name="AccountNumber" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintIssues" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_ComplaintIssues" FromRole="Tbl_ComplaintMain" ToRole="Tbl_ComplaintIssues" />
+          <NavigationProperty Name="Tbl_ComplaintReceivedBy" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_ComplaintReceivedBy" FromRole="Tbl_ComplaintMain" ToRole="Tbl_ComplaintReceivedBy" />
+          <NavigationProperty Name="Tbl_DebtorContactMethods" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_DebtorContactMethods" FromRole="Tbl_ComplaintMain" ToRole="Tbl_DebtorContactMethods" />
+          <NavigationProperty Name="Tbl_DebtorContactTime" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_DebtorContactTime" FromRole="Tbl_ComplaintMain" ToRole="Tbl_DebtorContactTime" />
+          <NavigationProperty Name="Tbl_DebtorProducts" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_DebtorProducts" FromRole="Tbl_ComplaintMain" ToRole="Tbl_DebtorProducts" />
+          <NavigationProperty Name="Tbl_FinalActionSteps" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_FinalActionSteps" FromRole="Tbl_ComplaintMain" ToRole="Tbl_FinalActionSteps" />
+          <NavigationProperty Name="Tbl_OwnerResponses" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_OwnerResponses" FromRole="Tbl_ComplaintMain" ToRole="Tbl_OwnerResponses" />
+          <Property Type="Int32" Name="AgencyID" Nullable="false" />
+          <NavigationProperty Name="Tbl_Account" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_Account" FromRole="Tbl_ComplaintMain" ToRole="Tbl_Account" />
+          <NavigationProperty Name="Tbl_Agency" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_Agency" FromRole="Tbl_ComplaintMain" ToRole="Tbl_Agency" />
+        </EntityType>
+        <EntityType Name="Tbl_ComplaintReceivedBy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Media" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_ComplaintReceivedBy" FromRole="Tbl_ComplaintReceivedBy" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="Tbl_CreditIssuer">
+          <Key>
+            <PropertyRef Name="CreditIssuerId" />
+          </Key>
+          <Property Type="Int32" Name="CreditIssuerId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="IsActive" />
+          <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="StateId" />
+          <Property Type="Int32" Name="OwnerId" />
+          <Property Type="String" Name="CreditorName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Address" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Zipcode" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Phone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Fax" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Contact_LastName" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Contact_FirstName" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Contact_Email" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Account" Relationship="CCATDBModel.FK_Tbl_Account12_Tbl_CreditIssuer" FromRole="Tbl_CreditIssuer" ToRole="Tbl_Account" />
+          <NavigationProperty Name="Tbl_Owner" Relationship="CCATDBModel.FK_Tbl_CreditIssuer_Tbl_Owner" FromRole="Tbl_CreditIssuer" ToRole="Tbl_Owner" />
+          <NavigationProperty Name="Tbl_States" Relationship="CCATDBModel.FK_Tbl_CreditIssuer_Tbl_States" FromRole="Tbl_CreditIssuer" ToRole="Tbl_States" />
+        </EntityType>
+        <EntityType Name="Tbl_DebtorContactMethods">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Method" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_DebtorContactMethods" FromRole="Tbl_DebtorContactMethods" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="Tbl_DebtorContactTime">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Time" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_DebtorContactTime" FromRole="Tbl_DebtorContactTime" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="Tbl_DebtorProducts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Product" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_DebtorProducts" FromRole="Tbl_DebtorProducts" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="Tbl_FinalActionSteps">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Step" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_FinalActionSteps" FromRole="Tbl_FinalActionSteps" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="Tbl_LawFirm">
+          <Key>
+            <PropertyRef Name="LawFirmId" />
+          </Key>
+          <Property Type="Int32" Name="LawFirmId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="IsActive" />
+          <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="StateId" />
+          <Property Type="Int32" Name="OwnerId" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Address" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Zipcode" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Phone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Fax" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Contact_LastName" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Contact_FirstName" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Contact_Email" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Account" Relationship="CCATDBModel.FK_Tbl_Account12_Tbl_LawFirm" FromRole="Tbl_LawFirm" ToRole="Tbl_Account" />
+          <NavigationProperty Name="Tbl_Owner" Relationship="CCATDBModel.FK_Tbl_LawFirm_Tbl_Owner" FromRole="Tbl_LawFirm" ToRole="Tbl_Owner" />
+          <NavigationProperty Name="Tbl_States" Relationship="CCATDBModel.FK_Tbl_LawFirm_Tbl_States" FromRole="Tbl_LawFirm" ToRole="Tbl_States" />
+        </EntityType>
+        <EntityType Name="Tbl_Owner">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+          </Key>
+          <Property Type="Int32" Name="OwnerId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="IsActive" />
+          <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="StateId" />
+          <Property Type="String" Name="Name" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Address" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Zipcode" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Phone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Fax" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OwnerContact_LastName" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OwnerContact_FirstName" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OwnerContact_Email" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Account" Relationship="CCATDBModel.FK_Tbl_Account12_Tbl_Owner" FromRole="Tbl_Owner" ToRole="Tbl_Account" />
+          <NavigationProperty Name="Tbl_Agency" Relationship="CCATDBModel.FK_Tbl_Agency_Tbl_Owner" FromRole="Tbl_Owner" ToRole="Tbl_Agency" />
+          <NavigationProperty Name="Tbl_CreditIssuer" Relationship="CCATDBModel.FK_Tbl_CreditIssuer_Tbl_Owner" FromRole="Tbl_Owner" ToRole="Tbl_CreditIssuer" />
+          <NavigationProperty Name="Tbl_LawFirm" Relationship="CCATDBModel.FK_Tbl_LawFirm_Tbl_Owner" FromRole="Tbl_Owner" ToRole="Tbl_LawFirm" />
+          <NavigationProperty Name="Tbl_States" Relationship="CCATDBModel.FK_Tbl_Owner_Tbl_States" FromRole="Tbl_Owner" ToRole="Tbl_States" />
+        </EntityType>
+        <EntityType Name="Tbl_OwnerResponses">
+          <Key>
+            <PropertyRef Name="OwnerResponseId" />
+          </Key>
+          <Property Type="Int32" Name="OwnerResponseId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Response" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsActive" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_OwnerResponses" FromRole="Tbl_OwnerResponses" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="Tbl_States">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Value" MaxLength="2" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Account" Relationship="CCATDBModel.FK_Tbl_Account12_Tbl_States" FromRole="Tbl_States" ToRole="Tbl_Account" />
+          <NavigationProperty Name="Tbl_Agency" Relationship="CCATDBModel.FK_Tbl_Agency_Tbl_States" FromRole="Tbl_States" ToRole="Tbl_Agency" />
+          <NavigationProperty Name="Tbl_CreditIssuer" Relationship="CCATDBModel.FK_Tbl_CreditIssuer_Tbl_States" FromRole="Tbl_States" ToRole="Tbl_CreditIssuer" />
+          <NavigationProperty Name="Tbl_LawFirm" Relationship="CCATDBModel.FK_Tbl_LawFirm_Tbl_States" FromRole="Tbl_States" ToRole="Tbl_LawFirm" />
+          <NavigationProperty Name="Tbl_Owner" Relationship="CCATDBModel.FK_Tbl_Owner_Tbl_States" FromRole="Tbl_States" ToRole="Tbl_Owner" />
+        </EntityType>
+        <Association Name="FK_Tbl_Account12_Tbl_Agency">
+          <End Type="CCATDBModel.Tbl_Agency" Role="Tbl_Agency" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_Account" Role="Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Agency">
+              <PropertyRef Name="AgencyId" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="AgencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account12_Tbl_CreditIssuer">
+          <End Type="CCATDBModel.Tbl_CreditIssuer" Role="Tbl_CreditIssuer" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_Account" Role="Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_CreditIssuer">
+              <PropertyRef Name="CreditIssuerId" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="CreditIssuerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account12_Tbl_LawFirm">
+          <End Type="CCATDBModel.Tbl_LawFirm" Role="Tbl_LawFirm" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_Account" Role="Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_LawFirm">
+              <PropertyRef Name="LawFirmId" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="LawFirmId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account12_Tbl_Owner">
+          <End Type="CCATDBModel.Tbl_Owner" Role="Tbl_Owner" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_Account" Role="Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Owner">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account12_Tbl_States">
+          <End Type="CCATDBModel.Tbl_States" Role="Tbl_States" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_Account" Role="Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Agency_Tbl_Owner">
+          <End Type="CCATDBModel.Tbl_Owner" Role="Tbl_Owner" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_Agency" Role="Tbl_Agency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Owner">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="Tbl_Agency">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Agency_Tbl_States">
+          <End Type="CCATDBModel.Tbl_States" Role="Tbl_States" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_Agency" Role="Tbl_Agency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Agency">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_Tbl_ComplaintIssues">
+          <End Type="CCATDBModel.Tbl_ComplaintIssues" Role="Tbl_ComplaintIssues" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_ComplaintIssues">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="IssuesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_Tbl_ComplaintReceivedBy">
+          <End Type="CCATDBModel.Tbl_ComplaintReceivedBy" Role="Tbl_ComplaintReceivedBy" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_ComplaintReceivedBy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="ReceivedByMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_Tbl_DebtorContactMethods">
+          <End Type="CCATDBModel.Tbl_DebtorContactMethods" Role="Tbl_DebtorContactMethods" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_DebtorContactMethods">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="DebtorContactMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_Tbl_DebtorContactTime">
+          <End Type="CCATDBModel.Tbl_DebtorContactTime" Role="Tbl_DebtorContactTime" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_DebtorContactTime">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="DebtorContactTimeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_Tbl_DebtorProducts">
+          <End Type="CCATDBModel.Tbl_DebtorProducts" Role="Tbl_DebtorProducts" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_DebtorProducts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="DebtorProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_Tbl_FinalActionSteps">
+          <End Type="CCATDBModel.Tbl_FinalActionSteps" Role="Tbl_FinalActionSteps" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_FinalActionSteps">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="FinalActionStepId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_Tbl_OwnerResponses">
+          <End Type="CCATDBModel.Tbl_OwnerResponses" Role="Tbl_OwnerResponses" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_OwnerResponses">
+              <PropertyRef Name="OwnerResponseId" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="OwnerResponseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_CreditIssuer_Tbl_Owner">
+          <End Type="CCATDBModel.Tbl_Owner" Role="Tbl_Owner" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_CreditIssuer" Role="Tbl_CreditIssuer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Owner">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="Tbl_CreditIssuer">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_CreditIssuer_Tbl_States">
+          <End Type="CCATDBModel.Tbl_States" Role="Tbl_States" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_CreditIssuer" Role="Tbl_CreditIssuer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_CreditIssuer">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_LawFirm_Tbl_Owner">
+          <End Type="CCATDBModel.Tbl_Owner" Role="Tbl_Owner" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_LawFirm" Role="Tbl_LawFirm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Owner">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="Tbl_LawFirm">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_LawFirm_Tbl_States">
+          <End Type="CCATDBModel.Tbl_States" Role="Tbl_States" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_LawFirm" Role="Tbl_LawFirm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_LawFirm">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Owner_Tbl_States">
+          <End Type="CCATDBModel.Tbl_States" Role="Tbl_States" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_Owner" Role="Tbl_Owner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Owner">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_Tbl_Account">
+          <End Type="CCATDBModel.Tbl_Account" Role="Tbl_Account" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Account">
+              <PropertyRef Name="AccountNumber" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="AccountNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_Tbl_Agency">
+          <End Type="CCATDBModel.Tbl_Agency" Role="Tbl_Agency" Multiplicity="1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Agency">
+              <PropertyRef Name="AgencyId" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="AgencyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -714,6 +1898,241 @@
               <ScalarProperty Name="RoleId" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Tbl_Account">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_Account">
+              <MappingFragment StoreEntitySet="Tbl_Account">
+                <ScalarProperty Name="CreditIssuerId" ColumnName="CreditIssuerId" />
+                <ScalarProperty Name="LawFirmId" ColumnName="LawFirmId" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="DebtCurrentBalance" ColumnName="DebtCurrentBalance" />
+                <ScalarProperty Name="DebtPurchaseBalance" ColumnName="DebtPurchaseBalance" />
+                <ScalarProperty Name="LastFourSSN" ColumnName="LastFourSSN" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+                <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="AccountOriginal" ColumnName="AccountOriginal" />
+                <ScalarProperty Name="CreditorName" ColumnName="CreditorName" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Agency">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_Agency">
+              <MappingFragment StoreEntitySet="Tbl_Agency">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="AgencyContact_Email" ColumnName="AgencyContact_Email" />
+                <ScalarProperty Name="AgencyContact_FirstName" ColumnName="AgencyContact_FirstName" />
+                <ScalarProperty Name="AgencyContact_LastName" ColumnName="AgencyContact_LastName" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_ComplaintIssues">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_ComplaintIssues">
+              <MappingFragment StoreEntitySet="Tbl_ComplaintIssues">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_ComplaintMain">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_ComplaintMain">
+              <MappingFragment StoreEntitySet="Tbl_ComplaintMain">
+                <ScalarProperty Name="AgencyID" ColumnName="AgencyID" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="DisputeDebtDueDateYN" ColumnName="DisputeDebtDueDateYN" />
+                <ScalarProperty Name="DisputeDebtAmountYN" ColumnName="DisputeDebtAmountYN" />
+                <ScalarProperty Name="DisputeDebtYN" ColumnName="DisputeDebtYN" />
+                <ScalarProperty Name="DebtorProductId" ColumnName="DebtorProductId" />
+                <ScalarProperty Name="DebtorContactTimeId" ColumnName="DebtorContactTimeId" />
+                <ScalarProperty Name="DebtorContactMethodId" ColumnName="DebtorContactMethodId" />
+                <ScalarProperty Name="DebtorIdentityVerifiedYN" ColumnName="DebtorIdentityVerifiedYN" />
+                <ScalarProperty Name="FinalActionStepId" ColumnName="FinalActionStepId" />
+                <ScalarProperty Name="NeedFurtherActionYN" ColumnName="NeedFurtherActionYN" />
+                <ScalarProperty Name="DebtorAgreeYN" ColumnName="DebtorAgreeYN" />
+                <ScalarProperty Name="TotalResponseTimeDays" ColumnName="TotalResponseTimeDays" />
+                <ScalarProperty Name="AgencyResponseToDebtorDate" ColumnName="AgencyResponseToDebtorDate" />
+                <ScalarProperty Name="OwnerResponseDays" ColumnName="OwnerResponseDays" />
+                <ScalarProperty Name="OwnerResponseDate" ColumnName="OwnerResponseDate" />
+                <ScalarProperty Name="OwnerResponseId" ColumnName="OwnerResponseId" />
+                <ScalarProperty Name="MoreInfoFromAgencyReceived" ColumnName="MoreInfoFromAgencyReceived" />
+                <ScalarProperty Name="MoreInfoFromAgencyReceivedDate" ColumnName="MoreInfoFromAgencyReceivedDate" />
+                <ScalarProperty Name="MoreInfoFromAgencyReceivedYN" ColumnName="MoreInfoFromAgencyReceivedYN" />
+                <ScalarProperty Name="MoreInfoFromAgencyRequested" ColumnName="MoreInfoFromAgencyRequested" />
+                <ScalarProperty Name="MoreInfoFromAgencyRequestedDate" ColumnName="MoreInfoFromAgencyRequestedDate" />
+                <ScalarProperty Name="MoreInfoFromAgencyYN" ColumnName="MoreInfoFromAgencyYN" />
+                <ScalarProperty Name="DebtOwnerProcessDocument" ColumnName="DebtOwnerProcessDocument" />
+                <ScalarProperty Name="TimeToSubmitDays" ColumnName="TimeToSubmitDays" />
+                <ScalarProperty Name="ComplaintSubmittedDate" ColumnName="ComplaintSubmittedDate" />
+                <ScalarProperty Name="ComplaintSubmittedToOwnerYN" ColumnName="ComplaintSubmittedToOwnerYN" />
+                <ScalarProperty Name="MoreInfoReceived" ColumnName="MoreInfoReceived" />
+                <ScalarProperty Name="MoreInfoReceivedDate" ColumnName="MoreInfoReceivedDate" />
+                <ScalarProperty Name="MoreInfoReceivedFromDebtorYN" ColumnName="MoreInfoReceivedFromDebtorYN" />
+                <ScalarProperty Name="MoreInfoRequested" ColumnName="MoreInfoRequested" />
+                <ScalarProperty Name="MoreInfoRequestedDate" ColumnName="MoreInfoRequestedDate" />
+                <ScalarProperty Name="MoreInfoReqdFromDebtorYN" ColumnName="MoreInfoReqdFromDebtorYN" />
+                <ScalarProperty Name="ComplaintSubmittedToAgencyDate" ColumnName="ComplaintSubmittedToAgencyDate" />
+                <ScalarProperty Name="ComplaintSubmittedToAgencyYN" ColumnName="ComplaintSubmittedToAgencyYN" />
+                <ScalarProperty Name="ComplaintDocument" ColumnName="ComplaintDocument" />
+                <ScalarProperty Name="ComplaintNotes" ColumnName="ComplaintNotes" />
+                <ScalarProperty Name="IssuesId" ColumnName="IssuesId" />
+                <ScalarProperty Name="ReceivedByMethodId" ColumnName="ReceivedByMethodId" />
+                <ScalarProperty Name="ComplaintDate" ColumnName="ComplaintDate" />
+                <ScalarProperty Name="ComplaintId" ColumnName="ComplaintId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_ComplaintReceivedBy">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_ComplaintReceivedBy">
+              <MappingFragment StoreEntitySet="Tbl_ComplaintReceivedBy">
+                <ScalarProperty Name="Media" ColumnName="Media" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_CreditIssuer">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_CreditIssuer">
+              <MappingFragment StoreEntitySet="Tbl_CreditIssuer">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="Contact_Email" ColumnName="Contact_Email" />
+                <ScalarProperty Name="Contact_FirstName" ColumnName="Contact_FirstName" />
+                <ScalarProperty Name="Contact_LastName" ColumnName="Contact_LastName" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CreditorName" ColumnName="CreditorName" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreditIssuerId" ColumnName="CreditIssuerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_DebtorContactMethods">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_DebtorContactMethods">
+              <MappingFragment StoreEntitySet="Tbl_DebtorContactMethods">
+                <ScalarProperty Name="Method" ColumnName="Method" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_DebtorContactTime">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_DebtorContactTime">
+              <MappingFragment StoreEntitySet="Tbl_DebtorContactTime">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_DebtorProducts">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_DebtorProducts">
+              <MappingFragment StoreEntitySet="Tbl_DebtorProducts">
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_FinalActionSteps">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_FinalActionSteps">
+              <MappingFragment StoreEntitySet="Tbl_FinalActionSteps">
+                <ScalarProperty Name="Step" ColumnName="Step" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_LawFirm">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_LawFirm">
+              <MappingFragment StoreEntitySet="Tbl_LawFirm">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="Contact_Email" ColumnName="Contact_Email" />
+                <ScalarProperty Name="Contact_FirstName" ColumnName="Contact_FirstName" />
+                <ScalarProperty Name="Contact_LastName" ColumnName="Contact_LastName" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="LawFirmId" ColumnName="LawFirmId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Owner">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_Owner">
+              <MappingFragment StoreEntitySet="Tbl_Owner">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="OwnerContact_Email" ColumnName="OwnerContact_Email" />
+                <ScalarProperty Name="OwnerContact_FirstName" ColumnName="OwnerContact_FirstName" />
+                <ScalarProperty Name="OwnerContact_LastName" ColumnName="OwnerContact_LastName" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_OwnerResponses">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_OwnerResponses">
+              <MappingFragment StoreEntitySet="Tbl_OwnerResponses">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Response" ColumnName="Response" />
+                <ScalarProperty Name="OwnerResponseId" ColumnName="OwnerResponseId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_States">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_States">
+              <MappingFragment StoreEntitySet="Tbl_States">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

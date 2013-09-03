@@ -311,6 +311,7 @@ namespace MSI.CCAT.WEB.Controllers
             if (!string.IsNullOrEmpty(roleEntityValue))
                 profile.RoleEntityValue = roleEntityValue;
         }
+        
     }
     #region Original Code Genereted
     //[Authorize]

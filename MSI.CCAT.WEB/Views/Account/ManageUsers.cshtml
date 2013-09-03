@@ -3,13 +3,102 @@
         <div class='page-title'>New Complaint Requiring Action</div>
     </div>
     <br />
+    <script type="text/x-kendo-template" id="template">
+                <div class="toolbar"><a class="k-button k-button-icontext k-grid-add" href=""><span class="k-icon k-add"></span>Add new record</a>
+                </div>
+    </script>
 
-    <div class="row-fluid" style="margin-top:10px">
+    <div class="row-fluid" style="margin-top: 10px">
         <div id="searchGrid" class="k-content">
             <div id="usersGrid"></div>
         </div>
     </div>
- </div>
+    <div id="editContainer" style="display: none" class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Add/Update User:</h3>
+        </div>
+        <div class="modal-body">
+            <table style="width: 100%">
+                <tr>
+                    <td style="width: 25%">Username
+                    </td>
+                    <td style="width: 1%">:
+                    </td>
+                    <td style="width: 74%">
+                        <input type="text" data-bind="enable: false, value: userName" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 25%">First Name
+                    </td>
+                    <td style="width: 1%">:
+                    </td>
+                    <td style="width: 74%">
+                        <input type="text" data-bind="value: firstName" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Last Name
+                    </td>
+                    <td>:
+                    </td>
+                    <td>
+                        <input type="text" data-bind="value: lastName" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email
+                    </td>
+                    <td>:
+                    </td>
+                    <td>
+                        <input type="text" data-bind="value: email" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Role
+                    </td>
+                    <td>:
+                    </td>
+                    <td>
+                        <select data-bind="options: roles, optionsValue: 'value', optionsCaption: ' ', optionsText: 'text', value: role">
+                        </select>
+                    </td>
+                </tr>
+                <tr data-bind="visible: roleKeyValVisible">
+                    <td data-bind="text: roleKeyTitle"></td>
+                    <td>:
+                    </td>
+                    <td>
+                        <select data-bind="options: agencies, optionsValue: 'Value', optionsCaption: ' ', optionsText: 'Text', value: roleKeyValue">
+                        </select>
+                    </td>
+                </tr>
+                <tr data-bind="visible: makeBuyerVivible">
+                    <td data-bind="text: roleKeyTitle"></td>
+                    <td>:
+                    </td>
+                    <td>
+                        <select data-bind="options: buyers, optionsValue: 'Value', optionsCaption: ' ', optionsText: 'Text', value: buyerSelected">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="text-align: center">
+                        <div data-bind="fadeVisible: showMessage" style="background-color: #1f497d; color: #fff">
+                            <span data-bind="text: message"></span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn" data-bind="visible: saveVisible, click: saveCancel">Close</a>
+            <a href="#" class="btn btn-primary" data-bind="visible: saveVisible, click: save">Save changes</a>
+        </div>
+    </div>
+</div>
 
 @Scripts.Render("~/bundles/external")
 
@@ -23,9 +112,95 @@
 
 @* Document Ready *@
 <script>
+    function userViewModel(userId, userAgency, accountNumber, userRole) {
+        var self = this;
+        self.userId = userId;
+        self.userName = ko.observable('')
+        self.firstName = ko.observable('');
+        self.lastName = ko.observable('');
+        self.email = ko.observable('');
+        self.role = ko.observable('');
+        self.roleKeyValue = ko.observable('');
+        self.roleKeyTitle = ko.observable('');
+        self.buyerSelected = ko.observable('');
+        self.agencies = ko.computed(function () {
+            var localAgencies = [];
+            //$.ajax({
+            //    url: baseUrl + '/api/Lookup/',
+            //    type: 'GET',
+            //    contentType: 'application/json',
+            //    data: { id: 'Agencies' },
+            //    dataType: 'json',
+            //    async: false,
+            //    success: function (data) {
+            //        //log(data.length);
+            //        if (data.length > 0) {
+            //            $.each(data, function (i, item) {
+            //                //log(item.Text);
+            //                localAgencies.push(item);
+            //            });
+            //        }
+            //    },
+            //    error: function (xhr, status, somthing) {
+            //        log(status);
+            //    }
+            //});
+            return localAgencies;
+        }, self);
 
-    $(document).ready(function () {
-        $(document).ready(function () {
+        self.buyers = ko.computed(function () {
+            var localBuyers = [];
+            //$.ajax({
+            //    url: baseUrl + '/api/Lookup/',
+            //    type: 'GET',
+            //    contentType: 'application/json',
+            //    data: { id: 'Buyer' },
+            //    dataType: 'json',
+            //    async: false,
+            //    success: function (data) {
+            //        //log(data.length);
+            //        if (data.length > 0) {
+            //            $.each(data, function (i, item) {
+            //                //log(item.Text);
+            //                localBuyers.push(item);
+            //            });
+            //        }
+            //    },
+            //    error: function (xhr, status, somthing) {
+            //        log(status);
+            //    }
+            //});
+            return localBuyers;
+        }, self);
+
+        self.fill = function (id, name, fname, lname, email, role, roleKeyVal) {
+            self.userId = id;
+            self.userName(name)
+            self.firstName(fname);
+            self.lastName(lname);
+            self.email(email);
+            self.role(role);
+            self.roleKeyValue(roleKeyVal);
+            self.buyerSelected(roleKeyVal);
+            if (role != undefined) {
+                if (role == 'agency')
+                    self.roleKeyValue(roleKeyVal);
+                else if (role == 'buyer')
+                    self.buyerSelected(roleKeyVal);
+                else
+                    self.roleKeyValue(roleKeyVal);
+            }
+        }
+
+        self.showMessage = ko.observable(false);
+        self.message = ko.observable('');
+
+        self.saveVisible = ko.observable(false);
+        self.createNewVisible = ko.observable(true);
+        self.roleKeyValVisible = ko.observable(false);
+        self.makeBuyerVivible = ko.observable(false);
+
+        self.roles = ko.computed(function () {
             var applicationRoles = [];
             $.ajax({
                 url: baseUrl + '/Account/GetApplicationRoles/',
@@ -34,7 +209,7 @@
                 async: false,
                 success: function (data) {
                     //log(data);
-                    applicationRoles.push({ text: 'Select Role', value: '' });
+                    //applicationRoles.push({ text: 'Select Role', value: '' });
                     if (data.length > 0) {
                         $.each(data, function (i, item) {
                             console.log(item);
@@ -46,6 +221,105 @@
                     log(errorText);
                 }
             });
+            return applicationRoles;
+        }, self);
+        self.showEditContainer = ko.observable(false);
+        self.role.subscribe(function (roleSelected) {
+            self.roleKeyValVisible(false);
+            self.makeBuyerVivible(false);
+            if (roleSelected == 'CollectionAgency') {
+                self.roleKeyTitle('CollectionAgency');
+                self.roleKeyValVisible(true);
+            }
+            else if (roleSelected == 'DebtOwner') {
+                self.roleKeyTitle('DebtOwner');
+                self.makeBuyerVivible(true);
+            }
+            else {
+                self.roleKeyTitle('');
+                self.roleKeyValVisible(false);
+            }
+        }.bind(self));
+
+        self.save = function () {
+            if (self.firstName() == '' || self.firstName() == undefined || self.lastName() == '' || self.lastName() == undefined || self.email() == '' || self.email() == undefined) {
+                alert('First Name, Last Name and Email is required');
+                return false;
+            }
+            //if (self.roleKeyValVisible()) {
+            //    if (self.role() == 'agency' && self.roleKeyValue() == '' || self.roleKeyValue() == undefined) {
+            //        alert('Agency value is required');
+            //        return false;
+            //    }
+            //}
+            //if (self.makeBuyerVivible()) {
+            //    if (self.role() == 'buyer' && (self.buyerSelected() == '' || self.buyerSelected() == undefined)) {
+            //        alert('Buyer value is required');
+            //        return false;
+            //    }
+            //    else {
+            //        self.roleKeyValue(self.buyerSelected());
+            //    }
+            //}
+            var json = JSON.stringify({
+                userId: self.userId, firstName: self.firstName(), lastName: self.lastName(), email: self.email(), role: self.role(), roleEntityValue: self.roleKeyValue()
+            });
+            $.ajax({
+                url: baseUrl + '/Account/UpdateUser/',
+                type: "POST",
+                data: json,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                async: true,
+                success: function (response) {
+                    log(response);
+                    //if (self.userId == '') {
+                    //    location.reload();
+                    //}
+                    self.showMessage(true);
+                    self.message('User account data has been added or updated');
+                    var grid = $("#usersGrid").data("kendoGrid");
+                    grid.refresh();
+                },
+                error: function (response, errorText) {
+                    log(errorText);
+                }
+            });
+        }
+        self.clear = function () {
+            self.fill('', '', '', '', '', undefined, undefined);
+            self.roleKeyValVisible(false);
+            self.roleKeyTitle('');
+        }
+        self.saveCancel = function () {
+            self.clear();
+            self.saveVisible(false);
+            self.createNewVisible(true);
+            $('#editContainer').modal('hide');
+        }
+    }
+    $(document).ready(function () {
+        $(document).ready(function () {
+            //var applicationRoles = [];
+            //$.ajax({
+            //    url: baseUrl + '/Account/GetApplicationRoles/',
+            //    dataType: "json",
+            //    contentType: "application/json; charset=utf-8",
+            //    async: false,
+            //    success: function (data) {
+            //        //log(data);
+            //        applicationRoles.push({ text: 'Select Role', value: '' });
+            //        if (data.length > 0) {
+            //            $.each(data, function (i, item) {
+            //                console.log(item);
+            //                applicationRoles.push({ text: item, value: item });
+            //            });
+            //        }
+            //    },
+            //    error: function (response, errorText) {
+            //        log(errorText);
+            //    }
+            //});
             var crudServiceBaseUrl = "http://demos.kendoui.com/service",
                 dataSource = new kendo.data.DataSource({
                     transport: {
@@ -53,18 +327,6 @@
                             url: baseUrl + '/Account/GetAllUsers',
                             dataType: "json"
                         },
-                        //update: {
-                        //    url: baseUrl + "/Account/UpdateUser",
-                        //    dataType: "json"
-                        //},
-                        //destroy: {
-                        //    url: baseUrl + "/Products/Destroy",
-                        //    dataType: "json"
-                        //},
-                        //create: {
-                        //    url: baseUrl + "/Products/Create",
-                        //    dataType: "json"
-                        //},
                         parameterMap: function (options, operation) {
                             if (operation !== "read" && options.models) {
                                 //return { UserModel: kendo.stringify(options.models) };
@@ -81,7 +343,8 @@
                                 LastName: { type: "string", validation: { required: true } },
                                 Email: { validation: { required: true } },
                                 UserName: { type: "string", validation: { required: true }, editable: false },
-                                Role: { type: "string"}
+                                Role: { type: "string" },
+                                RoleKeyValue: { type: "string" }
                             }
                         }
                     }
@@ -91,102 +354,65 @@
                 dataSource: dataSource,
                 pageable: true,
                 height: 430,
-                toolbar: ["create"],
+                toolbar: kendo.template($("#template").html()),
                 columns: [
                     { field: "FirstName", title: "First Name", width: "100px" },
                     { field: "LastName", title: "Last Name", width: "100px" },
                     { field: "Email", title: "Email", width: "100px" },
                     { field: "UserName", title: "User Name", width: "100px" },
-                    { field: "Role", title: "Role", values: applicationRoles, width: "100px" },
-                    { command: ["edit"], title: "&nbsp;", width: "172px" }],
-                editable: "inline",
-                save: function (e) {
-                    console.log(this);
-                    var json = JSON.stringify({
-                        userId: e.model.UserId, firstName: e.model.FirstName, lastName: e.model.LastName, email: e.model.Email, role: e.model.Role, roleEntityValue: e.model.RoleKeyValue
-                    });
-                    $.ajax({
-                        url: baseUrl + '/Account/UpdateUser/',
-                        type: "POST",
-                        data: json,
-                        dataType: "json",
-                        contentType: "application/json; charset=utf-8",
-                        async: true,
-                        success: function (response) {
-                        },
-                        error: function (response, errorText) {
-                            console.log(errorText);
-                        }
-                    });
-                }
+                    //{ field: "Role", title: "Role", values: applicationRoles, width: "100px" },
+                    {
+                        command: [
+                                  { id: "edit", name: "edit", template: "<a class='k-button k-grid-edit editsa' title='View/Edit' style='min-width:16px;'><span class='k-icon k-edit'></span></a>" },
+                        ], title: " ", width: "30px"
+                    }],
+                //editable: "inline",
+                //save: function (e) {
+                //    console.log(this);
+                //    var json = JSON.stringify({
+                //        userId: e.model.UserId, firstName: e.model.FirstName, lastName: e.model.LastName, email: e.model.Email, role: e.model.Role, roleEntityValue: e.model.RoleKeyValue
+                //    });
+                //    $.ajax({
+                //        url: baseUrl + '/Account/UpdateUser/',
+                //        type: "POST",
+                //        data: json,
+                //        dataType: "json",
+                //        contentType: "application/json; charset=utf-8",
+                //        async: true,
+                //        success: function (response) {
+                //        },
+                //        error: function (response, errorText) {
+                //            console.log(errorText);
+                //        }
+                //    });
+                //}
+            });
+            @*Edit record*@
+            $('#usersGrid').on('click', '.editsa', function (e) {
+                e.preventDefault();
+                var dataItem = $("#usersGrid").data("kendoGrid").dataItem($(this).closest("tr"));
+                @*Now let us clear what we have on this page*@
+                console.log(dataItem);
+                $('#editContainer').modal();
+                var uvm = new userViewModel('', '', '', '');
+                ko.applyBindings(uvm, $('#editContainer')[0]);
+                uvm.showEditContainer(true);
+                uvm.fill(dataItem.UserId, dataItem.UserName, dataItem.FirstName, dataItem.LastName, dataItem.Email, dataItem.Role, dataItem.RoleKeyValue);
+                uvm.saveVisible(true);
+                uvm.createNewVisible(false);
+            });
+
+            $('#usersGrid').on('click', '.k-grid-add', function (e) {
+                e.preventDefault();
+                console.log('Adding new record');
+                $('#editContainer').modal();
+                var uvm = new userViewModel('', '', '', '');
+                ko.applyBindings(uvm, $('#editContainer')[0]);
+                uvm.showEditContainer(true);
+                uvm.saveVisible(true);
+                //uvm.createNewVisible(true);
             });
         });
-        //$.ajax({
-        //    url: baseUrl + '/Account/GetAllUsers',
-        //    type: 'GET',
-        //    contentType: 'application/json',
-        //    async: false,
-        //    dataType: 'json',
-        //    success: function (data) {
-        //        console.log(data);
-        //    },
-        //    error: function (xhr, status, somthing) {
-        //        log(status);
-        //    }
-        //});
-        //var crudServiceBaseUrl = baseUrl + "/Account/Home/GetComplianceReportData",
-        //    dataSource = new kendo.data.DataSource({
-        //        transport: {
-        //            read: {
-        //                url: crudServiceBaseUrl + "/Products",
-        //                dataType: "jsonp"
-        //            },
-        //            update: {
-        //                url: crudServiceBaseUrl + "/Products/Update",
-        //                dataType: "jsonp"
-        //            },
-        //            destroy: {
-        //                url: crudServiceBaseUrl + "/Products/Destroy",
-        //                dataType: "jsonp"
-        //            },
-        //            create: {
-        //                url: crudServiceBaseUrl + "/Products/Create",
-        //                dataType: "jsonp"
-        //            },
-        //            parameterMap: function (options, operation) {
-        //                if (operation !== "read" && options.models) {
-        //                    return { models: kendo.stringify(options.models) };
-        //                }
-        //            }
-        //        },
-        //        batch: true,
-        //        pageSize: 20,
-        //        schema: {
-        //            model: {
-        //                id: "ProductID",
-        //                fields: {
-        //                    ProductID: { editable: false, nullable: true },
-        //                    ProductName: { validation: { required: true } },
-        //                    UnitPrice: { type: "number", validation: { required: true, min: 1 } },
-        //                    Discontinued: { type: "boolean" },
-        //                    UnitsInStock: { type: "number", validation: { min: 0, required: true } }
-        //                }
-        //            }
-        //        }
-        //    });
 
-        //$("#grid").kendoGrid({
-        //    dataSource: dataSource,
-        //    pageable: true,
-        //    height: 430,
-        //    toolbar: ["create"],
-        //    columns: [
-        //        "ProductName",
-        //        { field: "UnitPrice", title: "Unit Price", format: "{0:c}", width: "100px" },
-        //        { field: "UnitsInStock", title: "Units In Stock", width: "100px" },
-        //        { field: "Discontinued", width: "100px" },
-        //        { command: ["edit", "destroy"], title: "&nbsp;", width: "172px" }],
-        //    editable: "inline"
-        //});
     });
 </script>

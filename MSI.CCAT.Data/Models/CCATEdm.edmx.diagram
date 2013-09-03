@@ -20,6 +20,41 @@
         <EntityTypeShape EntityType="CCATDBModel.aspnet_Users" Width="1.5" PointX="10.5" PointY="0.75" />
         <AssociationConnector Association="CCATDBModel.FK__aspnet_Me__UserI__33D4B598" />
         <AssociationConnector Association="CCATDBModel.aspnet_UsersInRoles" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_Account" Width="1.5" PointX="9.9646383551716049" PointY="8.1614520438767286" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_Agency" Width="1.5" PointX="10.751644659206106" PointY="20.811145255719843" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_ComplaintIssues" Width="1.5" PointX="1.0693069310250258" PointY="24.648206617985018" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_ComplaintMain" Width="1.5" PointX="1.8279795245397743" PointY="11.721355235074347" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_ComplaintReceivedBy" Width="1.5" PointX="1.0400789384916793" PointY="9.1994160754603413" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_CreditIssuer" Width="1.5" PointX="2.2122263341267718" PointY="31.770237058294118" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_DebtorContactMethods" Width="1.5" PointX="0.31925310768152271" PointY="20.258534425989975" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_DebtorContactTime" Width="1.5" PointX="10.493589687390992" PointY="11.100454827351708" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_DebtorProducts" Width="1.5" PointX="1.2742499957206892" PointY="3.815420197237013" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_FinalActionSteps" Width="1.5" PointX="5.5252995554009914" PointY="19.307999336769804" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_LawFirm" Width="1.5" PointX="3.4691756402464473" PointY="20.492876211410795" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_Owner" Width="1.5" PointX="1.2576903669432227" PointY="14.66836901692132" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_OwnerResponses" Width="1.5" PointX="10.625" PointY="3.625" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_States" Width="1.5" PointX="9.1293975790633812" PointY="17.996606447732358" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_Account12_Tbl_Agency" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_Account12_Tbl_CreditIssuer" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_Account12_Tbl_LawFirm" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_Account12_Tbl_Owner" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_Account12_Tbl_States" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_Agency_Tbl_Owner" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_Agency_Tbl_States" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_ComplaintIssues" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_ComplaintReceivedBy" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_DebtorContactMethods" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_DebtorContactTime" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_DebtorProducts" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_FinalActionSteps" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_OwnerResponses" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_CreditIssuer_Tbl_Owner" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_CreditIssuer_Tbl_States" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_LawFirm_Tbl_Owner" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_LawFirm_Tbl_States" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_Owner_Tbl_States" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_Account" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_Agency" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
