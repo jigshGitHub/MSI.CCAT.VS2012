@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="af1634f8c116422a8426a5a65e793a66" Name="Diagram1" ZoomLevel="95">
+      <Diagram DiagramId="af1634f8c116422a8426a5a65e793a66" Name="Diagram1" ZoomLevel="58">
         <EntityTypeShape EntityType="CascadeDBModel.MSI_ComplaintMain" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CascadeDBModel.RACCOUNT" Width="1.5" PointX="8.3268722930582584" PointY="5.3079123372714561" />
         <EntityTypeShape EntityType="CascadeDBModel.MSI_ComplaintIssues" Width="1.5" PointX="9.30927972556524" PointY="15.054866201735505" />

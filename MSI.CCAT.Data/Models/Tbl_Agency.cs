@@ -17,7 +17,6 @@ namespace MSI.CCAT.Data.Models
         public Tbl_Agency()
         {
             this.Tbl_Account = new HashSet<Tbl_Account>();
-            this.Tbl_ComplaintMain = new HashSet<Tbl_ComplaintMain>();
         }
     
         public int AgencyId { get; set; }
@@ -41,6 +40,5 @@ namespace MSI.CCAT.Data.Models
         public virtual ICollection<Tbl_Account> Tbl_Account { get; set; }
         public virtual Tbl_Owner Tbl_Owner { get; set; }
         public virtual Tbl_States Tbl_States { get; set; }
-        public virtual ICollection<Tbl_ComplaintMain> Tbl_ComplaintMain { get; set; }
     }
 }

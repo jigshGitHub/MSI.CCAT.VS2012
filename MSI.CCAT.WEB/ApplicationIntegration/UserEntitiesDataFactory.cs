@@ -35,7 +35,7 @@ namespace MSI.CCAT.WEB.ApplicationIntegration
 
             if (!string.IsNullOrEmpty(role))
             {
-                if (!Roles.IsUserInRole(role))
+                if (!Roles.IsUserInRole(user.UserName,role))
                 {
                     if (Roles.GetRolesForUser(user.UserName).Count() > 0)
                         Roles.RemoveUserFromRoles(user.UserName, Roles.GetAllRoles().Where(userRole => Roles.IsUserInRole(userRole)).ToArray());

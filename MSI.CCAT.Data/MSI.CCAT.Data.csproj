@@ -169,6 +169,9 @@
     <Compile Include="Models\Tbl_LawFirm.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Tbl_ModulesForRoles.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tbl_Owner.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>

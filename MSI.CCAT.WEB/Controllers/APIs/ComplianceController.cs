@@ -92,7 +92,7 @@ namespace Cascade.Web.Controllers
             {
                 //repository = new MSI_ComplaintMainRepository();
                 uo = new UnitOfWork("CascadeDBEntities");
-                IEnumerable<Tbl_ComplaintMain> data = (from existingComplaint in uo.Repository<Tbl_ComplaintMain>().GetAll().Where(record => record.AgencyID == int.Parse(agencyId) && record.AccountNumber == accountNumber)
+                IEnumerable<Tbl_ComplaintMain> data = (from existingComplaint in uo.Repository<Tbl_ComplaintMain>().GetAll().Where(record => record.Tbl_Account.AgencyId == int.Parse(agencyId) && record.AccountNumber == accountNumber)
                                                        select existingComplaint);
 
                 if (data.Count() > 0)
@@ -111,7 +111,7 @@ namespace Cascade.Web.Controllers
                 else
                 {
                     complaint = new Tbl_ComplaintMain();
-                    complaint.AgencyID = int.Parse(agencyId);
+                    complaint.Tbl_Account.AgencyId = int.Parse(agencyId);
                     complaint.ComplaintDate = DateTime.Now;
                     IEnumerable<Tbl_Account> accounts = null;
                     DataQueries query = new DataQueries();

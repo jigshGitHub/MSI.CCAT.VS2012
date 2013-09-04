@@ -66,21 +66,39 @@
                         </select>
                     </td>
                 </tr>
-                <tr data-bind="visible: roleKeyValVisible">
+                <tr data-bind="visible: makeAgenciesVisible">
                     <td data-bind="text: roleKeyTitle"></td>
                     <td>:
                     </td>
                     <td>
-                        <select data-bind="options: agencies, optionsValue: 'Value', optionsCaption: ' ', optionsText: 'Text', value: roleKeyValue">
+                        <select data-bind="options: agencies, optionsValue: 'Value', optionsCaption: ' ', optionsText: 'Text', value: agencySelected">
                         </select>
                     </td>
                 </tr>
-                <tr data-bind="visible: makeBuyerVivible">
+                <tr data-bind="visible: makeLawFirmVivible">
                     <td data-bind="text: roleKeyTitle"></td>
                     <td>:
                     </td>
                     <td>
-                        <select data-bind="options: buyers, optionsValue: 'Value', optionsCaption: ' ', optionsText: 'Text', value: buyerSelected">
+                        <select data-bind="options: lawFirms, optionsValue: 'Value', optionsCaption: ' ', optionsText: 'Text', value: lawFirmSelected">
+                        </select>
+                    </td>
+                </tr>
+                 <tr data-bind="visible: makeCreditIssuersVisible">
+                    <td data-bind="text: roleKeyTitle"></td>
+                    <td>:
+                    </td>
+                    <td>
+                        <select data-bind="options: creditIssuers, optionsValue: 'Value', optionsCaption: ' ', optionsText: 'Text', value: creditIssuerSelected">
+                        </select>
+                    </td>
+                </tr>
+                 <tr data-bind="visible: makeDebtOwnersVisible">
+                    <td data-bind="text: roleKeyTitle"></td>
+                    <td>:
+                    </td>
+                    <td>
+                        <select data-bind="options: debtOwners, optionsValue: 'Value', optionsCaption: ' ', optionsText: 'Text', value: debtOwnerSelected">
                         </select>
                     </td>
                 </tr>
@@ -120,57 +138,109 @@
         self.lastName = ko.observable('');
         self.email = ko.observable('');
         self.role = ko.observable('');
-        self.roleKeyValue = ko.observable('');
+        self.agencySelected = ko.observable('');
         self.roleKeyTitle = ko.observable('');
-        self.buyerSelected = ko.observable('');
+        self.lawFirmSelected = ko.observable('');
+        self.creditIssuerSelected = ko.observable('');
+        self.debtOwnerSelected = ko.observable('');
         self.agencies = ko.computed(function () {
             var localAgencies = [];
-            //$.ajax({
-            //    url: baseUrl + '/api/Lookup/',
-            //    type: 'GET',
-            //    contentType: 'application/json',
-            //    data: { id: 'Agencies' },
-            //    dataType: 'json',
-            //    async: false,
-            //    success: function (data) {
-            //        //log(data.length);
-            //        if (data.length > 0) {
-            //            $.each(data, function (i, item) {
-            //                //log(item.Text);
-            //                localAgencies.push(item);
-            //            });
-            //        }
-            //    },
-            //    error: function (xhr, status, somthing) {
-            //        log(status);
-            //    }
-            //});
+            $.ajax({
+                url: baseUrl + '/api/Lookup/',
+                type: 'GET',
+                contentType: 'application/json',
+                data: { id: 'Agencies' },
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    //log(data.length);
+                    if (data.length > 0) {
+                        $.each(data, function (i, item) {
+                            //log(item.Text);
+                            localAgencies.push(item);
+                        });
+                    }
+                },
+                error: function (xhr, status, somthing) {
+                    log(status);
+                }
+            });
             return localAgencies;
         }, self);
 
-        self.buyers = ko.computed(function () {
-            var localBuyers = [];
-            //$.ajax({
-            //    url: baseUrl + '/api/Lookup/',
-            //    type: 'GET',
-            //    contentType: 'application/json',
-            //    data: { id: 'Buyer' },
-            //    dataType: 'json',
-            //    async: false,
-            //    success: function (data) {
-            //        //log(data.length);
-            //        if (data.length > 0) {
-            //            $.each(data, function (i, item) {
-            //                //log(item.Text);
-            //                localBuyers.push(item);
-            //            });
-            //        }
-            //    },
-            //    error: function (xhr, status, somthing) {
-            //        log(status);
-            //    }
-            //});
-            return localBuyers;
+        self.lawFirms = ko.computed(function () {
+            var localLawFirms = [];
+            $.ajax({
+                url: baseUrl + '/api/Lookup/',
+                type: 'GET',
+                contentType: 'application/json',
+                data: { id: 'LawFirm' },
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    //log(data.length);
+                    if (data.length > 0) {
+                        $.each(data, function (i, item) {
+                            //log(item.Text);
+                            localLawFirms.push(item);
+                        });
+                    }
+                },
+                error: function (xhr, status, somthing) {
+                    log(status);
+                }
+            });
+            return localLawFirms;
+        }, self);
+
+        self.creditIssuers = ko.computed(function () {
+            var localCreditIssuers = [];
+            $.ajax({
+                url: baseUrl + '/api/Lookup/',
+                type: 'GET',
+                contentType: 'application/json',
+                data: { id: 'CreditIssuers' },
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    //log(data.length);
+                    if (data.length > 0) {
+                        $.each(data, function (i, item) {
+                            //log(item.Text);
+                            localCreditIssuers.push(item);
+                        });
+                    }
+                },
+                error: function (xhr, status, somthing) {
+                    log(status);
+                }
+            });
+            return localCreditIssuers;
+        }, self);
+
+        self.debtOwners = ko.computed(function () {
+            var localDebtOwners = [];
+            $.ajax({
+                url: baseUrl + '/api/Lookup/',
+                type: 'GET',
+                contentType: 'application/json',
+                data: { id: 'DebtOwner' },
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    //log(data.length);
+                    if (data.length > 0) {
+                        $.each(data, function (i, item) {
+                            //log(item.Text);
+                            localDebtOwners.push(item);
+                        });
+                    }
+                },
+                error: function (xhr, status, somthing) {
+                    log(status);
+                }
+            });
+            return localDebtOwners;
         }, self);
 
         self.fill = function (id, name, fname, lname, email, role, roleKeyVal) {
@@ -180,15 +250,15 @@
             self.lastName(lname);
             self.email(email);
             self.role(role);
-            self.roleKeyValue(roleKeyVal);
-            self.buyerSelected(roleKeyVal);
             if (role != undefined) {
-                if (role == 'agency')
-                    self.roleKeyValue(roleKeyVal);
-                else if (role == 'buyer')
-                    self.buyerSelected(roleKeyVal);
+                if (role == 'CollectionAgency')
+                    self.agencySelected(roleKeyVal);
+                else if (role == 'CollectionLawfirm')
+                    self.lawFirmSelected(roleKeyVal);
+                else if (role == 'CreditIssuer')
+                    self.creditIssuerSelected(roleKeyVal);
                 else
-                    self.roleKeyValue(roleKeyVal);
+                    self.debtOwnerSelected(roleKeyVal);
             }
         }
 
@@ -197,8 +267,10 @@
 
         self.saveVisible = ko.observable(false);
         self.createNewVisible = ko.observable(true);
-        self.roleKeyValVisible = ko.observable(false);
-        self.makeBuyerVivible = ko.observable(false);
+        self.makeAgenciesVisible = ko.observable(false);
+        self.makeLawFirmVivible = ko.observable(false);
+        self.makeCreditIssuersVisible = ko.observable(false);
+        self.makeDebtOwnersVisible = ko.observable(false);
 
         self.roles = ko.computed(function () {
             var applicationRoles = [];
@@ -225,44 +297,68 @@
         }, self);
         self.showEditContainer = ko.observable(false);
         self.role.subscribe(function (roleSelected) {
-            self.roleKeyValVisible(false);
-            self.makeBuyerVivible(false);
+            self.makeAgenciesVisible(false);
+            self.makeLawFirmVivible(false);
+            self.makeCreditIssuersVisible(false);
+            self.makeDebtOwnersVisible(false);
             if (roleSelected == 'CollectionAgency') {
-                self.roleKeyTitle('CollectionAgency');
-                self.roleKeyValVisible(true);
+                self.roleKeyTitle('Collection Agency');
+                self.makeAgenciesVisible(true);
+            }
+            else if (roleSelected == 'CollectionLawfirm') {
+                self.roleKeyTitle('Collection Lawfirm');
+                self.makeLawFirmVivible(true);
+            }
+            else if (roleSelected == 'CreditIssuer') {
+                self.roleKeyTitle('Credit Issuer');
+                self.makeCreditIssuersVisible(true);
             }
             else if (roleSelected == 'DebtOwner') {
-                self.roleKeyTitle('DebtOwner');
-                self.makeBuyerVivible(true);
+                self.roleKeyTitle('Debt Owner');
+                self.makeDebtOwnersVisible(true);
             }
             else {
                 self.roleKeyTitle('');
-                self.roleKeyValVisible(false);
+                self.makeAgenciesVisible(false);
             }
         }.bind(self));
 
         self.save = function () {
+            var roleEntityValue;
             if (self.firstName() == '' || self.firstName() == undefined || self.lastName() == '' || self.lastName() == undefined || self.email() == '' || self.email() == undefined) {
                 alert('First Name, Last Name and Email is required');
                 return false;
             }
-            //if (self.roleKeyValVisible()) {
-            //    if (self.role() == 'agency' && self.roleKeyValue() == '' || self.roleKeyValue() == undefined) {
-            //        alert('Agency value is required');
-            //        return false;
-            //    }
-            //}
-            //if (self.makeBuyerVivible()) {
-            //    if (self.role() == 'buyer' && (self.buyerSelected() == '' || self.buyerSelected() == undefined)) {
-            //        alert('Buyer value is required');
-            //        return false;
-            //    }
-            //    else {
-            //        self.roleKeyValue(self.buyerSelected());
-            //    }
-            //}
+            if (self.makeAgenciesVisible()) {
+                if (self.role() == 'CollectionAgency' && self.agencySelected() == '' || self.agencySelected() == undefined) {
+                    alert('Collection Agency value is required');
+                    return false;
+                }
+                roleEntityValue = self.agencySelected()
+            }
+            else if (self.makeLawFirmVivible()) {
+                if (self.role() == 'CollectionLawfirm' && (self.lawFirmSelected() == '' || self.lawFirmSelected() == undefined)) {
+                    alert('Collection LawFirm value is required');
+                    return false;
+                }
+                roleEntityValue = self.lawFirmSelected()
+            }
+            else if (self.makeCreditIssuersVisible()) {
+                if (self.role() == 'CreditIssuer' && (self.creditIssuerSelected() == '' || self.creditIssuerSelected() == undefined)) {
+                    alert('Credit Issuer value is required');
+                    return false;
+                }
+                roleEntityValue = self.creditIssuerSelected()
+            }
+            else if (self.makeDebtOwnersVisible()) {
+                if (self.role() == 'DebtOwner' && (self.debtOwnerSelected() == '' || self.debtOwnerSelected() == undefined)) {
+                    alert('Debt Owner value is required');
+                    return false;
+                }
+                roleEntityValue = self.debtOwnerSelected()
+            }
             var json = JSON.stringify({
-                userId: self.userId, firstName: self.firstName(), lastName: self.lastName(), email: self.email(), role: self.role(), roleEntityValue: self.roleKeyValue()
+                userId: self.userId, firstName: self.firstName(), lastName: self.lastName(), email: self.email(), role: self.role(), roleEntityValue: roleEntityValue
             });
             $.ajax({
                 url: baseUrl + '/Account/UpdateUser/',
@@ -279,7 +375,9 @@
                     self.showMessage(true);
                     self.message('User account data has been added or updated');
                     var grid = $("#usersGrid").data("kendoGrid");
-                    grid.refresh();
+                    //console.log(grid);
+                    grid.dataSource.page(1);
+                    grid.dataSource.read();
                 },
                 error: function (response, errorText) {
                     log(errorText);
@@ -288,7 +386,7 @@
         }
         self.clear = function () {
             self.fill('', '', '', '', '', undefined, undefined);
-            self.roleKeyValVisible(false);
+            self.makeAgenciesVisible(false);
             self.roleKeyTitle('');
         }
         self.saveCancel = function () {
@@ -298,43 +396,29 @@
             $('#editContainer').modal('hide');
         }
     }
+    ko.bindingHandlers.fadeVisible = {
+        init: function (element, valueAccessor) {
+            var value = valueAccessor();
+        },
+        update: function (element, valueAccessor) {
+            var value = valueAccessor();
+            ko.utils.unwrapObservable(value) ? $(element).fadeIn(3000, function () {
+                $(element).fadeOut(5000);
+                value(false)
+            }) : $(element).fadeOut();
+        }
+    };
     $(document).ready(function () {
         $(document).ready(function () {
-            //var applicationRoles = [];
-            //$.ajax({
-            //    url: baseUrl + '/Account/GetApplicationRoles/',
-            //    dataType: "json",
-            //    contentType: "application/json; charset=utf-8",
-            //    async: false,
-            //    success: function (data) {
-            //        //log(data);
-            //        applicationRoles.push({ text: 'Select Role', value: '' });
-            //        if (data.length > 0) {
-            //            $.each(data, function (i, item) {
-            //                console.log(item);
-            //                applicationRoles.push({ text: item, value: item });
-            //            });
-            //        }
-            //    },
-            //    error: function (response, errorText) {
-            //        log(errorText);
-            //    }
-            //});
-            var crudServiceBaseUrl = "http://demos.kendoui.com/service",
-                dataSource = new kendo.data.DataSource({
+            var dataSource = new kendo.data.DataSource({
                     transport: {
                         read: {
                             url: baseUrl + '/Account/GetAllUsers',
                             dataType: "json"
-                        },
-                        parameterMap: function (options, operation) {
-                            if (operation !== "read" && options.models) {
-                                //return { UserModel: kendo.stringify(options.models) };
-                            }
                         }
                     },
                     batch: true,
-                    pageSize: 20,
+                    pageSize: 10,
                     schema: {
                         model: {
                             id: "UserId",
@@ -366,26 +450,6 @@
                                   { id: "edit", name: "edit", template: "<a class='k-button k-grid-edit editsa' title='View/Edit' style='min-width:16px;'><span class='k-icon k-edit'></span></a>" },
                         ], title: " ", width: "30px"
                     }],
-                //editable: "inline",
-                //save: function (e) {
-                //    console.log(this);
-                //    var json = JSON.stringify({
-                //        userId: e.model.UserId, firstName: e.model.FirstName, lastName: e.model.LastName, email: e.model.Email, role: e.model.Role, roleEntityValue: e.model.RoleKeyValue
-                //    });
-                //    $.ajax({
-                //        url: baseUrl + '/Account/UpdateUser/',
-                //        type: "POST",
-                //        data: json,
-                //        dataType: "json",
-                //        contentType: "application/json; charset=utf-8",
-                //        async: true,
-                //        success: function (response) {
-                //        },
-                //        error: function (response, errorText) {
-                //            console.log(errorText);
-                //        }
-                //    });
-                //}
             });
             @*Edit record*@
             $('#usersGrid').on('click', '.editsa', function (e) {

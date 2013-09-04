@@ -22,12 +22,13 @@ namespace MSI.CCAT.Data.Models
         public int Id { get; set; }
         public string SrNo { get; set; }
         public string Text { get; set; }
+        public string ToolTipText { get; set; }
         public Nullable<int> ModuleId { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<int> DisplayOrder { get; set; }
-        public string ToolTipText { get; set; }
+        public string Recommendation { get; set; }
     
         public virtual Tbl_QuestionModule Tbl_QuestionModule { get; set; }
         public virtual ICollection<Tbl_QuestionResponse> Tbl_QuestionResponse { get; set; }

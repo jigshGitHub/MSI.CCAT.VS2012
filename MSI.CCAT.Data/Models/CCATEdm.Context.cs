@@ -25,21 +25,16 @@ namespace MSI.CCAT.Data.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Tbl_QuestionBank> Tbl_QuestionBank { get; set; }
-        public DbSet<Tbl_QuestionModule> Tbl_QuestionModule { get; set; }
         public DbSet<Tbl_QuestionResponse> Tbl_QuestionResponse { get; set; }
         public DbSet<module> modules { get; set; }
         public DbSet<pageMenu> pageMenus { get; set; }
         public DbSet<pageMenuGroup> pageMenuGroups { get; set; }
         public DbSet<TBL_CHART> TBL_CHART { get; set; }
         public DbSet<Tbl_QuestionDeficient> Tbl_QuestionDeficient { get; set; }
-        public DbSet<aspnet_Membership> aspnet_Membership { get; set; }
         public DbSet<aspnet_Roles> aspnet_Roles { get; set; }
-        public DbSet<aspnet_Users> aspnet_Users { get; set; }
         public DbSet<Tbl_Account> Tbl_Account { get; set; }
         public DbSet<Tbl_Agency> Tbl_Agency { get; set; }
         public DbSet<Tbl_ComplaintIssues> Tbl_ComplaintIssues { get; set; }
-        public DbSet<Tbl_ComplaintMain> Tbl_ComplaintMain { get; set; }
         public DbSet<Tbl_ComplaintReceivedBy> Tbl_ComplaintReceivedBy { get; set; }
         public DbSet<Tbl_CreditIssuer> Tbl_CreditIssuer { get; set; }
         public DbSet<Tbl_DebtorContactMethods> Tbl_DebtorContactMethods { get; set; }
@@ -50,5 +45,11 @@ namespace MSI.CCAT.Data.Models
         public DbSet<Tbl_Owner> Tbl_Owner { get; set; }
         public DbSet<Tbl_OwnerResponses> Tbl_OwnerResponses { get; set; }
         public DbSet<Tbl_States> Tbl_States { get; set; }
+        public DbSet<Tbl_ComplaintMain> Tbl_ComplaintMain { get; set; }
+        public DbSet<Tbl_ModulesForRoles> Tbl_ModulesForRoles { get; set; }
+        public DbSet<Tbl_QuestionBank> Tbl_QuestionBank { get; set; }
+        public DbSet<Tbl_QuestionModule> Tbl_QuestionModule { get; set; }
+        public DbSet<aspnet_Membership> aspnet_Membership { get; set; }
+        public DbSet<aspnet_Users> aspnet_Users { get; set; }
     }
 }

@@ -54,7 +54,6 @@ namespace MSI.CCAT.Data.Models
         public Nullable<bool> DisputeDebtAmountYN { get; set; }
         public Nullable<bool> DisputeDebtDueDateYN { get; set; }
         public string AccountNumber { get; set; }
-        public int AgencyID { get; set; }
     
         public virtual Tbl_ComplaintIssues Tbl_ComplaintIssues { get; set; }
         public virtual Tbl_ComplaintReceivedBy Tbl_ComplaintReceivedBy { get; set; }
@@ -64,6 +63,5 @@ namespace MSI.CCAT.Data.Models
         public virtual Tbl_FinalActionSteps Tbl_FinalActionSteps { get; set; }
         public virtual Tbl_OwnerResponses Tbl_OwnerResponses { get; set; }
         public virtual Tbl_Account Tbl_Account { get; set; }
-        public virtual Tbl_Agency Tbl_Agency { get; set; }
     }
 }
