@@ -1,6 +1,6 @@
 ﻿<div id="clubSearch" class="container-fluid">
     <div class="row-fluid">
-        <div class='page-title'>New Complaint Requiring Action</div>
+        <div class='page-title'>Manage Users</div>
     </div>
     <br />
     <script type="text/x-kendo-template" id="template">
@@ -13,7 +13,7 @@
             <div id="usersGrid"></div>
         </div>
     </div>
-    <div id="editContainer" style="display: none" class="modal hide fade">
+    <div id="editContainer" data-bind='visible: showEditContainer' class="modal hide fade">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h3>Add/Update User:</h3>
@@ -130,7 +130,7 @@
 
 @* Document Ready *@
 <script>
-    function userViewModel(userId, userAgency, accountNumber, userRole) {
+    function userViewModel(userId) {
         var self = this;
         self.userId = userId;
         self.userName = ko.observable('')
@@ -325,6 +325,7 @@
 
         self.save = function () {
             var roleEntityValue;
+            //alert(self.firstName() + '' + self.lastName() + '' + self.email())
             if (self.firstName() == '' || self.firstName() == undefined || self.lastName() == '' || self.lastName() == undefined || self.email() == '' || self.email() == undefined) {
                 alert('First Name, Last Name and Email is required');
                 return false;
@@ -387,12 +388,19 @@
         self.clear = function () {
             self.fill('', '', '', '', '', undefined, undefined);
             self.makeAgenciesVisible(false);
+            self.makeCreditIssuersVisible(false);
+            self.makeDebtOwnersVisible(false);
+            self.makeLawFirmVivible(false);
             self.roleKeyTitle('');
+            self.agencySelected('');
+            self.creditIssuerSelected('');
+            self.lawFirmSelected('');
+            self.debtOwnerSelected('');
         }
         self.saveCancel = function () {
             self.clear();
             self.saveVisible(false);
-            self.createNewVisible(true);
+            //self.createNewVisible(true);
             $('#editContainer').modal('hide');
         }
     }
@@ -451,6 +459,8 @@
                         ], title: " ", width: "30px"
                     }],
             });
+            var uvm = new userViewModel('');
+            ko.applyBindings(uvm, $('#editContainer')[0]);
             @*Edit record*@
             $('#usersGrid').on('click', '.editsa', function (e) {
                 e.preventDefault();
@@ -458,23 +468,18 @@
                 @*Now let us clear what we have on this page*@
                 console.log(dataItem);
                 $('#editContainer').modal();
-                var uvm = new userViewModel('', '', '', '');
-                ko.applyBindings(uvm, $('#editContainer')[0]);
                 uvm.showEditContainer(true);
                 uvm.fill(dataItem.UserId, dataItem.UserName, dataItem.FirstName, dataItem.LastName, dataItem.Email, dataItem.Role, dataItem.RoleKeyValue);
                 uvm.saveVisible(true);
-                uvm.createNewVisible(false);
             });
 
             $('#usersGrid').on('click', '.k-grid-add', function (e) {
                 e.preventDefault();
                 console.log('Adding new record');
                 $('#editContainer').modal();
-                var uvm = new userViewModel('', '', '', '');
-                ko.applyBindings(uvm, $('#editContainer')[0]);
                 uvm.showEditContainer(true);
+                uvm.fill('', '', '', '', '', '', '');
                 uvm.saveVisible(true);
-                //uvm.createNewVisible(true);
             });
         });
 

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 using System.Data.SqlClient;
 using System.Data;
+using System.Web.Security;
 
 using MSI.CCAT.Data.Models;
 using MSI.CCAT.WEB.ViewModels;
@@ -16,6 +17,12 @@ namespace MSI.CCAT.WEB.Controllers
 {
     public class moduleController : Controller
     {
+        public static string UserName { get { return System.Web.HttpContext.Current.User.Identity.Name; } }
+        
+        public static string GetRoleName()
+        {
+            return Roles.GetRolesForUser(UserName)[0].ToString(); 
+        }
 
         public static IEnumerable<pageMenuGroupId_and_pageMenuId> get_myPageMenuGroupIds_and_pageMenuIds(int _appId)
         {
@@ -46,6 +53,37 @@ namespace MSI.CCAT.WEB.Controllers
             return data.AsEnumerable<pageMenuGroupId_and_pageMenuId>();
         }
 
+        public static IEnumerable<module> GetMyModules()
+        {
+            DBFactory db;
+            SqlDataReader rdr;
+            List<module> data = null;
+                        
+            try
+            {
+                db = new DBFactory("CCATDBEntities");
+                rdr = db.ExecuteReader("MSI_GetLeftSideMenu", new SqlParameter("@roleName", GetRoleName()));
+                data = new List<module>();
+                module record;
+                while (rdr.Read())
+                {
+                    record = new module();
+                    record.moduleId = Convert.ToInt32(rdr["moduleId"].ToString());
+                    record.pageMenuGroups = rdr["pageMenuGroups"].ToString();
+                    data.Add(record);
+                }
+                //Close the datareader
+                rdr.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in DataQueries.GetMyModules:" + ex.Message);
+            }
+            return data.AsEnumerable<module>();
+            
+        }
+
+
         public static List<module_and_PageMenuGroup> myModulePageMenuGroups
         {
             get
@@ -58,9 +96,11 @@ namespace MSI.CCAT.WEB.Controllers
                 List<module_and_PageMenuGroup> _module_and_PageMenuGroups = new List<module_and_PageMenuGroup>();
 
                 //Get Modules
-                ModuleRepository moduleRepository = new ModuleRepository();
-                IQueryable<module> myModules = null;
-                myModules = moduleRepository.GetAll().AsQueryable<module>();
+                //ModuleRepository moduleRepository = new ModuleRepository();
+                //IQueryable<module> myModules = null;
+                //myModules = moduleRepository.GetAll().AsQueryable<module>();
+                IEnumerable<module> myModules = GetMyModules();
+
 
                 //Get PageMenuGroups
                 PageMenuGroupRepository pageMenuGroupRepository = new PageMenuGroupRepository();

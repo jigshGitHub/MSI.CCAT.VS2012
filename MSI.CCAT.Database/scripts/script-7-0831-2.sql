@@ -52,3 +52,15 @@ INSERT [dbo].[Tbl_modulesForRoles] ([ModuleId], [RoleName]) VALUES (2, 'Collecti
 INSERT [dbo].[Tbl_modulesForRoles] ([ModuleId], [RoleName]) VALUES (2, 'CreditIssuer');
 INSERT [dbo].[Tbl_modulesForRoles] ([ModuleId], [RoleName]) VALUES (2, 'DebtOwner');
 INSERT [dbo].[Tbl_modulesForRoles] ([ModuleId], [RoleName]) VALUES (3, 'Admin');
+
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[MSI_GetLeftSideMenu]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[MSI_GetLeftSideMenu]
+GO
+
+Create  Procedure [dbo].[MSI_GetLeftSideMenu]
+@roleName varchar(50) 
+AS
+select distinct m.moduleId, m.pageMenuGroups from module m join tbl_modulesForRoles mr
+on m.moduleId = mr.ModuleId where Upper(mr.RoleName) = @roleName
+GO

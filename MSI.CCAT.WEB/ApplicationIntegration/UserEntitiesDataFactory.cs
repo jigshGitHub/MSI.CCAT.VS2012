@@ -38,7 +38,7 @@ namespace MSI.CCAT.WEB.ApplicationIntegration
                 if (!Roles.IsUserInRole(user.UserName,role))
                 {
                     if (Roles.GetRolesForUser(user.UserName).Count() > 0)
-                        Roles.RemoveUserFromRoles(user.UserName, Roles.GetAllRoles().Where(userRole => Roles.IsUserInRole(userRole)).ToArray());
+                        Roles.RemoveUserFromRoles(user.UserName, Roles.GetAllRoles().Where(userRole => Roles.IsUserInRole(user.UserName,userRole)).ToArray());
                     Roles.AddUserToRole(user.UserName, role);
                 }
             }
