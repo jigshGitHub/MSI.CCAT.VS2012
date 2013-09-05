@@ -66,21 +66,26 @@ namespace Cascade.Data.Repositories
             return debtors.AsEnumerable<MSI_Debtor>();
         }
 
-        public IEnumerable<Tbl_Account> GetAccounts(string firstOrLastName, string accountNumber, string creditorName, string accountOriginal)
+        public IEnumerable<Tbl_Account> GetAccounts(string firstOrLastName, string accountNumber, string creditorName, string accountOriginal, string userAgency)
         {
             IEnumerable<Tbl_Account> accounts = null;
             try
             {
                 IUnitOfWork uow = new UnitOfWork("CCATDBEntities");
                 accounts = uow.Repository<Tbl_Account>().GetAll();
+                if (!string.IsNullOrEmpty(userAgency))
+                {
+                    int agencyId = uow.Repository<Tbl_Agency>().GetAll().Where(a => a.Name == userAgency).SingleOrDefault().AgencyId;
+                    accounts = accounts.Where(a => a.AgencyId == agencyId);
+                }
                 if (!string.IsNullOrEmpty(firstOrLastName))
-                    return accounts.Where(record => record.FirstName == firstOrLastName || record.LastName == firstOrLastName);
+                    return accounts.Where(record => record.FirstName.ToLower().Contains(firstOrLastName.ToLower()) || record.LastName.ToLower().Contains(firstOrLastName.ToLower()));
                 if (!string.IsNullOrEmpty(accountNumber))
-                    return accounts.Where(record => record.AccountNumber == accountNumber);
+                    return accounts.Where(record => record.AccountNumber.ToLower().Contains(accountNumber.ToLower()));
                 if (!string.IsNullOrEmpty(creditorName))
-                    return accounts.Where(record => record.CreditorName == creditorName);
+                    return accounts.Where(record => record.CreditorName.ToLower().Contains(creditorName.ToLower()));
                 if (!string.IsNullOrEmpty(accountOriginal))
-                    return accounts.Where(record => record.AccountOriginal == accountOriginal);
+                    return accounts.Where(record => record.AccountOriginal.ToLower().Contains(accountOriginal.ToLower()));
 
             }
             catch (Exception ex)

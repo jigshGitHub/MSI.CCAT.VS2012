@@ -261,7 +261,7 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
 			cm.TotalResponseTimeDays
 			from MSI_ComplaintMain cm
 			inner join RAGENCY ra on ra.AGENCY_ID = cm.AgencyId
-			where cm.ComplaintSubmitedToAgencyYN = 1
+			where cm.ComplaintSubmittedToAgencyYN = 1
 			and cm.ComplaintSubmitedToAgencyDate is not null
 			";
         const string _sql_base_RCReport =

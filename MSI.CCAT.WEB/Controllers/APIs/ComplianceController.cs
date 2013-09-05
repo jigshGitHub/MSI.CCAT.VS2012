@@ -11,33 +11,33 @@ using MSI.CCAT.Data.Repositories;
 //using Cascade.Helpers;
 namespace Cascade.Web.Controllers
 {
-    public class DebtorsController : ApiController
-    {
-        public IEnumerable<MSI_Debtor> Get(string accountNumber)
-        {
-            IEnumerable<MSI_Debtor> debtors = null;
+    //public class DebtorsController : ApiController
+    //{
+    //    public IEnumerable<MSI_Debtor> Get(string accountNumber)
+    //    {
+    //        IEnumerable<MSI_Debtor> debtors = null;
 
-            try
-            {
-                DataQueries query = new DataQueries();
-                debtors = query.GetDebtors(accountNumber);
-            }
-            catch (Exception ex)
-            {
-            }
-            return debtors;
-        }
-    }
-    public class AccountssController : ApiController
+    //        try
+    //        {
+    //            DataQueries query = new DataQueries();
+    //            debtors = query.GetDebtors(accountNumber);
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //        }
+    //        return debtors;
+    //    }
+    //}
+    public class AccountsController : ApiController
     {
-        public IEnumerable<Tbl_Account> Get(string firstOrLastName="", string accountNumber="", string creditorName="", string accountOriginal="")
+        public IEnumerable<Tbl_Account> Get(string userAgency = "",string firstOrLastName="", string accountNumber="", string creditorName="", string accountOriginal="")
         {
             IEnumerable<Tbl_Account> accounts = null;
 
             try
             {
                 DataQueries query = new DataQueries();
-                accounts = query.GetAccounts(firstOrLastName, accountNumber,  creditorName, accountOriginal);
+                accounts = query.GetAccounts(firstOrLastName, accountNumber,  creditorName, accountOriginal, userAgency);
             }
             catch (Exception ex)
             {
@@ -83,7 +83,7 @@ namespace Cascade.Web.Controllers
             complaint.Tbl_Account.CreditorName = account.CreditorName;
         }
 
-        public Tbl_ComplaintMain Get(string accountNumber, string agencyId = "", string userRole = "")
+        public Tbl_ComplaintMain Get(string accountNumber, string userAgency = "", string userRole = "")
         {
             //MSI_ComplaintMainRepository repository = null;
             UnitOfWork uo = null;
@@ -91,15 +91,15 @@ namespace Cascade.Web.Controllers
             try
             {
                 //repository = new MSI_ComplaintMainRepository();
-                uo = new UnitOfWork("CascadeDBEntities");
-                IEnumerable<Tbl_ComplaintMain> data = (from existingComplaint in uo.Repository<Tbl_ComplaintMain>().GetAll().Where(record => record.Tbl_Account.AgencyId == int.Parse(agencyId) && record.AccountNumber == accountNumber)
-                                                       select existingComplaint);
+                uo = new UnitOfWork("CCATDBEntities");
 
-                if (data.Count() > 0)
+                complaint = uo.Repository<Tbl_ComplaintMain>().GetAll().Where(record => record.AccountNumber == accountNumber).FirstOrDefault();
+
+                if (complaint != null)
                 {
-                    complaint = data.First();
                     if (!string.IsNullOrEmpty(userRole))
                     {
+                        complaint.Tbl_Account = uo.Repository<Tbl_Account>().GetAll().Where(account => account.AccountNumber == accountNumber).Single();
                         //if (userRole == "user")
                         //    complaint.IsViewedByOwner = true;
                         //if (userRole == "agency")
@@ -111,14 +111,9 @@ namespace Cascade.Web.Controllers
                 else
                 {
                     complaint = new Tbl_ComplaintMain();
-                    complaint.Tbl_Account.AgencyId = int.Parse(agencyId);
+                    complaint.AccountNumber = accountNumber;
                     complaint.ComplaintDate = DateTime.Now;
-                    IEnumerable<Tbl_Account> accounts = null;
-                    DataQueries query = new DataQueries();
-                    accounts = query.GetAccounts("",accountNumber,"","");
-
-                    PopulateDebtInfo(accounts.First(), complaint);
-                    //PopulateComplaintID(complaint);
+                    complaint.Tbl_Account = uo.Repository<Tbl_Account>().GetAll().Where(account => account.AccountNumber == accountNumber).Single();
                 }
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException validationException)
@@ -139,76 +134,15 @@ namespace Cascade.Web.Controllers
             return complaint;
         }
 
-        //public MSI_ComplaintMain Get(string accountNumber, string agencyId="", string userRole="")
-        //{
-        //    //MSI_ComplaintMainRepository repository = null;
-        //    UnitOfWork uo = null;
-        //    MSI_ComplaintMain complaint = null; ;
-        //    try
-        //    {
-
-        //        //repository = new MSI_ComplaintMainRepository();
-        //        uo = new UnitOfWork("CascadeDBEntities");
-        //        IEnumerable<MSI_ComplaintMain> data = (from existingComplaint in uo.Repository<MSI_ComplaintMain>() .GetAll().Where(record => record.AgencyId == agencyId && record.Account == accountNumber)
-        //                                               select existingComplaint);
-
-        //        if (data.Count() > 0)
-        //        {
-        //            complaint = data.First();
-        //            if (!string.IsNullOrEmpty(userRole))
-        //            {
-        //                if (userRole == "user")
-        //                    complaint.IsViewedByOwner = true;
-        //                if (userRole == "agency")
-        //                    complaint.IsViewedByAgency = true;
-        //                uo.Repository<MSI_ComplaintMain>().Update(complaint);
-        //                uo.Save();
-        //            }
-        //        }
-        //        else
-        //        {
-        //            complaint = new MSI_ComplaintMain();
-        //            complaint.AgencyId = agencyId;
-        //            complaint.ComplaintDate = DateTime.Now;
-        //            IEnumerable<MSI_Debtor> debtors = null;
-        //            DataQueries query = new DataQueries();
-        //            debtors = query.GetDebtors(accountNumber);
-
-        //            PopulateDebtInfo(debtors.First(), complaint);
-        //            //PopulateComplaintID(complaint);
-        //        }
-        //    }
-        //    catch (System.Data.Entity.Validation.DbEntityValidationException validationException)
-        //    {
-        //        foreach (System.Data.Entity.Validation.DbEntityValidationResult errorResult in validationException.EntityValidationErrors)
-        //        {
-        //            foreach (System.Data.Entity.Validation.DbValidationError error in errorResult.ValidationErrors)
-        //            {
-        //                string data = error.ErrorMessage;
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //    }
-        //    return complaint;
-        //}
-
-        public MSI_ComplaintMain Post(MSI_ComplaintMain complaint)
+        public Tbl_ComplaintMain Post(Tbl_ComplaintMain complaint)
         {
-            MSI_ComplaintMain complaintToSave = null;
-            //MSI_ComplaintMainRepository repository = null;
+            Tbl_ComplaintMain complaintToSave = null;
             UnitOfWork uo = null;
             bool editingRequired = true;
             try
             {
-
-                //repository = new MSI_ComplaintMainRepository();
-                uo = new UnitOfWork("CascadeDBEntities");
-                //IEnumerable<MSI_ComplaintMain> data = (from existingComplaint in uo.Repository<MSI_ComplaintMain>().GetAll().Where(record => record.AgencyId == complaint.AgencyId && record.Account == complaint.Account)
-                //                                       select existingComplaint);
-
-                IEnumerable<MSI_ComplaintMain> data = (from existingComplaint in uo.Repository<MSI_ComplaintMain>().GetAll().Where(record => record.Account == complaint.Account)
+                uo = new UnitOfWork("CCATDBEntities");
+                IEnumerable<Tbl_ComplaintMain> data = (from existingComplaint in uo.Repository<Tbl_ComplaintMain>().GetAll().Where(record => record.AccountNumber == complaint.AccountNumber)
                                                        select existingComplaint);
 
                 if (data.Count() > 0)
@@ -218,46 +152,32 @@ namespace Cascade.Web.Controllers
                 else
                 {
                     editingRequired = false;
-                    complaintToSave = new MSI_ComplaintMain();
+                    complaintToSave = new Tbl_ComplaintMain();
                 }
 
-
-
-                complaintToSave.AgencyId = complaint.AgencyId;
-                complaintToSave.Account = complaint.Account;
-                complaintToSave.LastName = complaint.LastName;
-                complaintToSave.FirstName = complaint.FirstName;
-                complaintToSave.Address = complaint.Address;
-                complaintToSave.City = complaint.City;
-                complaintToSave.State = complaint.State;
-                complaintToSave.Zip = complaint.Zip;
-                complaintToSave.HomePhone = complaint.HomePhone;
-                complaintToSave.WorkPhone = complaint.WorkPhone;
-                complaintToSave.MobilePhone = complaint.MobilePhone;
-                complaintToSave.LastFourSSN = complaint.LastFourSSN;
+                complaint.Tbl_Account = uo.Repository<Tbl_Account>().GetAll().Where(account => account.AccountNumber == complaint.AccountNumber).Single();
+                complaintToSave.AccountNumber = complaint.AccountNumber;
                 complaintToSave.DebtorIdentityVerifiedYN = complaint.DebtorIdentityVerifiedYN;
-                complaintToSave.ContactMethodId = complaint.ContactMethodId;
-                complaintToSave.ContactTimeId = complaint.ContactTimeId;
-                complaintToSave.CreditorName = complaint.CreditorName;
-                complaintToSave.DebtProductId = complaint.DebtProductId;
-                complaintToSave.DebtPurchaseBalance = complaint.DebtPurchaseBalance;
-                complaintToSave.DebtCurrentBalance = complaint.DebtCurrentBalance;
+                complaintToSave.DebtorContactMethodId = complaint.DebtorContactMethodId;
+                complaintToSave.DebtorContactTimeId = complaint.DebtorContactTimeId;
+                //complaintToSave.CreditorName = complaint.CreditorName;
+                complaintToSave.DebtorProductId = complaint.DebtorProductId;
                 complaintToSave.DisputeDebtYN = complaint.DisputeDebtYN;
                 complaintToSave.DisputeDebtAmountYN = complaint.DisputeDebtAmountYN;
                 complaintToSave.DisputeDebtDueDateYN = complaint.DisputeDebtDueDateYN;
-                complaintToSave.ComplaintID = complaint.ComplaintID;
+                complaintToSave.ComplaintId = complaint.ComplaintId;
                 //complaintToSave.ComplaintDate = complaint.ComplaintDate;
                 //complaintToSave.ComplaintDate = complaintToSave.ComplaintDate.AddHours(DateTime.Now.Hour);
                 //complaintToSave.ComplaintDate = complaintToSave.ComplaintDate.AddMinutes(DateTime.Now.Minute);
                 //complaintToSave.ComplaintDate = complaintToSave.ComplaintDate.AddSeconds(DateTime.Now.Second);
                 //complaintToSave.ComplaintDate = complaintToSave.ComplaintDate.AddMilliseconds(DateTime.Now.Millisecond);
                 complaintToSave.ComplaintDate = DateHelper.GetDateWithTimings(complaint.ComplaintDate);
-                complaintToSave.ComplaintReceivedByMethodId = complaint.ComplaintReceivedByMethodId;
-                complaintToSave.ComplaintIssueId = complaint.ComplaintIssueId;
+                complaintToSave.ReceivedByMethodId = complaint.ReceivedByMethodId;
+                complaintToSave.IssuesId = complaint.IssuesId;
                 complaintToSave.ComplaintNotes = complaint.ComplaintNotes;
-                complaintToSave.ComplaintSubmitedToAgencyYN = complaint.ComplaintSubmitedToAgencyYN;
-                if(complaint.ComplaintSubmitedToAgencyDate.HasValue)
-                    complaintToSave.ComplaintSubmitedToAgencyDate = DateHelper.GetDateWithTimings(complaint.ComplaintSubmitedToAgencyDate.Value);
+                complaintToSave.ComplaintSubmittedToAgencyYN = complaint.ComplaintSubmittedToAgencyYN;
+                if(complaint.ComplaintSubmittedToAgencyDate.HasValue)
+                    complaintToSave.ComplaintSubmittedToAgencyDate = DateHelper.GetDateWithTimings(complaint.ComplaintSubmittedToAgencyDate.Value);
                 complaintToSave.MoreInfoReqdFromDebtorYN = complaint.MoreInfoReqdFromDebtorYN;
                 if (complaint.MoreInfoRequestedDate.HasValue)
                     complaintToSave.MoreInfoRequestedDate = DateHelper.GetDateWithTimings(complaint.MoreInfoRequestedDate.Value);
@@ -288,29 +208,29 @@ namespace Cascade.Web.Controllers
                 complaintToSave.DebtorAgreeYN = complaint.DebtorAgreeYN;
                 complaintToSave.NeedFurtherActionYN = complaint.NeedFurtherActionYN;
                 complaintToSave.FinalActionStepId = complaint.FinalActionStepId;
-                if (complaint.ComplaintSubmittedToOwnerYN.Value)
-                    complaintToSave.IsViewedByOwner = false;
-                complaintToSave.CreatedBy = complaint.CreatedBy;
-                complaintToSave.IsViewedByAgency = complaint.IsViewedByAgency;
+                //if (complaint.ComplaintSubmittedToOwnerYN.Value)
+                //    complaintToSave.IsViewedByOwner = false;
+                //complaintToSave.CreatedBy = complaint.CreatedBy;
+                //complaintToSave.IsViewedByAgency = complaint.IsViewedByAgency;
 
                 if (editingRequired)
                 {
                     if(complaintToSave.ComplaintSubmittedDate.HasValue && complaintToSave.ComplaintDate != null)
-                        complaintToSave.TimeToSubmitDays = complaintToSave.ComplaintSubmittedDate.Value.Subtract(complaintToSave.ComplaintDate).Days;
+                        complaintToSave.TimeToSubmitDays = complaintToSave.ComplaintSubmittedDate.Value.Subtract(complaintToSave.ComplaintDate.Value).Days;
                     if (complaintToSave.OwnerResponseDate.HasValue && complaintToSave.ComplaintSubmittedDate.HasValue)
                         complaintToSave.OwnerResponseDays = complaintToSave.OwnerResponseDate.Value.Subtract(complaintToSave.ComplaintSubmittedDate.Value).Days;
                     if (complaintToSave.AgencyResponseToDebtorDate.HasValue && complaintToSave.ComplaintDate != null)
-                        complaintToSave.TotalResponseTimeDays = complaintToSave.AgencyResponseToDebtorDate.Value.Subtract(complaintToSave.ComplaintDate).Days;
+                        complaintToSave.TotalResponseTimeDays = complaintToSave.AgencyResponseToDebtorDate.Value.Subtract(complaintToSave.ComplaintDate.Value).Days;
                     //repository.Update(complaintToSave);
-                    uo.Repository<MSI_ComplaintMain>().Update(complaintToSave);
+                    uo.Repository<Tbl_ComplaintMain>().Update(complaintToSave);
                     uo.Save();
                 }
                 else
                 {
                     //complaintToSave.ComplaintSubmitedToAgency = true;
-                    //complaintToSave.ComplaintSubmitedToAgencyDate = DateTime.Now;
+                    //complaintToSave.ComplaintSubmittedToAgencyDate = DateTime.Now;
                     //repository.Add(complaintToSave);
-                    uo.Repository<MSI_ComplaintMain>().Add(complaintToSave);
+                    uo.Repository<Tbl_ComplaintMain>().Add(complaintToSave);
                     uo.Save();
                 }
                 
@@ -332,24 +252,27 @@ namespace Cascade.Web.Controllers
             return complaintToSave;
         }
 
-        private void PopulateComplaintID(MSI_ComplaintMain complaint)
+        private void PopulateComplaintID(Tbl_ComplaintMain complaint)
         {
-            if (string.IsNullOrEmpty(complaint.ComplaintID))
+            if (string.IsNullOrEmpty(complaint.ComplaintId.ToString()))
             {
                 Random rnd = new Random();
 
-                complaint.ComplaintID = complaint.AgencyId + "-" + complaint.Account.Substring(5, 10) + "-" + rnd.Next(101, 999).ToString();
+                complaint.ComplaintId = complaint.Tbl_Account.AgencyId + "-" + complaint.AccountNumber.Substring(5, 10) + "-" + rnd.Next(101, 999).ToString();
             }
         }
     }
     public class DateHelper
     {
-        public static DateTime GetDateWithTimings(DateTime dt)
+        public static DateTime? GetDateWithTimings(DateTime? dt)
         {
-            dt = dt.AddHours(DateTime.Now.Hour);
-            dt = dt.AddMinutes(DateTime.Now.Minute);
-            dt = dt.AddSeconds(DateTime.Now.Second);
-            dt = dt.AddMilliseconds(DateTime.Now.Millisecond);
+            if (dt.HasValue)
+            {
+                dt = dt.Value.AddHours(DateTime.Now.Hour);
+                dt = dt.Value.AddMinutes(DateTime.Now.Minute);
+                dt = dt.Value.AddSeconds(DateTime.Now.Second);
+                dt = dt.Value.AddMilliseconds(DateTime.Now.Millisecond);
+            }
             return dt;
         }
     }

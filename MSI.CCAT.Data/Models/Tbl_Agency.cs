@@ -37,7 +37,7 @@ namespace MSI.CCAT.Data.Models
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public string CreatedBy { get; set; }
     
-        public virtual ICollection<Tbl_Account> Tbl_Account { get; set; }
+        internal ICollection<Tbl_Account> Tbl_Account { get; private set; }
         public virtual Tbl_Owner Tbl_Owner { get; set; }
         public virtual Tbl_States Tbl_States { get; set; }
     }

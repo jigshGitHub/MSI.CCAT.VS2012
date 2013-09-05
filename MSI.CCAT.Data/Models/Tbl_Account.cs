@@ -48,6 +48,6 @@ namespace MSI.CCAT.Data.Models
         public virtual Tbl_LawFirm Tbl_LawFirm { get; set; }
         public virtual Tbl_Owner Tbl_Owner { get; set; }
         public virtual Tbl_States Tbl_States { get; set; }
-        public virtual ICollection<Tbl_ComplaintMain> Tbl_ComplaintMain { get; set; }
+        internal virtual ICollection<Tbl_ComplaintMain> Tbl_ComplaintMain { get; private set; }
     }
 }

@@ -14,7 +14,7 @@ namespace MSI.CCAT.Data.Models
     
     public partial class Tbl_ComplaintMain
     {
-        public int ComplaintId { get; set; }
+        public string ComplaintId { get; set; }
         public Nullable<System.DateTime> ComplaintDate { get; set; }
         public Nullable<int> ReceivedByMethodId { get; set; }
         public Nullable<int> IssuesId { get; set; }
@@ -55,6 +55,7 @@ namespace MSI.CCAT.Data.Models
         public Nullable<bool> DisputeDebtDueDateYN { get; set; }
         public string AccountNumber { get; set; }
     
+        public virtual Tbl_Account Tbl_Account { get; set; }
         public virtual Tbl_ComplaintIssues Tbl_ComplaintIssues { get; set; }
         public virtual Tbl_ComplaintReceivedBy Tbl_ComplaintReceivedBy { get; set; }
         public virtual Tbl_DebtorContactMethods Tbl_DebtorContactMethods { get; set; }
@@ -62,6 +63,5 @@ namespace MSI.CCAT.Data.Models
         public virtual Tbl_DebtorProducts Tbl_DebtorProducts { get; set; }
         public virtual Tbl_FinalActionSteps Tbl_FinalActionSteps { get; set; }
         public virtual Tbl_OwnerResponses Tbl_OwnerResponses { get; set; }
-        public virtual Tbl_Account Tbl_Account { get; set; }
     }
 }

@@ -19,8 +19,6 @@ namespace Cascade.Web.Controllers
             UnitOfWork uo;
             switch (id)
             {
-                
-
                 case "Agencies":
                     uo = new UnitOfWork("CCATDBEntities");
                     lookupData = from agency in uo.Repository<Tbl_Agency>().GetAll()
@@ -64,7 +62,7 @@ namespace Cascade.Web.Controllers
                 case "USStates":
                     uo = new UnitOfWork("CCATDBEntities");
                     lookupData = from state in uo.Repository<Tbl_States>().GetAll()
-                                 select new LookUp(state.Name, state.Value);
+                                 select new LookUp(state.Name, state.Id.ToString());
                     break;
                 case "CreditIssuers":
                     uo = new UnitOfWork("CCATDBEntities");
