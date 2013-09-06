@@ -132,7 +132,7 @@
                             <td style="text-align: center; width: 1%">:
                             </td>
                             <td style="text-align: left;" colspan="4">
-                                <select data-bind="options: $parent.agencies, optionsValue: 'Value', optionsCaption: ' ', optionsText: 'Text', value: agency, disable: $parent.agenciesDisable">
+                                <select id="listAgencies" data-bind="options: $parent.agencies, optionsValue: 'Value', optionsCaption: ' ', optionsText: 'Text', value: agency, disable: $parent.agenciesDisable">
                                 </select>*
                             </td>
                         </tr>
@@ -223,8 +223,9 @@
                             <td style="text-align: center; width: 1%">:
                             </td>
                             <td style="text-align: left; width: 20%">
-                                <select data-bind="options: $parent.stateOptions, optionsValue: 'Value', optionsText: 'Text', optionsCaption: ' ', value: state">
+                                <select id="listStates" data-bind="options: $parent.stateOptions, optionsValue: 'Value', optionsText: 'Text', optionsCaption: '', value: state">
                                 </select>
+                                
                             <td style="text-align: right; width: 20%">Debt Product
                             </td>
                             <td style="text-align: center; width: 1%">:
@@ -644,6 +645,8 @@
     function pageViewModel(userId, userAgency, userRole) {
         console.log(userId + ',' + userAgency + ',' + userRole);
         var self = this;
+        if (userRole == 'DebtOwner')
+            userAgency = '';
         self.complianceModel = new complianceVM(userId, userAgency);
         self.accountNumber = ko.observable('');
         self.firstOrLastName = ko.observable('');
@@ -654,9 +657,10 @@
 
         self.getComplaint = function (account) {
             function setComplaint(data) {
-                self.complianceModel.populateCompliance(data.Tbl_Account.AccountNumber, data.Tbl_Account.FirstName, data.Tbl_Account.LastName, '', data.Tbl_Account.Address, data.Tbl_Account.City, data.Tbl_Account.StateId, data.Tbl_Account.Zip, data.Tbl_Account.LastFourSSN, data.Tbl_Account.MobilePhone, data.Tbl_Account.HomePhone, data.Tbl_Account.WorkPhone, data.DebtorIdentityVerifiedYN, data.DebtorContactMethodId, data.DebtorContactTimeId, data.Tbl_Account.DebtCurrentBalance, data.Tbl_Account.DebtPurchaseBalance, data.Tbl_Account.CreditorName, data.DebtorProductId, data.DisputeDebtYN, data.DisputeDebtAmountYN, data.DisputeDebtDueDateYN, data.ComplaintId, data.ComplaintDate, data.ReceivedByMethodId, data.IssuesId, data.ComplaintNotes, data.ComplaintSubmittedToAgencyYN, data.ComplaintSubmittedToAgencyDate, data.MoreInfoReqdFromDebtorYN, data.MoreInfoRequestedDate, data.MoreInfoRequested, data.MoreInfoReceivedFromDebtorYN, data.MoreInfoReceivedDate, data.MoreInfoReceived, data.ComplaintSubmittedToOwnerYN, data.ComplaintSubmittedDate, data.TimeToSubmitDays, data.MoreInfoFromAgencyYN, data.MoreInfoFromAgencyRequestedDate, data.MoreInfoFromAgencyRequested, data.MoreInfoFromAgencyReceived, data.MoreInfoFromAgencyReceivedYN, data.MoreInfoFromAgencyReceivedDate, data.OwnerResponseId, data.OwnerResponseDate, data.OwnerResponseDays, data.AgencyResponseToDebtorDate, data.TotalResponseTimeDays, data.DebtorAgreeYN, data.NeedFurtherActionYN, data.FinalActionStepId, data.CreatedBy, null, null);
-                if (data.ComplaintId != '' || data.ComplaintId != undefined)
+                self.complianceModel.populateCompliance(data.Tbl_Account.Tbl_Agency.Name,data.Tbl_Account.AccountNumber, data.Tbl_Account.FirstName, data.Tbl_Account.LastName, '', data.Tbl_Account.Address, data.Tbl_Account.City, data.Tbl_Account.StateId, data.Tbl_Account.Zip, data.Tbl_Account.LastFourSSN, data.Tbl_Account.MobilePhone, data.Tbl_Account.HomePhone, data.Tbl_Account.WorkPhone, data.DebtorIdentityVerifiedYN, data.DebtorContactMethodId, data.DebtorContactTimeId, data.Tbl_Account.DebtCurrentBalance, data.Tbl_Account.DebtPurchaseBalance, data.Tbl_Account.CreditorName, data.DebtorProductId, data.DisputeDebtYN, data.DisputeDebtAmountYN, data.DisputeDebtDueDateYN, data.ComplaintId, data.ComplaintDate, data.ReceivedByMethodId, data.IssuesId, data.ComplaintNotes, data.ComplaintSubmittedToAgencyYN, data.ComplaintSubmittedToAgencyDate, data.MoreInfoReqdFromDebtorYN, data.MoreInfoRequestedDate, data.MoreInfoRequested, data.MoreInfoReceivedFromDebtorYN, data.MoreInfoReceivedDate, data.MoreInfoReceived, data.ComplaintSubmittedToOwnerYN, data.ComplaintSubmittedDate, data.TimeToSubmitDays, data.MoreInfoFromAgencyYN, data.MoreInfoFromAgencyRequestedDate, data.MoreInfoFromAgencyRequested, data.MoreInfoFromAgencyReceived, data.MoreInfoFromAgencyReceivedYN, data.MoreInfoFromAgencyReceivedDate, data.OwnerResponseId, data.OwnerResponseDate, data.OwnerResponseDays, data.AgencyResponseToDebtorDate, data.TotalResponseTimeDays, data.DebtorAgreeYN, data.NeedFurtherActionYN, data.FinalActionStepId, data.CreatedBy, null, null);
+                if (data.ComplaintId != null) {
                     self.complianceModel.complaintID(data.ComplaintId);
+                }
                 else
                     self.complianceModel.complaintID(self.createComplaintId());
             };
@@ -664,7 +668,7 @@
             $.ajax({
                 url: baseUrl + '/api/Compliance/',
                 type: "GET",
-                data: { accountNumber: self.accountNumber(), userAgency: self.complianceModel.agency(),userRole:self.userRole() },
+                data: { accountNumber: account, userAgency: userAgency, userRole: self.userRole() },
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 async: false,
@@ -688,6 +692,7 @@
             //self.saveVisible(true);
         };
         self.createComplaintId = function () {
+            console.log('createComplaintId');
             if (self.complianceModel.account() != '' && self.complianceModel.account() != undefined && self.complianceModel.agency() != '' & self.complianceModel.agency() != undefined) {
                 var randonNumber = Math.floor((Math.random() * 999) + 101);
                 return self.complianceModel.agency() + '-' + self.complianceModel.account().substring(5, 10) + '-' + randonNumber;
@@ -695,7 +700,7 @@
             else
                 return '';
         }
-        self.agenciesDisable = ko.computed(function () { return (self.userRole() == 'CollectionAgency' || self.accountNumber() == '' || self.accountNumber() == undefined) ? true : false }, self);
+        self.agenciesDisable = ko.computed(function () { return (self.userRole() == 'CollectionAgency') ? true : false }, self);
         self.agencies = ko.computed(function () {
             var localAgencies = [];
             $.ajax({
@@ -934,14 +939,14 @@
         }, self);
 
 
-        self.complianceModel.agency.subscribe(function (agencySelected) {
-            if (self.accountNumber()) {
-                console.log('agency subscribe');
-                self.getComplaint(self.accountNumber());
-                //self.complianceModel.complaintID(self.createComplaintId());
-            }
+        //self.complianceModel.agency.subscribe(function (agencySelected) {
+        //    if (self.accountNumber()) {
+        //        console.log('agency subscribe');
+        //        self.getComplaint(self.accountNumber());
+        //        //self.complianceModel.complaintID(self.createComplaintId());
+        //    }
 
-        }.bind(self));
+        //}.bind(self));
 
         self.resetSearchCriteria = function () {
             self.accountNumber('');
@@ -956,7 +961,7 @@
                     url: baseUrl + '/api/Accounts/',
                     type: 'GET',
                     contentType: 'application/json',
-                    data: { userAgency:self.complianceModel.agency(), firstOrLastName: self.firstOrLastName, accountNumber: self.accountNumber(), creditorName: self.creditorName(), accountOriginal: self.originalAccountNumber() },
+                    data: { userAgency: userAgency, firstOrLastName: self.firstOrLastName, accountNumber: self.accountNumber(), creditorName: self.creditorName(), accountOriginal: self.originalAccountNumber() },
                     dataType: 'json',
                     async: true,
                     success: function (data) {
@@ -1018,7 +1023,7 @@
             else {
                 self.showMessage(true);
                 self.message('Data saved successfully!');
-                self.complianceModel.save();
+                self.complianceModel.save(self.userRole());
 
                 if (self.complianceModel.complaintinfoDocumentChecked() == true || self.complianceModel.debtOwnerProcessDocumentChecked() == true) {
                     $('#fileUploadContainer').dialog('open');
@@ -1105,6 +1110,9 @@
         $('#ownerResponseDate').datepicker({ dateFormat: 'mm/dd/yy' });
 
         $('#agencyResponseToDebtorDate').datepicker();
+
+        //$("#listAgencies").kendoDropDownList();
+        //$('#listStates').kendoDropDownList();
     });
 
 

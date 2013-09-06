@@ -45,11 +45,12 @@ namespace MSI.CCAT.Data.Models
         public DbSet<Tbl_Owner> Tbl_Owner { get; set; }
         public DbSet<Tbl_OwnerResponses> Tbl_OwnerResponses { get; set; }
         public DbSet<Tbl_States> Tbl_States { get; set; }
-        public DbSet<Tbl_ComplaintMain> Tbl_ComplaintMain { get; set; }
         public DbSet<Tbl_ModulesForRoles> Tbl_ModulesForRoles { get; set; }
         public DbSet<Tbl_QuestionBank> Tbl_QuestionBank { get; set; }
         public DbSet<Tbl_QuestionModule> Tbl_QuestionModule { get; set; }
         public DbSet<aspnet_Membership> aspnet_Membership { get; set; }
         public DbSet<aspnet_Users> aspnet_Users { get; set; }
+        public DbSet<Tbl_ComplaintMain> Tbl_ComplaintMain { get; set; }
+        public DbSet<Tbl_ComplaintStatus> Tbl_ComplaintStatus { get; set; }
     }
 }

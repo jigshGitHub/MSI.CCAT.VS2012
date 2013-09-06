@@ -94,18 +94,17 @@ namespace Cascade.Web.Controllers
                 uo = new UnitOfWork("CCATDBEntities");
 
                 complaint = uo.Repository<Tbl_ComplaintMain>().GetAll().Where(record => record.AccountNumber == accountNumber).FirstOrDefault();
-
+                        
                 if (complaint != null)
                 {
                     if (!string.IsNullOrEmpty(userRole))
                     {
-                        complaint.Tbl_Account = uo.Repository<Tbl_Account>().GetAll().Where(account => account.AccountNumber == accountNumber).Single();
-                        //if (userRole == "user")
-                        //    complaint.IsViewedByOwner = true;
-                        //if (userRole == "agency")
-                        //    complaint.IsViewedByAgency = true;
-                        //uo.Repository<MSI_ComplaintMain>().Update(complaint);
-                        //uo.Save();
+                        if (userRole == UserRoles.DebtOwner.ToString())
+                            complaint.IsViewedByOwner = true;
+                        if (userRole == UserRoles.CollectionAgency.ToString())
+                            complaint.IsViewedByAgency = true;
+                        uo.Repository<Tbl_ComplaintMain>().Update(complaint);
+                        uo.Save();
                     }
                 }
                 else
@@ -113,8 +112,9 @@ namespace Cascade.Web.Controllers
                     complaint = new Tbl_ComplaintMain();
                     complaint.AccountNumber = accountNumber;
                     complaint.ComplaintDate = DateTime.Now;
-                    complaint.Tbl_Account = uo.Repository<Tbl_Account>().GetAll().Where(account => account.AccountNumber == accountNumber).Single();
                 }
+                complaint.Tbl_Account = uo.Repository<Tbl_Account>().GetAll().Where(account => account.AccountNumber == accountNumber).Single();
+                complaint.Tbl_Account.Tbl_Agency = uo.Repository<Tbl_Agency>().GetById(complaint.Tbl_Account.AgencyId.Value);
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException validationException)
             {
@@ -156,6 +156,7 @@ namespace Cascade.Web.Controllers
                 }
 
                 complaint.Tbl_Account = uo.Repository<Tbl_Account>().GetAll().Where(account => account.AccountNumber == complaint.AccountNumber).Single();
+                complaint.Tbl_Account.Tbl_Agency = uo.Repository<Tbl_Agency>().GetById(complaint.Tbl_Account.AgencyId.Value);
                 complaintToSave.AccountNumber = complaint.AccountNumber;
                 complaintToSave.DebtorIdentityVerifiedYN = complaint.DebtorIdentityVerifiedYN;
                 complaintToSave.DebtorContactMethodId = complaint.DebtorContactMethodId;
@@ -213,6 +214,7 @@ namespace Cascade.Web.Controllers
                 //complaintToSave.CreatedBy = complaint.CreatedBy;
                 //complaintToSave.IsViewedByAgency = complaint.IsViewedByAgency;
 
+                
                 if (editingRequired)
                 {
                     if(complaintToSave.ComplaintSubmittedDate.HasValue && complaintToSave.ComplaintDate != null)

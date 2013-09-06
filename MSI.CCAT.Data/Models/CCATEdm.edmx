@@ -18,6 +18,7 @@
           <EntitySet Name="Tbl_ComplaintIssues" EntityType="CCATDBModel.Store.Tbl_ComplaintIssues" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_ComplaintMain" EntityType="CCATDBModel.Store.Tbl_ComplaintMain" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_ComplaintReceivedBy" EntityType="CCATDBModel.Store.Tbl_ComplaintReceivedBy" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_ComplaintStatus" EntityType="CCATDBModel.Store.Tbl_ComplaintStatus" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_CreditIssuer" EntityType="CCATDBModel.Store.Tbl_CreditIssuer" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_DebtorContactMethods" EntityType="CCATDBModel.Store.Tbl_DebtorContactMethods" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_DebtorContactTime" EntityType="CCATDBModel.Store.Tbl_DebtorContactTime" store:Type="Tables" Schema="dbo" />
@@ -74,6 +75,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_ComplaintReceivedBy" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_Tbl_ComplaintReceivedBy">
             <End Role="Tbl_ComplaintReceivedBy" EntitySet="Tbl_ComplaintReceivedBy" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_ComplaintStatus" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_Tbl_ComplaintStatus">
+            <End Role="Tbl_ComplaintStatus" EntitySet="Tbl_ComplaintStatus" />
             <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
           </AssociationSet>
           <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_DebtorContactMethods" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_Tbl_DebtorContactMethods">
@@ -341,6 +346,9 @@
           <Property Name="DisputeDebtAmountYN" Type="bit" />
           <Property Name="DisputeDebtDueDateYN" Type="bit" />
           <Property Name="AccountNumber" Type="varchar" MaxLength="25" />
+          <Property Name="ComplaintStatusId" Type="int" />
+          <Property Name="IsViewedByOwner" Type="bit" />
+          <Property Name="IsViewedByAgency" Type="bit" />
         </EntityType>
         <EntityType Name="Tbl_ComplaintReceivedBy">
           <Key>
@@ -348,6 +356,14 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Media" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_ComplaintStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Meaning" Type="nchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Tbl_CreditIssuer">
           <Key>
@@ -652,6 +668,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Tbl_ComplaintMain_Tbl_ComplaintStatus">
+          <End Role="Tbl_ComplaintStatus" Type="CCATDBModel.Store.Tbl_ComplaintStatus" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_ComplaintStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="ComplaintStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tbl_ComplaintMain_Tbl_DebtorContactMethods">
           <End Role="Tbl_DebtorContactMethods" Type="CCATDBModel.Store.Tbl_DebtorContactMethods" Multiplicity="0..1" />
           <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
@@ -917,6 +945,11 @@
           </AssociationSet>
           <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_OwnerResponses" Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_OwnerResponses">
             <End Role="Tbl_OwnerResponses" EntitySet="Tbl_OwnerResponses" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <EntitySet Name="Tbl_ComplaintStatus" EntityType="CCATDBModel.Tbl_ComplaintStatus" />
+          <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_ComplaintStatus" Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_ComplaintStatus">
+            <End Role="Tbl_ComplaintStatus" EntitySet="Tbl_ComplaintStatus" />
             <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
           </AssociationSet>
           </EntityContainer>
@@ -1540,6 +1573,10 @@
           <NavigationProperty Name="Tbl_DebtorProducts" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_DebtorProducts" FromRole="Tbl_ComplaintMain" ToRole="Tbl_DebtorProducts" />
           <NavigationProperty Name="Tbl_FinalActionSteps" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_FinalActionSteps" FromRole="Tbl_ComplaintMain" ToRole="Tbl_FinalActionSteps" />
           <NavigationProperty Name="Tbl_OwnerResponses" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_OwnerResponses" FromRole="Tbl_ComplaintMain" ToRole="Tbl_OwnerResponses" />
+          <Property Type="Int32" Name="ComplaintStatusId" />
+          <Property Type="Boolean" Name="IsViewedByOwner" />
+          <Property Type="Boolean" Name="IsViewedByAgency" />
+          <NavigationProperty Name="Tbl_ComplaintStatus" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_ComplaintStatus" FromRole="Tbl_ComplaintMain" ToRole="Tbl_ComplaintStatus" />
         </EntityType>
         <Association Name="FK_Tbl_ComplaintMain_Tbl_Account">
           <End Type="CCATDBModel.Tbl_Account" Role="Tbl_Account" Multiplicity="0..1" />
@@ -1634,6 +1671,27 @@
             </Principal>
             <Dependent Role="Tbl_ComplaintMain">
               <PropertyRef Name="OwnerResponseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Tbl_ComplaintStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Value" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="Meaning" MaxLength="100" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_ComplaintStatus" FromRole="Tbl_ComplaintStatus" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <Association Name="FK_Tbl_ComplaintMain_Tbl_ComplaintStatus">
+          <End Type="CCATDBModel.Tbl_ComplaintStatus" Role="Tbl_ComplaintStatus" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_ComplaintStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="ComplaintStatusId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2020,6 +2078,9 @@
           <EntitySetMapping Name="Tbl_ComplaintMain">
             <EntityTypeMapping TypeName="CCATDBModel.Tbl_ComplaintMain">
               <MappingFragment StoreEntitySet="Tbl_ComplaintMain">
+                <ScalarProperty Name="IsViewedByAgency" ColumnName="IsViewedByAgency" />
+                <ScalarProperty Name="IsViewedByOwner" ColumnName="IsViewedByOwner" />
+                <ScalarProperty Name="ComplaintStatusId" ColumnName="ComplaintStatusId" />
                 <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
                 <ScalarProperty Name="DisputeDebtDueDateYN" ColumnName="DisputeDebtDueDateYN" />
                 <ScalarProperty Name="DisputeDebtAmountYN" ColumnName="DisputeDebtAmountYN" />
@@ -2060,6 +2121,15 @@
                 <ScalarProperty Name="ReceivedByMethodId" ColumnName="ReceivedByMethodId" />
                 <ScalarProperty Name="ComplaintDate" ColumnName="ComplaintDate" />
                 <ScalarProperty Name="ComplaintId" ColumnName="ComplaintId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_ComplaintStatus">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_ComplaintStatus">
+              <MappingFragment StoreEntitySet="Tbl_ComplaintStatus">
+                <ScalarProperty Name="Meaning" ColumnName="Meaning" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -151,6 +151,9 @@
     <Compile Include="Models\Tbl_ComplaintReceivedBy.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Tbl_ComplaintStatus.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tbl_CreditIssuer.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>

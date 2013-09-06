@@ -17,4 +17,22 @@ namespace Cascade.Data.Models
             Value = value;
         }
     }
+
+    public enum UserRoles
+    {
+        Admin,
+        CollectionAgency,
+        CollectionLawfirm,
+        CreditIssuer,
+        DebtOwner,
+    }
+    public enum ComplaintStatus
+    {
+        NCRA=1,
+        NCIP,
+        AAI,
+        SFOA,
+        ORIP,
+        RC
+    }
 }

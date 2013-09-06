@@ -62,8 +62,7 @@
                     <td>:
                     </td>
                     <td>
-                        <select data-bind="options: roles, optionsValue: 'value', optionsCaption: ' ', optionsText: 'text', value: role">
-                        </select>
+                        <select data-bind="kendoDropDownList: { dataTextField: 'text', optionsCaption: ' ', dataValueField: 'value', data: roles, value: role }"/>
                     </td>
                 </tr>
                 <tr data-bind="visible: makeAgenciesVisible">
@@ -71,8 +70,7 @@
                     <td>:
                     </td>
                     <td>
-                        <select data-bind="options: agencies, optionsValue: 'Value', optionsCaption: ' ', optionsText: 'Text', value: agencySelected">
-                        </select>
+                        <select data-bind="kendoDropDownList: { dataTextField: 'Text', optionsCaption: ' ', dataValueField: 'Value', data: agencies, value: agencySelected }"/>
                     </td>
                 </tr>
                 <tr data-bind="visible: makeLawFirmVivible">
@@ -80,8 +78,7 @@
                     <td>:
                     </td>
                     <td>
-                        <select data-bind="options: lawFirms, optionsValue: 'Value', optionsCaption: ' ', optionsText: 'Text', value: lawFirmSelected">
-                        </select>
+                        <select data-bind="kendoDropDownList: { dataTextField: 'Text', optionsCaption: ' ', dataValueField: 'Value', data: lawFirms, value: lawFirmSelected }"/>
                     </td>
                 </tr>
                  <tr data-bind="visible: makeCreditIssuersVisible">
@@ -89,8 +86,7 @@
                     <td>:
                     </td>
                     <td>
-                        <select data-bind="options: creditIssuers, optionsValue: 'Value', optionsCaption: ' ', optionsText: 'Text', value: creditIssuerSelected">
-                        </select>
+                        <select data-bind="kendoDropDownList: { dataTextField: 'Text', optionsCaption: ' ', dataValueField: 'Value', data: creditIssuers, value: creditIssuerSelected }"/>
                     </td>
                 </tr>
                  <tr data-bind="visible: makeDebtOwnersVisible">
@@ -98,8 +94,7 @@
                     <td>:
                     </td>
                     <td>
-                        <select data-bind="options: debtOwners, optionsValue: 'Value', optionsCaption: ' ', optionsText: 'Text', value: debtOwnerSelected">
-                        </select>
+                        <select data-bind="kendoDropDownList: { dataTextField: 'Text', optionsCaption: ' ', dataValueField: 'Value', data: debtOwners, value: debtOwnerSelected }"/>
                     </td>
                 </tr>
                 <tr>
@@ -419,28 +414,28 @@
     $(document).ready(function () {
         $(document).ready(function () {
             var dataSource = new kendo.data.DataSource({
-                    transport: {
-                        read: {
-                            url: baseUrl + '/Account/GetAllUsers',
-                            dataType: "json"
-                        }
-                    },
-                    batch: true,
-                    pageSize: 10,
-                    schema: {
-                        model: {
-                            id: "UserId",
-                            fields: {
-                                FirstName: { type: "string", validation: { required: true } },
-                                LastName: { type: "string", validation: { required: true } },
-                                Email: { validation: { required: true } },
-                                UserName: { type: "string", validation: { required: true }, editable: false },
-                                Role: { type: "string" },
-                                RoleKeyValue: { type: "string" }
-                            }
+                transport: {
+                    read: {
+                        url: baseUrl + '/Account/GetAllUsers',
+                        dataType: "json"
+                    }
+                },
+                batch: true,
+                pageSize: 10,
+                schema: {
+                    model: {
+                        id: "UserId",
+                        fields: {
+                            FirstName: { type: "string", validation: { required: true } },
+                            LastName: { type: "string", validation: { required: true } },
+                            Email: { validation: { required: true } },
+                            UserName: { type: "string", validation: { required: true }, editable: false },
+                            Role: { type: "string" },
+                            RoleKeyValue: { type: "string" }
                         }
                     }
-                });
+                }
+            });
 
             $("#usersGrid").kendoGrid({
                 dataSource: dataSource,

@@ -54,6 +54,8 @@
         <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_DebtorProducts" />
         <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_FinalActionSteps" />
         <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_OwnerResponses" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_ComplaintStatus" Width="1.5" PointX="0.79626858644013687" PointY="24.64709776297542" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_ComplaintStatus" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

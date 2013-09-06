@@ -11,14 +11,14 @@ namespace MSI.CCAT.Data.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Tbl_Agency
     {
         public Tbl_Agency()
         {
             this.Tbl_Account = new HashSet<Tbl_Account>();
         }
-    
+
         public int AgencyId { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public string City { get; set; }
@@ -36,7 +36,7 @@ namespace MSI.CCAT.Data.Models
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public string CreatedBy { get; set; }
-    
+
         internal ICollection<Tbl_Account> Tbl_Account { get; private set; }
         public virtual Tbl_Owner Tbl_Owner { get; set; }
         public virtual Tbl_States Tbl_States { get; set; }
