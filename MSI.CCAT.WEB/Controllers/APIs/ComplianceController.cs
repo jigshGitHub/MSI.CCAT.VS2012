@@ -321,7 +321,9 @@ namespace Cascade.Web.Controllers
                 #region NCIP
 
                 if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.NCRA
-                    && complaintToAnalize.DebtorIdentityVerifiedYN.Value == true)
+                    && complaintToAnalize.DebtorIdentityVerifiedYN.Value == true
+                    && complaintToAnalize.MoreInfoReqdFromDebtorYN.Value == false
+                    && complaintToAnalize.MoreInfoRequestedDate.HasValue == false)
                     complaintStatus = ComplaintStatus.NCIP;
                 if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.AAI
                     && complaintToAnalize.MoreInfoReceivedFromDebtorYN.Value == true
@@ -338,10 +340,19 @@ namespace Cascade.Web.Controllers
 
                 #region AAI
 
+                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.NCRA
+                    && complaintToAnalize.DebtorIdentityVerifiedYN.Value == true
+                    && complaintToAnalize.MoreInfoReqdFromDebtorYN.Value == true
+                    && complaintToAnalize.MoreInfoRequestedDate.HasValue == true
+                    && !string.IsNullOrEmpty(complaintToAnalize.MoreInfoRequested))
+                    complaintStatus = ComplaintStatus.AAI;
+
                 if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.NCIP
                     && complaintToAnalize.MoreInfoReqdFromDebtorYN.Value == true
                     && complaintToAnalize.MoreInfoRequestedDate.HasValue == true
-                    && complaintToAnalize.MoreInfoRequested.Length > 0)
+                    && (!string.IsNullOrEmpty(complaintToAnalize.MoreInfoRequested)
+                    && complaintToAnalize.ComplaintSubmittedToOwnerYN.Value == false
+                    && complaintToAnalize.ComplaintSubmittedDate.HasValue == false))
                     complaintStatus = ComplaintStatus.AAI;
 
                 #endregion
@@ -408,10 +419,33 @@ namespace Cascade.Web.Controllers
 
                 #region AAI
 
-                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.NCIP
+                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.ORIP
                     && complaintToAnalize.MoreInfoReqdFromDebtorYN.Value == true
                     && complaintToAnalize.MoreInfoRequestedDate.HasValue == true
-                    && complaintToAnalize.MoreInfoRequested.Length > 0)
+                    && (!string.IsNullOrEmpty(complaintToAnalize.MoreInfoRequested))
+                    && complaintToAnalize.MoreInfoFromAgencyYN.Value == false
+                    && complaintToAnalize.MoreInfoFromAgencyRequestedDate.HasValue == false)
+                    complaintStatus = ComplaintStatus.AAI;
+
+                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.ORIP
+                    && complaintToAnalize.MoreInfoFromAgencyYN.Value == true
+                    && complaintToAnalize.MoreInfoFromAgencyRequestedDate.HasValue == true
+                    && (!string.IsNullOrEmpty(complaintToAnalize.MoreInfoFromAgencyRequested)))
+                    complaintStatus = ComplaintStatus.AAI;
+
+                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.ORIP
+                    && presentComplaint.MoreInfoReqdFromDebtorYN.Value == true
+                    && presentComplaint.MoreInfoRequestedDate.HasValue == true
+                    && complaintToAnalize.MoreInfoReqdFromDebtorYN.Value == true
+                    && presentComplaint.MoreInfoRequested.Length <= complaintToAnalize.MoreInfoRequested.Length)
+                    complaintStatus = ComplaintStatus.AAI;
+
+                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.ORIP
+                    && presentComplaint.MoreInfoReqdFromDebtorYN.Value == false
+                    && presentComplaint.MoreInfoRequestedDate.HasValue == false
+                    && complaintToAnalize.MoreInfoReqdFromDebtorYN.Value == true
+                    && complaintToAnalize.MoreInfoRequestedDate.HasValue == true 
+                    && (!string.IsNullOrEmpty(complaintToAnalize.MoreInfoRequested)))
                     complaintStatus = ComplaintStatus.AAI;
 
                 #endregion
