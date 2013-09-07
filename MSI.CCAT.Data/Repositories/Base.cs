@@ -31,6 +31,7 @@ namespace MSI.CCAT.Data.Repositories
         T GetById(string id);
         T GetById(int id);
         IEnumerable<T> GetAll();
+        IEnumerable<T> GetAll(string include);
         IEnumerable<T> GetMany(Expression<Func<T, bool>> where);
         T Get(Expression<Func<T, bool>> where);
     }
@@ -96,6 +97,10 @@ namespace MSI.CCAT.Data.Repositories
         public IEnumerable<T> GetAll()
         {
             return dbset.ToList();
+        }
+        public IEnumerable<T> GetAll(string include)
+        {
+            return dbset.Include(include).ToList();
         }
         public IEnumerable<T> GetMany(Expression<Func<T, bool>> where)
         {

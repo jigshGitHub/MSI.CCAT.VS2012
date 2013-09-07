@@ -31,7 +31,6 @@ namespace MSI.CCAT.Data.Models
         public DbSet<pageMenuGroup> pageMenuGroups { get; set; }
         public DbSet<TBL_CHART> TBL_CHART { get; set; }
         public DbSet<Tbl_QuestionDeficient> Tbl_QuestionDeficient { get; set; }
-        public DbSet<aspnet_Roles> aspnet_Roles { get; set; }
         public DbSet<Tbl_Account> Tbl_Account { get; set; }
         public DbSet<Tbl_Agency> Tbl_Agency { get; set; }
         public DbSet<Tbl_ComplaintIssues> Tbl_ComplaintIssues { get; set; }
@@ -48,9 +47,11 @@ namespace MSI.CCAT.Data.Models
         public DbSet<Tbl_ModulesForRoles> Tbl_ModulesForRoles { get; set; }
         public DbSet<Tbl_QuestionBank> Tbl_QuestionBank { get; set; }
         public DbSet<Tbl_QuestionModule> Tbl_QuestionModule { get; set; }
-        public DbSet<aspnet_Membership> aspnet_Membership { get; set; }
-        public DbSet<aspnet_Users> aspnet_Users { get; set; }
         public DbSet<Tbl_ComplaintMain> Tbl_ComplaintMain { get; set; }
         public DbSet<Tbl_ComplaintStatus> Tbl_ComplaintStatus { get; set; }
+        public DbSet<aspnet_Applications> aspnet_Applications { get; set; }
+        public DbSet<aspnet_Membership> aspnet_Membership { get; set; }
+        public DbSet<aspnet_Roles> aspnet_Roles { get; set; }
+        public DbSet<aspnet_Users> aspnet_Users { get; set; }
     }
 }

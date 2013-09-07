@@ -11,7 +11,7 @@
 
  <div id="clubSearch" class="container-fluid">
     <div class="row-fluid">
-        <div class='page-title'>Resolved Complaints</div>
+        <div class='page-title'>New Complaint in Progress</div>
     </div>
     <br />
      @*Search button
@@ -26,7 +26,7 @@
 
     <div class="row-fluid" style="margin-top:10px">
         <div id="searchGrid" class="k-content">
-            <div id="RCSearchgrid"></div>
+            <div id="NCPSearchgrid"></div>
         </div>
     </div>
  </div>
@@ -67,8 +67,7 @@
                         FirstName: { type: 'string' },
                         LastFourSSN: { type: 'string' },
                         ComplaintDate: { type: "date" },
-                        ResolvedDate: { type: "date" },
-                        ResponseTimeDays: { type: "number" }
+                        ComplaintIssue: { type: 'string' }
                     }
                 }
             },
@@ -114,14 +113,13 @@
                                 { id: "edit", name: "edit", template: "<a class='k-button k-grid-edit editsa' title='View/Edit' style='min-width:16px;'><span class='k-icon k-edit'></span></a>" },
                            ],  title: " ", width: "20px"
                 },
-                { field: "ComPlaintId", title: "Complaint ID", width: "60px" },
-                { field: "AccountNumber", title: "Account#", width: "60px" },
+                { field: "ComPlaintId", title: "Complaint ID", width: "80px" },
+                { field: "AccountNumber", title: "Account#", width: "80px" },
                 { field: "LastName", title: "Last Name", width: "60px" },
                 { field: "FirstName", title: "First Name", width: "60px" },
-                { field: "LastFourSSN", title: "Last 4 SSN", width: "60px" },
+                { field: "LastFourSSN", title: "Last 4 SSN", width: "50px" },
                 { field: "ComplaintDate", title: "Start Date", width: "60px", format: "{0:MM/dd/yy}" },
-                { field: "ResolvedDate", title: "Date Resolved", width: "80px", format: "{0:MM/dd/yy}" },
-                { field: "ResponseTimeDays", title: "Response Time(Days)", width: 100, format: "{0:n0}" }
+                { field: "ComplaintIssue", title: "Issue", width: "60px" }
                 
             ]
         }
@@ -134,9 +132,9 @@
 <script>
     $(document).ready(function () {
         @*Edit record*@
-        $('#RCSearchgrid').on('click', '.editsa', function (e) {
+        $('#NCPSearchgrid').on('click', '.editsa', function (e) {
             e.preventDefault();
-            var dataItem = $("#RCSearchgrid").data("kendoGrid").dataItem($(this).closest("tr"));
+            var dataItem = $("#NCPSearchgrid").data("kendoGrid").dataItem($(this).closest("tr"));
             @*Now let us clear what we have on this page*@
             $('#clubSearch').children().remove();
             var path = baseUrl + "/Compliance/Home/ViewEdit?id=" + dataItem.AccountNumber + "&agency=" + dataItem.AgencyId;
@@ -145,17 +143,18 @@
                 $('#clubSearch').html(data);
             });
         });
+
         showNoti_.progress(NOTIFICMSG.PROCESSING, false);
         @*First time Grid Binding*@
         var kendoGridData = get_kendoGridData("");
-        $("#RCSearchgrid").kendoGrid(kendoGridData);
+        $("#NCPSearchgrid").kendoGrid(kendoGridData);
         showNoti_.hide();
 
         @* When Search Button is clicked *@
         $("#btnSearch").click(function () {
             showNoti_.progress(NOTIFICMSG.PROCESSING, false);
             var searchText = $("#searchBox").attr('value');
-            var grid = $("#RCSearchgrid").data("kendoGrid");
+            var grid = $("#NCPSearchgrid").data("kendoGrid");
             var dataSource = get_gridDataSource(searchText);
             grid.dataSource.transport.options.read.data = { searchText: searchText, reportType: $('#reportType').val() };
             grid.dataSource.read();

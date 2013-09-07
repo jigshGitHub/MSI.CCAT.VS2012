@@ -49,6 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBFactory.cs" />
+    <Compile Include="Models\aspnet_Applications.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\aspnet_Membership.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>

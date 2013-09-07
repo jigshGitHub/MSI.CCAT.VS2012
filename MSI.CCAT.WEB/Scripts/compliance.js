@@ -6,7 +6,6 @@
         return '';
 }
 
-var complaintStatus = new Enum(['NCRA' = 1,'NCIP','AAI','SFOA','ORIP','RC']);
 function complianceVM(userId, userAgency) {
     var self = this;
     self.account = ko.observable('');
@@ -69,6 +68,7 @@ function complianceVM(userId, userAgency) {
     self.needFurtherAction_YesNo = ko.observable('');
     self.finalActionStepId = ko.observable('');
     self.createdBy = ko.observable(userId);
+    self.updatedBy = ko.observable(userId);
 
     self.complaintinfoDocumentChecked = ko.observable(false);
     self.debtOwnerProcessDocumentChecked = ko.observable(false);
@@ -197,7 +197,8 @@ function complianceVM(userId, userAgency) {
             NeedFurtherActionYN: self.needFurtherAction_YesNo(),
             FinalActionStepId: self.finalActionStepId(),
             CreatedBy: self.createdBy(),
-            ComplaintStatusId: evaluateStatusId(userRole)
+            ComplaintStatusId: evaluateStatusId(userRole),
+            UpdatedBy:self.updatedBy()
         });
 
         function evaluateStatusId(userRole) {

@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountBus.cs" />
     <Compile Include="BusinessModels\AssessmentResponse.cs" />
     <Compile Include="AssessmentBus.cs" />
     <Compile Include="ModuleBus.cs" />

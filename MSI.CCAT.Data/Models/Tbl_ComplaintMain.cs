@@ -57,6 +57,11 @@ namespace MSI.CCAT.Data.Models
         public Nullable<int> ComplaintStatusId { get; set; }
         public Nullable<bool> IsViewedByOwner { get; set; }
         public Nullable<bool> IsViewedByAgency { get; set; }
+        public Nullable<System.Guid> CreatedBy { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        public Nullable<System.Guid> UpdatedBy { get; set; }
+        public Nullable<System.DateTime> CreatedDateTime { get; set; }
+        public Nullable<System.DateTime> UpdatedDateTime { get; set; }
     
         public virtual Tbl_Account Tbl_Account { get; set; }
         public virtual Tbl_ComplaintIssues Tbl_ComplaintIssues { get; set; }

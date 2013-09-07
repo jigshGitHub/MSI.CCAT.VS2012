@@ -61,7 +61,7 @@
                 model: {
                     fields: {
                         ComPlaintId: { type: 'string' },
-                        PIMSAccount: { type: 'string' },
+                        AccountNumber: { type: 'string' },
                         LastName: { type: 'string' },
                         FirstName: { type: 'string' },
                         LastFourSSN: { type: 'string' },
@@ -109,14 +109,14 @@
                 {
                     command: [
                                 { id: "edit", name: "edit", template: "<a class='k-button k-grid-edit editsa' title='View/Edit' style='min-width:16px;'><span class='k-icon k-edit'></span></a>" },
-                    ], title: " ", width: "30px"
+                    ], title: " ", width: "20px"
                 },
-                { field: "ComPlaintId", title: "Complaint ID", width: "80px" },
-                { field: "PIMSAccount", title: "Account#", width: "100px" },
-                { field: "LastName", title: "Last Name", width: "80px" },
-                { field: "FirstName", title: "First Name", width: "80px" },
-                { field: "LastFourSSN", title: "Last 4 SSN", width: "80px" },
-                { field: "ComplaintDate", title: "Complaint Date", width: "80px", format: "{0:MM/dd/yy}" }
+                { field: "ComPlaintId", title: "Complaint ID", width: "60px" },
+                { field: "AccountNumber", title: "Account#", width: "60px" },
+                { field: "LastName", title: "Last Name", width: "60px" },
+                { field: "FirstName", title: "First Name", width: "60px" },
+                { field: "LastFourSSN", title: "Last 4 SSN", width: "60px" },
+                { field: "ComplaintDate", title: "Start Date", width: "60px", format: "{0:MM/dd/yy}" }
 
 
             ]
@@ -136,28 +136,28 @@
             var dataItem = $("#NCRASearchgrid").data("kendoGrid").dataItem($(this).closest("tr"));
             @*Now let us clear what we have on this page*@
             $('#clubSearch').children().remove();
-            var path = baseUrl + "/Compliance/Home/ViewEdit?id=" + dataItem.PIMSAccount + "&agency=" + dataItem.AgencyId;
+            var path = baseUrl + "/Compliance/Home/ViewEdit?id=" + dataItem.AccountNumber + "&agency=" + dataItem.AgencyId;
             $.get(path, function (data) {
                 @*Now Refill the data*@
                 $('#clubSearch').html(data);
             });
         });
-
-        showProgress("Please wait...Report is being generated.");
+                
+        showNoti_.progress(NOTIFICMSG.PROCESSING, false);
         @*First time Grid Binding*@
         var kendoGridData = get_kendoGridData("");
         $("#NCRASearchgrid").kendoGrid(kendoGridData);
-        hideProgress();
+        showNoti_.hide();
 
         @* When Search Button is clicked *@
         $("#btnSearch").click(function () {
-            showProgress("Please wait...Report is being generated.");
+            showNoti_.progress(NOTIFICMSG.PROCESSING, false);
             var searchText = $("#searchBox").attr('value');
             var grid = $("#NCRASearchgrid").data("kendoGrid");
             var dataSource = get_gridDataSource(searchText);
             grid.dataSource.transport.options.read.data = { searchText: searchText, reportType: $('#reportType').val() };
             grid.dataSource.read();
-            hideProgress();
+            showNoti_.hide();
         });
 
     });

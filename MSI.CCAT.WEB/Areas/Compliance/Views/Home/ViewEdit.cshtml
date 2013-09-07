@@ -4,39 +4,47 @@
 @Html.Hidden("hdnAccountNumber", (string)(@ViewBag.Account))
 @Html.Hidden("hdnUserRole", (string)(@ViewBag.UserRole))
 <style>
+    td {
+        vertical-align:top;
+    }
     
 </style>
-<div id="fileUploadContainer" style="display: none" data-bind="with: complianceModel">
-    @using (Html.BeginForm("UploadDocument", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-    
 
-        <div data-bind="visible: complaintinfoDocumentChecked">
-            Select document for complaint information:<input name="complaintDocument" type="file" />
+<div id="workspaceContainer" class="container-fluid">
+    <div class="modal hide fade" id="fileUploadContainer">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Upload document:</h3>
         </div>
-
-        <div data-bind="visible: debtOwnerProcessDocumentChecked">
-            Select document for debt owner process:<input name="debtOwnerProcessDocument" type="file" />
-        </div>
-
-        <input type="hidden" name="hdnAccount" data-bind="value: account" />
-
-        <input type="hidden" name="hdnAgency" data-bind="value: agency" />
-
-        <input type="submit" value="Submit" />
-    
-    }
-</div>
-<div id="workspaceContainer">
-    <table class="tblCommon" style="width: 100%">
-        <tr>
-            <td>
-                <div id="messageSummary" style="font-size: small">
-                    <ul>
-                    </ul>
+        <div class="modal-body" data-bind="with: complianceModel">
+            @using (Html.BeginForm("UploadDocument", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div data-bind="visible: complaintinfoDocumentChecked">
+                    Select document for complaint information:<input name="complaintDocument" type="file" />
                 </div>
-            </td>
-        </tr>
+                <div data-bind="visible: debtOwnerProcessDocumentChecked">
+                    Select document for debt owner process:<input name="debtOwnerProcessDocument" type="file" />
+                </div>
+                <input type="hidden" name="hdnAccount" data-bind="value: account" />
+                <input type="hidden" name="hdnAgency" data-bind="value: agency" />
+                <input type="submit" value="Submit" class="btn btn-primary"/>
+            }
+        </div>    
+        <div class="modal-footer" /> 
+    </div>  
+    <div class="modal hide fade" id="messageSummary" style="font-size: small">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Errors:</h3>
+        </div>
+        <div class="modal-body" data-bind="with: validationErrors">
+            <ul>
+                <li data-bind="text: $data"></li>
+            </ul>
+        </div>        
+        <div class="modal-footer" /> 
+    </div>
+    <table class="tblCommon" style="width: 100%">
         <tr>
             <td style="text-align: center">
                 <div data-bind="fadeVisible: showMessage" style="background-color: #1f497d; color: #fff">
@@ -381,13 +389,13 @@
                     </tr>
                     <tr>
                         <td style="width: 100%; background-color: #1f497d">
-                            <a href="#" style="text-decoration: none; font-weight: bold; color: white" data-bind="click: showHideDebtOwnerProcess">Debt Owner Process</a>
+                            <a href="#" style="text-decoration: none; font-weight: bold; color: white" data-bind="click: showHideCollectionAgencyProcess">Collection Agency Process</a>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <div id="debtOwnerProcess" data-bind="with: complianceModel, visible: showDebtOwnerProcess">
-                                <table class="debtOwnerInfo">
+                            <div id="collectionAgencyProcess" data-bind="with: complianceModel, visible: showCollectionAgencyProcess">
+                                <table>
                                     <tr>
                                         <td style="text-align: right; width: 20%">Submitted Complaint to Owner?
                                         </td>
@@ -415,10 +423,22 @@
                                         <td style="text-align: center; width: 1%">:
                                         </td>
                                         <td style="text-align: left; width: 20%">
-                                            <input type="checkbox" data-bind="checked: debtOwnerProcessDocumentChecked" />&nbsp;<a
-                                                data-bind="attr: { href: debtOwnerProcessDocUrl }"><span data-bind="    text: debtOwnerProcessDocument"></span></a>
+                                            <input type="checkbox" data-bind="checked: debtOwnerProcessDocumentChecked" />
                                         </td>
                                     </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr data-bind="visible: isDebtOwnerProcessVisible">
+                        <td style="width: 100%; background-color: #1f497d">
+                            <a href="#" style="text-decoration: none; font-weight: bold; color: white" data-bind="click: showHideDebtOwnerProcess">Debt Owner Process</a>
+                        </td>
+                    </tr>
+                    <tr data-bind="visible: isDebtOwnerProcessVisible">
+                        <td>
+                            <div id="debtOwnerProcess" data-bind="with: complianceModel, visible: showDebtOwnerProcess">
+                                <table class="debtOwnerInfo">
                                     <tr>
                                         <td style="text-align: right; width: 20%">Need More Info from Agency?
                                         </td>
@@ -572,9 +592,12 @@
 <script src="~/Scripts/jquery.formatCurrency-1.4.0.min.js" type="text/javascript"></script>
 <script type="text/javascript">
     var yesNoOptions = [{ Text: 'No', Value: 'false' }, { Text: 'Yes', Value: 'true' }];
-    function pageViewModel(userId, userAgency, accountNumber, userRole) {
-        var self = this;
 
+    function pageViewModel(userId, userAgency, accountNumber, userRole) {
+        console.log(userId + ',' + accountNumber + ',' + userAgency + ',' + userRole);
+        var self = this;
+        if (userRole == 'DebtOwner')
+            userAgency = '';
         self.complianceModel = new complianceVM(userId, userAgency);
         self.pimsAccountNumber = ko.observable(accountNumber);
         self.debtors = ko.observableArray([]);
@@ -582,7 +605,7 @@
         self.getComplaint = function (account) {
             //log(debtor.account());
             function setComplaint(data) {
-                self.complianceModel.populateCompliance(data.Account, data.FirstName, data.LastName, data.DOB, data.Address, data.City, data.State, data.Zip, data.LastFourSSN, data.MobilePhone, data.HomePhone, data.WorkPhone, data.DebtorIdentityVerifiedYN, ((data.DebtCurrentBalance == undefined) ? '' : formatCurrency(data.DebtCurrentBalance)), ((data.DebtPurchaseBalance == undefined) ? '' : formatCurrency(data.DebtPurchaseBalance)), data.CreditorName, data.DebtProductId, data.DebtPurchaseBalance, data.DebtCurrentBalance, data.DisputeDebtYN, data.DisputeDebtAmountYN, data.DisputeDebtDueDateYN, data.ComplaintID, data.ComplaintDate, data.ComplaintReceivedByMethodId, data.ComplaintIssueId, data.ComplaintNotes, data.ComplaintSubmitedToAgencyYN, data.ComplaintSubmitedToAgencyDate, data.MoreInfoReqdFromDebtorYN, data.MoreInfoRequestedDate, data.MoreInfoRequested, data.MoreInfoReceivedFromDebtorYN, data.MoreInfoReceivedDate, data.MoreInfoReceived, data.ComplaintSubmittedToOwnerYN, data.ComplaintSubmittedDate, data.TimeToSubmitDays, data.MoreInfoFromAgencyYN, data.MoreInfoFromAgencyRequestedDate, data.MoreInfoFromAgencyRequested, data.MoreInfoFromAgencyReceived, data.MoreInfoFromAgencyReceivedYN, data.MoreInfoFromAgencyReceivedDate, data.OwnerResponseId, data.OwnerResponseDate, data.OwnerResponseDays, data.AgencyResponseToDebtorDate, data.TotalResponseTimeDays, data.DebtorAgreeYN, data.NeedFurtherActionYN, data.FinalActionStepId, data.CreatedBy, data.ComplaintDocument, data.DebtOwnerProcessDocument);
+                self.complianceModel.populateCompliance(data.Tbl_Account.Tbl_Agency.Name, data.Tbl_Account.AccountNumber, data.Tbl_Account.FirstName, data.Tbl_Account.LastName, '', data.Tbl_Account.Address, data.Tbl_Account.City, data.Tbl_Account.StateId, data.Tbl_Account.Zip, data.Tbl_Account.LastFourSSN, data.Tbl_Account.MobilePhone, data.Tbl_Account.HomePhone, data.Tbl_Account.WorkPhone, data.DebtorIdentityVerifiedYN, data.DebtorContactMethodId, data.DebtorContactTimeId, data.Tbl_Account.DebtCurrentBalance, data.Tbl_Account.DebtPurchaseBalance, data.Tbl_Account.CreditorName, data.DebtorProductId, data.DisputeDebtYN, data.DisputeDebtAmountYN, data.DisputeDebtDueDateYN, data.ComplaintId, data.ComplaintDate, data.ReceivedByMethodId, data.IssuesId, data.ComplaintNotes, data.ComplaintSubmittedToAgencyYN, data.ComplaintSubmittedToAgencyDate, data.MoreInfoReqdFromDebtorYN, data.MoreInfoRequestedDate, data.MoreInfoRequested, data.MoreInfoReceivedFromDebtorYN, data.MoreInfoReceivedDate, data.MoreInfoReceived, data.ComplaintSubmittedToOwnerYN, data.ComplaintSubmittedDate, data.TimeToSubmitDays, data.MoreInfoFromAgencyYN, data.MoreInfoFromAgencyRequestedDate, data.MoreInfoFromAgencyRequested, data.MoreInfoFromAgencyReceived, data.MoreInfoFromAgencyReceivedYN, data.MoreInfoFromAgencyReceivedDate, data.OwnerResponseId, data.OwnerResponseDate, data.OwnerResponseDays, data.AgencyResponseToDebtorDate, data.TotalResponseTimeDays, data.DebtorAgreeYN, data.NeedFurtherActionYN, data.FinalActionStepId, data.CreatedBy, data.ComplaintDocument, data.DebtOwnerProcessDocument);
             };
             self.pimsAccountNumber(account);
             $.ajax({
@@ -868,10 +891,11 @@
                 self.validationErrors.push('Complaint Date is a required field');
 
             if (self.validationErrors().length > 0) {
-                $.each(self.validationErrors(), function (i, item) {
-                    $('#messageSummary ul').append('<li>' + item + '</li>');
-                });
-                $("#messageSummary").dialog('open');
+                //$.each(self.validationErrors(), function (i, item) {
+                //    $('#messageSummary ul').append('<li>' + item + '</li>');
+                //});
+                //$("#messageSummary").dialog('open');
+                $("#messageSummary").modal();
             }
             else {
                 self.showMessage(true);
@@ -881,7 +905,8 @@
                 if (self.complianceModel.complaintinfoDocumentChecked() == true || self.complianceModel.debtOwnerProcessDocumentChecked() == true) {
                     log(self.complianceModel.complaintinfoDocumentChecked());
                     log(self.complianceModel.debtOwnerProcessDocumentChecked());
-                    $('#fileUploadContainer').dialog('open');
+                    //$('#fileUploadContainer').dialog('open');
+                    $('#fileUploadContainer').modal();
                 }
             }
         }
@@ -903,6 +928,7 @@
         }).bind(self);
         self.showDebtInformation = ko.observable(true);
         self.showComplaintInformation = ko.observable(true);
+        self.showCollectionAgencyProcess = ko.observable(true);
         self.showDebtOwnerProcess = ko.observable(true);
         self.showComplaintClosure = ko.observable(true);
         self.showHideDebtInformation = function () {
@@ -917,6 +943,12 @@
             else
                 self.showComplaintInformation(true);
         }
+        self.showHideCollectionAgencyProcess = function () {
+            if (self.showCollectionAgencyProcess())
+                self.showCollectionAgencyProcess(false);
+            else
+                self.showCollectionAgencyProcess(true);
+        }
         self.showHideDebtOwnerProcess = function () {
             if (self.showDebtOwnerProcess())
                 self.showDebtOwnerProcess(false);
@@ -929,13 +961,16 @@
             else
                 self.showComplaintClosure(true);
         }
+        self.isDebtOwnerProcessVisible = ko.computed(function () {
+            return (self.userRole() == 'CollectionAgency') ? false : true;
+        }, self);
         self.validationErrors = ko.observableArray([]);
     }
 
     $(document).ready(function () {
-        $('#messageSummary').dialog({ modal: true, title: 'Errors:', autoOpen: false, width: 200, height: 200 });
+        //$('#messageSummary').dialog({ modal: true, title: 'Errors:', autoOpen: false, width: 200, height: 200 });
         var pageVM = new pageViewModel($('#hdnUserId').val(), $('#hdnAgencyId').val(), $('#hdnAccountNumber').val(), $('#hdnUserRole').val());
-        $('#fileUploadContainer').dialog({ modal: true, title: 'Upload documents:', autoOpen: false, width: 500, height: 500 });
+        //$('#fileUploadContainer').dialog({ modal: true, title: 'Upload documents:', autoOpen: false, width: 500, height: 500 });
         ko.applyBindings(pageVM, $('#workspaceContainer')[0]);
         pageVM.getComplaint($('#hdnAccountNumber').val());
 

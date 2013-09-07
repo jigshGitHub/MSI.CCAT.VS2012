@@ -11,8 +11,8 @@ using MSI.CCAT.Data.Repositories;
 using MSI.CCAT.WEB.ApplicationIntegration;
 using MSI.CCAT.WEB.ViewModels;
 
-using Cascade.Data.Repositories;
-using Cascade.Data.Models;
+//using Cascade.Data.Repositories;
+using MSI.Data.Models;
 
 using System.Data.SqlClient;
 using System.Data;
@@ -57,34 +57,15 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
             DBFactory db;
             SqlDataReader rdr;
             List<ComplianceReportResult_Ext> data = null;
+
+            string _sql_base_ReportQuery_rt = string.Format(_sql_base_ReportQuery, reportType);
+
             string SQL = "";
-            if (reportType == "NCRA")
-            {
-                SQL = (!string.IsNullOrEmpty(where) ? string.Format(_sql_base_NCRAReportExtendable, where) : _sql_base_NCRAReport);
-            }
-            else if (reportType == "RC")
-            {
-                SQL = (!string.IsNullOrEmpty(where) ? string.Format(_sql_base_RCReportExtendable, where) : _sql_base_RCReport);
-            }
-            else if (reportType == "AAI")
-            {
-                SQL = (!string.IsNullOrEmpty(where) ? string.Format(_sql_base_AAIReportExtendable, where) : _sql_base_AAIReport);
-            }
-            else if (reportType == "NCP")
-            {
-                SQL = (!string.IsNullOrEmpty(where) ? string.Format(_sql_base_NCPReportExtendable, where) : _sql_base_NCPReport);
-            }
-            else if (reportType == "ORP")
-            {
-                SQL = (!string.IsNullOrEmpty(where) ? string.Format(_sql_base_ORPReportExtendable, where) : _sql_base_ORPReport);
-            }
-            else if (reportType == "SOA")
-            {
-                SQL = (!string.IsNullOrEmpty(where) ? string.Format(_sql_base_SOAReportExtendable, where) : _sql_base_SOAReport);
-            } 
+            SQL = (!string.IsNullOrEmpty(where) ? string.Format(_sql_base_ReportQuery_rt, where) : _sql_base_ReportQuery_rt);
+             
             try
             {
-                db = new DBFactory("CascadeDBEntities"); // We are connecting to CascadeDB
+                db = new DBFactory("CCATDBEntities");  
                 rdr = db.ExecuteReader("get_pagedDataSet", new SqlParameter("@SQL", SQL), new SqlParameter("@OrderBy", OrderBy), new SqlParameter("@pageSize", pageSize), new SqlParameter("@pageNo", pageNo));
                 data = new List<ComplianceReportResult_Ext>();
                 ComplianceReportResult_Ext record;
@@ -92,26 +73,30 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
                 {
                     record = new ComplianceReportResult_Ext();
                     
-                    record.AgencyId = rdr["AgencyId"].ToString();
-                    record.AgencyName = rdr["AgencyName"].ToString();
                     record.LastName = rdr["LastName"].ToString();
                     record.FirstName = rdr["FirstName"].ToString();
-                    record.PIMSAccount = rdr["PIMSAccount"].ToString();
                     record.ComPlaintId = rdr["ComPlaintId"].ToString();
-                    record.HomePhone = rdr["HomePhone"].ToString();
-                    record.WorkPhone = rdr["WorkPhone"].ToString();
-                    record.MobilePhone = rdr["MobilePhone"].ToString();
                     record.LastFourSSN = rdr["LastFourSSN"].ToString();
+                    record.AccountNumber = rdr["Accountnumber"].ToString();
+
+                    if (rdr["AgencyId"] != DBNull.Value)
+                        record.AgencyId = rdr["AgencyId"].ToString();
+
+                    if (rdr["ComplaintIssue"] != DBNull.Value)
+                        record.ComplaintIssue = rdr["ComplaintIssue"].ToString();
                     if (rdr["ComplaintDate"] != DBNull.Value)
                         record.ComplaintDate = Convert.ToDateTime(rdr["ComplaintDate"]);
-                    if (rdr["MoreInfoRequestedDate"] != DBNull.Value)
-                        record.MoreInfoRequestedDate = Convert.ToDateTime(rdr["MoreInfoRequestedDate"]);
-                    if (rdr["ComplaintSubmittedDate"] != DBNull.Value)
-                        record.ComplaintSubmittedDate = Convert.ToDateTime(rdr["ComplaintSubmittedDate"]);
-                    if (rdr["AgencyResponseToDebtorDate"] != DBNull.Value)
-                        record.AgencyResponseToDebtorDate = Convert.ToDateTime(rdr["AgencyResponseToDebtorDate"]);
-                    if (rdr["TotalResponseTimeDays"] != DBNull.Value)
-                        record.TotalResponseTimeDays = Convert.ToInt32(rdr["TotalResponseTimeDays"]);
+                    if (rdr["ResolvedDate"] != DBNull.Value)
+                        record.ResolvedDate = Convert.ToDateTime(rdr["ResolvedDate"]);
+                    if (rdr["DateRequested"] != DBNull.Value)
+                        record.DateRequested = Convert.ToDateTime(rdr["DateRequested"]);
+                    if (rdr["DateSubmitted"] != DBNull.Value)
+                        record.DateSubmitted = Convert.ToDateTime(rdr["DateSubmitted"]);
+                    if (rdr["AgencyRequestDate"] != DBNull.Value)
+                        record.AgencyRequestDate = Convert.ToDateTime(rdr["AgencyRequestDate"]);
+                    if (rdr["ResponseTimeDays"] != DBNull.Value)
+                        record.ResponseTimeDays = Convert.ToInt32(rdr["ResponseTimeDays"]);
+                    
                     if (rdr["count_"] != DBNull.Value)
                         record.count_ = Convert.ToInt32(rdr["count_"]);
                     if (rdr["rowNo"] != DBNull.Value)
@@ -121,19 +106,8 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
                     {
                         record.ComplaintDate = null;
                     }
-                    if (record.MoreInfoRequestedDate.ToString() == "1/1/1900 12:00:00 AM")
-                    {
-                        record.MoreInfoRequestedDate = null;
-                    }
-                    if (record.ComplaintSubmittedDate.ToString() == "1/1/1900 12:00:00 AM")
-                    {
-                        record.ComplaintSubmittedDate = null;
-                    }
-                    if (record.AgencyResponseToDebtorDate.ToString() == "1/1/1900 12:00:00 AM")
-                    {
-                        record.AgencyResponseToDebtorDate = null;
-                    }
                     data.Add(record);
+
                 }
                 //Close the datareader
                 rdr.Close();
@@ -179,14 +153,14 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
                 _sortOptions = _sortOptions + " " + sortDir;
             #endregion
 
-            #region [[ For NCRA, RC, AAI, NCP, ORP, SOA Report ]]
+            #region [[ For NCRA, RC, AAI, NCIP, ORIP, SFOA Report ]]
             List<ComplianceReportResult_Ext> _list = new List<ComplianceReportResult_Ext>();
             if (!string.IsNullOrEmpty(searchText))
             {
                 searchText = kill_sqlBlacklistWord(searchText);
 
                 if (string.IsNullOrEmpty(_sortOptions))
-                    _sortOptions = "AgencyId";
+                    _sortOptions = "ComplaintId";
 
                 string _where = "";
 
@@ -205,8 +179,8 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
                             _where = _where + string.Format("OR cm.ComPlaintId LIKE ''%{0}%'' OR cm.LastName LIKE ''%{0}%''", words[i]);
                         }
                         _where = "and (" + _where + ")";
-                        
-                        if (string.IsNullOrEmpty(_sortOptions)) _sortOptions = "AgencyId ASC";
+
+                        if (string.IsNullOrEmpty(_sortOptions)) _sortOptions = "ComplaintId ASC";
                         _list = GetReportData(_where, _sortOptions, _pageSize, _pageNo, reportType);
                     }
                     #endregion
@@ -216,7 +190,7 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
             else
             {
                 //Coming here when SearchText is null
-                if (string.IsNullOrEmpty(_sortOptions)) _sortOptions = "AgencyId ASC";
+                if (string.IsNullOrEmpty(_sortOptions)) _sortOptions = "ComplaintId ASC";
                 _list = GetReportData("", _sortOptions, _pageSize, _pageNo, reportType);
             }
             #endregion
@@ -236,155 +210,44 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
         }
 
         #region [[ SQL Statements for Reports ]]
-        const string _sql_base_NCRAReportExtendable = _sql_base_NCRAReport + "{0}";
-        const string _sql_base_RCReportExtendable = _sql_base_RCReport + "{0}";
-        const string _sql_base_AAIReportExtendable = _sql_base_AAIReport + "{0}";
-        const string _sql_base_NCPReportExtendable = _sql_base_NCPReport + "{0}";
-        const string _sql_base_ORPReportExtendable = _sql_base_ORPReport + "{0}";
-        const string _sql_base_SOAReportExtendable = _sql_base_SOAReport + "{0}";
-
-        const string _sql_base_NCRAReport =
-                @"Select 
-			cm.AgencyId,  ra.NAME as AgencyName,
-			Isnull(cm.LastName,'''') as LastName, 
-			Isnull(cm.FirstName,'''') as FirstName,
-			Isnull(cm.Account,'''') as PIMSAccount,
-			Isnull(cm.ComPlaintId,'''') as ComPlaintId,
-			Isnull(cm.HomePhone,'''') as HomePhone,
-			Isnull(cm.WorkPhone,'''') as WorkPhone,
-			Isnull(cm.MobilePhone,'''') as MobilePhone,
-			Isnull(cm.LastFourSSN,'''') as LastFourSSN,
-			Convert(varchar(20),ComplaintDate,101) as ComplaintDate,
-            Convert(varchar(20),AgencyResponseToDebtorDate,101) as AgencyResponseToDebtorDate,
-			Convert(varchar(20),MoreInfoRequestedDate,101) as MoreInfoRequestedDate,
-			Convert(varchar(20),ComplaintSubmittedDate,101) as ComplaintSubmittedDate,
-			cm.TotalResponseTimeDays
-			from MSI_ComplaintMain cm
-			inner join RAGENCY ra on ra.AGENCY_ID = cm.AgencyId
-			where cm.ComplaintSubmittedToAgencyYN = 1
-			and cm.ComplaintSubmitedToAgencyDate is not null
-			";
-        const string _sql_base_RCReport =
-                @"Select 
-			cm.AgencyId,  ra.NAME as AgencyName,
-			Isnull(cm.LastName,'') as LastName, 
-			Isnull(cm.FirstName,'') as FirstName,
-			Isnull(cm.Account,'') as PIMSAccount,
-			Isnull(cm.ComPlaintId,'') as ComPlaintId,		
-			Isnull(cm.LastFourSSN,'') as LastFourSSN,
-			Isnull(cm.HomePhone,'') as HomePhone,
-		    Isnull(cm.WorkPhone,'') as WorkPhone,
-		    Isnull(cm.MobilePhone,'') as MobilePhone,
-			Convert(varchar(20),ComplaintDate,101) as ComplaintDate,
-			Convert(varchar(20),AgencyResponseToDebtorDate,101) as AgencyResponseToDebtorDate,
-			Convert(varchar(20),MoreInfoRequestedDate,101) as MoreInfoRequestedDate,
-			Convert(varchar(20),ComplaintSubmittedDate,101) as ComplaintSubmittedDate,
-			cm.TotalResponseTimeDays			
-			from MSI_ComplaintMain cm
-			inner join RAGENCY ra on ra.AGENCY_ID = cm.AgencyId
-			where cm.DebtorAgreeYN=1 and FinalActionStepId is not null 
-            ";
-        const string _sql_base_AAIReport =
-               @"Select 
-			cm.AgencyId,  ra.NAME as AgencyName,
-			Isnull(cm.LastName,'') as LastName, 
-			Isnull(cm.FirstName,'') as FirstName,
-			Isnull(cm.Account,'') as PIMSAccount,
-			Isnull(cm.ComPlaintId,'') as ComPlaintId,		
-			Isnull(cm.LastFourSSN,'') as LastFourSSN,
-			Isnull(cm.HomePhone,'') as HomePhone,
-		    Isnull(cm.WorkPhone,'') as WorkPhone,
-		    Isnull(cm.MobilePhone,'') as MobilePhone,
-			Convert(varchar(20),ComplaintDate,101) as ComplaintDate,
-			Convert(varchar(20),AgencyResponseToDebtorDate,101) as AgencyResponseToDebtorDate,
-			Convert(varchar(20),MoreInfoRequestedDate,101) as MoreInfoRequestedDate,
-			Convert(varchar(20),ComplaintSubmittedDate,101) as ComplaintSubmittedDate,
-			cm.TotalResponseTimeDays
-			from MSI_ComplaintMain cm
-			inner join RAGENCY ra on ra.AGENCY_ID = cm.AgencyId
-			where cm.ComplaintSubmitedToAgencyDate is not null
-			and cm.MoreInfoReqdFromDebtorYN=1 
-            ";
-
-        const string _sql_base_NCPReport =
-                @"Select 
-			cm.AgencyId,  ra.NAME as AgencyName,
-			Isnull(cm.LastName,'') as LastName, 
-			Isnull(cm.FirstName,'') as FirstName,
-			Isnull(cm.Account,'') as PIMSAccount,
-			Isnull(cm.ComPlaintId,'') as ComPlaintId,		
-			Isnull(cm.LastFourSSN,'') as LastFourSSN,
-			Isnull(cm.HomePhone,'') as HomePhone,
-		    Isnull(cm.WorkPhone,'') as WorkPhone,
-		    Isnull(cm.MobilePhone,'') as MobilePhone,
-			Convert(varchar(20),ComplaintDate,101) as ComplaintDate,
-			Convert(varchar(20),AgencyResponseToDebtorDate,101) as AgencyResponseToDebtorDate,
-			Convert(varchar(20),MoreInfoRequestedDate,101) as MoreInfoRequestedDate,
-			Convert(varchar(20),ComplaintSubmittedDate,101) as ComplaintSubmittedDate,
-			cm.TotalResponseTimeDays		
-			from MSI_ComplaintMain cm
-			inner join RAGENCY ra on ra.AGENCY_ID = cm.AgencyId
-			where cm.ComplaintSubmitedToAgencyDate is not null
-			and ISNULL(cm.ComplaintSubmittedToOwnerYN,0) = 0
-			";
-
-        const string _sql_base_ORPReport =
-                 @"Select 
-			cm.AgencyId,  ra.NAME as AgencyName,
-			Isnull(cm.LastName,'') as LastName, 
-			Isnull(cm.FirstName,'') as FirstName,
-			Isnull(cm.Account,'') as PIMSAccount,
-			Isnull(cm.ComPlaintId,'') as ComPlaintId,		
-			Isnull(cm.LastFourSSN,'') as LastFourSSN,
-			Isnull(cm.HomePhone,'') as HomePhone,
-		    Isnull(cm.WorkPhone,'') as WorkPhone,
-		    Isnull(cm.MobilePhone,'') as MobilePhone,
-			Convert(varchar(20),ComplaintDate,101) as ComplaintDate,
-			Convert(varchar(20),AgencyResponseToDebtorDate,101) as AgencyResponseToDebtorDate,
-			Convert(varchar(20),MoreInfoRequestedDate,101) as MoreInfoRequestedDate,
-			Convert(varchar(20),ComplaintSubmittedDate,101) as ComplaintSubmittedDate,
-			cm.TotalResponseTimeDays
-			from MSI_ComplaintMain cm
-			inner join RAGENCY ra on ra.AGENCY_ID = cm.AgencyId
-			where cm.ComplaintSubmittedToOwnerYN=1 and cm.IsViewedByOwner=1
-          ";
-
-
-        const string _sql_base_SOAReport =
-                  @"Select 
-			cm.AgencyId,  ra.NAME as AgencyName,
-			Isnull(cm.LastName,'') as LastName, 
-			Isnull(cm.FirstName,'') as FirstName,
-			Isnull(cm.Account,'') as PIMSAccount,
-			Isnull(cm.ComPlaintId,'') as ComPlaintId,		
-			Isnull(cm.LastFourSSN,'') as LastFourSSN,
-			Isnull(cm.HomePhone,'') as HomePhone,
-		    Isnull(cm.WorkPhone,'') as WorkPhone,
-		    Isnull(cm.MobilePhone,'') as MobilePhone,
-			Convert(varchar(20),ComplaintDate,101) as ComplaintDate,
-			Convert(varchar(20),AgencyResponseToDebtorDate,101) as AgencyResponseToDebtorDate,
-			Convert(varchar(20),MoreInfoRequestedDate,101) as MoreInfoRequestedDate,
-			Convert(varchar(20),ComplaintSubmittedDate,101) as ComplaintSubmittedDate,
-			cm.TotalResponseTimeDays
-			from MSI_ComplaintMain cm
-			inner join RAGENCY ra on ra.AGENCY_ID = cm.AgencyId
-			where cm.ComplaintSubmittedToOwnerYN=1 
-            ";
-
+        const string _sql_base_ReportQuery = @"SELECT  
+			cm.ComplaintId,
+			cm.AccountNumber,  
+			ISNULL (act.LastName,'''') as LastName, 
+			ISNULL(act.FirstName,'''') as FirstName,
+			ISNULL(act.LastFourSSN,'''') as LastFourSSN,
+            -- Field no 28
+			CONVERT(varchar(20),cm.ComplaintDate,101) as ComplaintDate,
+            -- Field no 36
+			CONVERT(varchar(20),cm.MoreInfoRequestedDate,101) as DateRequested,
+            -- Field no 42
+			CONVERT(varchar(20),cm.ComplaintSubmittedDate,101) as DateSubmitted,
+			CONVERT(varchar(20),cm.MoreInfoFromAgencyRequestedDate,101) as AgencyRequestDate,
+			CONVERT(varchar(20),cm.AgencyResponseToDebtorDate,101) as ResolvedDate,
+			ci.Name as ComplaintIssue,
+			cm.TotalResponseTimeDays,0 as ResponseTimeDays,
+			ag.Name AS AgencyId
+			FROM Tbl_ComplaintMain cm
+			INNER JOIN Tbl_Account act on act.AccountNumber = cm.AccountNumber
+			INNER JOIN Tbl_Agency ag on ag.AgencyId = act.AgencyId 
+			INNER JOIN Tbl_ComplaintIssues ci on ci.Id = cm.IssuesId
+			INNER JOIN Tbl_ComplaintStatus cs on cs.Id = cm.ComplaintStatusId
+			WHERE cs.Value = '{0}'";
+        
         #endregion
         
-        public ActionResult Export(string ReportType)
-        {
-            Response.AddHeader("Content-Type", "application/vnd.ms-excel");
-            var dataQueries = new DataQueries();
-            IEnumerable<ComplianceViewResult> results;
-            ViewBag.ReportType = ReportType;
+        //public ActionResult Export(string ReportType)
+        //{
+        //    Response.AddHeader("Content-Type", "application/vnd.ms-excel");
+        //    var dataQueries = new DataQueries();
+        //    IEnumerable<ComplianceViewResult> results;
+        //    ViewBag.ReportType = ReportType;
 
-            results = dataQueries.GetComplianceReportRecordsExport("", ReportType);
+        //    results = dataQueries.GetComplianceReportRecordsExport("", ReportType);
 
-            return PartialView("Export", results);
+        //    return PartialView("Export", results);
 
-        }
+        //}
         
         //
         // GET: /Compliance/Home/Details/5
@@ -483,7 +346,6 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
                 return View();
             }
         }
-
         public ActionResult UploadDocument()
         {
             string account = Request.Form["hdnAccount"];
@@ -491,22 +353,22 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
             string complaintDocument, debtOwnerProcessDocument;
             complaintDocument = Request.Files["complaintDocument"].FileName;
             debtOwnerProcessDocument = Request.Files["debtOwnerProcessDocument"].FileName;
-            //MSI.CCAT.Data.Repositories.MSI_ComplaintMainRepository repository = new MSI_ComplaintMainRepository();
-            UnitOfWork uo = new UnitOfWork("CascadeDBEntities");
-            MSI.CCAT.Data.Models.MSI_ComplaintMain complaint = (from existingComplaint in uo.Repository<MSI.CCAT.Data.Models.MSI_ComplaintMain>().GetAll().Where(record => record.AgencyId == agency && record.Account == account)
+            //MSI.CCAT.Data.Repositories.TBL_ComplaintMainRepository repository = new TBL_ComplaintMainRepository();
+            UnitOfWork uo = new UnitOfWork("CCATDBEntities");
+            MSI.CCAT.Data.Models.Tbl_ComplaintMain complaint = (from existingComplaint in uo.Repository<MSI.CCAT.Data.Models.Tbl_ComplaintMain>().GetAll().Where(record => record.AccountNumber == account)
                                                                 select existingComplaint).First();
             if (!string.IsNullOrEmpty(complaintDocument))
             {
                 complaint.ComplaintDocument = fileProcessor.SaveUploadedFile(Request.Files["complaintDocument"]) + "_" + complaintDocument;
                 //repository.Update(complaint);
-                uo.Repository<MSI.CCAT.Data.Models.MSI_ComplaintMain>().Update(complaint);
+                uo.Repository<MSI.CCAT.Data.Models.Tbl_ComplaintMain>().Update(complaint);
                 uo.Save();
             }
             if (!string.IsNullOrEmpty(debtOwnerProcessDocument))
             {
                 complaint.DebtOwnerProcessDocument = fileProcessor.SaveUploadedFile(Request.Files["debtOwnerProcessDocument"]) + "_" + debtOwnerProcessDocument;
                 //repository.Update(complaint);
-                uo.Repository<MSI.CCAT.Data.Models.MSI_ComplaintMain>().Update(complaint);
+                uo.Repository<MSI.CCAT.Data.Models.Tbl_ComplaintMain>().Update(complaint);
                 uo.Save();
             }
             return RedirectToAction("ViewEdit", "Home", new { id = account, agency = agency });

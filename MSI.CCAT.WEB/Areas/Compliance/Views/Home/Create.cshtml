@@ -8,21 +8,29 @@
     }
     
 </style>
-<div class="tblCommon" style="display: none" id="fileUploadContainer" data-bind="with: complianceModel">
-    @using (Html.BeginForm("UploadDocument", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        <div data-bind="visible: complaintinfoDocumentChecked">
-            Select document for complaint information:<input name="complaintDocument" type="file" />
-        </div>
-        <div data-bind="visible: debtOwnerProcessDocumentChecked">
-            Select document for debt owner process:<input name="debtOwnerProcessDocument" type="file" />
-        </div>
-        <input type="hidden" name="hdnAccount" data-bind="value: account" />
-        <input type="hidden" name="hdnAgency" data-bind="value: agency" />
-        <input type="submit" value="Submit" />
-    }
-</div>
+
 <div id="workspaceContainer" class="container-fluid">
+    <div class="modal hide fade" id="fileUploadContainer">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Upload document:</h3>
+        </div>
+        <div class="modal-body" data-bind="with: complianceModel">
+            @using (Html.BeginForm("UploadDocument", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div data-bind="visible: complaintinfoDocumentChecked">
+                    Select document for complaint information:<input name="complaintDocument" type="file" />
+                </div>
+                <div data-bind="visible: debtOwnerProcessDocumentChecked">
+                    Select document for debt owner process:<input name="debtOwnerProcessDocument" type="file" />
+                </div>
+                <input type="hidden" name="hdnAccount" data-bind="value: account" />
+                <input type="hidden" name="hdnAgency" data-bind="value: agency" />
+                <input type="submit" value="Submit" class="btn btn-primary"/>
+            }
+        </div>
+        <div class="modal-footer" /> 
+    </div>
     <table class="searchtable" style="width: 100%;">
         <tr>
             <td style="text-align: right">Client First or Last Name :
@@ -97,11 +105,18 @@
             </table>
         </div>
         <div class="modal-footer" /> 
-    </div>
-    
-    <div id="messageSummary" style="font-size: small">
-        <ul>
-        </ul>
+    </div>    
+    <div class="modal hide fade" id="messageSummary" style="font-size: small">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Errors:</h3>
+        </div>
+        <div class="modal-body" data-bind="with: validationErrors">
+            <ul>
+                <li data-bind="text: $data"></li>
+            </ul>
+        </div>        
+        <div class="modal-footer" /> 
     </div>
     <table class="dummyitem">
         <tr>
@@ -355,7 +370,7 @@
                             </td>
                             <td style="text-align: left; width: 20%">
                                 <select data-bind="options: $parent.complaintIssueOptions, optionsValue: 'Value', optionsText: 'Text', optionsCaption: ' ', value: complaintIssueId">
-                                </select>
+                                </select> *
                             </td>
                         </tr>
                         <tr>
@@ -483,12 +498,12 @@
                 </div>
             </td>
         </tr>
-        <tr>
+        <tr data-bind="visible: isDebtOwnerProcessVisible">
             <td style="width: 100%; background-color: #1f497d">
                 <a href="#" style="text-decoration: none; font-weight: bold; color: white" data-bind="click: showHideDebtOwnerProcess">Debt Owner Process</a>
             </td>
         </tr>
-        <tr>
+        <tr data-bind="visible: isDebtOwnerProcessVisible">
             <td>
                 <div id="debtOwnerProcess" data-bind="with: complianceModel, visible: showDebtOwnerProcess">
                     <table>
@@ -648,7 +663,7 @@
         if (userRole == 'DebtOwner')
             userAgency = '';
         self.complianceModel = new complianceVM(userId, userAgency);
-        self.accountNumber = ko.observable('');
+        self.accountNumber = ko.observable('va1-12345');
         self.firstOrLastName = ko.observable('');
         self.creditorName = ko.observable('');
         self.originalAccountNumber = ko.observable('');
@@ -970,6 +985,7 @@
                         if (data == null || data.length == 0) {
                             self.showMessage(true);
                             self.message('No data available for a given search criteria.');
+                            showNoti_.info('No data available for a given search criteria.', false);
                             self.resetSearchCriteria();
                         }
                         else {
@@ -1013,12 +1029,15 @@
                 self.validationErrors.push('Complaint ID is a required field');
             if (self.complianceModel.complaintDate() == '' || self.complianceModel.complaintDate() == undefined)
                 self.validationErrors.push('Complaint Date is a required field');
+            if (self.complianceModel.complaintIssueId() == '' || self.complianceModel.complaintIssueId() == undefined)
+                self.validationErrors.push('Complaint Issue is a required field');
+            
             log(self.validationErrors().length);
             if (self.validationErrors().length > 0) {
-                $.each(self.validationErrors(), function (i, item) {
-                    $('#messageSummary ul').append('<li>' + item + '</li>');
-                });
-                $("#messageSummary").dialog('open');
+                //$.each(self.validationErrors(), function (i, item) {
+                //    $('#messageSummary ul').append('<li>' + item + '</li>');
+                //});
+                $("#messageSummary").modal();
             }
             else {
                 self.showMessage(true);
@@ -1026,7 +1045,8 @@
                 self.complianceModel.save(self.userRole());
 
                 if (self.complianceModel.complaintinfoDocumentChecked() == true || self.complianceModel.debtOwnerProcessDocumentChecked() == true) {
-                    $('#fileUploadContainer').dialog('open');
+                    //$('#fileUploadContainer').dialog('open');
+                    $('#fileUploadContainer').modal();
                 }
             }
             //window.location.reload();
@@ -1084,7 +1104,9 @@
             else
                 self.showComplaintClosure(true);
         }
-
+        self.isDebtOwnerProcessVisible = ko.computed(function () {
+                return (self.userRole() == 'CollectionAgency') ? false : true;
+            }, self);
         self.validationErrors = ko.observableArray([]);
     }
 
@@ -1092,8 +1114,8 @@
         //log($('#userId').val())
         //log($('#roleEntityValue').val())
         //$('#debtorResults').dialog({ modal: true, title: 'Select debtor:', autoOpen: false, width: 500, height: 500 });
-        $('#messageSummary').dialog({ modal: true, title: 'Errors:', autoOpen: false, width: 200, height: 200 });
-        $('#fileUploadContainer').dialog({ modal: true, title: 'Upload documents:', autoOpen: false, width: 500, height: 500 });
+        //$('#messageSummary').dialog({ modal: true, title: 'Errors:', autoOpen: false, width: 200, height: 200 });
+       // $('#fileUploadContainer').dialog({ modal: true, title: 'Upload documents:', autoOpen: false, width: 500, height: 500 });
 
         ko.applyBindings(new pageViewModel($('#userId').val(), $('#roleEntityValue').val(), $('#hdnUserRole').val()), $('#workspaceContainer')[0]);
 

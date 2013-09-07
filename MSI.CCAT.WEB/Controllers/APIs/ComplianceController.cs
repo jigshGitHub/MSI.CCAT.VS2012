@@ -30,6 +30,10 @@ namespace Cascade.Web.Controllers
     //}
     public class AccountsController : ApiController
     {
+        public AccountsController()
+        {
+        }
+
         public IEnumerable<Tbl_Account> Get(string userAgency = "",string firstOrLastName="", string accountNumber="", string creditorName="", string accountOriginal="")
         {
             IEnumerable<Tbl_Account> accounts = null;
@@ -99,9 +103,13 @@ namespace Cascade.Web.Controllers
                 {
                     if (!string.IsNullOrEmpty(userRole))
                     {
-                        if (userRole == UserRoles.DebtOwner.ToString())
+                        if (userRole == UserRole.DebtOwner.ToString())
+                        {
                             complaint.IsViewedByOwner = true;
-                        if (userRole == UserRoles.CollectionAgency.ToString())
+                            if (complaint.ComplaintStatusId == (int)ComplaintStatus.SFOA)
+                                complaint.ComplaintStatusId = (int)ComplaintStatus.ORIP;
+                        }
+                        if (userRole == UserRole.CollectionAgency.ToString())
                             complaint.IsViewedByAgency = true;
                         uo.Repository<Tbl_ComplaintMain>().Update(complaint);
                         uo.Save();
@@ -139,8 +147,11 @@ namespace Cascade.Web.Controllers
             Tbl_ComplaintMain complaintToSave = null;
             UnitOfWork uo = null;
             bool editingRequired = true;
+            UserRole role;
             try
             {
+
+                role = MSI.CCAT.Business.AccountBus.GetUserRole(complaint.CreatedBy.ToString());
                 uo = new UnitOfWork("CCATDBEntities");
                 IEnumerable<Tbl_ComplaintMain> data = (from existingComplaint in uo.Repository<Tbl_ComplaintMain>().GetAll().Where(record => record.AccountNumber == complaint.AccountNumber)
                                                        select existingComplaint);
@@ -209,12 +220,12 @@ namespace Cascade.Web.Controllers
                 complaintToSave.DebtorAgreeYN = complaint.DebtorAgreeYN;
                 complaintToSave.NeedFurtherActionYN = complaint.NeedFurtherActionYN;
                 complaintToSave.FinalActionStepId = complaint.FinalActionStepId;
-                //if (complaint.ComplaintSubmittedToOwnerYN.Value)
-                //    complaintToSave.IsViewedByOwner = false;
-                //complaintToSave.CreatedBy = complaint.CreatedBy;
-                //complaintToSave.IsViewedByAgency = complaint.IsViewedByAgency;
-
-                
+                if (complaint.ComplaintSubmittedToOwnerYN.Value)
+                    complaintToSave.IsViewedByOwner = false;
+                complaintToSave.CreatedBy = complaint.CreatedBy;
+                complaintToSave.IsViewedByAgency = complaint.IsViewedByAgency;
+                complaintToSave.IsActive = true;
+                complaintToSave.ComplaintStatusId = (int)GetComplaintStatus(role, complaint.AccountNumber, complaintToSave);
                 if (editingRequired)
                 {
                     if(complaintToSave.ComplaintSubmittedDate.HasValue && complaintToSave.ComplaintDate != null)
@@ -226,12 +237,18 @@ namespace Cascade.Web.Controllers
                     //repository.Update(complaintToSave);
                     uo.Repository<Tbl_ComplaintMain>().Update(complaintToSave);
                     uo.Save();
+                    complaintToSave.UpdatedBy = complaint.UpdatedBy;
+                    complaintToSave.UpdatedDateTime = DateTime.Now;
                 }
                 else
                 {
                     //complaintToSave.ComplaintSubmitedToAgency = true;
                     //complaintToSave.ComplaintSubmittedToAgencyDate = DateTime.Now;
                     //repository.Add(complaintToSave);
+                    complaintToSave.CreatedBy = complaint.CreatedBy;
+                    complaintToSave.UpdatedBy = complaint.UpdatedBy;
+                    complaintToSave.CreatedDateTime = DateTime.Now;
+                    complaintToSave.UpdatedDateTime = DateTime.Now;
                     uo.Repository<Tbl_ComplaintMain>().Add(complaintToSave);
                     uo.Save();
                 }
@@ -262,6 +279,158 @@ namespace Cascade.Web.Controllers
 
                 complaint.ComplaintId = complaint.Tbl_Account.AgencyId + "-" + complaint.AccountNumber.Substring(5, 10) + "-" + rnd.Next(101, 999).ToString();
             }
+        }
+
+        private ComplaintStatus GetComplaintStatus(UserRole userRole, string accountNumber, Tbl_ComplaintMain complaintToAnalize)
+        {
+            UnitOfWork uo;
+            ComplaintStatus complaintStatus = ComplaintStatus.BLANK;;
+            try
+            {
+                uo = new UnitOfWork("CCATDBEntities");
+                if (userRole == UserRole.CollectionAgency)
+                {
+                    return CollectionAgencyGetComplaintStatus(uo.Repository<Tbl_ComplaintMain>().GetAll().Where(r=>r.AccountNumber == accountNumber).SingleOrDefault(), complaintToAnalize);
+                }
+                if (userRole == UserRole.DebtOwner)
+                {
+                    return DebtOwnerGetComplaintStatus(uo.Repository<Tbl_ComplaintMain>().GetAll().Where(r => r.AccountNumber == accountNumber).SingleOrDefault(), complaintToAnalize);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+            return complaintStatus;
+        }
+        private ComplaintStatus CollectionAgencyGetComplaintStatus(Tbl_ComplaintMain presentComplaint, Tbl_ComplaintMain complaintToAnalize)
+        {
+            ComplaintStatus complaintStatus = ComplaintStatus.BLANK;
+            try
+            {
+                #region NCRA
+                if (presentComplaint == null)
+                {
+                    return complaintStatus = (complaintToAnalize.DebtorIdentityVerifiedYN.Value) ? ComplaintStatus.NCIP:ComplaintStatus.NCRA;
+                }
+                #endregion
+
+                complaintStatus = (ComplaintStatus)presentComplaint.ComplaintStatusId;
+
+                #region NCIP
+
+                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.NCRA
+                    && complaintToAnalize.DebtorIdentityVerifiedYN.Value == true)
+                    complaintStatus = ComplaintStatus.NCIP;
+                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.AAI
+                    && complaintToAnalize.MoreInfoReceivedFromDebtorYN.Value == true
+                    && complaintToAnalize.MoreInfoReceivedDate.HasValue == true
+                    && complaintToAnalize.MoreInfoFromAgencyReceivedYN.Value == false
+                    && complaintToAnalize.MoreInfoFromAgencyReceivedDate.HasValue == false)
+                    complaintStatus = ComplaintStatus.NCIP;
+                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.AAI
+                    && complaintToAnalize.MoreInfoFromAgencyReceivedYN.Value == true
+                    && complaintToAnalize.MoreInfoFromAgencyReceivedDate.HasValue == true)
+                    complaintStatus = ComplaintStatus.NCIP;
+
+                #endregion
+
+                #region AAI
+
+                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.NCIP
+                    && complaintToAnalize.MoreInfoReqdFromDebtorYN.Value == true
+                    && complaintToAnalize.MoreInfoRequestedDate.HasValue == true
+                    && complaintToAnalize.MoreInfoRequested.Length > 0)
+                    complaintStatus = ComplaintStatus.AAI;
+
+                #endregion
+
+                #region SFOA
+
+                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.NCIP
+                    && complaintToAnalize.ComplaintSubmittedToOwnerYN.Value == true
+                    && complaintToAnalize.ComplaintSubmittedDate.HasValue == true
+                    && complaintToAnalize.DebtorAgreeYN.Value == false
+                    && complaintToAnalize.FinalActionStepId.HasValue == false)
+                    complaintStatus = ComplaintStatus.SFOA;
+
+                #endregion
+
+                #region RC
+
+                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.NCIP
+                    && complaintToAnalize.DebtorAgreeYN.Value == true
+                    && complaintToAnalize.FinalActionStepId.HasValue == true)
+                    complaintStatus = ComplaintStatus.RC;
+
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return complaintStatus;
+
+        }
+        private ComplaintStatus DebtOwnerGetComplaintStatus(Tbl_ComplaintMain presentComplaint, Tbl_ComplaintMain complaintToAnalize)
+        {
+            ComplaintStatus complaintStatus = ComplaintStatus.BLANK;
+            try
+            {
+                #region NCRA
+                if (presentComplaint == null)
+                {
+                    return complaintStatus = (complaintToAnalize.DebtorIdentityVerifiedYN.Value) ? ComplaintStatus.NCIP : ComplaintStatus.NCRA;
+                }
+                #endregion
+
+                complaintStatus = (ComplaintStatus)presentComplaint.ComplaintStatusId;
+
+                #region NCIP
+
+                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.ORIP
+                    && complaintToAnalize.OwnerResponseId.HasValue == true
+                    && complaintToAnalize.OwnerResponseDate.HasValue == true)
+                    complaintStatus = ComplaintStatus.NCIP;
+                //if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.AAI
+                //    && complaintToAnalize.MoreInfoReceivedFromDebtorYN.Value == true
+                //    && complaintToAnalize.MoreInfoReceivedDate.HasValue == true
+                //    && complaintToAnalize.MoreInfoFromAgencyReceivedYN.Value == false
+                //    && complaintToAnalize.MoreInfoFromAgencyReceivedDate.HasValue == false)
+                //    complaintStatus = ComplaintStatus.NCIP;
+                //if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.AAI
+                //    && complaintToAnalize.MoreInfoFromAgencyReceivedYN.Value == true
+                //    && complaintToAnalize.MoreInfoFromAgencyReceivedDate.HasValue == true)
+                //    complaintStatus = ComplaintStatus.NCIP;
+
+                #endregion
+
+                #region AAI
+
+                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.NCIP
+                    && complaintToAnalize.MoreInfoReqdFromDebtorYN.Value == true
+                    && complaintToAnalize.MoreInfoRequestedDate.HasValue == true
+                    && complaintToAnalize.MoreInfoRequested.Length > 0)
+                    complaintStatus = ComplaintStatus.AAI;
+
+                #endregion
+
+                #region SFOA
+
+                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.NCIP
+                    && complaintToAnalize.ComplaintSubmittedToOwnerYN.Value == true
+                    && complaintToAnalize.ComplaintSubmittedDate.HasValue == true)
+                    complaintStatus = ComplaintStatus.SFOA;
+
+                #endregion
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return complaintStatus;
+
         }
     }
     public class DateHelper

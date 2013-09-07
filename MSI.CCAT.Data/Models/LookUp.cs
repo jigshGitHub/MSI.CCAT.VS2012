@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cascade.Data.Models
+namespace MSI.CCAT.Data.Models
 {
     public class LookUp
     {
@@ -18,7 +18,7 @@ namespace Cascade.Data.Models
         }
     }
 
-    public enum UserRoles
+    public enum UserRole
     {
         Admin,
         CollectionAgency,
@@ -33,6 +33,7 @@ namespace Cascade.Data.Models
         AAI,
         SFOA,
         ORIP,
-        RC
+        RC,
+        BLANK
     }
 }

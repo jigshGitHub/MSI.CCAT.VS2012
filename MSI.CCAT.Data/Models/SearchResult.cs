@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cascade.Data.Models
+namespace MSI.Data.Models
 {
     public class SearchResult
     {
@@ -343,67 +343,67 @@ namespace Cascade.Data.Models
 
     }
 
-    public class ComplianceViewResult
-    {
-        public ComplianceViewResult()
-        {
-        }
-        public string AgencyId;
-        public string AgencyName;
-        public string Account;
-        public string LastName;
-        public string FirstName;
-        public string Address;
-        public string City;
-        public string State;
-        public string Zip;
-        public string HomePhone;
-        public string WorkPhone;
-        public string MobilePhone;
-        public string LastFourSSN;
-        public string DebtorIdentityVerified;
-        public string ContactMethod;
-        public string ContactTime;
-        public string CreditorName;
-        public string DebtProduct;
-        public Decimal? DebtPurchaseBalance;
-        public Decimal? DebtCurrentBalance;
-        public string DisputeDebt;
-        public string DisputeDebtAmount;
-        public string DisputeDebtDueDate;
-        public string ComplaintID;
-        public DateTime? ComplaintDate;
-        public string ComplaintReceivedByMethod;
-        public string ComplaintIssue;
-        public string ComplaintNotes;
-        public string ComplaintSubmitedToAgency;
-        public DateTime? ComplaintSubmitedToAgencyDate;
-        public string MoreInfoReqdFromDebtor;
-        public DateTime? MoreInfoRequestedDate;
-        public string MoreInfoRequested;
-        public string MoreInfoReceivedFromDebtor;
-        public DateTime? MoreInfoReceivedDate;
-        public string MoreInfoReceived;
-        public string ComplaintSubmittedToOwner;
-        public DateTime? ComplaintSubmittedDate;
-        public string TimeToSubmitDays;
-        public string MoreInfoFromAgency;
-        public DateTime? MoreInfoFromAgencyRequestedDate;
-        public string MoreInfoFromAgencyRequested;
-        public string MoreInfoFromAgencyReceived;
-        public DateTime? MoreInfoFromAgencyReceivedDate;
-        public string OwnerResponse;
-        public DateTime? OwnerResponseDate;
-        public string OwnerResponseDays;
-        public DateTime? AgencyResponseToDebtorDate;
-        public string TotalResponseTimeDays;
-        public string DebtorAgree;
-        public string NeedFurtherAction;
-        public string FinalActionStep;
-        public string IsViewedByOwner;
-        public string CreatedBy;
-        public string IsViewedByAgency;
-    }
+    //public class ComplianceViewResult
+    //{
+    //    public ComplianceViewResult()
+    //    {
+    //    }
+    //    //public string AgencyId;
+    //    public string AgencyName;
+    //    public string Account;
+    //    public string LastName;
+    //    public string FirstName;
+    //    public string Address;
+    //    public string City;
+    //    public string State;
+    //    public string Zip;
+    //    public string HomePhone;
+    //    public string WorkPhone;
+    //    public string MobilePhone;
+    //    public string LastFourSSN;
+    //    public string DebtorIdentityVerified;
+    //    public string ContactMethod;
+    //    public string ContactTime;
+    //    public string CreditorName;
+    //    public string DebtProduct;
+    //    public Decimal? DebtPurchaseBalance;
+    //    public Decimal? DebtCurrentBalance;
+    //    public string DisputeDebt;
+    //    public string DisputeDebtAmount;
+    //    public string DisputeDebtDueDate;
+    //    public string ComplaintID;
+    //    public DateTime? ComplaintDate;
+    //    public string ComplaintReceivedByMethod;
+    //    public string ComplaintIssue;
+    //    public string ComplaintNotes;
+    //    public string ComplaintSubmitedToAgency;
+    //    public DateTime? ComplaintSubmitedToAgencyDate;
+    //    public string MoreInfoReqdFromDebtor;
+    //    public DateTime? MoreInfoRequestedDate;
+    //    public string MoreInfoRequested;
+    //    public string MoreInfoReceivedFromDebtor;
+    //    public DateTime? MoreInfoReceivedDate;
+    //    public string MoreInfoReceived;
+    //    public string ComplaintSubmittedToOwner;
+    //    public DateTime? ComplaintSubmittedDate;
+    //    public string TimeToSubmitDays;
+    //    public string MoreInfoFromAgency;
+    //    public DateTime? MoreInfoFromAgencyRequestedDate;
+    //    public string MoreInfoFromAgencyRequested;
+    //    public string MoreInfoFromAgencyReceived;
+    //    public DateTime? MoreInfoFromAgencyReceivedDate;
+    //    public string OwnerResponse;
+    //    public DateTime? OwnerResponseDate;
+    //    public string OwnerResponseDays;
+    //    public DateTime? AgencyResponseToDebtorDate;
+    //    public string TotalResponseTimeDays;
+    //    public string DebtorAgree;
+    //    public string NeedFurtherAction;
+    //    public string FinalActionStep;
+    //    public string IsViewedByOwner;
+    //    public string CreatedBy;
+    //    public string IsViewedByAgency;
+    //}
 
     public class MediaViewEditResult
     {
@@ -530,23 +530,47 @@ namespace Cascade.Data.Models
     #endregion
 
 
+    //public class ComplianceReportResult_Ext
+    //{
+    //    public string AgencyId;
+    //    public string AgencyName;
+    //    public string LastName;
+    //    public string FirstName;
+    //    public string PIMSAccount;
+    //    public string ComPlaintId;
+    //    public string HomePhone;
+    //    public string WorkPhone;
+    //    public string MobilePhone;
+    //    public string LastFourSSN;
+    //    public DateTime? ComplaintDate;
+    //    public DateTime? AgencyResponseToDebtorDate;
+    //    public DateTime? MoreInfoRequestedDate;
+    //    public DateTime? ComplaintSubmittedDate;
+    //    public int TotalResponseTimeDays;
+    //    public int count_ { get; set; }
+    //    public Int64 rowNo { get; set; }
+    //    public ComplianceReportResult_Ext()
+    //    {
+    //    }
+
+    //}
+
+
     public class ComplianceReportResult_Ext
     {
-        public string AgencyId;
-        public string AgencyName;
         public string LastName;
         public string FirstName;
-        public string PIMSAccount;
+        public string AccountNumber;
         public string ComPlaintId;
-        public string HomePhone;
-        public string WorkPhone;
-        public string MobilePhone;
         public string LastFourSSN;
+        public string AgencyId;
+        public string ComplaintIssue;
         public DateTime? ComplaintDate;
-        public DateTime? AgencyResponseToDebtorDate;
-        public DateTime? MoreInfoRequestedDate;
-        public DateTime? ComplaintSubmittedDate;
-        public int TotalResponseTimeDays;
+        public DateTime? ResolvedDate;
+        public DateTime? DateRequested;
+        public DateTime? DateSubmitted;
+        public DateTime? AgencyRequestDate;
+        public int? ResponseTimeDays;
         public int count_ { get; set; }
         public Int64 rowNo { get; set; }
         public ComplianceReportResult_Ext()
