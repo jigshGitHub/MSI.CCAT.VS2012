@@ -22,5 +22,6 @@ namespace MSI.CCAT.Data.Models
         public string iconPath { get; set; }
         public string iconClass { get; set; }
         public string pageMenuIds { get; set; }
+        public string DefaultPage { get; set; }
     }
 }

@@ -170,6 +170,7 @@ namespace MSI.CCAT.WEB.Controllers
                         caption = a.pageMenuGroup.caption,
                         description = a.pageMenuGroup.description,
                         iconClass = a.pageMenuGroup.iconClass,
+                        defaultPage = a.pageMenuGroup.DefaultPage,
                         pageMenus = a.pageMenus
 
                     }).ToList();

@@ -10,7 +10,7 @@
 	<ul data-bind="foreach: menuGroups">
 		<li data-bind="attr: { class: liClass }">
             @* Menu Header *@
-			<a href="#" data-bind="click: (itselfMenu() ? pageMenu().menuItemClicked.bind($data, $element) : null)">
+			<a href="#" data-bind="click: menuGroupClicked.bind($data, $element)">
                 <i data-bind="attr: { class: iconClass }" style="background:none; opacity:1.0"></i> 
                 <span data-bind="text: caption"></span> <span class="label" data-bind="text: menuCount()>1 ? menuCount : ''" style="font-weight:normal;font-size:small;color:lightgray"></span>
 			</a>
@@ -118,11 +118,9 @@
         self.isModal = ko.observable(data.isModal);
         self.inIFRAME = ko.observable(data.inIFRAME);
         self.pagePath = ko.observable(data.pagePath);
-
         @* Menu Item - Runtime Properties *@
         self.parent = parent;
         self.active = ko.observable(false);
-
         @* (Class) whether "active" *@
         self.liClass = ko.computed(function () {
             if (self.active())
@@ -135,14 +133,13 @@
         self.menuItemClicked = function (element) {
             @* This line causes an error in IE and FireFox.  Works in Chrome 
             event.stopPropagation(); // prevent default bootstrap behavior *@
-
+            console.log('menuItemClicked');
             @* Handle visual of Active/Inactive menu *@
             if (!self.active() && !self.isNewWindow() && !self.isModal()) {
 
                 @* Inactivate all menu *@
                 for (var i = 0; i < self.parent.parent.menuGroups().length; i++) {
                     self.parent.parent.menuGroups()[i].active(false);
-
                     for (var j = 0; j < self.parent.parent.menuGroups()[i].menuItems().length; j++) {
                         self.parent.parent.menuGroups()[i].menuItems()[j].active(false);
                     }
@@ -157,8 +154,8 @@
                                 : (self.isModal() ? (self.inIFRAME() ? 'd' : 'm')
                                 : (self.inIFRAME() ? 'i' : 'p')));
             var headerTitle = self.caption();
-            console.log(self.pagePath());
             menuLauncher.open(windowMode, self.pagePath(), (self.isModal() ? 'dvModalBody' : 'content'), headerTitle);
+
         };
     };
 </script>
@@ -169,7 +166,7 @@
         var self = this;
         self.caption = ko.observable(data.caption);
         self.iconClass = ko.observable(data.iconClass);
-
+        self.defaultPage = ko.observable(data.defaultPage);
         self.itselfMenu = ko.observable(false);
         self.pageMenu = ko.observable();
         self.href = ko.computed(function () {
@@ -197,7 +194,6 @@
                 _class = _class + (_class != "" ? " " : "") + "active";
             if (self.menuCount() > 1 && self.active())
                 _class = _class + (_class != "" ? " " : "") + "open";
-
             return _class;
         }, this);
 
@@ -211,6 +207,22 @@
                 ko.utils.arrayForEach(menuItemList, function (item) {
                     self.menuItems.push(new menuItem_viewModel(item, self));
                 });
+        };
+
+        self.menuGroupClicked = function (data,element) {
+            console.log('menuGroupClicked');
+            var windowMode = 'p';
+            //console.log(this);
+            
+            for (var i = 0; i < self.parent.menuGroups().length; i++) {
+                self.parent.menuGroups()[i].active(false);
+                for (var j = 0; j < self.parent.menuGroups()[i].menuItems().length; j++) {
+                    console.log(self.parent.menuGroups()[i].menuItems()[j].liClass());
+                    //self.parent.menuGroups()[i].menuItems()[j].active(false);
+                }
+            }
+            menuLauncher.open(windowMode, self.defaultPage(), 'content');
+
         };
     };
 </script>

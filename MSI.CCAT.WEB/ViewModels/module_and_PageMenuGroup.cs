@@ -38,6 +38,8 @@ namespace MSI.CCAT.WEB.ViewModels
 
         public string iconClass { get; set; }
 
+        public string defaultPage { get; set; }
+
         public virtual ICollection<pageMenu> pageMenus { get; set; }
     }
 

@@ -254,6 +254,7 @@
           <Property Name="iconPath" Type="nvarchar" MaxLength="250" />
           <Property Name="iconClass" Type="nvarchar" MaxLength="50" />
           <Property Name="pageMenuIds" Type="varchar" MaxLength="100" />
+          <Property Name="DefaultPage" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="Tbl_Account">
           <Key>
@@ -1124,6 +1125,7 @@
           <Property Type="String" Name="iconPath" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="iconClass" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="pageMenuIds" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DefaultPage" MaxLength="1000" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TBL_CHART">
           <Key>
@@ -1927,6 +1929,7 @@
           <EntitySetMapping Name="pageMenuGroups">
             <EntityTypeMapping TypeName="CCATDBModel.pageMenuGroup">
               <MappingFragment StoreEntitySet="pageMenuGroup">
+                <ScalarProperty Name="DefaultPage" ColumnName="DefaultPage" />
                 <ScalarProperty Name="pageMenuIds" ColumnName="pageMenuIds" />
                 <ScalarProperty Name="iconClass" ColumnName="iconClass" />
                 <ScalarProperty Name="iconPath" ColumnName="iconPath" />
