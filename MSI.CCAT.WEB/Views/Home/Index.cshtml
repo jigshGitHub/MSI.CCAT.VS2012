@@ -157,6 +157,7 @@
                                 : (self.isModal() ? (self.inIFRAME() ? 'd' : 'm')
                                 : (self.inIFRAME() ? 'i' : 'p')));
             var headerTitle = self.caption();
+            console.log(self.pagePath());
             menuLauncher.open(windowMode, self.pagePath(), (self.isModal() ? 'dvModalBody' : 'content'), headerTitle);
         };
     };

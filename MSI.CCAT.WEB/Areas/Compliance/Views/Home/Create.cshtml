@@ -10,27 +10,36 @@
 </style>
 
 <div id="workspaceContainer" class="container-fluid">
-    <div class="modal hide fade" id="fileUploadContainer">
+    <div id="debtorResults" style="font-size: small" class="modal hide fade">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>Upload document:</h3>
+            <h3>Select debtor:</h3>
         </div>
-        <div class="modal-body" data-bind="with: complianceModel">
-            @using (Html.BeginForm("UploadDocument", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                <div data-bind="visible: complaintinfoDocumentChecked">
-                    Select document for complaint information:<input name="complaintDocument" type="file" />
-                </div>
-                <div data-bind="visible: debtOwnerProcessDocumentChecked">
-                    Select document for debt owner process:<input name="debtOwnerProcessDocument" type="file" />
-                </div>
-                <input type="hidden" name="hdnAccount" data-bind="value: account" />
-                <input type="hidden" name="hdnAgency" data-bind="value: agency" />
-                <input type="submit" value="Submit" class="btn btn-primary"/>
-            }
+        <div class="modal-body">
+             Click the Account to populate debtor information from the below list:
+            <table style="text-align: center; width:100%">
+                <tr>
+                    <th>Account
+                    </th>
+                    <th>First Name
+                    </th>
+                    <th>Last Name
+                    </th>
+                    <th>Original Account
+                    </th>
+                </tr>
+                <tbody data-bind="foreach: debtors">
+                    <tr>
+                        <td><a href="#" data-bind="text: account, click: $root.selectedDebtor" /></td>
+                        <td data-bind="text: firstName"></td>
+                        <td data-bind="text: lastName"></td>
+                        <td data-bind="text: accountOriginal"></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="modal-footer" /> 
-    </div>
+    </div>  
     <table class="searchtable" style="width: 100%;">
         <tr>
             <td style="text-align: right">Client First or Last Name :
@@ -70,42 +79,40 @@
                 <input type="button" id="refreshBtn" title="Find" data-bind="click: getAccounts" />
             </td>
         </tr>
-        <tr>
-            <td colspan="2" class="confirmBtnContainer">
-                <img src="~/Content/images/savebutton.png" data-bind="click: saveComplaint, visible: saveVisible" />
-            </td>
-        </tr>
     </table>
-    <div id="debtorResults" style="font-size: small" class="modal hide fade">
+    <div style="display:none" id="successAlert" class="alert alert-success alert-block fade">
+        <a class="close" onclick="$(this).parent().removeClass('in').toggle();">×</a>
+        <strong>Success!</strong><span data-bind="    text: message"></span>.  
+    </div>
+    <div style="display:none" m id="infoAlert" class="alert alert-info alert-block fade">
+        <a class="close" onclick="$(this).parent().removeClass('in').toggle();">×</a>
+        <strong>warning!</strong><span data-bind="    text: message"></span>
+    </div>
+    <div style="display:none" id="errorAlert" class="alert alert-error alert-block fade">
+        <a class="close" onclick="$(this).parent().removeClass('in').toggle();">×</a>
+        <strong>error!</strong><span data-bind="    text: message"></span>
+    </div>
+    <div class="modal hide fade" id="fileUploadContainer">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>Select debtor:</h3>
+            <h3>Upload document:</h3>
         </div>
-        <div class="modal-body">
-             Click the Account to populate debtor information from the below list:
-            <table style="text-align: center; width:100%">
-                <tr>
-                    <th>Account
-                    </th>
-                    <th>First Name
-                    </th>
-                    <th>Last Name
-                    </th>
-                    <th>Original Account
-                    </th>
-                </tr>
-                <tbody data-bind="foreach: debtors">
-                    <tr>
-                        <td data-bind="text: account, click: $root.selectedDebtor"></td>
-                        <td data-bind="text: firstName"></td>
-                        <td data-bind="text: lastName"></td>
-                        <td data-bind="text: accountOriginal"></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="modal-body" data-bind="with: complianceModel">
+            @using (Html.BeginForm("UploadDocument", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div data-bind="visible: complaintinfoDocumentChecked">
+                    Select document for complaint information:<input name="complaintDocument" type="file" />
+                </div>
+                <div data-bind="visible: debtOwnerProcessDocumentChecked">
+                    Select document for debt owner process:<input name="debtOwnerProcessDocument" type="file" />
+                </div>
+                <input type="hidden" name="hdnAccount" data-bind="value: account" />
+                <input type="hidden" name="hdnAgency" data-bind="value: agency" />
+                <input type="submit" value="Submit" class="btn btn-primary"/>
+            }
         </div>
         <div class="modal-footer" /> 
-    </div>    
+    </div>  
     <div class="modal hide fade" id="messageSummary" style="font-size: small">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -118,16 +125,15 @@
         </div>        
         <div class="modal-footer" /> 
     </div>
-    <table class="dummyitem">
+    <table class="tblCommon" style="width: 100%">
         <tr>
-            <td style="text-align: center">
-                <div data-bind="fadeVisible: showMessage" style="background-color: #1f497d; color: #fff;">
-                    <span data-bind="text: message"></span>
-                </div>
+            <td colspan="2" class="confirmBtnContainer">
+                <img src="~/Content/images/savebutton.png" data-bind="click: saveComplaint, visible: saveVisible" />
             </td>
         </tr>
-    </table>
-    <table class="PIMSDatatable" style="width: 100%;">
+        <tr>
+            <td>
+                <table class="PIMSDatatable" style="width: 100%;">
         <tr>
             <td style="width: 100%; background-color: #1f497d">
                 <a href="#" style="text-decoration: none; font-weight: bold; color: white" data-bind="click: showHideDebtInformation">Debtor & Debt Information</a>
@@ -647,6 +653,9 @@
             </td>
         </tr>
     </table>
+            </td>
+        </tr>
+    </table>
 </div>
 @Scripts.Render("~/bundles/knockout")
 @Scripts.Render("~/bundles/external")
@@ -657,13 +666,11 @@
 <script type="text/javascript">
     var yesNoOptions = [{ Text: 'No', Value: 'false' }, { Text: 'Yes', Value: 'true' }];
 
-    function pageViewModel(userId, userAgency, userRole) {
-        console.log(userId + ',' + userAgency + ',' + userRole);
+    function pageViewModel(userId, roleEntityValue, userRole) {
+        console.log(userId + ',' + roleEntityValue + ',' + userRole);
         var self = this;
-        if (userRole == 'DebtOwner')
-            userAgency = '';
-        self.complianceModel = new complianceVM(userId, userAgency);
-        self.accountNumber = ko.observable('va1-12345');
+        self.complianceModel = new complianceVM(userId, roleEntityValue);
+        self.accountNumber = ko.observable('');
         self.firstOrLastName = ko.observable('');
         self.creditorName = ko.observable('');
         self.originalAccountNumber = ko.observable('');
@@ -671,6 +678,7 @@
         self.userRole = ko.observable(userRole);
 
         self.getComplaint = function (account) {
+            self.message('');
             function setComplaint(data) {
                 self.complianceModel.populateCompliance(data.Tbl_Account.Tbl_Agency.Name,data.Tbl_Account.AccountNumber, data.Tbl_Account.FirstName, data.Tbl_Account.LastName, '', data.Tbl_Account.Address, data.Tbl_Account.City, data.Tbl_Account.StateId, data.Tbl_Account.Zip, data.Tbl_Account.LastFourSSN, data.Tbl_Account.MobilePhone, data.Tbl_Account.HomePhone, data.Tbl_Account.WorkPhone, data.DebtorIdentityVerifiedYN, data.DebtorContactMethodId, data.DebtorContactTimeId, data.Tbl_Account.DebtCurrentBalance, data.Tbl_Account.DebtPurchaseBalance, data.Tbl_Account.CreditorName, data.DebtorProductId, data.DisputeDebtYN, data.DisputeDebtAmountYN, data.DisputeDebtDueDateYN, data.ComplaintId, data.ComplaintDate, data.ReceivedByMethodId, data.IssuesId, data.ComplaintNotes, data.ComplaintSubmittedToAgencyYN, data.ComplaintSubmittedToAgencyDate, data.MoreInfoReqdFromDebtorYN, data.MoreInfoRequestedDate, data.MoreInfoRequested, data.MoreInfoReceivedFromDebtorYN, data.MoreInfoReceivedDate, data.MoreInfoReceived, data.ComplaintSubmittedToOwnerYN, data.ComplaintSubmittedDate, data.TimeToSubmitDays, data.MoreInfoFromAgencyYN, data.MoreInfoFromAgencyRequestedDate, data.MoreInfoFromAgencyRequested, data.MoreInfoFromAgencyReceived, data.MoreInfoFromAgencyReceivedYN, data.MoreInfoFromAgencyReceivedDate, data.OwnerResponseId, data.OwnerResponseDate, data.OwnerResponseDays, data.AgencyResponseToDebtorDate, data.TotalResponseTimeDays, data.DebtorAgreeYN, data.NeedFurtherActionYN, data.FinalActionStepId, data.CreatedBy, null, null);
                 if (data.ComplaintId != null) {
@@ -683,7 +691,7 @@
             $.ajax({
                 url: baseUrl + '/api/Compliance/',
                 type: "GET",
-                data: { accountNumber: account, userAgency: userAgency, userRole: self.userRole() },
+                data: { accountNumber: account, userAgency: roleEntityValue, userRole: self.userRole(), createUpdateMode : 'create' },
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 async: false,
@@ -691,8 +699,11 @@
                     console.log(data);
                     setComplaint(data);
                 },
-                error: function (response, errorText) {
-                    log(errorText);
+                error: function (jqXHR, textStatus, errorThrown) {
+                    var responseText = jQuery.parseJSON(jqXHR.responseText);
+                    self.message(responseText.ExceptionMessage);
+                    showNoti_.error(responseText.ExceptionMessage, false);
+                    $('#errorAlert').addClass('in').toggle();
                     return false;
                 }
             });
@@ -704,6 +715,7 @@
             self.getComplaint(debtor.account());
 
             $("#debtorResults").modal('hide');
+            return false;
             //self.saveVisible(true);
         };
         self.createComplaintId = function () {
@@ -971,21 +983,22 @@
         };
 
         self.getAccounts = function () {
+            self.message('');
             if (self.accountNumber() != '' || self.firstOrLastName() != '' || self.creditorName() != '' || self.originalAccountNumber() != '') {
                 $.ajax({
                     url: baseUrl + '/api/Accounts/',
                     type: 'GET',
                     contentType: 'application/json',
-                    data: { userAgency: userAgency, firstOrLastName: self.firstOrLastName, accountNumber: self.accountNumber(), creditorName: self.creditorName(), accountOriginal: self.originalAccountNumber() },
+                    data: {userRole: userRole, roleEntityValue: roleEntityValue, firstOrLastName: self.firstOrLastName, accountNumber: self.accountNumber(), creditorName: self.creditorName(), accountOriginal: self.originalAccountNumber()},
                     dataType: 'json',
                     async: true,
                     success: function (data) {
                         $("#loading").html("&nbsp;");
                         $("#loading").dialog('close');
                         if (data == null || data.length == 0) {
-                            self.showMessage(true);
                             self.message('No data available for a given search criteria.');
                             showNoti_.info('No data available for a given search criteria.', false);
+                            $('#infoAlert').addClass('in').toggle();
                             self.resetSearchCriteria();
                         }
                         else {
@@ -1040,10 +1053,10 @@
                 $("#messageSummary").modal();
             }
             else {
-                self.showMessage(true);
-                self.message('Data saved successfully!');
                 self.complianceModel.save(self.userRole());
-
+                self.message('Data saved successfully!');
+                showNoti_.info(self.message(), false);
+                $('#successAlert').addClass('in').toggle();
                 if (self.complianceModel.complaintinfoDocumentChecked() == true || self.complianceModel.debtOwnerProcessDocumentChecked() == true) {
                     //$('#fileUploadContainer').dialog('open');
                     $('#fileUploadContainer').modal();
@@ -1052,7 +1065,6 @@
             //window.location.reload();
 
         }
-        self.showMessage = ko.observable(false);
         self.message = ko.observable('');
         //self.saveVisible = ko.observable(false);
         self.saveVisible = ko.computed(function () {
@@ -1110,13 +1122,7 @@
         self.validationErrors = ko.observableArray([]);
     }
 
-    $(document).ready(function () {
-        //log($('#userId').val())
-        //log($('#roleEntityValue').val())
-        //$('#debtorResults').dialog({ modal: true, title: 'Select debtor:', autoOpen: false, width: 500, height: 500 });
-        //$('#messageSummary').dialog({ modal: true, title: 'Errors:', autoOpen: false, width: 200, height: 200 });
-       // $('#fileUploadContainer').dialog({ modal: true, title: 'Upload documents:', autoOpen: false, width: 500, height: 500 });
-
+    $(document).ready(function () {        
         ko.applyBindings(new pageViewModel($('#userId').val(), $('#roleEntityValue').val(), $('#hdnUserRole').val()), $('#workspaceContainer')[0]);
 
 
@@ -1136,20 +1142,6 @@
         //$("#listAgencies").kendoDropDownList();
         //$('#listStates').kendoDropDownList();
     });
-
-
-    ko.bindingHandlers.fadeVisible = {
-        init: function (element, valueAccessor) {
-            var value = valueAccessor();
-        },
-        update: function (element, valueAccessor) {
-            var value = valueAccessor();
-            ko.utils.unwrapObservable(value) ? $(element).fadeIn(3000, function () {
-                $(element).fadeOut(5000);
-                value(false)
-            }) : $(element).fadeOut();
-        }
-    };
 
 </script>
 

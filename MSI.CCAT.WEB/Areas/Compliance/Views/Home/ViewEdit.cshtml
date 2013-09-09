@@ -11,6 +11,18 @@
 </style>
 
 <div id="workspaceContainer" class="container-fluid">
+    <div style="display:none" id="successAlert" class="alert alert-success alert-block fade">
+        <a class="close" onclick="$(this).parent().removeClass('in').toggle();">×</a>
+        <strong>Success!</strong><span data-bind="    text: message"></span>.  
+    </div>
+    <div style="display:none" m id="infoAlert" class="alert alert-info alert-block fade">
+        <a class="close" onclick="$(this).parent().removeClass('in').toggle();">×</a>
+        <strong>warning!</strong><span data-bind="    text: message"></span>
+    </div>
+    <div style="display:none" id="errorAlert" class="alert alert-error alert-block fade">
+        <a class="close" onclick="$(this).parent().removeClass('in').toggle();">×</a>
+        <strong>error!</strong><span data-bind="    text: message"></span>
+    </div>
     <div class="modal hide fade" id="fileUploadContainer">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -45,13 +57,6 @@
         <div class="modal-footer" /> 
     </div>
     <table class="tblCommon" style="width: 100%">
-        <tr>
-            <td style="text-align: center">
-                <div data-bind="fadeVisible: showMessage" style="background-color: #1f497d; color: #fff">
-                    <span data-bind="text: message"></span>
-                </div>
-            </td>
-        </tr>
         <tr>
             <td style="text-align: right">
                 <img src="~/Content/images/savebutton.png" data-bind="click: saveComplaint, visible: saveVisible" />
@@ -611,15 +616,18 @@
             $.ajax({
                 url: baseUrl + '/api/Compliance/',
                 type: "GET",
-                data: { accountNumber: self.pimsAccountNumber(), agencyId: self.complianceModel.agency(), userRole: self.userRole },
+                data: { accountNumber: self.pimsAccountNumber(), agencyId: self.complianceModel.agency(), userRole: self.userRole, createUpdateMode: 'update' },
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 async: false,
                 success: function (data) {
                     setComplaint(data);
                 },
-                error: function (response, errorText) {
-                    log(errorText);
+                error: function (jqXHR, textStatus, errorThrown) {
+                    var responseText = jQuery.parseJSON(jqXHR.responseText);
+                    self.message(responseText.ExceptionMessage);
+                    showNoti_.error(responseText.ExceptionMessage, false);
+                    $('#errorAlert').addClass('in').toggle();
                     return false;
                 }
             });
@@ -898,9 +906,10 @@
                 $("#messageSummary").modal();
             }
             else {
-                self.showMessage(true);
-                self.message('Data saved successfully!');
                 self.complianceModel.save();
+                self.message('Data saved successfully!');
+                showNoti_.info(self.message(), false);
+                $('#successAlert').addClass('in').toggle();
 
                 if (self.complianceModel.complaintinfoDocumentChecked() == true || self.complianceModel.debtOwnerProcessDocumentChecked() == true) {
                     log(self.complianceModel.complaintinfoDocumentChecked());

@@ -66,17 +66,27 @@ namespace Cascade.Data.Repositories
             return debtors.AsEnumerable<MSI_Debtor>();
         }
 
-        public IEnumerable<Tbl_Account> GetAccounts(string firstOrLastName, string accountNumber, string creditorName, string accountOriginal, string userAgency)
+        public IEnumerable<Tbl_Account> GetAccounts(string firstOrLastName, string accountNumber, string creditorName, string accountOriginal, string roleEntityValue, UserRole role)
         {
             IEnumerable<Tbl_Account> accounts = null;
             try
             {
                 IUnitOfWork uow = new UnitOfWork("CCATDBEntities");
                 accounts = uow.Repository<Tbl_Account>().GetAll();
-                if (!string.IsNullOrEmpty(userAgency))
+                if (role == UserRole.CollectionAgency)
                 {
-                    int agencyId = uow.Repository<Tbl_Agency>().GetAll().Where(a => a.Name == userAgency).SingleOrDefault().AgencyId;
-                    accounts = accounts.Where(a => a.AgencyId == agencyId);
+                    if (!string.IsNullOrEmpty(roleEntityValue))
+                    {
+                        int agencyId = uow.Repository<Tbl_Agency>().GetAll().Where(a => a.Name == roleEntityValue).SingleOrDefault().AgencyId;
+                        accounts = accounts.Where(a => a.AgencyId == agencyId);
+                    }
+                }
+                else if (role == UserRole.DebtOwner)
+                {
+                    if (!string.IsNullOrEmpty(roleEntityValue))
+                    {
+                        accounts = accounts.Where(a => a.OwnerId == int.Parse(roleEntityValue));
+                    }
                 }
                 if (!string.IsNullOrEmpty(firstOrLastName))
                     return accounts.Where(record => record.FirstName.ToLower().Contains(firstOrLastName.ToLower()) || record.LastName.ToLower().Contains(firstOrLastName.ToLower()));
