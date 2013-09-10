@@ -1,132 +1,30 @@
 ﻿@Html.Hidden("userId", (string)(@ViewBag.UserID))
 @Html.Hidden("moduleId", (string)(@ViewBag.ModuleId))
 @Html.Hidden("onlyDeficient", (bool)(@ViewBag.OnlyDeficient))
-
-<style>
-    .ui-tooltip, .arrow:after {
-        background: black;
-        border: 2px solid white;
-    }
-
-    .ui-tooltip {
-        padding: 10px 20px;
-        color: white;
-        border-radius: 20px;
-        font: bold 14px "Helvetica Neue", Sans-Serif;
-        text-transform: uppercase;
-        box-shadow: 0 0 7px black;
-    }
-
-    .arrow {
-        width: 70px;
-        height: 16px;
-        overflow: hidden;
-        position: absolute;
-        left: 50%;
-        margin-left: -35px;
-        bottom: -16px;
-    }
-
-        .arrow.top {
-            top: -16px;
-            bottom: auto;
-        }
-
-        .arrow.left {
-            left: 20%;
-        }
-
-        .arrow:after {
-            content: "";
-            position: absolute;
-            left: 20px;
-            top: -20px;
-            width: 25px;
-            height: 25px;
-            box-shadow: 6px 5px 9px -9px black;
-            -webkit-transform: rotate(45deg);
-            -moz-transform: rotate(45deg);
-            -ms-transform: rotate(45deg);
-            -o-transform: rotate(45deg);
-            tranform: rotate(45deg);
-        }
-
-        .arrow.top:after {
-            bottom: -20px;
-            top: auto;
-        }
-
-    td, th {
-        border: 0px solid red;
-    }
-</style>
 <div id="workspaceContainer">
-    <div id="defaultPageContainer">
-        <div id="normalAssessment" data-bind="visible: visibleNormalAssessment">
-            <table style="border: 0px solid red; width: 100%">
-                <tr>
-                    <td colspan="3" style="width: 100%">
-                        <div id="moduleTitle" data-bind="with: selectedQuestionModule"><span data-bind="    text: name"></span>&nbsp;(<span data-bind="    text: scoringLegend"></span>)</div>
-                    </td>
-                </tr>
-                <tr data-bind="visible: displayModuleMessage">
-                    <td colspan="3" style="width: 100%">
-                        <span data-bind="text: moduleMessage"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3" style="width: 100%">
-                        <span data-bind="text: completeCountLabel" />
-                    </td>
-                </tr>
-                <tbody data-bind="foreach: questions">
-                    <tr>
-                        <td data-bind="text: serialNumber" style="width: 5%"></td>
-                        <td style="width: 5%">
-                            <select style="width: 70px" data-bind="options: responses, optionsValue: 'Value', optionsCaption: ' ', optionsText: 'Value', value: response">
-                            </select>
-                        </td>
-                        <td data-bind="text: text, attr: { title: toolTipText }"></td>
-                    </tr>
-                </tbody>
-            </table>
-            <input type="button" class="btn btn-primary" data-bind="click: previousClick, visible: previousVisible" value="Previous" />&nbsp;<input type="button" class="btn btn-primary" data-bind="    click: nextClick, visible: nextVisible" value="Next" />
-        </div>
-
-        <div id="deficientAssessment" data-bind="visible: visibleDeficientAssessment">
-            <table style="width: 100%;">
-                <tr>
-                    <td>
-                        <img src="~/images/MSI icon.png" />
-                    </td>
-                    <td style="font-size: 20pt;">Module <span data-bind="    text: selectedQuestionModule().id"></span>Results: <span data-bind="    text: selectedQuestionModule().name"></span></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="description">
-                        <ul data-bind="foreach: questions">
-                            <li><span data-bind="text: serialNumber"></span>-<span data-bind="    text: recommendation"></span></li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2"></td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="text-align: center"><a href="javascript:loadScorecard()" title="View Scorecard">
-                        <img src="~/images/Scorecard icon.png" /></a></td>
-                </tr>
-            </table>
-        </div>
+    <div id="defaultPageContainer" data-bind="with: selectedQuestionModule">
+        <table>
+            <tr>
+                <td class="icon">
+                    <img src="@Model.iconPath" />
+                <td>
+                <td class="title" data-bind="    text: name" />
+            </tr>
+            <tr>
+                <td colspan="2" class="description">
+                    <ul data-with="foreach: questions">
+                        <li data-bind="text: text, attr: { title: toolTipText }"></li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
     </div>
 </div>
-
-
 
 @Scripts.Render("~/bundles/external")
 
 <script src="~/Scripts/application.js" type="text/javascript"></script>
 <script type="text/javascript">
-    var answerOptions = [{ Text: 'Unsure', Value: '1' }, { Text: 'Slightly Agree', Value: '2' }, { Text: 'Agree', Value: '3' }, { Text: 'Strongly Agree', Value: '4' }, { Text: 'Fully Compliant', Value: '5' }, { Text: 'Not applicable', Value: 'N/A' }];
     var assessmentResponse = function (_id, _text, _toolTipText, _srNo, _response, _responseId, _userId, _recommendation) {
         var self = this;
         self.id = ko.observable(_id);
@@ -164,11 +62,10 @@
             });
         }
     }
-    var questionModule = function (_id, _name, _scoringLegend) {
+    var questionModule = function (_id, _name) {
         var self = this;
         self.id = ko.observable(_id);
         self.name = ko.observable(_name);
-        self.scoringLegend = ko.observable(_scoringLegend);
     }
 
     var pageViewModel = function (userId, moduleId, onlyDeficient) {
@@ -247,7 +144,7 @@
                     if (data.length > 0) {
                         $.each(data, function (i, item) {
                             //log(item)
-                            self.modules.push(new questionModule(item.Id, item.Name, item.ScoringLegend));
+                            self.modules.push(new questionModule(item.Id, item.Name));
                         });
                         hideProgress();
                     }
@@ -290,16 +187,6 @@
                 }
             });
         };
-
-        self.visibleNormalAssessment = ko.computed(function () {
-            var showNormal = (self.onlyDeficient == 'true') ? false : true;
-            console.log(self.onlyDeficient);
-            return showNormal;
-        }, self);
-
-        self.visibleDeficientAssessment = ko.computed(function () {
-            return (self.visibleNormalAssessment()) ? false : true;
-        }, self);
     }
 
     $(document).ready(function () {
@@ -320,13 +207,5 @@
                 }
             }
         });
-
-        loadScorecard = function () {
-            $('#workspaceContainer').children().remove();
-            var path = baseUrl + "/Scorecard/Home/index";
-            $.get(path, function (data) {
-                $('#workspaceContainer').html(data);
-            });
-        }
     });
 </script>

@@ -248,13 +248,13 @@
           </Key>
           <Property Name="pageMenuGroupId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="appId" Type="int" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
           <Property Name="caption" Type="nvarchar" MaxLength="50" />
           <Property Name="description" Type="nvarchar(max)" />
           <Property Name="iconPath" Type="nvarchar" MaxLength="250" />
           <Property Name="iconClass" Type="nvarchar" MaxLength="50" />
           <Property Name="pageMenuIds" Type="varchar" MaxLength="100" />
           <Property Name="DefaultPage" Type="nvarchar" MaxLength="1000" />
+          <Property Name="name" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="Tbl_Account">
           <Key>
@@ -560,6 +560,7 @@
           <Property Name="DisplayOrder" Type="int" />
           <Property Name="IndustryAverage" Type="varchar" MaxLength="10" />
           <Property Name="QuetionQuantity" Type="int" />
+          <Property Name="ScoringLegend" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="Tbl_QuestionResponse">
           <Key>
@@ -1119,7 +1120,7 @@
           </Key>
           <Property Type="Int32" Name="pageMenuGroupId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="appId" />
-          <Property Type="String" Name="name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="name" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="caption" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="description" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="iconPath" MaxLength="250" FixedLength="false" Unicode="true" />
@@ -1557,6 +1558,7 @@
           <Property Type="String" Name="IndustryAverage" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="QuetionQuantity" />
           <NavigationProperty Name="Tbl_QuestionBank" Relationship="CCATDBModel.FK_Tbl_QuestionBank_Tbl_Module" FromRole="Tbl_QuestionModule" ToRole="Tbl_QuestionBank" />
+          <Property Type="String" Name="ScoringLegend" MaxLength="1000" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Tbl_QuestionBank_Tbl_Module">
           <End Type="CCATDBModel.Tbl_QuestionModule" Role="Tbl_QuestionModule" Multiplicity="0..1" />
@@ -2199,6 +2201,7 @@
           <EntitySetMapping Name="Tbl_QuestionModule">
             <EntityTypeMapping TypeName="CCATDBModel.Tbl_QuestionModule">
               <MappingFragment StoreEntitySet="Tbl_QuestionModule">
+                <ScalarProperty Name="ScoringLegend" ColumnName="ScoringLegend" />
                 <ScalarProperty Name="QuetionQuantity" ColumnName="QuetionQuantity" />
                 <ScalarProperty Name="IndustryAverage" ColumnName="IndustryAverage" />
                 <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />

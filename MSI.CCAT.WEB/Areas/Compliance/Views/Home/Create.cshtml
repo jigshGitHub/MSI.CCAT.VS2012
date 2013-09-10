@@ -1,5 +1,4 @@
-﻿<h2>Create Complaint</h2>
-@Html.Hidden("userId", (string)(@ViewBag.UserID))
+﻿@Html.Hidden("userId", (string)(@ViewBag.UserID))
 @Html.Hidden("roleEntityValue", (string)(@ViewBag.RoleEntityValue))
 @Html.Hidden("hdnUserRole", (string)(@ViewBag.UserRole))
 <style>
@@ -10,6 +9,7 @@
 </style>
 
 <div id="workspaceContainer" class="container-fluid">
+    <div class='page-title'>Create Complaint</div>
     <div id="debtorResults" style="font-size: small" class="modal hide fade">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -128,7 +128,7 @@
     <table class="tblCommon" style="width: 100%">
         <tr>
             <td colspan="2" class="confirmBtnContainer">
-                <img src="~/Content/images/savebutton.png" data-bind="click: saveComplaint, visible: saveVisible" />
+                <img src="~/Content/images/savebutton.png" id="saveRecord" style="position:absolute;z-index:1000;top:0; right:0;position:absolute; float:right;" data-bind="click: saveComplaint, visible: saveVisible" />
             </td>
         </tr>
         <tr>
@@ -1143,5 +1143,11 @@
         //$('#listStates').kendoDropDownList();
     });
 
+    var $scrollingDiv = $("#saveRecord");
+    $(window).scroll(function () {
+        $scrollingDiv
+            .stop()
+            .animate({ "marginTop": ($(window).scrollTop() + 30) + "px" }, "slow");
+    });
 </script>
 

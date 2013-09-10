@@ -12,7 +12,7 @@
             @* Menu Header *@
 			<a href="#" data-bind="click: menuGroupClicked.bind($data, $element)">
                 <i data-bind="attr: { class: iconClass }" style="background:none; opacity:1.0"></i> 
-                <span data-bind="text: caption"></span> <span class="label" data-bind="text: menuCount()>1 ? menuCount : ''" style="font-weight:normal;font-size:small;color:lightgray"></span>
+                <span data-bind="text: caption"></span>
 			</a>
             @* Sub Menu *@
 			<ul data-bind="foreach: menuItems">

@@ -1,5 +1,4 @@
-﻿<h2>ViewEdit</h2>
-@Html.Hidden("hdnUserId", (string)(@ViewBag.UserID))
+﻿@Html.Hidden("hdnUserId", (string)(@ViewBag.UserID))
 @Html.Hidden("hdnAgencyId", (string)(@ViewBag.AgencyID))
 @Html.Hidden("hdnAccountNumber", (string)(@ViewBag.Account))
 @Html.Hidden("hdnUserRole", (string)(@ViewBag.UserRole))
@@ -11,6 +10,7 @@
 </style>
 
 <div id="workspaceContainer" class="container-fluid">
+    <div class='page-title'>View and edit Complaint</div>
     <div style="display:none" id="successAlert" class="alert alert-success alert-block fade">
         <a class="close" onclick="$(this).parent().removeClass('in').toggle();">×</a>
         <strong>Success!</strong><span data-bind="    text: message"></span>.  
@@ -59,7 +59,7 @@
     <table class="tblCommon" style="width: 100%">
         <tr>
             <td style="text-align: right">
-                <img src="~/Content/images/savebutton.png" data-bind="click: saveComplaint, visible: saveVisible" />
+                <img src="~/Content/images/savebutton.png" id="saveRecord" style="position:absolute;z-index:1000;top:0; right:0;position:absolute; float:right;" data-bind="click: saveComplaint, visible: saveVisible" />
             </td>
         </tr>
         <tr>
@@ -998,17 +998,10 @@
     });
 
 
-    ko.bindingHandlers.fadeVisible = {
-        init: function (element, valueAccessor) {
-            var value = valueAccessor();
-        },
-        update: function (element, valueAccessor) {
-            var value = valueAccessor();
-            ko.utils.unwrapObservable(value) ? $(element).fadeIn(3000, function () {
-                $(element).fadeOut(5000);
-                value(false)
-            }) : $(element).fadeOut();
-        }
-    };
-
+    var $scrollingDiv = $("#saveRecord");
+    $(window).scroll(function () {
+        $scrollingDiv
+            .stop()
+            .animate({ "marginTop": ($(window).scrollTop() + 30) + "px" }, "slow");
+    });
 </script>

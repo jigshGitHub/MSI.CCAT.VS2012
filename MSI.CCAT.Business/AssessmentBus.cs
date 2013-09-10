@@ -63,11 +63,11 @@ namespace MSI.CCAT.Business
                 if (responses.Count() == 0)
                     responses = CreateDefaultResponses(userId, questions);
 
-                assessmentResponses = from questionBank in questions
+                assessmentResponses = from questionBank in questions.Where(r => r.Recommendation!= null).GroupBy(r => r.Recommendation).Select(x=>x.First())
                                       join questionResponse in responses on questionBank.Id equals questionResponse.QuestionId
                                       join questionDeficient in deficiences on questionResponse.Value equals questionDeficient.UserResponseValue
                                       where questionResponse.CreatedBy == userId  && questionDeficient.IsDeficient == true
-                                      select new AssessmentResponse() { QuestionId = questionBank.Id, ModuleId = moduleId, Question = questionBank.Text, QuestionTooltip = questionBank.ToolTipText, Response = questionResponse.Value, ResponseId = questionResponse.Id, SerialNumber = questionBank.SrNo, UserId = userId, IsDeficient = questionDeficient .IsDeficient.Value};
+                                      select new AssessmentResponse() { QuestionId = questionBank.Id, ModuleId = moduleId, Question = questionBank.Text, QuestionTooltip = questionBank.ToolTipText, Response = questionResponse.Value, ResponseId = questionResponse.Id, SerialNumber = questionBank.SrNo, UserId = userId, IsDeficient = questionDeficient .IsDeficient.Value, Recommendation= questionBank.Recommendation};
 
             }
             catch (Exception ex)

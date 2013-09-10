@@ -20,7 +20,8 @@ footer
 	padding:0;
 	height: 40px;
     clear: both;
-    background-color: #d3d3d3; /*#444444;*/
+    /*background-color: #d3d3d3;*/ /*#444444;*/
+    background-color:  #DDD9C3 ; /*#444444;*/ /*Khakhi color*/
 }
 
 .zone 
@@ -144,14 +145,22 @@ footer .container
 .xBig-font { font-size: 300%; }
 .Big-font { font-size: 200%; }
 
-.HeaderText
+/*.HeaderText
 {
 	font-family:'Open Sans condensed', sans-serif;
 	font-size:300%;
 	color:white;
 	text-align:center;
 	opacity:0.9;
+}*/
+
+.HeaderText
+{
+    font-size:140%;
+    font-weight:bold;
+    opacity:1.0;
 }
+
 
 .arrow 
 {

@@ -28,7 +28,7 @@
                 myChart.render(chartContainer1);
             }
         });
-        test = function (moduleId) {
+        loadScorecard = function (moduleId) {
             $('#clubSearch').children().remove();
             var path = baseUrl + "/Assessment/Home?moduleId=" + moduleId + "&onlyDeficient=true";
             $.get(path, function (data) {

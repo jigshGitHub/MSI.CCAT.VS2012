@@ -88,8 +88,8 @@ namespace MSI.Charts
                                        into grp
                                        select new { grp.Key.Id, value = grp.Sum(r => (r.Value == "N/A") ? 0 : Convert.ToDecimal(r.Value)), indAvg = grp.Key.IndustryAverage, name = grp.Key.Name, totalQuestions = grp.Key.QuetionQuantity };
 
-                        this.DataSetCollection.Add(new ChartDataSet { Color = "0000FF", SeriesName = userName });
-                        this.DataSetCollection.Add(new ChartDataSet { Color = "8A4B08", SeriesName = "Industry Average" });
+                        this.DataSetCollection.Add(new ChartDataSet { Color = "6699FF", SeriesName = userName });
+                        this.DataSetCollection.Add(new ChartDataSet { Color = "C3D69B", SeriesName = "Industry Average" });
 
                         decimal percentValue;
                         string link = "";
@@ -100,7 +100,7 @@ namespace MSI.Charts
                             percentValue = (value.value * 20) / value.totalQuestions.Value;
                             link = ((string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["applicationRootDirectory"])) ? "" : "/" + System.Configuration.ConfigurationManager.AppSettings["applicationRootDirectory"]) + "/Assessment/Home/DeficientQuestions?moduleId=" + value.Id.ToString();
                             //this.DataSetCollection[0].SetsCollection.Add(new SetValue { Label = value.name, Value = Math.Round(percentValue, 2).ToString(), Link = link });
-                            link = "JavaScript:test(" + value.Id.ToString() + ");";
+                            link = "JavaScript:loadScorecard(" + value.Id.ToString() + ");";
                             this.DataSetCollection[0].SetsCollection.Add(new SetValue { Label = value.name, Value = Math.Round(percentValue, 2).ToString(), Link = link });
                             this.DataSetCollection[1].SetsCollection.Add(new SetValue { Label = value.name, Value = value.indAvg.ToString().Substring(0, value.indAvg.ToString().Length - 1) });
 
