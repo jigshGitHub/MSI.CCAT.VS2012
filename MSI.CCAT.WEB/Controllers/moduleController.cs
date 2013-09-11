@@ -194,11 +194,12 @@ namespace MSI.CCAT.WEB.Controllers
             }
         }
 
-        public ActionResult DefaultPage(int? pageMenuGroupId)
+        public ActionResult DefaultPage(int? pageMenuId, int? pageMenuGroupId)
         {
-            pageMenuGroup  group = (from groups in myModulePageMenuGroups.Where(record => record.pageMenuGroup.pageMenuGroupId == pageMenuGroupId.Value)
-                            select groups).SingleOrDefault().pageMenuGroup;
-            return PartialView("defaultPartial_" + pageMenuGroupId.ToString() , group);
+            pageMenu  menu = (from groups in myModulePageMenuGroups.Where(record => record.pageMenuGroup.pageMenuGroupId == pageMenuGroupId.Value)
+                            select groups).SingleOrDefault().pageMenus.Where(m => m.pageMenuId == pageMenuId).SingleOrDefault();
+
+            return PartialView("defaultPartial_" + pageMenuId.ToString(), menu);
 
         }
     }

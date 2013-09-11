@@ -1931,9 +1931,9 @@
     <Content Include="Views\Shared\_LayoutHeader.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Account\ManageUsers.cshtml" />
-    <Content Include="Views\module\defaultPartial_4.cshtml" />
-    <Content Include="Views\module\defaultPartial_2.cshtml" />
-    <Content Include="Views\module\defaultPartial_5.cshtml" />
+    <Content Include="Views\module\defaultPartial_35.cshtml" />
+    <Content Include="Views\module\defaultPartial_34.cshtml" />
+    <Content Include="Views\module\defaultPartial_32.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
