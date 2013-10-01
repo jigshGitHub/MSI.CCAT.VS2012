@@ -23,6 +23,8 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
     public class HomeController : BaseController
     {
         private IFileProcessor fileProcessor = new FileProcessor();
+
+        
         //
         // GET: /Compliance/Home/
 
@@ -52,13 +54,33 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
 
         //}
 
-        public static List<ComplianceReportResult_Ext> GetReportData(string where, string OrderBy, int pageSize, int pageNo, string reportType)
+        public static List<ComplianceReportResult_Ext> GetReportData(string roleEntityValue, string hdnUserRole, string where, string OrderBy, int pageSize, int pageNo, string reportType)
         {
             DBFactory db;
             SqlDataReader rdr;
             List<ComplianceReportResult_Ext> data = null;
 
+            //Get the Base SQL statement
             string _sql_base_ReportQuery_rt = string.Format(_sql_base_ReportQuery, reportType);
+
+            //Now change based on the role
+            if (hdnUserRole == "CollectionAgency" || hdnUserRole == "DebtOwner")
+            {
+                //Then we need to change the SQL
+                if (hdnUserRole == "CollectionAgency")
+                {
+                    _sql_base_ReportQuery_rt = _sql_base_ReportQuery_rt + " and ag.Name = '{0}'";
+                    
+                }
+                if (hdnUserRole == "DebtOwner")
+                {
+                    _sql_base_ReportQuery_rt = _sql_base_ReportQuery_rt + " and act.OwnerId = {0}";
+                    
+                }
+                _sql_base_ReportQuery_rt = string.Format(_sql_base_ReportQuery_rt, roleEntityValue);
+
+            }
+
 
             string SQL = "";
             SQL = (!string.IsNullOrEmpty(where) ? string.Format(_sql_base_ReportQuery_rt, where) : _sql_base_ReportQuery_rt);
@@ -137,7 +159,7 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
 
 
         [HttpGet]
-        public JsonResult GetComplianceReportData(string searchText, string reportType, int? page, int? pageSize)
+        public JsonResult GetComplianceReportData(string searchText, string reportType, string roleEntityValue, string hdnUserRole, int? page, int? pageSize)
         {
             #region [ Retrieve "Sort" options ]
             string sortField = HttpContext.Request.QueryString["sort[0][field]"];
@@ -181,7 +203,7 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
                         _where = "and (" + _where + ")";
 
                         if (string.IsNullOrEmpty(_sortOptions)) _sortOptions = "ComplaintId ASC";
-                        _list = GetReportData(_where, _sortOptions, _pageSize, _pageNo, reportType);
+                        _list = GetReportData(roleEntityValue, hdnUserRole,_where, _sortOptions, _pageSize, _pageNo, reportType);
                     }
                     #endregion
                 }
@@ -191,7 +213,7 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
             {
                 //Coming here when SearchText is null
                 if (string.IsNullOrEmpty(_sortOptions)) _sortOptions = "ComplaintId ASC";
-                _list = GetReportData("", _sortOptions, _pageSize, _pageNo, reportType);
+                _list = GetReportData(roleEntityValue, hdnUserRole,"", _sortOptions, _pageSize, _pageNo, reportType);
             }
             #endregion
 

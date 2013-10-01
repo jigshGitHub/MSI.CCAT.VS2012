@@ -8,6 +8,8 @@
 
 @*We need to store Report Type here*@
 @Html.Hidden("reportType",(string)(@ViewBag.ReportType))
+@Html.Hidden("roleEntityValue", (string)(@ViewBag.RoleEntityValue))
+@Html.Hidden("hdnUserRole", (string)(@ViewBag.UserRole))
 
  <div id="clubSearch" class="container-fluid">
     <div class="row-fluid">
@@ -51,7 +53,7 @@
                 read: {
                     url: baseUrl + "/Compliance/Home/GetComplianceReportData",
                     dataType: "json",
-                    data: { searchText: searchText, reportType: $('#reportType').val() },
+                    data: { searchText: searchText, reportType: $('#reportType').val(), roleEntityValue: $('#roleEntityValue').val(), hdnUserRole: $('#hdnUserRole').val() },
                     cache: false //This is required othewise grid does not refresh after Edit operation in IE
                 }
             },

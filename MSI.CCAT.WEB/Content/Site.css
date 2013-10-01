@@ -23,9 +23,10 @@
 }
 
 #moduleTitle {
-    background-color: #000000;
+    background-color: #DDD9C3;
     font-size: medium;
-    color: #FFFFFF;
+    color: #000000;
+    font-weight:bold;
 }
 
 
