@@ -1,0 +1,7 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Reports</h2>
+<div>@Html.ActionLink("Complaint By Issue Type", "../../Areas/RDL/Report.aspx", new { rpt = "ComplaintsByIssueType" }, new { target = "_blank" })</div>
+<div>@Html.ActionLink("Complaint Submission Aging", "../../Areas/RDL/Report.aspx",new { rpt = "ComplaintSubmissionAging" }, new { target="_blank" })</div>

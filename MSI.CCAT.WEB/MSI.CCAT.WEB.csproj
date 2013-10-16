@@ -40,6 +40,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -192,6 +196,15 @@
     <Compile Include="Areas\Compliance\Controllers\HomeController.cs" />
     <Compile Include="Areas\Dashboard\Controllers\HomeController.cs" />
     <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
+    <Compile Include="Areas\RDL\Controllers\HomeController.cs" />
+    <Compile Include="Areas\RDL\RDLAreaRegistration.cs" />
+    <Compile Include="Areas\RDL\Report.aspx.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Areas\RDL\Report.aspx.designer.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Areas\Scorecard\Controllers\HomeController.cs" />
     <Compile Include="Areas\Scorecard\ScorecardAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -214,6 +227,7 @@
     <Compile Include="ViewModels\module_and_PageMenuGroup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\RDL\Report.aspx" />
     <Content Include="contents\bootbox\bootbox.min.js" />
     <Content Include="contents\bootstrap_ua\buttons.html" />
     <Content Include="contents\bootstrap_ua\calendar.html" />
@@ -1867,6 +1881,8 @@
     <Content Include="Areas\Audit\Views\Home\Index.cshtml" />
     <Content Include="Areas\Audit\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Assessment\Views\Home\DeficientQuestions.cshtml" />
+    <Content Include="Areas\RDL\Views\Home\Index.cshtml" />
+    <Content Include="Areas\RDL\Views\Web.config" />
     <None Include="Properties\PublishProfiles\WebDeploy-DevEnvt.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -1945,6 +1961,8 @@
     <Folder Include="Areas\Compliance\Views\Shared\" />
     <Folder Include="Areas\Dashboard\Models\" />
     <Folder Include="Areas\Dashboard\Views\Shared\" />
+    <Folder Include="Areas\RDL\Models\" />
+    <Folder Include="Areas\RDL\Views\Shared\" />
     <Folder Include="Areas\Scorecard\Models\" />
     <Folder Include="Areas\Scorecard\Views\Shared\" />
   </ItemGroup>
