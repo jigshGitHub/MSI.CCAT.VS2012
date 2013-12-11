@@ -14,7 +14,8 @@ namespace MSI.CCAT.WEB.Areas.RDL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoadReport();
+            if(!Page.IsPostBack)
+                LoadReport();
 
         }
         private void LoadReport()
@@ -54,12 +55,12 @@ namespace MSI.CCAT.WEB.Areas.RDL
             string ReportsUserPassword = ConfigurationManager.AppSettings["ReportsUserPassword"];
             string ReportsDomain = ConfigurationManager.AppSettings["ReportsDomain"];
             string ReportsServerURL = ConfigurationManager.AppSettings["ReportsServerURL"];
-
+            string ReportFolderPath = ConfigurationManager.AppSettings["ReportFolderPath"];
             IReportServerCredentials irsc = new CustomReportCredentials(ReportsUserName, ReportsUserPassword, ReportsDomain);
             ReportViewer1.ServerReport.ReportServerUrl = new Uri(ReportsServerURL);
             //ReportViewer1.ServerReport.ReportPath = "/" + "TotalPipelinebyStatusAndFranchiseSpecificbyID";//reportName;
 
-            ReportViewer1.ServerReport.ReportPath = "/" + reportName;//reportName;
+            ReportViewer1.ServerReport.ReportPath = ReportFolderPath + reportName;//reportName;
             ReportViewer1.ShowParameterPrompts = false;
             ReportViewer1.ShowPrintButton = true;
             this.ReportViewer1.ServerReport.SetParameters(rptParams);
