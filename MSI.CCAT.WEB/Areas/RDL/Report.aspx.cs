@@ -61,7 +61,15 @@ namespace MSI.CCAT.WEB.Areas.RDL
             //ReportViewer1.ServerReport.ReportPath = "/" + "TotalPipelinebyStatusAndFranchiseSpecificbyID";//reportName;
 
             ReportViewer1.ServerReport.ReportPath = ReportFolderPath + reportName;//reportName;
-            ReportViewer1.ShowParameterPrompts = false;
+            //ReportViewer1.ShowParameterPrompts = false;
+            if (reportName.Contains("WithPara"))
+            {
+                ReportViewer1.ShowParameterPrompts = true;
+            }
+            else
+            {
+                ReportViewer1.ShowParameterPrompts = false;
+            }
             ReportViewer1.ShowPrintButton = true;
             this.ReportViewer1.ServerReport.SetParameters(rptParams);
             ReportViewer1.ServerReport.Refresh();
