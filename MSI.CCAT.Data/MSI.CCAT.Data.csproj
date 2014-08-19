@@ -201,6 +201,7 @@
     </Compile>
     <Compile Include="module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AccountsRepository.cs" />
     <Compile Include="Repositories\Base.cs" />
     <Compile Include="Repositories\DataQueries.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />

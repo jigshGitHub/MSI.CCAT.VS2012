@@ -72,7 +72,8 @@ namespace Cascade.Data.Repositories
             try
             {
                 IUnitOfWork uow = new UnitOfWork("CCATDBEntities");
-                accounts = uow.Repository<Tbl_Account>().GetAll();
+                //accounts = uow.Repository<Tbl_Account>().GetAll();
+                accounts = (uow as UnitOfWork).AccountRepository.GetAccounts();
                 if (role == UserRole.CollectionAgency)
                 {
                     if (!string.IsNullOrEmpty(roleEntityValue))

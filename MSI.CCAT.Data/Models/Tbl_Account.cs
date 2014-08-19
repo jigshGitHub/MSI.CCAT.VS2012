@@ -11,14 +11,14 @@ namespace MSI.CCAT.Data.Models
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Tbl_Account
     {
         public Tbl_Account()
         {
             this.Tbl_ComplaintMain = new HashSet<Tbl_ComplaintMain>();
         }
-
+    
         public string AccountNumber { get; set; }
         public string CreditorName { get; set; }
         public string AccountOriginal { get; set; }
@@ -42,7 +42,17 @@ namespace MSI.CCAT.Data.Models
         public Nullable<int> OwnerId { get; set; }
         public Nullable<int> LawFirmId { get; set; }
         public Nullable<int> CreditIssuerId { get; set; }
-
+        public string CollectorUserName { get; set; }
+        public Nullable<decimal> Cur { get; set; }
+        public Nullable<decimal> Thirty { get; set; }
+        public Nullable<decimal> Sixty { get; set; }
+        public Nullable<decimal> Ninety { get; set; }
+        public Nullable<decimal> OneTwenty { get; set; }
+        public string Address2 { get; set; }
+        public string ST { get; set; }
+        public Nullable<System.DateTime> LastPaymentDate { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+    
         public virtual Tbl_Agency Tbl_Agency { get; set; }
         public virtual Tbl_CreditIssuer Tbl_CreditIssuer { get; set; }
         public virtual Tbl_LawFirm Tbl_LawFirm { get; set; }

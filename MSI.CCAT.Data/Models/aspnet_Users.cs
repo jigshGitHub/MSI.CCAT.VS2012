@@ -26,6 +26,10 @@ namespace MSI.CCAT.Data.Models
         public string MobileAlias { get; set; }
         public bool IsAnonymous { get; set; }
         public System.DateTime LastActivityDate { get; set; }
+        public Nullable<int> AgencyId { get; set; }
+        public Nullable<int> OwnerId { get; set; }
+        public Nullable<int> LawFirmId { get; set; }
+        public Nullable<int> CreditIssuerId { get; set; }
     
         public virtual aspnet_Applications aspnet_Applications { get; set; }
         public virtual aspnet_Membership aspnet_Membership { get; set; }

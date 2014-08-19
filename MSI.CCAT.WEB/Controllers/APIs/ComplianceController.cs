@@ -90,7 +90,8 @@ namespace Cascade.Web.Controllers
                     complaint.IssuesId = 29;//default
                     complaint.ComplaintDate = DateTime.Now;
                 }
-                complaint.Tbl_Account = uo.Repository<Tbl_Account>().GetAll().Where(account => account.AccountNumber == accountNumber).Single();
+                //complaint.Tbl_Account = uo.Repository<Tbl_Account>().GetAll().Where(account => account.AccountNumber == accountNumber).Single();
+                complaint.Tbl_Account = uo.AccountRepository.GetAccounts( accountNumber).Single();
                 complaint.Tbl_Account.Tbl_Agency = uo.Repository<Tbl_Agency>().GetById(complaint.Tbl_Account.AgencyId.Value);
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException validationException)
@@ -135,7 +136,8 @@ namespace Cascade.Web.Controllers
                     complaintToSave = new Tbl_ComplaintMain();
                 }
 
-                complaint.Tbl_Account = uo.Repository<Tbl_Account>().GetAll().Where(account => account.AccountNumber == complaint.AccountNumber).Single();
+                //complaint.Tbl_Account = uo.Repository<Tbl_Account>().GetAll().Where(account => account.AccountNumber == complaint.AccountNumber).Single();
+                complaint.Tbl_Account = uo.AccountRepository.GetAccounts(complaint.AccountNumber).Single();
                 complaint.Tbl_Account.Tbl_Agency = uo.Repository<Tbl_Agency>().GetById(complaint.Tbl_Account.AgencyId.Value);
                 complaintToSave.AccountNumber = complaint.AccountNumber;
                 complaintToSave.DebtorIdentityVerifiedYN = complaint.DebtorIdentityVerifiedYN;

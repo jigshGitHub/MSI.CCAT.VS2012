@@ -12,6 +12,9 @@ namespace MSI.CCAT.Data.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Objects;
+    using System.Data.Objects.DataClasses;
+    using System.Linq;
     
     public partial class CCATDBEntities : DbContext
     {
@@ -53,5 +56,33 @@ namespace MSI.CCAT.Data.Models
         public DbSet<aspnet_Membership> aspnet_Membership { get; set; }
         public DbSet<aspnet_Roles> aspnet_Roles { get; set; }
         public DbSet<aspnet_Users> aspnet_Users { get; set; }
+    
+        public virtual ObjectResult<Tbl_Account> GetAccounts()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("GetAccounts");
+        }
+    
+        public virtual ObjectResult<Tbl_Account> GetAccounts(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("GetAccounts", mergeOption);
+        }
+    
+        public virtual ObjectResult<Tbl_Account> GetAccountsByNumber(string accountNumber)
+        {
+            var accountNumberParameter = accountNumber != null ?
+                new ObjectParameter("accountNumber", accountNumber) :
+                new ObjectParameter("accountNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("GetAccountsByNumber", accountNumberParameter);
+        }
+    
+        public virtual ObjectResult<Tbl_Account> GetAccountsByNumber(string accountNumber, MergeOption mergeOption)
+        {
+            var accountNumberParameter = accountNumber != null ?
+                new ObjectParameter("accountNumber", accountNumber) :
+                new ObjectParameter("accountNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("GetAccountsByNumber", mergeOption, accountNumberParameter);
+        }
     }
 }

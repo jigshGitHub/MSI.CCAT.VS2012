@@ -35,27 +35,27 @@
           <EntitySet Name="Tbl_QuestionModule" EntityType="CCATDBModel.Store.Tbl_QuestionModule" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_QuestionResponse" EntityType="CCATDBModel.Store.Tbl_QuestionResponse" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_States" EntityType="CCATDBModel.Store.Tbl_States" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK__aspnet_Me__Appli__32E0915F" Association="CCATDBModel.Store.FK__aspnet_Me__Appli__32E0915F">
+          <AssociationSet Name="FK__aspnet_Me__Appli__7FEAFD3E" Association="CCATDBModel.Store.FK__aspnet_Me__Appli__7FEAFD3E">
             <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
             <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
           </AssociationSet>
-          <AssociationSet Name="FK__aspnet_Me__UserI__33D4B598" Association="CCATDBModel.Store.FK__aspnet_Me__UserI__33D4B598">
+          <AssociationSet Name="FK__aspnet_Me__UserI__00DF2177" Association="CCATDBModel.Store.FK__aspnet_Me__UserI__00DF2177">
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
             <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
           </AssociationSet>
-          <AssociationSet Name="FK__aspnet_Ro__Appli__5535A963" Association="CCATDBModel.Store.FK__aspnet_Ro__Appli__5535A963">
+          <AssociationSet Name="FK__aspnet_Ro__Appli__0697FACD" Association="CCATDBModel.Store.FK__aspnet_Ro__Appli__0697FACD">
             <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
             <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
           </AssociationSet>
-          <AssociationSet Name="FK__aspnet_Us__Appli__1ED998B2" Association="CCATDBModel.Store.FK__aspnet_Us__Appli__1ED998B2">
+          <AssociationSet Name="FK__aspnet_Us__Appli__078C1F06" Association="CCATDBModel.Store.FK__aspnet_Us__Appli__078C1F06">
             <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
           </AssociationSet>
-          <AssociationSet Name="FK__aspnet_Us__RoleI__5BE2A6F2" Association="CCATDBModel.Store.FK__aspnet_Us__RoleI__5BE2A6F2">
+          <AssociationSet Name="FK__aspnet_Us__RoleI__0880433F" Association="CCATDBModel.Store.FK__aspnet_Us__RoleI__0880433F">
             <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
             <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
           </AssociationSet>
-          <AssociationSet Name="FK__aspnet_Us__UserI__5AEE82B9" Association="CCATDBModel.Store.FK__aspnet_Us__UserI__5AEE82B9">
+          <AssociationSet Name="FK__aspnet_Us__UserI__09746778" Association="CCATDBModel.Store.FK__aspnet_Us__UserI__09746778">
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
             <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
           </AssociationSet>
@@ -208,6 +208,10 @@
           <Property Name="MobileAlias" Type="nvarchar" MaxLength="16" />
           <Property Name="IsAnonymous" Type="bit" Nullable="false" />
           <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+          <Property Name="AgencyId" Type="int" />
+          <Property Name="OwnerId" Type="int" />
+          <Property Name="LawFirmId" Type="int" />
+          <Property Name="CreditIssuerId" Type="int" />
         </EntityType>
         <EntityType Name="aspnet_UsersInRoles">
           <Key>
@@ -283,6 +287,16 @@
           <Property Name="OwnerId" Type="int" />
           <Property Name="LawFirmId" Type="int" />
           <Property Name="CreditIssuerId" Type="int" />
+          <Property Name="CollectorUserName" Type="varchar" MaxLength="50" />
+          <Property Name="Cur" Type="money" />
+          <Property Name="Thirty" Type="money" />
+          <Property Name="Sixty" Type="money" />
+          <Property Name="Ninety" Type="money" />
+          <Property Name="OneTwenty" Type="money" />
+          <Property Name="Address2" Type="varchar" MaxLength="50" />
+          <Property Name="ST" Type="varchar" MaxLength="3" />
+          <Property Name="LastPaymentDate" Type="date" />
+          <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="Tbl_Agency">
           <Key>
@@ -390,10 +404,10 @@
           <Property Name="IsViewedByOwner" Type="bit" />
           <Property Name="IsViewedByAgency" Type="bit" />
           <Property Name="CreatedBy" Type="uniqueidentifier" />
-          <Property Name="IsActive" Type="bit" />
           <Property Name="UpdatedBy" Type="uniqueidentifier" />
           <Property Name="CreatedDateTime" Type="datetime" />
           <Property Name="UpdatedDateTime" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="Tbl_ComplaintReceivedBy">
           <Key>
@@ -419,7 +433,7 @@
           <Property Name="City" Type="varchar" MaxLength="50" />
           <Property Name="StateId" Type="int" />
           <Property Name="OwnerId" Type="int" />
-          <Property Name="CreditorName" Type="varchar" MaxLength="50" />
+          <Property Name="CreditorName" Type="varchar" MaxLength="250" />
           <Property Name="Address" Type="varchar" MaxLength="150" />
           <Property Name="Zipcode" Type="varchar" MaxLength="50" />
           <Property Name="Phone" Type="varchar" MaxLength="50" />
@@ -582,7 +596,7 @@
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Value" Type="varchar" MaxLength="2" />
         </EntityType>
-        <Association Name="FK__aspnet_Me__Appli__32E0915F">
+        <Association Name="FK__aspnet_Me__Appli__7FEAFD3E">
           <End Role="aspnet_Applications" Type="CCATDBModel.Store.aspnet_Applications" Multiplicity="1" />
           <End Role="aspnet_Membership" Type="CCATDBModel.Store.aspnet_Membership" Multiplicity="*" />
           <ReferentialConstraint>
@@ -594,7 +608,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__aspnet_Me__UserI__33D4B598">
+        <Association Name="FK__aspnet_Me__UserI__00DF2177">
           <End Role="aspnet_Users" Type="CCATDBModel.Store.aspnet_Users" Multiplicity="1" />
           <End Role="aspnet_Membership" Type="CCATDBModel.Store.aspnet_Membership" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -606,7 +620,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__aspnet_Ro__Appli__5535A963">
+        <Association Name="FK__aspnet_Ro__Appli__0697FACD">
           <End Role="aspnet_Applications" Type="CCATDBModel.Store.aspnet_Applications" Multiplicity="1" />
           <End Role="aspnet_Roles" Type="CCATDBModel.Store.aspnet_Roles" Multiplicity="*" />
           <ReferentialConstraint>
@@ -618,7 +632,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__aspnet_Us__Appli__1ED998B2">
+        <Association Name="FK__aspnet_Us__Appli__078C1F06">
           <End Role="aspnet_Applications" Type="CCATDBModel.Store.aspnet_Applications" Multiplicity="1" />
           <End Role="aspnet_Users" Type="CCATDBModel.Store.aspnet_Users" Multiplicity="*" />
           <ReferentialConstraint>
@@ -630,7 +644,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__aspnet_Us__RoleI__5BE2A6F2">
+        <Association Name="FK__aspnet_Us__RoleI__0880433F">
           <End Role="aspnet_Roles" Type="CCATDBModel.Store.aspnet_Roles" Multiplicity="1" />
           <End Role="aspnet_UsersInRoles" Type="CCATDBModel.Store.aspnet_UsersInRoles" Multiplicity="*" />
           <ReferentialConstraint>
@@ -642,7 +656,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__aspnet_Us__UserI__5AEE82B9">
+        <Association Name="FK__aspnet_Us__UserI__09746778">
           <End Role="aspnet_Users" Type="CCATDBModel.Store.aspnet_Users" Multiplicity="1" />
           <End Role="aspnet_UsersInRoles" Type="CCATDBModel.Store.aspnet_UsersInRoles" Multiplicity="*" />
           <ReferentialConstraint>
@@ -930,6 +944,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sp_GetAccounts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_GetAccountsByNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accountNumber" Type="varchar" Mode="In" />
+        </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -1075,6 +1093,10 @@
             <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
           </AssociationSet>
+          <FunctionImport Name="GetAccounts" EntitySet="Tbl_Account" ReturnType="Collection(CCATDBModel.Tbl_Account)" />
+          <FunctionImport Name="GetAccountsByNumber" EntitySet="Tbl_Account" ReturnType="Collection(CCATDBModel.Tbl_Account)">
+          <Parameter Name="accountNumber" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="Tbl_QuestionResponse">
           <Key>
@@ -1202,6 +1224,16 @@
           <NavigationProperty Name="Tbl_Owner" Relationship="CCATDBModel.FK_Tbl_Account12_Tbl_Owner" FromRole="Tbl_Account" ToRole="Tbl_Owner" />
           <NavigationProperty Name="Tbl_States" Relationship="CCATDBModel.FK_Tbl_Account12_Tbl_States" FromRole="Tbl_Account" ToRole="Tbl_States" />
           <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_Account" FromRole="Tbl_Account" ToRole="Tbl_ComplaintMain" />
+          <Property Type="String" Name="CollectorUserName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="Cur" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="Thirty" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="Sixty" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="Ninety" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="OneTwenty" Precision="19" Scale="4" />
+          <Property Type="String" Name="Address2" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ST" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="LastPaymentDate" Precision="0" />
+          <Property Type="Boolean" Name="IsActive" />
         </EntityType>
         <EntityType Name="Tbl_Agency">
           <Key>
@@ -1253,7 +1285,7 @@
           <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="StateId" />
           <Property Type="Int32" Name="OwnerId" />
-          <Property Type="String" Name="CreditorName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CreditorName" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Address" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Zipcode" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Phone" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -1829,6 +1861,10 @@
           <NavigationProperty Name="aspnet_Applications" Relationship="CCATDBModel.FK__aspnet_Us__Appli__1ED998B2" FromRole="aspnet_Users" ToRole="aspnet_Applications" />
           <NavigationProperty Name="aspnet_Membership" Relationship="CCATDBModel.FK__aspnet_Me__UserI__33D4B598" FromRole="aspnet_Users" ToRole="aspnet_Membership" />
           <NavigationProperty Name="aspnet_Roles" Relationship="CCATDBModel.aspnet_UsersInRoles" FromRole="aspnet_Users" ToRole="aspnet_Roles" />
+          <Property Type="Int32" Name="AgencyId" />
+          <Property Type="Int32" Name="OwnerId" />
+          <Property Type="Int32" Name="LawFirmId" />
+          <Property Type="Int32" Name="CreditIssuerId" />
         </EntityType>
         <Association Name="FK__aspnet_Me__Appli__32E0915F">
           <End Type="CCATDBModel.aspnet_Applications" Role="aspnet_Applications" Multiplicity="1" />
@@ -1882,6 +1918,58 @@
           <End Type="CCATDBModel.aspnet_Roles" Role="aspnet_Roles" Multiplicity="*" />
           <End Type="CCATDBModel.aspnet_Users" Role="aspnet_Users" Multiplicity="*" />
         </Association>
+        <ComplexType Name="sp_GetAccounts_Result">
+          <Property Type="String" Name="AccountNumber" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="CreditorName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="AccountOriginal" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Zip" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="HomePhone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="WorkPhone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MobilePhone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LastFourSSN" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="DebtPurchaseBalance" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="DebtCurrentBalance" Nullable="true" Precision="19" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdatedOn" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="StateId" Nullable="true" />
+          <Property Type="Int32" Name="AgencyId" Nullable="true" />
+          <Property Type="Int32" Name="OwnerId" Nullable="true" />
+          <Property Type="Int32" Name="LawFirmId" Nullable="true" />
+          <Property Type="Int32" Name="CreditIssuerId" Nullable="true" />
+          <Property Type="String" Name="CollectorUserName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_GetAccountsByNumber_Result">
+          <Property Type="String" Name="AccountNumber" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="CreditorName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="AccountOriginal" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Zip" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="HomePhone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="WorkPhone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MobilePhone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LastFourSSN" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="DebtPurchaseBalance" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="DebtCurrentBalance" Nullable="true" Precision="19" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdatedOn" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="StateId" Nullable="true" />
+          <Property Type="Int32" Name="AgencyId" Nullable="true" />
+          <Property Type="Int32" Name="OwnerId" Nullable="true" />
+          <Property Type="Int32" Name="LawFirmId" Nullable="true" />
+          <Property Type="Int32" Name="CreditIssuerId" Nullable="true" />
+          <Property Type="String" Name="CollectorUserName" Nullable="true" MaxLength="50" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1989,6 +2077,16 @@
           <EntitySetMapping Name="Tbl_Account">
             <EntityTypeMapping TypeName="CCATDBModel.Tbl_Account">
               <MappingFragment StoreEntitySet="Tbl_Account">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="LastPaymentDate" ColumnName="LastPaymentDate" />
+                <ScalarProperty Name="ST" ColumnName="ST" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="OneTwenty" ColumnName="OneTwenty" />
+                <ScalarProperty Name="Ninety" ColumnName="Ninety" />
+                <ScalarProperty Name="Sixty" ColumnName="Sixty" />
+                <ScalarProperty Name="Thirty" ColumnName="Thirty" />
+                <ScalarProperty Name="Cur" ColumnName="Cur" />
+                <ScalarProperty Name="CollectorUserName" ColumnName="CollectorUserName" />
                 <ScalarProperty Name="CreditIssuerId" ColumnName="CreditIssuerId" />
                 <ScalarProperty Name="LawFirmId" ColumnName="LawFirmId" />
                 <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
@@ -2327,6 +2425,10 @@
           <EntitySetMapping Name="aspnet_Users">
             <EntityTypeMapping TypeName="CCATDBModel.aspnet_Users">
               <MappingFragment StoreEntitySet="aspnet_Users">
+                <ScalarProperty Name="CreditIssuerId" ColumnName="CreditIssuerId" />
+                <ScalarProperty Name="LawFirmId" ColumnName="LawFirmId" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
                 <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
                 <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
                 <ScalarProperty Name="MobileAlias" ColumnName="MobileAlias" />
@@ -2345,6 +2447,10 @@
               <ScalarProperty Name="RoleId" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="GetAccounts" FunctionName="CCATDBModel.Store.sp_GetAccounts">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAccountsByNumber" FunctionName="CCATDBModel.Store.sp_GetAccountsByNumber">
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

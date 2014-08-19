@@ -21,10 +21,11 @@ namespace MSI.CCAT.Data.Repositories
 
         private bool _disposed;
         private Hashtable _repositories;
-
+        private AccountsRepository accountRepository;
         public UnitOfWork(IDatabaseFactory context)
         {
             dbFactory = context;
+            accountRepository = new AccountsRepository(dbFactory);
         }
 
         //public UnitOfWork()
@@ -35,6 +36,7 @@ namespace MSI.CCAT.Data.Repositories
         public UnitOfWork(string dbEntities)
         {
             dbFactory = new DBFactory(dbEntities);
+            accountRepository = new AccountsRepository(dbFactory);
         }
 
         public void Dispose()
@@ -82,6 +84,14 @@ namespace MSI.CCAT.Data.Repositories
             }
 
             return (IRepository<T>)_repositories[type];
+        }
+
+        public AccountsRepository AccountRepository
+        {
+            get
+            {
+                return accountRepository;
+            }
         }
     }
 }
