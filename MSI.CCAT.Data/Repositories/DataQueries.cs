@@ -72,32 +72,33 @@ namespace Cascade.Data.Repositories
             try
             {
                 IUnitOfWork uow = new UnitOfWork("CCATDBEntities");
-                //accounts = uow.Repository<Tbl_Account>().GetAll();
-                accounts = (uow as UnitOfWork).AccountRepository.GetAccounts();
-                if (role == UserRole.CollectionAgency)
-                {
-                    if (!string.IsNullOrEmpty(roleEntityValue))
-                    {
-                        int agencyId = uow.Repository<Tbl_Agency>().GetAll().Where(a => a.Name == roleEntityValue).SingleOrDefault().AgencyId;
-                        //accounts = accounts.Where(a => a.AgencyId == agencyId);
-                        accounts = (uow as UnitOfWork).AccountRepository.GetAccounts(agencyId);
-                    }
-                }
-                else if (role == UserRole.DebtOwner)
-                {
-                    if (!string.IsNullOrEmpty(roleEntityValue))
-                    {
-                        accounts = accounts.Where(a => a.OwnerId == int.Parse(roleEntityValue));
-                    }
-                }
-                if (!string.IsNullOrEmpty(firstOrLastName))
-                    return accounts.Where(record => record.FirstName.ToLower().Contains(firstOrLastName.ToLower()) || record.LastName.ToLower().Contains(firstOrLastName.ToLower()));
-                if (!string.IsNullOrEmpty(accountNumber))
-                    return accounts.Where(record => record.AccountNumber.ToLower().Contains(accountNumber.ToLower()));
-                if (!string.IsNullOrEmpty(creditorName))
-                    return accounts.Where(record => record.CreditorName.ToLower().Contains(creditorName.ToLower()));
-                if (!string.IsNullOrEmpty(accountOriginal))
-                    return accounts.Where(record => record.AccountOriginal.ToLower().Contains(accountOriginal.ToLower()));
+                accounts = (uow as UnitOfWork).AccountRepository.AccountSearch( firstOrLastName,  accountNumber,  creditorName,  accountOriginal,  roleEntityValue,  role.ToString());
+                ////accounts = uow.Repository<Tbl_Account>().GetAll();
+                //accounts = (uow as UnitOfWork).AccountRepository.GetAccounts();
+                //if (role == UserRole.CollectionAgency)
+                //{
+                //    if (!string.IsNullOrEmpty(roleEntityValue))
+                //    {
+                //        int agencyId = uow.Repository<Tbl_Agency>().GetAll().Where(a => a.Name == roleEntityValue).SingleOrDefault().AgencyId;
+                //        //accounts = accounts.Where(a => a.AgencyId == agencyId);
+                //        accounts = (uow as UnitOfWork).AccountRepository.GetAccounts(agencyId);
+                //    }
+                //}
+                //else if (role == UserRole.DebtOwner)
+                //{
+                //    if (!string.IsNullOrEmpty(roleEntityValue))
+                //    {
+                //        accounts = accounts.Where(a => a.OwnerId == int.Parse(roleEntityValue));
+                //    }
+                //}
+                //if (!string.IsNullOrEmpty(firstOrLastName))
+                //    return accounts.Where(record => record.FirstName.ToLower().Contains(firstOrLastName.ToLower()) || record.LastName.ToLower().Contains(firstOrLastName.ToLower()));
+                //if (!string.IsNullOrEmpty(accountNumber))
+                //    return accounts.Where(record => record.AccountNumber.ToLower().Contains(accountNumber.ToLower()));
+                //if (!string.IsNullOrEmpty(creditorName))
+                //    return accounts.Where(record => record.CreditorName.ToLower().Contains(creditorName.ToLower()));
+                //if (!string.IsNullOrEmpty(accountOriginal))
+                //    return accounts.Where(record => record.AccountOriginal.ToLower().Contains(accountOriginal.ToLower()));
 
             }
             catch (Exception ex)

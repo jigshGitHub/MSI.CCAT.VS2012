@@ -593,7 +593,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
           <Property Name="Value" Type="varchar" MaxLength="2" />
         </EntityType>
         <Association Name="FK__aspnet_Me__Appli__7FEAFD3E">
@@ -944,6 +944,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sp_AccountSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="firstOrLastName" Type="varchar" Mode="In" />
+          <Parameter Name="accountNumber" Type="varchar" Mode="In" />
+          <Parameter Name="creditorName" Type="varchar" Mode="In" />
+          <Parameter Name="accountOriginal" Type="varchar" Mode="In" />
+          <Parameter Name="roleEntityValue" Type="varchar" Mode="In" />
+          <Parameter Name="role" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="sp_GetAccounts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_GetAccountsByAgency" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
@@ -1101,7 +1109,15 @@
           <Parameter Name="accountNumber" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetAccountsByAgency" EntitySet="Tbl_Account" ReturnType="Collection(CCATDBModel.Tbl_Account)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AccountSearch" EntitySet="Tbl_Account" ReturnType="Collection(CCATDBModel.Tbl_Account)">
+            <Parameter Name="firstOrLastName" Mode="In" Type="String" />
+            <Parameter Name="accountNumber" Mode="In" Type="String" />
+            <Parameter Name="creditorName" Mode="In" Type="String" />
+            <Parameter Name="accountOriginal" Mode="In" Type="String" />
+            <Parameter Name="roleEntityValue" Mode="In" Type="String" />
+            <Parameter Name="role" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="Tbl_QuestionResponse">
@@ -1406,7 +1422,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Value" MaxLength="2" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Tbl_Account" Relationship="CCATDBModel.FK_Tbl_Account12_Tbl_States" FromRole="Tbl_States" ToRole="Tbl_Account" />
           <NavigationProperty Name="Tbl_Agency" Relationship="CCATDBModel.FK_Tbl_Agency_Tbl_States" FromRole="Tbl_States" ToRole="Tbl_Agency" />
@@ -2494,6 +2510,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetAccountsByAgency" FunctionName="CCATDBModel.Store.sp_GetAccountsByAgency">
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AccountSearch" FunctionName="CCATDBModel.Store.sp_AccountSearch" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

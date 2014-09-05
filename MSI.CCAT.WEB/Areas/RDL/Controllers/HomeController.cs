@@ -53,6 +53,33 @@ namespace MSI.CCAT.WEB.Areas.RDL.Controllers
               p.ClientScript.RegisterStartupScript(typeof(string), "startupScript", strScript.ToString());
               */
         }
-
+        public ActionResult Policies()
+        {
+            return View();
+        }
+        public ActionResult Reports()
+        {
+            return View();
+        }
+        public ActionResult NewFunctinality1()
+        {
+            return View();
+        }
+        public ActionResult NewFunctinality2()
+        {
+            return View();
+        }
+        public ActionResult NewFunctinality3()
+        {
+            return View();
+        }
+        public ActionResult NewFunctinality4()
+        {
+            return View();
+        }
+        public ActionResult NewFunctinality5()
+        {
+            return View();
+        }
     }
 }
