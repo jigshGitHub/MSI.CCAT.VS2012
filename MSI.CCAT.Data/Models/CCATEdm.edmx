@@ -945,6 +945,9 @@
           </ReferentialConstraint>
         </Association>
         <Function Name="sp_GetAccounts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_GetAccountsByAgency" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_GetAccountsByNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="accountNumber" Type="varchar" Mode="In" />
         </Function>
@@ -1096,6 +1099,9 @@
           <FunctionImport Name="GetAccounts" EntitySet="Tbl_Account" ReturnType="Collection(CCATDBModel.Tbl_Account)" />
           <FunctionImport Name="GetAccountsByNumber" EntitySet="Tbl_Account" ReturnType="Collection(CCATDBModel.Tbl_Account)">
           <Parameter Name="accountNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetAccountsByAgency" EntitySet="Tbl_Account" ReturnType="Collection(CCATDBModel.Tbl_Account)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="Tbl_QuestionResponse">
@@ -1970,6 +1976,41 @@
           <Property Type="Int32" Name="CreditIssuerId" Nullable="true" />
           <Property Type="String" Name="CollectorUserName" Nullable="true" MaxLength="50" />
         </ComplexType>
+        <ComplexType Name="sp_GetAccountsByAgency_Result">
+          <Property Type="String" Name="AccountNumber" Nullable="false" MaxLength="25" />
+          <Property Type="String" Name="CreditorName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="AccountOriginal" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Zip" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="HomePhone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="WorkPhone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MobilePhone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LastFourSSN" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="DebtPurchaseBalance" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="DebtCurrentBalance" Nullable="true" Precision="19" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="UpdatedOn" Nullable="true" Precision="23" />
+          <Property Type="String" Name="UpdatedBy" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="StateId" Nullable="true" />
+          <Property Type="Int32" Name="AgencyId" Nullable="true" />
+          <Property Type="Int32" Name="OwnerId" Nullable="true" />
+          <Property Type="Int32" Name="LawFirmId" Nullable="true" />
+          <Property Type="Int32" Name="CreditIssuerId" Nullable="true" />
+          <Property Type="String" Name="CollectorUserName" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Cur" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="Thirty" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="Sixty" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="Ninety" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="OneTwenty" Nullable="true" Precision="19" />
+          <Property Type="String" Name="Address2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ST" Nullable="true" MaxLength="3" />
+          <Property Type="DateTime" Name="LastPaymentDate" Nullable="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2450,6 +2491,8 @@
           <FunctionImportMapping FunctionImportName="GetAccounts" FunctionName="CCATDBModel.Store.sp_GetAccounts">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetAccountsByNumber" FunctionName="CCATDBModel.Store.sp_GetAccountsByNumber">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAccountsByAgency" FunctionName="CCATDBModel.Store.sp_GetAccountsByAgency">
           </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>

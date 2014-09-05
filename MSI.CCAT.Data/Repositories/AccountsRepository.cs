@@ -26,5 +26,10 @@ namespace MSI.CCAT.Data.Repositories
         {
             return (this.DatabaseFactory.Get() as CCATDBEntities).GetAccountsByNumber(accountNumber);
         }
+
+        public IEnumerable<Tbl_Account> GetAccounts(int agencyId)
+        {
+            return (this.DatabaseFactory.Get() as CCATDBEntities).GetAccountsByAgency(agencyId);
+        }
     }
 }

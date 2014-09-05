@@ -79,7 +79,8 @@ namespace Cascade.Data.Repositories
                     if (!string.IsNullOrEmpty(roleEntityValue))
                     {
                         int agencyId = uow.Repository<Tbl_Agency>().GetAll().Where(a => a.Name == roleEntityValue).SingleOrDefault().AgencyId;
-                        accounts = accounts.Where(a => a.AgencyId == agencyId);
+                        //accounts = accounts.Where(a => a.AgencyId == agencyId);
+                        accounts = (uow as UnitOfWork).AccountRepository.GetAccounts(agencyId);
                     }
                 }
                 else if (role == UserRole.DebtOwner)

@@ -248,8 +248,8 @@ function complianceVM(userId, userAgency) {
         self.contactTimeId(debtorContactTimeId);
         self.creditorName(creditorName);
         self.debtProductId(debtProductId);
-        self.debtPurchaseBalance(((debtPurchaseBalance == '') ? '' : formatCurrency(debtPurchaseBalance)));
-        self.debtCurrentBalance(((debtCurrentBalance == '') ? '' : formatCurrency(debtCurrentBalance)));
+        self.debtPurchaseBalance(((debtPurchaseBalance == '' || debtPurchaseBalance == null || debtPurchaseBalance == undefined) ? '' : formatCurrency(debtPurchaseBalance)));
+        self.debtCurrentBalance(((debtCurrentBalance == '' || debtCurrentBalance == null || debtCurrentBalance == undefined) ? '' : formatCurrency(debtCurrentBalance)));
         self.disputeDebt_YesNo((disputeDebt_YesNo) ? 'true' : 'false');
         self.disputeDebtAmount_YesNo((disputeDebtAmount_YesNo) ? 'true' : 'false');
         self.disputeDebtDueDate_YesNo((disputeDebtDueDate_YesNo) ? 'true' : 'false');

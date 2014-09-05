@@ -84,5 +84,23 @@ namespace MSI.CCAT.Data.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("GetAccountsByNumber", mergeOption, accountNumberParameter);
         }
+    
+        public virtual ObjectResult<Tbl_Account> GetAccountsByAgency(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("GetAccountsByAgency", idParameter);
+        }
+    
+        public virtual ObjectResult<Tbl_Account> GetAccountsByAgency(Nullable<int> id, MergeOption mergeOption)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("GetAccountsByAgency", mergeOption, idParameter);
+        }
     }
 }
