@@ -35,7 +35,7 @@
                     Select document for complaint information:<input name="complaintDocument" type="file" />
                 </div>
                 <div data-bind="visible: debtOwnerProcessDocumentChecked">
-                    Select document for debt owner process:<input name="debtOwnerProcessDocument" type="file" />
+                    Select document for manager process:<input name="debtOwnerProcessDocument" type="file" />
                 </div>
                 <input type="hidden" name="hdnAccount" data-bind="value: account" />
                 <input type="hidden" name="hdnAgency" data-bind="value: agency" />
@@ -67,7 +67,7 @@
                 <table class="PIMSDatatable" style="width: 100%;">
                     <tr>
                         <td style="width: 100%; background-color: #1f497d">
-                            <a href="#" style="text-decoration: none; font-weight: bold; color: white" data-bind="click: showHideDebtInformation">Debtor & Debt Information</a>
+                            <a href="#" style="text-decoration: none; font-weight: bold; color: white" data-bind="click: showHideDebtInformation">Consumer & Debt Information</a>
                         </td>
                     </tr>
                     <tr>
@@ -112,7 +112,7 @@
                                         <td style="text-align: left; width: 20%">
                                             <input type="text" data-bind="value: lastName" />*
                                         </td>
-                                        <td style="text-align: right; width: 20%">Verified Debtor Identity?
+                                        <td style="text-align: right; width: 20%">Verified Consumer Identity?
                                         </td>
                                         <td style="text-align: center; width: 1%">:
                                         </td>
@@ -342,7 +342,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="text-align: right; width: 20%">Need More Info from Debtor?
+                                        <td style="text-align: right; width: 20%">Need More Info from Consumer?
                                         </td>
                                         <td style="text-align: center; width: 1%">:
                                         </td>
@@ -364,7 +364,7 @@
                                         </td>
                                         <td style="text-align: left; width: 20%">
                                             <textarea rows="4" cols="25" data-bind="value: moreInfoRequested"></textarea>
-                                        <td style="text-align: right; width: 20%">More Debtor Info Received?
+                                        <td style="text-align: right; width: 20%">More Consumer Info Received?
                                         </td>
                                         <td style="text-align: center; width: 1%">:
                                         </td>
@@ -401,8 +401,22 @@
                         <td>
                             <div id="collectionAgencyProcess" data-bind="with: complianceModel, visible: showCollectionAgencyProcess">
                                 <table>
+                                     <tr>
+                                        <td style="text-align: right; width: 20%">Manager Response
+                                        </td>
+                                        <td style="text-align: center; width: 1%">:
+                                        </td>
+                                        <td style="text-align: left; width: 20%">
+                                            <select disabled="disabled" data-bind="options: $parent.ownerResponseOptions, optionsValue: 'Value', optionsText: 'Text', optionsCaption: ' ', value: ownerResponseId">
+                                            </select>
+                                        <td style="text-align: right; width: 20%">Manager Response to Agency Date
+                                        </td>
+                                        <td style="text-align: center; width: 1%"></td>
+                                        <td style="text-align: left; width: 20%"><input type="text" disabled="disabled" data-bind="value: ownerResponseDate" />
+                                        </td>
+                                    </tr>                                    
                                     <tr>
-                                        <td style="text-align: right; width: 20%">Submitted Complaint to Owner?
+                                        <td style="text-align: right; width: 20%">Submitted Complaint to Manager?
                                         </td>
                                         <td style="text-align: center; width: 1%">:
                                         </td>
@@ -437,7 +451,7 @@
                     </tr>
                     <tr data-bind="visible: isDebtOwnerProcessVisible">
                         <td style="width: 100%; background-color: #1f497d">
-                            <a href="#" style="text-decoration: none; font-weight: bold; color: white" data-bind="click: showHideDebtOwnerProcess">Debt Owner Process</a>
+                            <a href="#" style="text-decoration: none; font-weight: bold; color: white" data-bind="click: showHideDebtOwnerProcess">Manager Process</a>
                         </td>
                     </tr>
                     <tr data-bind="visible: isDebtOwnerProcessVisible">
@@ -492,7 +506,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="text-align: right; width: 20%">Owner Response
+                                        <td style="text-align: right; width: 20%">Manager Response
                                         </td>
                                         <td style="text-align: center; width: 1%">:
                                         </td>
@@ -506,13 +520,13 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="text-align: right; width: 20%">Owner Response to Agency Date
+                                        <td style="text-align: right; width: 20%">Manager Response to Agency Date
                                         </td>
                                         <td style="text-align: center; width: 1%">:
                                         </td>
                                         <td style="text-align: left; width: 20%">
                                             <input type="text" id="ownerResponseDate" data-bind="value: ownerResponseDate" />
-                                        <td style="text-align: right; width: 20%">Owner Response (Days)
+                                        <td style="text-align: right; width: 20%">Manager Response (Days)
                                         </td>
                                         <td style="text-align: center; width: 1%">:
                                         </td>
@@ -534,7 +548,7 @@
                             <div id="complaintClosure" data-bind="with: complianceModel, visible: showComplaintClosure">
                                 <table class="complaintClosureInfo">
                                     <tr>
-                                        <td style="text-align: right; width: 20%">Agency Response to Debtor Date
+                                        <td style="text-align: right; width: 20%">Agency Response to Consumer Date
                                         </td>
                                         <td style="text-align: center; width: 1%">:
                                         </td>
@@ -549,7 +563,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td style="text-align: right; width: 20%">Debtor Agree?
+                                        <td style="text-align: right; width: 20%">Consumer Agree?
                                         </td>
                                         <td style="text-align: center; width: 1%">:
                                         </td>

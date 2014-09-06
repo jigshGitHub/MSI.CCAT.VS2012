@@ -18,8 +18,8 @@ SET @role = ''
 --SET @role = 'DebtOwner'
 --SET @accountNumber = '10375991'
 --SET @accountOriginal = '3-301847621'
-SET @creditorName = 'SPRINT SECONDS';
-
+--SET @creditorName = 'SPRINT SECONDS';
+SET @firstOrLastName = 'ALEXANDRIA'
 DECLARE @SQL NVARCHAR (MAX);
 DECLARE @SELECTClause NVARCHAR(MAX);
 DECLARE @WHEREClause NVARCHAR(MAX);
@@ -48,7 +48,7 @@ END
 
 IF LEN(@firstOrLastName) > 0 
 BEGIN
-	SET @WHEREClause = @WHEREClause + ' AND FirstName = ''' + @firstOrLastName + ''' OR LastName = ''' + @firstOrLastName + '';
+	SET @WHEREClause = @WHEREClause + ' AND FirstName = ''' + @firstOrLastName + ''' OR LastName = ''' + @firstOrLastName + '''';
 END
 
 IF LEN(@accountNumber) > 0 
