@@ -21,34 +21,80 @@ namespace MSI.CCAT.WEB.Areas.RDL
         private void LoadReport()
         {
             string reportName = Request.QueryString["rpt"];
-            List<ReportParameter> rptParams = new List<ReportParameter>();
-            
-                    //switch (reportName)
-                    //{
-                    //    case "1":
-                    //        /*string[] franchiseList = (string[])Session["FranchiseList"];
-                    //        string[] statusList = (string[])Session["statusList"];
-                    //        ReportParameter param = new ReportParameter("Franchise");
-                    //        param.Values.AddRange(franchiseList);
-                    //        rptParams.Add(param);
-                    //        ReportParameter param1 = new ReportParameter("Status");
-                    //        //string[] values1 = new string[] { "Prospect" };
-                    //        param1.Values.AddRange(statusList);
-                    //        rptParams.Add(param1);
-                    //        */
-                    //         string[] franchiseeID = new string[] { "8" };
-                    //        ReportParameter paramFranchiseeID = new ReportParameter("Franchise");
-                    //        paramFranchiseeID.Values.AddRange(franchiseeID);
-                    //        rptParams.Add(paramFranchiseeID);
 
-                    //        break;
-                    //    case "2":
-                    //        string[] franchiseID = new string[] { "8" };
-                    //        ReportParameter paramFranchiseID = new ReportParameter("Franchise");
-                    //        paramFranchiseID.Values.AddRange(franchiseID);
-                    //        rptParams.Add(paramFranchiseID);
-                    //        break;
-                    //}
+            #region [[ Report Parameters ]]
+
+            List<ReportParameter> rptParams = new List<ReportParameter>();
+            //UserId
+            string UserID = (string)Session["UserID"];
+            if (UserID != null)
+            {
+                string[] UserIDArray = new string[] { UserID };
+                ReportParameter paramUserId = new ReportParameter("UserID");
+                paramUserId.Values.AddRange(UserIDArray);
+                rptParams.Add(paramUserId);
+            }
+
+            //UserRole
+            string UserRole = (string)Session["UserRole"];
+            if (UserRole != null)
+            {
+                string[] UserRoleArray = new string[] { UserRole };
+                ReportParameter paramUserRole = new ReportParameter("UserRole");
+                paramUserRole.Values.AddRange(UserRoleArray);
+                rptParams.Add(paramUserRole);
+            }
+               
+            ////UserName
+            string UserName = (string)Session["UserName"];
+            if (UserName != null)
+            {
+                string[] UserNameArray = new string[] { UserName };
+                ReportParameter paramUserName = new ReportParameter("UserName");
+                paramUserName.Values.AddRange(UserNameArray);
+                rptParams.Add(paramUserName);
+            }
+           
+            ////RoleEntityValue
+            string RoleEntityValue = (string)Session["RoleEntityValue"];
+            if (RoleEntityValue != null)
+            {
+                string[] RoleEntityValueArray = new string[] { RoleEntityValue };
+                ReportParameter paramRoleEntityValue = new ReportParameter("RoleEntityValue");
+                paramRoleEntityValue.Values.AddRange(RoleEntityValueArray);
+                rptParams.Add(paramRoleEntityValue);
+            }
+
+            #endregion
+            
+            #region [[ Commented Code ]]
+            //switch (reportName)
+            //{
+            //    case "1":
+            //        /*string[] franchiseList = (string[])Session["FranchiseList"];
+            //        string[] statusList = (string[])Session["statusList"];
+            //        ReportParameter param = new ReportParameter("Franchise");
+            //        param.Values.AddRange(franchiseList);
+            //        rptParams.Add(param);
+            //        ReportParameter param1 = new ReportParameter("Status");
+            //        //string[] values1 = new string[] { "Prospect" };
+            //        param1.Values.AddRange(statusList);
+            //        rptParams.Add(param1);
+            //        */
+            //         string[] franchiseeID = new string[] { "8" };
+            //        ReportParameter paramFranchiseeID = new ReportParameter("Franchise");
+            //        paramFranchiseeID.Values.AddRange(franchiseeID);
+            //        rptParams.Add(paramFranchiseeID);
+
+            //        break;
+            //    case "2":
+            //        string[] franchiseID = new string[] { "8" };
+            //        ReportParameter paramFranchiseID = new ReportParameter("Franchise");
+            //        paramFranchiseID.Values.AddRange(franchiseID);
+            //        rptParams.Add(paramFranchiseID);
+            //        break;
+            //}
+            #endregion
                 
             ReportViewer1.ProcessingMode = ProcessingMode.Remote;
             string ReportsUserName = ConfigurationManager.AppSettings["ReportsUserName"];
@@ -62,7 +108,7 @@ namespace MSI.CCAT.WEB.Areas.RDL
 
             ReportViewer1.ServerReport.ReportPath = ReportFolderPath + reportName;//reportName;
             //ReportViewer1.ShowParameterPrompts = false;
-            if (reportName.Contains("WithPara"))
+            if (reportName.ToUpper().Contains("WITHPARA")) //For DDL show that user can select
             {
                 ReportViewer1.ShowParameterPrompts = true;
             }
@@ -71,7 +117,11 @@ namespace MSI.CCAT.WEB.Areas.RDL
                 ReportViewer1.ShowParameterPrompts = false;
             }
             ReportViewer1.ShowPrintButton = true;
-            this.ReportViewer1.ServerReport.SetParameters(rptParams);
+            if (reportName.ToUpper().Contains("WITHDPARA")) // Pass direct parameters like UserId, UserRole etc
+            {
+                this.ReportViewer1.ServerReport.SetParameters(rptParams);
+            }
+                        
             ReportViewer1.ServerReport.Refresh();
 
         }

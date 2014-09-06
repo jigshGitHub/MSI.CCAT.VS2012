@@ -6,15 +6,35 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
 
+using MSI.CCAT.WEB.Models;
+using MSI.CCAT.WEB.Controllers;
+using MSI.CCAT.Data.Models;
+using MSI.CCAT.Data.Repositories;
+using MSI.CCAT.WEB.ApplicationIntegration;
+using MSI.CCAT.WEB.ViewModels;
+
+//using Cascade.Data.Repositories;
+using MSI.Data.Models;
+
+using System.Data.SqlClient;
+using System.Data;
+
+
+
 namespace MSI.CCAT.WEB.Areas.RDL.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         //
         // GET: /RDL/Home/
 
         public ActionResult Index(string Report)
         {
+            Session["UserID"] = UserId.ToString();
+            Session["UserRole"] = UserRoles.First();
+            Session["UserName"] = UserName;
+            Session["RoleEntityValue"] = RoleEntityValue;
+            //Now display the view            
             return View();
         }
         public ActionResult ASPXView()
@@ -53,33 +73,120 @@ namespace MSI.CCAT.WEB.Areas.RDL.Controllers
               p.ClientScript.RegisterStartupScript(typeof(string), "startupScript", strScript.ToString());
               */
         }
+
+        #region [[ Additional Pages for SSRS reports ]]
+        
         public ActionResult Policies()
         {
+            Session["UserID"] = UserId.ToString();
+            Session["UserRole"] = UserRoles.First();
+            Session["UserName"] = UserName;
+            Session["RoleEntityValue"] = RoleEntityValue;
+            //Now display the view            
             return View();
         }
+        
         public ActionResult Reports()
         {
+            Session["UserID"] = UserId.ToString();
+            Session["UserRole"] = UserRoles.First();
+            Session["UserName"] = UserName;
+            Session["RoleEntityValue"] = RoleEntityValue;
+            //Now display the view            
             return View();
         }
-        public ActionResult NewFunctinality1()
+        
+        public ActionResult NewFunctionality()
         {
+            Session["UserID"] = UserId.ToString();
+            Session["UserRole"] = UserRoles.First();
+            Session["UserName"] = UserName;
+            Session["RoleEntityValue"] = RoleEntityValue;
+            //Now display the view            
             return View();
         }
-        public ActionResult NewFunctinality2()
+        
+        public ActionResult NewFeature()
         {
+            Session["UserID"] = UserId.ToString();
+            Session["UserRole"] = UserRoles.First();
+            Session["UserName"] = UserName;
+            Session["RoleEntityValue"] = RoleEntityValue;
+            //Now display the view            
             return View();
         }
-        public ActionResult NewFunctinality3()
+        
+        public ActionResult NewReportFeature()
         {
+            Session["UserID"] = UserId.ToString();
+            Session["UserRole"] = UserRoles.First();
+            Session["UserName"] = UserName;
+            Session["RoleEntityValue"] = RoleEntityValue;
+            //Now display the view            
             return View();
         }
-        public ActionResult NewFunctinality4()
+        
+        public ActionResult NewRptFeature()
         {
+            Session["UserID"] = UserId.ToString();
+            Session["UserRole"] = UserRoles.First();
+            Session["UserName"] = UserName;
+            Session["RoleEntityValue"] = RoleEntityValue;
+            //Now display the view            
             return View();
         }
-        public ActionResult NewFunctinality5()
+        
+        public ActionResult BrandNewFeature()
         {
+            Session["UserID"] = UserId.ToString();
+            Session["UserRole"] = UserRoles.First();
+            Session["UserName"] = UserName;
+            Session["RoleEntityValue"] = RoleEntityValue;
+            //Now display the view            
             return View();
         }
+
+        public ActionResult DocumentsTracking()
+        {
+            Session["UserID"] = UserId.ToString();
+            Session["UserRole"] = UserRoles.First();
+            Session["UserName"] = UserName;
+            Session["RoleEntityValue"] = RoleEntityValue;
+            //Now display the view            
+            return View();
+        }
+
+        public ActionResult DocumentsTraining()
+        {
+            Session["UserID"] = UserId.ToString();
+            Session["UserRole"] = UserRoles.First();
+            Session["UserName"] = UserName;
+            Session["RoleEntityValue"] = RoleEntityValue;
+            //Now display the view            
+            return View();
+        }
+
+        public ActionResult DocumentMaintenance()
+        {
+            Session["UserID"] = UserId.ToString();
+            Session["UserRole"] = UserRoles.First();
+            Session["UserName"] = UserName;
+            Session["RoleEntityValue"] = RoleEntityValue;
+            //Now display the view            
+            return View();
+        }
+
+        public ActionResult TrainingMaintenance()
+        {
+            Session["UserID"] = UserId.ToString();
+            Session["UserRole"] = UserRoles.First();
+            Session["UserName"] = UserName;
+            Session["RoleEntityValue"] = RoleEntityValue;
+            //Now display the view            
+            return View();
+        }
+
+        #endregion
+
     }
 }
