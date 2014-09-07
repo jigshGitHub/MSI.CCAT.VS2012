@@ -118,6 +118,8 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
                         record.AgencyRequestDate = Convert.ToDateTime(rdr["AgencyRequestDate"]);
                     if (rdr["ResponseTimeDays"] != DBNull.Value)
                         record.ResponseTimeDays = Convert.ToInt32(rdr["ResponseTimeDays"]);
+                    if (rdr["TotalResponseTimeDays"] != DBNull.Value)
+                        record.TotalResponseTimeDays = Convert.ToInt32(rdr["TotalResponseTimeDays"]);
                     
                     if (rdr["count_"] != DBNull.Value)
                         record.count_ = Convert.ToInt32(rdr["count_"]);

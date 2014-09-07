@@ -571,6 +571,7 @@ namespace MSI.Data.Models
         public DateTime? DateSubmitted;
         public DateTime? AgencyRequestDate;
         public int? ResponseTimeDays;
+        public int? TotalResponseTimeDays;
         public int count_ { get; set; }
         public Int64 rowNo { get; set; }
         public ComplianceReportResult_Ext()
