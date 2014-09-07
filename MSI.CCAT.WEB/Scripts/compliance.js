@@ -15,7 +15,7 @@ function complianceVM(userId, userAgency) {
     self.dob = ko.observable('');
     self.address = ko.observable('');
     self.city = ko.observable('');
-    self.state = ko.observable('');
+    self.stateId = ko.observable('');
     self.zip = ko.observable('');
     self.homePhone = ko.observable('');
     self.workPhone = ko.observable('');
@@ -150,7 +150,7 @@ function complianceVM(userId, userAgency) {
             FirstName: self.firstName(),
             Address: self.address(),
             City: self.city(),
-            State: self.state(),
+            StateId: self.stateId(),
             Zip: self.zip(),
             HomePhone: self.homePhone(),
             WorkPhone: self.workPhone(),
@@ -201,6 +201,25 @@ function complianceVM(userId, userAgency) {
             UpdatedBy:self.updatedBy()
         });
 
+        var jsonAccount = JSON.stringify({
+            AgencyId: self.agency(),
+            AccountNumber: self.account(),
+            LastName: self.lastName(),
+            FirstName: self.firstName(),
+            Address: self.address(),
+            City: self.city(),
+            StateId: self.stateId(),
+            Zip: self.zip(),
+            HomePhone: self.homePhone(),
+            WorkPhone: self.workPhone(),
+            MobilePhone: self.mobilePhone(),
+            LastFourSSN: self.lastFourSSN(),
+            CreditorName: self.creditorName(),
+            DebtorProductId: self.debtProductId(),
+            DebtPurchaseBalance: Number(self.debtPurchaseBalance().replace(/[^0-9\.]+/g, "")),
+            DebtCurrentBalance: Number(self.debtCurrentBalance().replace(/[^0-9\.]+/g, "")),
+        });
+
         function evaluateStatusId(userRole) {
             if (userRole == 'CollectionAgency') {
             }
@@ -208,8 +227,26 @@ function complianceVM(userId, userAgency) {
             }
         }
         function setComplaint(data) {
-            self.populateCompliance(data.Tbl_Account.Tbl_Agency.Name, data.Tbl_Account.AccountNumber, data.Tbl_Account.FirstName, data.Tbl_Account.LastName, '', data.Tbl_Account.Address, data.Tbl_Account.City, data.Tbl_Account.State, data.Tbl_Account.Zip, data.Tbl_Account.LastFourSSN, data.Tbl_Account.MobilePhone, data.Tbl_Account.HomePhone, data.Tbl_Account.WorkPhone, data.DebtorIdentityVerifiedYN, data.DebtorContactMethodId, data.DebtorContactTimeId, data.Tbl_Account.DebtCurrentBalance, data.Tbl_Account.DebtPurchaseBalance, data.Tbl_Account.CreditorName, data.DebtorProductId, data.DisputeDebtYN, data.DisputeDebtAmountYN, data.DisputeDebtDueDateYN, data.ComplaintId, data.ComplaintDate, data.ReceivedByMethodId, data.IssuesId, data.ComplaintNotes, data.ComplaintSubmittedToAgencyYN, data.ComplaintSubmittedToAgencyDate, data.MoreInfoReqdFromDebtorYN, data.MoreInfoRequestedDate, data.MoreInfoRequested, data.MoreInfoReceivedFromDebtorYN, data.MoreInfoReceivedDate, data.MoreInfoReceived, data.ComplaintSubmittedToOwnerYN, data.ComplaintSubmittedDate, data.TimeToSubmitDays, data.MoreInfoFromAgencyYN, data.MoreInfoFromAgencyRequestedDate, data.MoreInfoFromAgencyRequested, data.MoreInfoFromAgencyReceived, data.MoreInfoFromAgencyReceivedYN, data.MoreInfoFromAgencyReceivedDate, data.OwnerResponseId, data.OwnerResponseDate, data.OwnerResponseDays, data.AgencyResponseToDebtorDate, data.TotalResponseTimeDays, data.DebtorAgreeYN, data.NeedFurtherActionYN, data.FinalActionStepId, data.CreatedBy, data.ComplaintDocument, data.DebtOwnerProcessDocument);
+            self.populateCompliance(data.Tbl_Account.Tbl_Agency.Name, data.Tbl_Account.AccountNumber, data.Tbl_Account.FirstName, data.Tbl_Account.LastName, '', data.Tbl_Account.Address, data.Tbl_Account.City, data.Tbl_Account.StateId, data.Tbl_Account.Zip, data.Tbl_Account.LastFourSSN, data.Tbl_Account.MobilePhone, data.Tbl_Account.HomePhone, data.Tbl_Account.WorkPhone, data.DebtorIdentityVerifiedYN, data.DebtorContactMethodId, data.DebtorContactTimeId, data.Tbl_Account.DebtCurrentBalance, data.Tbl_Account.DebtPurchaseBalance, data.Tbl_Account.CreditorName, data.DebtorProductId, data.DisputeDebtYN, data.DisputeDebtAmountYN, data.DisputeDebtDueDateYN, data.ComplaintId, data.ComplaintDate, data.ReceivedByMethodId, data.IssuesId, data.ComplaintNotes, data.ComplaintSubmittedToAgencyYN, data.ComplaintSubmittedToAgencyDate, data.MoreInfoReqdFromDebtorYN, data.MoreInfoRequestedDate, data.MoreInfoRequested, data.MoreInfoReceivedFromDebtorYN, data.MoreInfoReceivedDate, data.MoreInfoReceived, data.ComplaintSubmittedToOwnerYN, data.ComplaintSubmittedDate, data.TimeToSubmitDays, data.MoreInfoFromAgencyYN, data.MoreInfoFromAgencyRequestedDate, data.MoreInfoFromAgencyRequested, data.MoreInfoFromAgencyReceived, data.MoreInfoFromAgencyReceivedYN, data.MoreInfoFromAgencyReceivedDate, data.OwnerResponseId, data.OwnerResponseDate, data.OwnerResponseDays, data.AgencyResponseToDebtorDate, data.TotalResponseTimeDays, data.DebtorAgreeYN, data.NeedFurtherActionYN, data.FinalActionStepId, data.CreatedBy, data.ComplaintDocument, data.DebtOwnerProcessDocument);
         };
+
+       
+
+        $.ajax({
+            url: baseUrl + '/api/Accounts/',
+            type: "POST",
+            data: jsonAccount,
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            async: false,
+            success: function (response) {
+                console.log('saved account');
+                console.log(response);
+            },
+            error: function (response, errorText) {
+                return false;
+            }
+        });
 
         $.ajax({
             url: baseUrl + '/api/Compliance/',
@@ -229,7 +266,7 @@ function complianceVM(userId, userAgency) {
         });
     }
 
-    self.populateCompliance = function (agency,account, firstName, lastName, dob, address, city, state, zip, ssn, phoneCell, phoneHome, phoneWork, debtorIdentityVerified_YesNo, debtorContactMethodId, debtorContactTimeId, debtCurrentBalance, debtPurchaseBalance, creditorName, debtProductId, disputeDebt_YesNo, disputeDebtAmount_YesNo, disputeDebtDueDate_YesNo, complaintID, complaintDate, complaintMethodId, complaintIssueId, complaintNotes, complaintSubmitedToAgency_YesNo, complaintSubmitedToAgencyDate, moreInfoReqdFromDebtor_YesNo, moreInfoRequestedDate, moreInfoRequested, moreInfoReceivedFromDebtor_YesNo, moreInfoReceivedDate, moreInfoReceived, complaintSubmittedToOwner_YesNo, complaintSubmittedDate, timeToSubmitDays, moreInfoFromAgency_YesNo, moreInfoFromAgencyRequestedDate, moreInfoFromAgencyRequested, moreInfoFromAgencyReceived, moreInfoFromAgencyReceivedYN, moreInfoFromAgencyReceivedDate, ownerResponseId, ownerResponseDate, ownerResponseDays, agencyResponseToDebtorDate, totalResponseTimeDays, debtorAgree_YesNo, needFurtherAction_YesNo, finalActionStepId, createdBy, complaintDoc, debtOwnerProcessDoc) {
+    self.populateCompliance = function (agency,account, firstName, lastName, dob, address, city, stateId, zip, ssn, phoneCell, phoneHome, phoneWork, debtorIdentityVerified_YesNo, debtorContactMethodId, debtorContactTimeId, debtCurrentBalance, debtPurchaseBalance, creditorName, debtProductId, disputeDebt_YesNo, disputeDebtAmount_YesNo, disputeDebtDueDate_YesNo, complaintID, complaintDate, complaintMethodId, complaintIssueId, complaintNotes, complaintSubmitedToAgency_YesNo, complaintSubmitedToAgencyDate, moreInfoReqdFromDebtor_YesNo, moreInfoRequestedDate, moreInfoRequested, moreInfoReceivedFromDebtor_YesNo, moreInfoReceivedDate, moreInfoReceived, complaintSubmittedToOwner_YesNo, complaintSubmittedDate, timeToSubmitDays, moreInfoFromAgency_YesNo, moreInfoFromAgencyRequestedDate, moreInfoFromAgencyRequested, moreInfoFromAgencyReceived, moreInfoFromAgencyReceivedYN, moreInfoFromAgencyReceivedDate, ownerResponseId, ownerResponseDate, ownerResponseDays, agencyResponseToDebtorDate, totalResponseTimeDays, debtorAgree_YesNo, needFurtherAction_YesNo, finalActionStepId, createdBy, complaintDoc, debtOwnerProcessDoc) {
         self.agency(agency); 
         self.account(account);
         self.firstName(firstName);
@@ -237,7 +274,7 @@ function complianceVM(userId, userAgency) {
         self.dob(dob);
         self.address(address);
         self.city(city);
-        self.state(state);
+        self.stateId(stateId);
         self.zip(zip);
         self.lastFourSSN(ssn);
         self.mobilePhone(phoneCell);

@@ -32,6 +32,40 @@ namespace Cascade.Web.Controllers
             }
             return accounts;
         }
+        public Tbl_Account Post(Tbl_Account account)
+        {
+            UnitOfWork uo = null;
+            Tbl_Account accountToSave = null;
+            try
+            {
+                uo = new UnitOfWork("CCATDBEntities");
+                accountToSave = uo.AccountRepository.GetById(account.AccountNumber);
+                if (accountToSave != null)
+                {
+                    accountToSave.Address = account.Address;
+                    accountToSave.Address2 = account.Address2;
+                    accountToSave.City = account.City;
+                    accountToSave.DebtCurrentBalance = account.DebtCurrentBalance;
+                    accountToSave.DebtPurchaseBalance = account.DebtPurchaseBalance;
+                    accountToSave.FirstName = account.FirstName;
+                    accountToSave.HomePhone = account.HomePhone;
+                    accountToSave.LastFourSSN = account.LastFourSSN;
+                    accountToSave.LastName = account.LastName;
+                    accountToSave.MobilePhone = account.MobilePhone;
+                    accountToSave.StateId = account.StateId;
+                    accountToSave.WorkPhone = account.WorkPhone;
+                    accountToSave.Zip = account.Zip;
+                
+                    uo.Repository<Tbl_Account>().Update(accountToSave);
+                    uo.Save();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return account;
+        }
     }
     public class ComplianceController : ApiController
     {

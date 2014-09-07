@@ -24,13 +24,8 @@
     @*///// User Navivation Bar /////////////////////////////////////////////////////////////////*@
 	<div id="user-nav" class="navbar navbar-inverse">
         
-        <ul class="nav btn-group">
-            @if (Request.IsAuthenticated)
-            {
-                               
-                <li class="btn btn-inverse"><a title="" href="/Account/LogOff"><i class="icon icon-share-alt" style="background:none;"></i> <span class="text">Logout</span></a></li>
-            }
-        </ul>
+       
+         @Html.Partial("_LoginPartial")
     </div>
 
     @*This is for notification message*@
