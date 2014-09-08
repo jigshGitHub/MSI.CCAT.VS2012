@@ -370,7 +370,7 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
                 return View();
             }
         }
-        public ActionResult UploadDocument()
+        public JsonResult UploadDocument()
         {
             string account = Request.Form["hdnAccount"];
             string agency = Request.Form["hdnAgency"];
@@ -381,12 +381,16 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
             UnitOfWork uo = new UnitOfWork("CCATDBEntities");
             MSI.CCAT.Data.Models.Tbl_ComplaintMain complaint = (from existingComplaint in uo.Repository<MSI.CCAT.Data.Models.Tbl_ComplaintMain>().GetAll().Where(record => record.AccountNumber == account)
                                                                 select existingComplaint).First();
+            string fileGuid = "";
+            string fileName = "";
             if (!string.IsNullOrEmpty(complaintDocument))
             {
                 complaint.ComplaintDocument = fileProcessor.SaveUploadedFile(Request.Files["complaintDocument"]) + "_" + complaintDocument;
                 //repository.Update(complaint);
                 uo.Repository<MSI.CCAT.Data.Models.Tbl_ComplaintMain>().Update(complaint);
                 uo.Save();
+                fileGuid = complaint.ComplaintDocument;
+                fileName = complaintDocument;
             }
             if (!string.IsNullOrEmpty(debtOwnerProcessDocument))
             {
@@ -394,8 +398,14 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
                 //repository.Update(complaint);
                 uo.Repository<MSI.CCAT.Data.Models.Tbl_ComplaintMain>().Update(complaint);
                 uo.Save();
+                fileGuid = complaint.DebtOwnerProcessDocument;
+                fileName = debtOwnerProcessDocument;
             }
-            return RedirectToAction("ViewEdit", "Home", new { id = account, agency = agency });
+            //return RedirectToAction("ViewEdit", "Home", new { id = account, agency = agency });
+            ViewBag.Account = (string.IsNullOrEmpty(account)) ? "" : account; ;
+            ViewBag.AgencyID = (string.IsNullOrEmpty(agency)) ? "" : agency;
+            //          ViewBag.UserRole = UserRoles.First().ToLower();
+            return Json(new { success = true, fileGuid = fileGuid, file = fileName }, JsonRequestBehavior.AllowGet);
 
         }
 

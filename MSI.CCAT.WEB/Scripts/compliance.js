@@ -330,7 +330,51 @@ function complianceVM(userId, userAgency) {
             self.debtOwnerProcessDocument(debtOwnerProcessDoc.split('_')[1]);
             self.debtOwnerProcessDocUrl(baseUrl + '/Compliance/Home/DownloadDoc?fileName=' + debtOwnerProcessDoc);
         }
-    }    
+    }
+
+    self.uploadDocument = function () {
+        var dataString;
+        var action = $("#form0").attr("action");
+        if ($("#form0").attr("enctype") == "multipart/form-data") {
+            console.log($("#form0").get(0));
+            console.log($("#form0").get(1));
+
+            dataString = new FormData($("#form0").get(0));
+            contentType = false;
+            processData = false;
+            console.log(action);
+            console.log(dataString);
+        } else {
+            // regular form, do your own thing if you need it
+        }
+        $.ajax({
+            type: "POST",
+            url: action,
+            data: dataString,
+            dataType: "json",
+            contentType: contentType,
+            processData: processData,
+            success: function (data) {
+                
+                console.log(data);
+                console.log($('#complaintDocument').val());
+                if (self.complaintinfoDocumentChecked()) {
+                    self.complaintDocument(data.file);
+                    self.complaintDocUrl(baseUrl + '/Compliance/Home/DownloadDoc?fileName=' + data.fileGuid);
+                }
+                if (self.debtOwnerProcessDocumentChecked()) {
+                    self.debtOwnerProcessDocument(data.file);
+                    self.debtOwnerProcessDocUrl(baseUrl + '/Compliance/Home/DownloadDoc?fileName=' + data.fileGuid);
+                }
+                $('#fileUploadContainer').modal('hide');
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                //do your own thing
+                alert("fail");
+            }
+        });
+    }
 }
 
 function pimsDebtor(account, firstName, lastName, dob, address1, address2, city, state, zip, ssn, phoneCell, phoneHome, phoneWork, debtCurrentBalance, debtorPurchaseBalance, creditorName, accountOriginal) {
