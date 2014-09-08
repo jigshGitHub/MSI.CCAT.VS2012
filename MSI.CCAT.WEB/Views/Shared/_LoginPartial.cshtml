@@ -1,7 +1,7 @@
 ﻿@if (Request.IsAuthenticated) {
-    <text>
-        Welcome, @User.Identity.Name !!
-    </text>
-    
+    <span class="pull-left">
+        Welcome, @User.Identity.Name !!&nbsp;&nbsp;
+    </span>
+        
     <ul class="nav btn-group"><li class="btn btn-inverse"><a title="" href="/Account/LogOff"><i class="icon icon-share-alt" style="background:none;"></i> <span class="text">Logout</span></a></li></ul>
 } 
