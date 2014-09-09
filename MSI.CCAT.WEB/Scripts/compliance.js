@@ -357,7 +357,7 @@ function complianceVM(userId, userAgency) {
             success: function (data) {
                 
                 console.log(data);
-                console.log($('#complaintDocument').val());
+                
                 if (self.complaintinfoDocumentChecked()) {
                     self.complaintDocument(data.file);
                     self.complaintDocUrl(baseUrl + '/Compliance/Home/DownloadDoc?fileName=' + data.fileGuid);

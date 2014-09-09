@@ -100,7 +100,8 @@
             <h3>Upload document:</h3>
         </div>
         <div class="modal-body" data-bind="with: complianceModel">
-            @using (Html.BeginForm("UploadDocument", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            @* using (Html.BeginForm("UploadDocument", "Home", FormMethod.Post, new { enctype = "multipart/form-data" })) *@
+            @using (Ajax.BeginForm("UploadDocument", "Home", new AjaxOptions { HttpMethod = "POST" }, new { enctype = "multipart/form-data" }))
             {
                 <div data-bind="visible: complaintinfoDocumentChecked">
                     Select document for complaint information:<input name="complaintDocument" type="file" />
@@ -110,7 +111,7 @@
                 </div>
                 <input type="hidden" name="hdnAccount" data-bind="value: account" />
                 <input type="hidden" name="hdnAgency" data-bind="value: agency" />
-                <input type="submit" value="Submit" class="btn btn-primary"/>
+                <input type="submit" value="Submit" class="btn btn-primary"  data-bind="click: uploadDocument"/>
             }
         </div>
         <div class="modal-footer" /> 
@@ -393,7 +394,8 @@
                             <td style="text-align: center; width: 1%">:
                             </td>
                             <td style="text-align: left; width: 20%">
-                                <input type="checkbox" data-bind="checked: complaintinfoDocumentChecked" />
+                                <input type="checkbox" data-bind="checked: complaintinfoDocumentChecked" />&nbsp;<a
+                                                data-bind="attr: { href: complaintDocUrl }"><span id="complaintDoc" data-bind="    text: complaintDocument"></span></a>
                             </td>
                         </tr>
                         <tr data-bind="visible: $parent.showComplaintSumittedToAgencyInfo">
@@ -513,7 +515,8 @@
                             <td style="text-align: center; width: 1%">:
                             </td>
                             <td style="text-align: left; width: 20%">
-                                <input type="checkbox" data-bind="checked: debtOwnerProcessDocumentChecked" />
+                                <input type="checkbox" data-bind="checked: debtOwnerProcessDocumentChecked" />&nbsp;<a
+                                                data-bind="attr: { href: debtOwnerProcessDocUrl }"><span data-bind="    text: debtOwnerProcessDocument"></span></a>
                             </td>
                         </tr>
                     </table>
