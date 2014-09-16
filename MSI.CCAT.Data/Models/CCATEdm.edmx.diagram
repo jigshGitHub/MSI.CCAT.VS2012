@@ -61,6 +61,7 @@
         <AssociationConnector Association="CCATDBModel.FK__aspnet_Us__Appli__1ED998B2" />
         <AssociationConnector Association="CCATDBModel.FK__aspnet_Me__UserI__33D4B598" />
         <AssociationConnector Association="CCATDBModel.aspnet_UsersInRoles" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_ComplaintType" Width="1.5" PointX="3.8186357020487245" PointY="21.706994603251569" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

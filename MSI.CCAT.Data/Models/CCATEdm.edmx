@@ -21,6 +21,7 @@
           <EntitySet Name="Tbl_ComplaintMain" EntityType="CCATDBModel.Store.Tbl_ComplaintMain" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_ComplaintReceivedBy" EntityType="CCATDBModel.Store.Tbl_ComplaintReceivedBy" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_ComplaintStatus" EntityType="CCATDBModel.Store.Tbl_ComplaintStatus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_ComplaintType" EntityType="CCATDBModel.Store.Tbl_ComplaintType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_CreditIssuer" EntityType="CCATDBModel.Store.Tbl_CreditIssuer" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_DebtorContactMethods" EntityType="CCATDBModel.Store.Tbl_DebtorContactMethods" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_DebtorContactTime" EntityType="CCATDBModel.Store.Tbl_DebtorContactTime" store:Type="Tables" Schema="dbo" />
@@ -408,6 +409,7 @@
           <Property Name="CreatedDateTime" Type="datetime" />
           <Property Name="UpdatedDateTime" Type="datetime" />
           <Property Name="IsActive" Type="bit" />
+          <Property Name="ComplaintTypeID" Type="int" />
         </EntityType>
         <EntityType Name="Tbl_ComplaintReceivedBy">
           <Key>
@@ -423,6 +425,13 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Value" Type="nchar" Nullable="false" MaxLength="10" />
           <Property Name="Meaning" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Tbl_ComplaintType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
         <EntityType Name="Tbl_CreditIssuer">
           <Key>
@@ -1119,6 +1128,7 @@
             <Parameter Name="roleEntityValue" Mode="In" Type="String" />
             <Parameter Name="role" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="Tbl_ComplaintType" EntityType="CCATDBModel.Tbl_ComplaintType" />
           </EntityContainer>
         <EntityType Name="Tbl_QuestionResponse">
           <Key>
@@ -1699,6 +1709,7 @@
           <Property Type="Guid" Name="UpdatedBy" />
           <Property Type="DateTime" Name="CreatedDateTime" Precision="3" />
           <Property Type="DateTime" Name="UpdatedDateTime" Precision="3" />
+          <Property Type="Int32" Name="ComplaintTypeID" />
         </EntityType>
         <Association Name="FK_Tbl_ComplaintMain_Tbl_Account">
           <End Type="CCATDBModel.Tbl_Account" Role="Tbl_Account" Multiplicity="0..1" />
@@ -2027,6 +2038,13 @@
           <Property Type="DateTime" Name="LastPaymentDate" Nullable="true" />
           <Property Type="Boolean" Name="IsActive" Nullable="true" />
         </ComplexType>
+        <EntityType Name="Tbl_ComplaintType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2371,6 +2389,7 @@
           <EntitySetMapping Name="Tbl_ComplaintMain">
             <EntityTypeMapping TypeName="CCATDBModel.Tbl_ComplaintMain">
               <MappingFragment StoreEntitySet="Tbl_ComplaintMain">
+                <ScalarProperty Name="ComplaintTypeID" ColumnName="ComplaintTypeID" />
                 <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
                 <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
@@ -2511,6 +2530,14 @@
           <FunctionImportMapping FunctionImportName="GetAccountsByAgency" FunctionName="CCATDBModel.Store.sp_GetAccountsByAgency">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="AccountSearch" FunctionName="CCATDBModel.Store.sp_AccountSearch" />
+          <EntitySetMapping Name="Tbl_ComplaintType">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_ComplaintType">
+              <MappingFragment StoreEntitySet="Tbl_ComplaintType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

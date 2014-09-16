@@ -22,7 +22,7 @@ namespace Cascade.Web.Controllers
                 case "Agencies":
                     uo = new UnitOfWork("CCATDBEntities");
                     lookupData = from agency in uo.Repository<Tbl_Agency>().GetAll()
-                                 select new LookUp(agency.Name, agency.AgencyId.ToString());
+                                 select new LookUp(agency.Name, agency.Name );
                     break;
                 case "ComplaintIssues":
                     uo = new UnitOfWork("CCATDBEntities");
@@ -79,6 +79,11 @@ namespace Cascade.Web.Controllers
                     uo = new UnitOfWork("CCATDBEntities");
                     lookupData = from owner in uo.Repository<Tbl_Owner>().GetAll()
                                  select new LookUp(owner.Name, owner.OwnerId.ToString());
+                    break;
+                case "ComplaintTypes":
+                    uo = new UnitOfWork("CCATDBEntities");
+                    lookupData = from cType in uo.Repository<Tbl_ComplaintType>().GetAll()
+                                 select new LookUp(cType.Name, cType.Id.ToString());
                     break; 
                 default:
                     break;

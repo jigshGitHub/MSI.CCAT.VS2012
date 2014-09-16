@@ -231,6 +231,7 @@ namespace Cascade.Web.Controllers
                 complaintToSave.IsViewedByAgency = complaint.IsViewedByAgency;
                 complaintToSave.IsActive = true;
                 complaintToSave.ComplaintStatusId = (int)GetComplaintStatus(role, complaint.AccountNumber, complaintToSave);
+                complaintToSave.ComplaintTypeID = complaint.ComplaintTypeID;
                 if (editingRequired)
                 {
                     if(complaintToSave.ComplaintSubmittedDate.HasValue && complaintToSave.ComplaintDate != null)
@@ -241,9 +242,9 @@ namespace Cascade.Web.Controllers
                         complaintToSave.TotalResponseTimeDays = complaintToSave.AgencyResponseToDebtorDate.Value.Subtract(complaintToSave.ComplaintDate.Value).Days;
                     //repository.Update(complaintToSave);
                     uo.Repository<Tbl_ComplaintMain>().Update(complaintToSave);
-                    uo.Save();
                     complaintToSave.UpdatedBy = complaint.UpdatedBy;
                     complaintToSave.UpdatedDateTime = DateTime.Now;
+                    uo.Save();
                 }
                 else
                 {

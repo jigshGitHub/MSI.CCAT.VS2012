@@ -62,6 +62,7 @@ namespace MSI.CCAT.Data.Models
         public Nullable<System.Guid> UpdatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDateTime { get; set; }
         public Nullable<System.DateTime> UpdatedDateTime { get; set; }
+        public Nullable<int> ComplaintTypeID { get; set; }
     
         public virtual Tbl_Account Tbl_Account { get; set; }
         public virtual Tbl_ComplaintIssues Tbl_ComplaintIssues { get; set; }

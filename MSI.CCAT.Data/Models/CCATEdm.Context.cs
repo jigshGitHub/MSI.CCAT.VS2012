@@ -56,6 +56,7 @@ namespace MSI.CCAT.Data.Models
         public DbSet<aspnet_Membership> aspnet_Membership { get; set; }
         public DbSet<aspnet_Roles> aspnet_Roles { get; set; }
         public DbSet<aspnet_Users> aspnet_Users { get; set; }
+        public DbSet<Tbl_ComplaintType> Tbl_ComplaintType { get; set; }
     
         public virtual ObjectResult<Tbl_Account> GetAccounts()
         {
@@ -102,17 +103,63 @@ namespace MSI.CCAT.Data.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("GetAccountsByAgency", mergeOption, idParameter);
         }
-
+    
         public virtual ObjectResult<Tbl_Account> AccountSearch(string firstOrLastName, string accountNumber, string creditorName, string accountOriginal, string roleEntityValue, string role)
         {
-            var firstOrLastNameParam = string.IsNullOrEmpty(firstOrLastName) ? new ObjectParameter("firstOrLastName", typeof(string)) : new ObjectParameter("firstOrLastName", firstOrLastName);
-            var accountNumberParam = string.IsNullOrEmpty(accountNumber) ? new ObjectParameter("accountNumber", typeof(string)) : new ObjectParameter("accountNumber", accountNumber);
-            var creditorNameParam = string.IsNullOrEmpty(creditorName) ? new ObjectParameter("creditorName", typeof(string)) : new ObjectParameter("creditorName", creditorName);
-            var accountOriginalParam = string.IsNullOrEmpty(accountOriginal) ? new ObjectParameter("accountOriginal", typeof(string)) : new ObjectParameter("accountOriginal", accountOriginal);
-            var roleEntityValueParam = string.IsNullOrEmpty(roleEntityValue) ? new ObjectParameter("roleEntityValue", typeof(string)) : new ObjectParameter("roleEntityValue", roleEntityValue);
-            var roleParam = string.IsNullOrEmpty(role) ? new ObjectParameter("role", typeof(string)) : new ObjectParameter("role", role);
-
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("AccountSearch", firstOrLastNameParam, accountNumberParam, creditorNameParam, accountOriginalParam, roleEntityValueParam, roleParam);
+            var firstOrLastNameParameter = firstOrLastName != null ?
+                new ObjectParameter("firstOrLastName", firstOrLastName) :
+                new ObjectParameter("firstOrLastName", typeof(string));
+    
+            var accountNumberParameter = accountNumber != null ?
+                new ObjectParameter("accountNumber", accountNumber) :
+                new ObjectParameter("accountNumber", typeof(string));
+    
+            var creditorNameParameter = creditorName != null ?
+                new ObjectParameter("creditorName", creditorName) :
+                new ObjectParameter("creditorName", typeof(string));
+    
+            var accountOriginalParameter = accountOriginal != null ?
+                new ObjectParameter("accountOriginal", accountOriginal) :
+                new ObjectParameter("accountOriginal", typeof(string));
+    
+            var roleEntityValueParameter = roleEntityValue != null ?
+                new ObjectParameter("roleEntityValue", roleEntityValue) :
+                new ObjectParameter("roleEntityValue", typeof(string));
+    
+            var roleParameter = role != null ?
+                new ObjectParameter("role", role) :
+                new ObjectParameter("role", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("AccountSearch", firstOrLastNameParameter, accountNumberParameter, creditorNameParameter, accountOriginalParameter, roleEntityValueParameter, roleParameter);
+        }
+    
+        public virtual ObjectResult<Tbl_Account> AccountSearch(string firstOrLastName, string accountNumber, string creditorName, string accountOriginal, string roleEntityValue, string role, MergeOption mergeOption)
+        {
+            var firstOrLastNameParameter = firstOrLastName != null ?
+                new ObjectParameter("firstOrLastName", firstOrLastName) :
+                new ObjectParameter("firstOrLastName", typeof(string));
+    
+            var accountNumberParameter = accountNumber != null ?
+                new ObjectParameter("accountNumber", accountNumber) :
+                new ObjectParameter("accountNumber", typeof(string));
+    
+            var creditorNameParameter = creditorName != null ?
+                new ObjectParameter("creditorName", creditorName) :
+                new ObjectParameter("creditorName", typeof(string));
+    
+            var accountOriginalParameter = accountOriginal != null ?
+                new ObjectParameter("accountOriginal", accountOriginal) :
+                new ObjectParameter("accountOriginal", typeof(string));
+    
+            var roleEntityValueParameter = roleEntityValue != null ?
+                new ObjectParameter("roleEntityValue", roleEntityValue) :
+                new ObjectParameter("roleEntityValue", typeof(string));
+    
+            var roleParameter = role != null ?
+                new ObjectParameter("role", role) :
+                new ObjectParameter("role", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("AccountSearch", mergeOption, firstOrLastNameParameter, accountNumberParameter, creditorNameParameter, accountOriginalParameter, roleEntityValueParameter, roleParameter);
         }
     }
 }
