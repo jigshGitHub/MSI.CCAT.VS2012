@@ -319,8 +319,8 @@ function complianceVM(userId, userAgency) {
         self.ownerResponseDays(ownerResponseDays);
         self.agencyResponseToDebtorDate(getFormatedDate(agencyResponseToDebtorDate));
         self.totalResponseTimeDays(totalResponseTimeDays);
-        self.debtorAgree_YesNo(debtorAgree_YesNo);
-        self.needFurtherAction_YesNo(needFurtherAction_YesNo);
+        self.debtorAgree_YesNo((debtorAgree_YesNo) ? 'true' : 'false');
+        self.needFurtherAction_YesNo((needFurtherAction_YesNo) ? 'true' : 'false');
         self.finalActionStepId(finalActionStepId);
         //self.createdBy(createdBy)
         self.complaintTypeSelected(complaintTypeSelected);
