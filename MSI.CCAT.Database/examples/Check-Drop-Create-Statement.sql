@@ -1,3 +1,8 @@
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[viewname]') AND type in (N'V'))
+	DROP VIEW [dbo].[viewname]
+GO
+
+
 
 /****** Object:  Table [dbo].[tableName]    Script Date: 05/28/2013 22:43:25 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tableName]') AND type in (N'U'))
