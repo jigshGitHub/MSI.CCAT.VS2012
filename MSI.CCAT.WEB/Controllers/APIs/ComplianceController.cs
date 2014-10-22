@@ -98,8 +98,8 @@ namespace Cascade.Web.Controllers
                 uo = new UnitOfWork("CCATDBEntities");
 
                 complaint = uo.Repository<Tbl_ComplaintMain>().GetAll().Where(record => record.AccountNumber == accountNumber).FirstOrDefault();
-                        
-                if (complaint != null)
+
+                if (complaint != null && createUpdateMode != "create")
                 {
                     if(createUpdateMode == "create")
                         throw new Exception(string.Format("Complaint with account number {0} has already been under process",complaint.AccountNumber));
@@ -157,7 +157,7 @@ namespace Cascade.Web.Controllers
 
                 role = MSI.CCAT.Business.AccountBus.GetUserRole(complaint.CreatedBy.ToString());
                 uo = new UnitOfWork("CCATDBEntities");
-                IEnumerable<Tbl_ComplaintMain> data = (from existingComplaint in uo.Repository<Tbl_ComplaintMain>().GetAll().Where(record => record.AccountNumber == complaint.AccountNumber)
+                IEnumerable<Tbl_ComplaintMain> data = (from existingComplaint in uo.Repository<Tbl_ComplaintMain>().GetAll().Where(record => record.AccountNumber == complaint.AccountNumber && record.ComplaintId == complaint.ComplaintId)
                                                        select existingComplaint);
 
                 if (data.Count() > 0)

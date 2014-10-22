@@ -1111,14 +1111,23 @@
                 $("#messageSummary").modal();
             }
             else {
-                self.complianceModel.save(self.userRole());
-                self.message('Data saved successfully!');
-                showNoti_.info(self.message(), false);
-                $('#successAlert').addClass('in').toggle();
-                if (self.complianceModel.complaintinfoDocumentChecked() == true || self.complianceModel.debtOwnerProcessDocumentChecked() == true) {
-                    //$('#fileUploadContainer').dialog('open');
-                    $('#fileUploadContainer').modal();
-                }
+                self.complianceModel.save(self.userRole(), function (response) {
+                    if (response.ExceptionMessage == undefined || response.ExceptionMessage == null) {
+                        self.message('Data saved successfully!');
+                        showNoti_.info(self.message(), false);
+                        $('#successAlert').addClass('in').toggle();
+                        if (self.complianceModel.complaintinfoDocumentChecked() == true || self.complianceModel.debtOwnerProcessDocumentChecked() == true) {
+                            //$('#fileUploadContainer').dialog('open');
+                            $('#fileUploadContainer').modal();
+                        }
+                    }
+                    else {
+                        console.log(response.ExceptionMessage);
+                        self.message(response.Message);
+                        showNoti_.error(self.message(), false);
+                    }
+                });
+                
             }
             //window.location.reload();
 

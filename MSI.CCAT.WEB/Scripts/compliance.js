@@ -143,7 +143,7 @@ function complianceVM(userId, userAgency) {
         }
     }, self);
 
-    self.save = function (userRole) {
+    self.save = function (userRole, callback) {
         var json = JSON.stringify({
             AgencyId: self.agency(),
             AccountNumber: self.account(),
@@ -246,7 +246,8 @@ function complianceVM(userId, userAgency) {
                 console.log(response);
             },
             error: function (response, errorText) {
-                return false;
+                if (callback != undefined || callback != null)
+                    callback(jQuery.parseJSON(response.responseText));
             }
         });
 
@@ -261,9 +262,12 @@ function complianceVM(userId, userAgency) {
                 console.log('save complaint');
                 console.log(response);
                 setComplaint(response);
+                if (callback != undefined || callback != null)
+                    callback(response);
             },
             error: function (response, errorText) {
-                return false;
+                if (callback != undefined || callback != null)
+                    callback(jQuery.parseJSON(response.responseText));
             }
         });
     }
