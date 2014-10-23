@@ -292,10 +292,11 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
             return PartialView();
         }
 
-        public ActionResult ViewEdit(string id, string agency)
+        public ActionResult ViewEdit(string id, string agency, string complaintId)
         {
             //ViewBag.UserID = UserId.ToString();
-            ViewBag.Account = (string.IsNullOrEmpty(id)) ? "" : id; ;
+            ViewBag.Account = (string.IsNullOrEmpty(id)) ? "" : id;
+            ViewBag.ComplaintID = (string.IsNullOrEmpty(complaintId)) ? "" : complaintId; 
             ViewBag.AgencyID = (string.IsNullOrEmpty("agency")) ? "" : agency;
   //          ViewBag.UserRole = UserRoles.First().ToLower();
             return PartialView();
@@ -373,20 +374,19 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
         public JsonResult UploadDocument()
         {
             string account = Request.Form["hdnAccount"];
+            string complaintId = Request.Form["hdnComplaintId"];
             string agency = Request.Form["hdnAgency"];
             string complaintDocument, debtOwnerProcessDocument;
             complaintDocument = Request.Files["complaintDocument"].FileName;
             debtOwnerProcessDocument = Request.Files["debtOwnerProcessDocument"].FileName;
-            //MSI.CCAT.Data.Repositories.TBL_ComplaintMainRepository repository = new TBL_ComplaintMainRepository();
             UnitOfWork uo = new UnitOfWork("CCATDBEntities");
-            MSI.CCAT.Data.Models.Tbl_ComplaintMain complaint = (from existingComplaint in uo.Repository<MSI.CCAT.Data.Models.Tbl_ComplaintMain>().GetAll().Where(record => record.AccountNumber == account)
+            MSI.CCAT.Data.Models.Tbl_ComplaintMain complaint = (from existingComplaint in uo.Repository<MSI.CCAT.Data.Models.Tbl_ComplaintMain>().GetAll().Where(record => record.AccountNumber == account && record.ComplaintId == complaintId)
                                                                 select existingComplaint).First();
             string fileGuid = "";
             string fileName = "";
             if (!string.IsNullOrEmpty(complaintDocument))
             {
                 complaint.ComplaintDocument = fileProcessor.SaveUploadedFile(Request.Files["complaintDocument"]) + "_" + complaintDocument;
-                //repository.Update(complaint);
                 uo.Repository<MSI.CCAT.Data.Models.Tbl_ComplaintMain>().Update(complaint);
                 uo.Save();
                 fileGuid = complaint.ComplaintDocument;
@@ -395,16 +395,13 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
             if (!string.IsNullOrEmpty(debtOwnerProcessDocument))
             {
                 complaint.DebtOwnerProcessDocument = fileProcessor.SaveUploadedFile(Request.Files["debtOwnerProcessDocument"]) + "_" + debtOwnerProcessDocument;
-                //repository.Update(complaint);
                 uo.Repository<MSI.CCAT.Data.Models.Tbl_ComplaintMain>().Update(complaint);
                 uo.Save();
                 fileGuid = complaint.DebtOwnerProcessDocument;
                 fileName = debtOwnerProcessDocument;
             }
-            //return RedirectToAction("ViewEdit", "Home", new { id = account, agency = agency });
-            ViewBag.Account = (string.IsNullOrEmpty(account)) ? "" : account; ;
+            ViewBag.Account = (string.IsNullOrEmpty(account)) ? "" : account;
             ViewBag.AgencyID = (string.IsNullOrEmpty(agency)) ? "" : agency;
-            //          ViewBag.UserRole = UserRoles.First().ToLower();
             return Json(new { success = true, fileGuid = fileGuid, file = fileName }, JsonRequestBehavior.AllowGet);
 
         }

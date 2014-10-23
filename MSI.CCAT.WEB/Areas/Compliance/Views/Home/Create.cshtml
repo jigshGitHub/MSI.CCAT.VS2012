@@ -1125,6 +1125,7 @@
                         console.log(response.ExceptionMessage);
                         self.message(response.Message);
                         showNoti_.error(self.message(), false);
+                        $('#errorAlert').addClass('in').toggle();
                     }
                 });
                 

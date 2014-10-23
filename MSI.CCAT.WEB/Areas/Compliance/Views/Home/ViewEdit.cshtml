@@ -2,6 +2,8 @@
 @Html.Hidden("hdnAgencyId", (string)(@ViewBag.AgencyID))
 @Html.Hidden("hdnAccountNumber", (string)(@ViewBag.Account))
 @Html.Hidden("hdnUserRole", (string)(@ViewBag.UserRole))
+@Html.Hidden("hdnComplaintID", (string)(@ViewBag.ComplaintID))
+hdnComplaintId
 <style>
     td {
         vertical-align:top;
@@ -38,6 +40,7 @@
                     Select document for manager process:<input name="debtOwnerProcessDocument" type="file" />
                 </div>
                 <input type="hidden" name="hdnAccount" data-bind="value: account" />
+                <input type="hidden" name="hdnComplaintId" data-bind="value: complaintID" />
                 <input type="hidden" name="hdnAgency" data-bind="value: agency" />
                 <input type="submit" value="Submit" class="btn btn-primary" data-bind="click:uploadDocument"/>
             }
@@ -627,54 +630,11 @@
 <script src="~/Scripts/jquery.formatCurrency-1.4.0.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 
-    //$(function() {
-    //    $("#form0").submit(function(event) {
-    //        var dataString;
-    //        event.preventDefault();
-    //        var action = $("#form0").attr("action");
-    //        if ($("#form0").attr("enctype") == "multipart/form-data") {
-    //            //this only works in some browsers.
-    //            //purpose? to submit files over ajax. because screw iframes.
-    //            //also, we need to call .get(0) on the jQuery element to turn it into a regular DOM element so that FormData can use it.
-    //            console.log($("#form0").get(0));
-    //            console.log($("#form0").get(1));
-
-
-    //            dataString = new FormData($("#form0").get(0));
-    //            contentType = false;
-    //            processData = false;
-    //            console.log(action);
-    //            console.log(dataString);
-    //        } else {
-    //            // regular form, do your own thing if you need it
-    //        }
-    //        $.ajax({
-    //            type: "POST",
-    //            url: action,
-    //            data: dataString,
-    //            dataType: "json", //change to your own, else read my note above on enabling the JsonValueProviderFactory in MVC
-    //            contentType: contentType,
-    //            processData: processData,
-    //            success: function(data) {
-    //                //BTW, data is one of the worst names you can make for a variable
-    //                console.log($('#complaintDocument').val());                    
-    //                $('#complaintDoc').text($('#complaintDocument').val().split('/').pop().split('\\').pop());
-    //                $('#fileUploadContainer').modal('hide');
-                    
-    //            },
-    //            error: function(jqXHR, textStatus, errorThrown) {
-    //                //do your own thing
-    //                alert("fail");
-    //            }
-    //        });
-    //    }); //end .submit()
-    //});
-
-
+    
     var yesNoOptions = [{ Text: 'No', Value: 'false' }, { Text: 'Yes', Value: 'true' }];
 
     function pageViewModel(userId, userAgency, accountNumber, userRole) {
-        console.log(userId + ',' + accountNumber + ',' + userAgency + ',' + userRole);
+        //console.log(userId + ',' + accountNumber + ',' + userAgency + ',' + userRole);
         var self = this;
         if (userRole == 'DebtOwner')
             userAgency = '';
@@ -682,8 +642,8 @@
         self.pimsAccountNumber = ko.observable(accountNumber);
         self.debtors = ko.observableArray([]);
         self.userRole = ko.observable(userRole);
-        self.getComplaint = function (account) {
-            //log(debtor.account());
+        self.getComplaint = function (account, complaintId) {
+            //log('account='+account);
             function setComplaint(data) {
                 self.complianceModel.populateCompliance(data.Tbl_Account.Tbl_Agency.Name, data.Tbl_Account.AccountNumber, data.Tbl_Account.FirstName, data.Tbl_Account.LastName, '', data.Tbl_Account.Address, data.Tbl_Account.City, data.Tbl_Account.StateId, data.Tbl_Account.Zip, data.Tbl_Account.LastFourSSN, data.Tbl_Account.MobilePhone, data.Tbl_Account.HomePhone, data.Tbl_Account.WorkPhone, data.DebtorIdentityVerifiedYN, data.DebtorContactMethodId, data.DebtorContactTimeId, data.Tbl_Account.DebtCurrentBalance, data.Tbl_Account.DebtPurchaseBalance, data.Tbl_Account.CreditorName, data.DebtorProductId, data.DisputeDebtYN, data.DisputeDebtAmountYN, data.DisputeDebtDueDateYN, data.ComplaintId, data.ComplaintDate, data.ReceivedByMethodId, data.IssuesId, data.ComplaintNotes, data.ComplaintSubmittedToAgencyYN, data.ComplaintSubmittedToAgencyDate, data.MoreInfoReqdFromDebtorYN, data.MoreInfoRequestedDate, data.MoreInfoRequested, data.MoreInfoReceivedFromDebtorYN, data.MoreInfoReceivedDate, data.MoreInfoReceived, data.ComplaintSubmittedToOwnerYN, data.ComplaintSubmittedDate, data.TimeToSubmitDays, data.MoreInfoFromAgencyYN, data.MoreInfoFromAgencyRequestedDate, data.MoreInfoFromAgencyRequested, data.MoreInfoFromAgencyReceived, data.MoreInfoFromAgencyReceivedYN, data.MoreInfoFromAgencyReceivedDate, data.OwnerResponseId, data.OwnerResponseDate, data.OwnerResponseDays, data.AgencyResponseToDebtorDate, data.TotalResponseTimeDays, data.DebtorAgreeYN, data.NeedFurtherActionYN, data.FinalActionStepId, data.CreatedBy, data.ComplaintDocument, data.DebtOwnerProcessDocument, data.ComplaintTypeID);
             };
@@ -691,7 +651,7 @@
             $.ajax({
                 url: baseUrl + '/api/Compliance/',
                 type: "GET",
-                data: { accountNumber: self.pimsAccountNumber(), agencyId: self.complianceModel.agency(), userRole: self.userRole, createUpdateMode: 'update' },
+                data: { accountNumber: self.pimsAccountNumber(), complaintId: complaintId, agencyId: self.complianceModel.agency(), userRole: self.userRole, createUpdateMode: 'update' },
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 async: false,
@@ -971,11 +931,12 @@
         }, self);
 
         self.complianceModel.agency.subscribe(function (agencySelected) {
-            if (self.pimsAccountNumber()) {
-                self.getComplaint(self.pimsAccountNumber());
+            if (self.pimsAccountNumber() && agencySelected != undefined && agencySelected != '') {
+                console.log('agencySelected=' + agencySelected);
+                //self.getComplaint(self.pimsAccountNumber());
                 var randonNumber = Math.floor((Math.random() * 999) + 101);
                 log(randonNumber);
-                self.complianceModel.complaintID(agencySelected + '-' + self.pimsAccountNumber().substring(5, 10) + '-' + randonNumber);
+                self.complianceModel.complaintID(agencySelected + '-' + self.pimsAccountNumber().substring(5, 10) + '-' + randonNumber);                
             }
 
         }.bind(self));
@@ -1005,17 +966,26 @@
                 $("#messageSummary").modal();
             }
             else {
-                self.complianceModel.save();
-                self.message('Data saved successfully!');
-                showNoti_.info(self.message(), false);
-                $('#successAlert').addClass('in').toggle();
+                self.complianceModel.save(self.userRole(), function (response) {
+                    if (response.ExceptionMessage == undefined || response.ExceptionMessage == null) {
+                        self.message('Data saved successfully!');
+                        showNoti_.info(self.message(), false);
+                        $('#successAlert').addClass('in').toggle();
 
-                if (self.complianceModel.complaintinfoDocumentChecked() == true || self.complianceModel.debtOwnerProcessDocumentChecked() == true) {
-                    log(self.complianceModel.complaintinfoDocumentChecked());
-                    log(self.complianceModel.debtOwnerProcessDocumentChecked());
-                    //$('#fileUploadContainer').dialog('open');
-                    $('#fileUploadContainer').modal();
-                }
+                        if (self.complianceModel.complaintinfoDocumentChecked() == true || self.complianceModel.debtOwnerProcessDocumentChecked() == true) {
+                            log(self.complianceModel.complaintinfoDocumentChecked());
+                            log(self.complianceModel.debtOwnerProcessDocumentChecked());
+                            //$('#fileUploadContainer').dialog('open');
+                            $('#fileUploadContainer').modal();
+                        }
+                    }
+                    else {
+                        console.log(response.ExceptionMessage);
+                        self.message(response.Message);
+                        showNoti_.error(self.message(), false);
+                        $('#errorAlert').addClass('in').toggle();
+                    }
+                });
             }
         }
         self.showMessage = ko.observable(false);
@@ -1080,7 +1050,8 @@
         var pageVM = new pageViewModel($('#hdnUserId').val(), $('#hdnAgencyId').val(), $('#hdnAccountNumber').val(), $('#hdnUserRole').val());
         //$('#fileUploadContainer').dialog({ modal: true, title: 'Upload documents:', autoOpen: false, width: 500, height: 500 });
         ko.applyBindings(pageVM, $('#workspaceContainer')[0]);
-        pageVM.getComplaint($('#hdnAccountNumber').val());
+        //console.log('hdnComplaintID=' + $('#hdnComplaintID').val());
+        pageVM.getComplaint($('#hdnAccountNumber').val(), $('#hdnComplaintID').val());
 
         //For DatePicker for Complaint section
         $('#complaiintDate').datepicker({ dateFormat: 'mm/dd/yy' });

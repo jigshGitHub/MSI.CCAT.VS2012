@@ -138,7 +138,7 @@
             var dataItem = $("#SOASearchgrid").data("kendoGrid").dataItem($(this).closest("tr"));
             @*Now let us clear what we have on this page*@
             $('#clubSearch').children().remove();
-            var path = baseUrl + "/Compliance/Home/ViewEdit?id=" + dataItem.PIMSAccount + "&agency=" + dataItem.AgencyId;
+            var path = baseUrl + "/Compliance/Home/ViewEdit?id=" + dataItem.PIMSAccount + "&agency=" + dataItem.AgencyId + "&complaintId=" + dataItem.ComPlaintId;
             $.get(path, function (data) {
                 @*Now Refill the data*@
                 $('#clubSearch').html(data);

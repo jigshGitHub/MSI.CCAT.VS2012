@@ -87,7 +87,7 @@ namespace Cascade.Web.Controllers
             complaint.Tbl_Account.CreditorName = account.CreditorName;
         }
 
-        public Tbl_ComplaintMain Get(string accountNumber, string userAgency = "", string userRole = "", string createUpdateMode = "")
+        public Tbl_ComplaintMain Get(string accountNumber, string complaintId, string userAgency = "", string userRole = "", string createUpdateMode = "")
         {
             //MSI_ComplaintMainRepository repository = null;
             UnitOfWork uo = null;
@@ -97,12 +97,13 @@ namespace Cascade.Web.Controllers
                 //repository = new MSI_ComplaintMainRepository();
                 uo = new UnitOfWork("CCATDBEntities");
 
-                complaint = uo.Repository<Tbl_ComplaintMain>().GetAll().Where(record => record.AccountNumber == accountNumber).FirstOrDefault();
+                if (string.IsNullOrEmpty(accountNumber) || string.IsNullOrEmpty(complaintId))
+                    throw new Exception("Accountnumber and CompaintId is required to search");
+
+                complaint = uo.Repository<Tbl_ComplaintMain>().GetAll().Where(record => record.AccountNumber == accountNumber && record.ComplaintId == complaintId).FirstOrDefault();
 
                 if (complaint != null && createUpdateMode != "create")
                 {
-                    if(createUpdateMode == "create")
-                        throw new Exception(string.Format("Complaint with account number {0} has already been under process",complaint.AccountNumber));
                     if (!string.IsNullOrEmpty(userRole))
                     {
                         if (userRole == UserRole.DebtOwner.ToString())
@@ -154,6 +155,8 @@ namespace Cascade.Web.Controllers
             UserRole role;
             try
             {
+                if (string.IsNullOrEmpty(complaint.AccountNumber) || string.IsNullOrEmpty(complaint.ComplaintId))
+                    throw new Exception("Accountnumber and CompaintId is required to search");
 
                 role = MSI.CCAT.Business.AccountBus.GetUserRole(complaint.CreatedBy.ToString());
                 uo = new UnitOfWork("CCATDBEntities");
@@ -170,24 +173,17 @@ namespace Cascade.Web.Controllers
                     complaintToSave = new Tbl_ComplaintMain();
                 }
 
-                //complaint.Tbl_Account = uo.Repository<Tbl_Account>().GetAll().Where(account => account.AccountNumber == complaint.AccountNumber).Single();
                 complaint.Tbl_Account = uo.AccountRepository.GetAccounts(complaint.AccountNumber).Single();
                 complaint.Tbl_Account.Tbl_Agency = uo.Repository<Tbl_Agency>().GetById(complaint.Tbl_Account.AgencyId.Value);
                 complaintToSave.AccountNumber = complaint.AccountNumber;
                 complaintToSave.DebtorIdentityVerifiedYN = complaint.DebtorIdentityVerifiedYN;
                 complaintToSave.DebtorContactMethodId = complaint.DebtorContactMethodId;
-                complaintToSave.DebtorContactTimeId = complaint.DebtorContactTimeId;
-                //complaintToSave.CreditorName = complaint.CreditorName;
+                complaintToSave.DebtorContactTimeId = complaint.DebtorContactTimeId;                
                 complaintToSave.DebtorProductId = complaint.DebtorProductId;
                 complaintToSave.DisputeDebtYN = complaint.DisputeDebtYN;
                 complaintToSave.DisputeDebtAmountYN = complaint.DisputeDebtAmountYN;
                 complaintToSave.DisputeDebtDueDateYN = complaint.DisputeDebtDueDateYN;
                 complaintToSave.ComplaintId = complaint.ComplaintId;
-                //complaintToSave.ComplaintDate = complaint.ComplaintDate;
-                //complaintToSave.ComplaintDate = complaintToSave.ComplaintDate.AddHours(DateTime.Now.Hour);
-                //complaintToSave.ComplaintDate = complaintToSave.ComplaintDate.AddMinutes(DateTime.Now.Minute);
-                //complaintToSave.ComplaintDate = complaintToSave.ComplaintDate.AddSeconds(DateTime.Now.Second);
-                //complaintToSave.ComplaintDate = complaintToSave.ComplaintDate.AddMilliseconds(DateTime.Now.Millisecond);
                 complaintToSave.ComplaintDate = DateHelper.GetDateWithTimings(complaint.ComplaintDate);
                 complaintToSave.ReceivedByMethodId = complaint.ReceivedByMethodId;
                 complaintToSave.IssuesId = complaint.IssuesId;
@@ -240,7 +236,6 @@ namespace Cascade.Web.Controllers
                         complaintToSave.OwnerResponseDays = complaintToSave.OwnerResponseDate.Value.Subtract(complaintToSave.ComplaintSubmittedDate.Value).Days;
                     if (complaintToSave.AgencyResponseToDebtorDate.HasValue && complaintToSave.ComplaintDate != null)
                         complaintToSave.TotalResponseTimeDays = complaintToSave.AgencyResponseToDebtorDate.Value.Subtract(complaintToSave.ComplaintDate.Value).Days;
-                    //repository.Update(complaintToSave);
                     uo.Repository<Tbl_ComplaintMain>().Update(complaintToSave);
                     complaintToSave.UpdatedBy = complaint.UpdatedBy;
                     complaintToSave.UpdatedDateTime = DateTime.Now;
@@ -248,9 +243,6 @@ namespace Cascade.Web.Controllers
                 }
                 else
                 {
-                    //complaintToSave.ComplaintSubmitedToAgency = true;
-                    //complaintToSave.ComplaintSubmittedToAgencyDate = DateTime.Now;
-                    //repository.Add(complaintToSave);
                     complaintToSave.CreatedBy = complaint.CreatedBy;
                     complaintToSave.UpdatedBy = complaint.UpdatedBy;
                     complaintToSave.CreatedDateTime = DateTime.Now;
@@ -296,11 +288,11 @@ namespace Cascade.Web.Controllers
                 uo = new UnitOfWork("CCATDBEntities");
                 if (userRole == UserRole.CollectionAgency)
                 {
-                    return CollectionAgencyGetComplaintStatus(uo.Repository<Tbl_ComplaintMain>().GetAll().Where(r=>r.AccountNumber == accountNumber).SingleOrDefault(), complaintToAnalize);
+                    return CollectionAgencyGetComplaintStatus(uo.Repository<Tbl_ComplaintMain>().GetAll().Where(r => r.AccountNumber == accountNumber && r.ComplaintId == complaintToAnalize.ComplaintId).SingleOrDefault(), complaintToAnalize);
                 }
                 if (userRole == UserRole.DebtOwner)
                 {
-                    return DebtOwnerGetComplaintStatus(uo.Repository<Tbl_ComplaintMain>().GetAll().Where(r => r.AccountNumber == accountNumber).SingleOrDefault(), complaintToAnalize);
+                    return DebtOwnerGetComplaintStatus(uo.Repository<Tbl_ComplaintMain>().GetAll().Where(r => r.AccountNumber == accountNumber && r.ComplaintId == complaintToAnalize.ComplaintId).SingleOrDefault(), complaintToAnalize);
                 }
             }
             catch (Exception ex)
