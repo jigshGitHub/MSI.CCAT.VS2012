@@ -97,13 +97,12 @@ namespace Cascade.Web.Controllers
                 //repository = new MSI_ComplaintMainRepository();
                 uo = new UnitOfWork("CCATDBEntities");
 
-                if (string.IsNullOrEmpty(accountNumber) || string.IsNullOrEmpty(complaintId))
-                    throw new Exception("Accountnumber and CompaintId is required to search");
-
-                complaint = uo.Repository<Tbl_ComplaintMain>().GetAll().Where(record => record.AccountNumber == accountNumber && record.ComplaintId == complaintId).FirstOrDefault();
-
-                if (complaint != null && createUpdateMode != "create")
+                if (createUpdateMode != "create")
                 {
+                    if (string.IsNullOrEmpty(accountNumber) || string.IsNullOrEmpty(complaintId))
+                        throw new Exception("Accountnumber and CompaintId is required to search");
+
+                    complaint = uo.Repository<Tbl_ComplaintMain>().GetAll().Where(record => record.AccountNumber == accountNumber && record.ComplaintId == complaintId).FirstOrDefault();
                     if (!string.IsNullOrEmpty(userRole))
                     {
                         if (userRole == UserRole.DebtOwner.ToString())
