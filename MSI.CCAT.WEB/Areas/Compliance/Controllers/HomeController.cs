@@ -38,6 +38,8 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
         {
             //Save the Report Type in ViewBag. It will be stored in the Hidden field on the Page
             ViewBag.ReportType = reportType;
+            ViewBag.RoleEntityValue = RoleEntityValue;
+            ViewBag.UserRole = UserRoles.First();
             pageInfo _pageInfo = new pageInfo() { title = "Report " + reportType };
             _pageInfo.LayoutPage = "";
             return View("Report" + reportType, _pageInfo);
@@ -83,7 +85,7 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
 
 
             string SQL = "";
-            SQL = (!string.IsNullOrEmpty(where) ? string.Format(_sql_base_ReportQuery_rt, where) : _sql_base_ReportQuery_rt);
+            SQL = (!string.IsNullOrEmpty(where) ? _sql_base_ReportQuery_rt + " " + where : _sql_base_ReportQuery_rt);
              
             try
             {
@@ -163,6 +165,13 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
         [HttpGet]
         public JsonResult GetComplianceReportData(string searchText, string reportType, string roleEntityValue, string hdnUserRole, int? page, int? pageSize)
         {
+            #region [[ Let us make sure we have correct information for Searching....]]
+            //Agency Name
+            roleEntityValue = RoleEntityValue;
+            //User Role
+            hdnUserRole = UserRoles.First();
+            #endregion
+
             #region [ Retrieve "Sort" options ]
             string sortField = HttpContext.Request.QueryString["sort[0][field]"];
             string sortDir = HttpContext.Request.QueryString["sort[0][dir]"];
@@ -197,10 +206,10 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
 
                     if (words.Count() > 0)
                     {
-                        _where = string.Format("cm.ComPlaintId LIKE ''%{0}%'' OR cm.LastName LIKE ''%{0}%''", words[0]);
+                        _where = string.Format("cm.ComPlaintId LIKE '%{0}%' OR act.LastName LIKE '%{0}%'", words[0]);
                         for (int i = 1; i < words.Length; i++)
                         {
-                            _where = _where + string.Format("OR cm.ComPlaintId LIKE ''%{0}%'' OR cm.LastName LIKE ''%{0}%''", words[i]);
+                            _where = _where + string.Format("OR cm.ComPlaintId LIKE '%{0}%' OR act.LastName LIKE '%{0}%'", words[i]);
                         }
                         _where = "and (" + _where + ")";
 
@@ -218,8 +227,7 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
                 _list = GetReportData(roleEntityValue, hdnUserRole,"", _sortOptions, _pageSize, _pageNo, reportType);
             }
             #endregion
-
-            
+                        
 
             //Now send back the Json Response
             if (_list.Count() > 0)
