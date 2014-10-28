@@ -101,6 +101,13 @@
             </td>
         </tr>
         <tr>
+            <td style="text-align: right">Phone Number :
+            </td>
+            <td style="text-align: left">
+                <input type="text" data-bind="value: phoneNumber" />
+            </td>
+        </tr>
+        <tr>
             <td style="text-align: right">Consumer Account # :
             </td>
             <td style="text-align: left">
@@ -138,7 +145,7 @@
         <a class="close" onclick="$(this).parent().removeClass('in').toggle();">×</a>
         <strong>Success!</strong><span data-bind="    text: message"></span>.  
     </div>
-    <div style="display:none" m id="infoAlert" class="alert alert-info alert-block fade">
+    <div style="display:none" id="infoAlert" class="alert alert-info alert-block fade">
         <a class="close" onclick="$(this).parent().removeClass('in').toggle();">×</a>
         <strong>warning!</strong><span data-bind="    text: message"></span>
     </div>
@@ -759,6 +766,7 @@
         self.complianceModel = new complianceVM(userId, roleEntityValue);
         self.accountNumber = ko.observable('');
         self.firstOrLastName = ko.observable('');
+        self.phoneNumber = ko.observable('');
         self.creditorName = ko.observable('');
         self.originalAccountNumber = ko.observable('');
         self.debtors = ko.observableArray([]);
@@ -1095,12 +1103,19 @@
 
         self.getAccounts = function () {
             self.message('');
-            if (self.accountNumber() != '' || self.firstOrLastName() != '' || self.creditorName() != '' || self.originalAccountNumber() != '') {
+            if ((self.firstOrLastName() != '' && self.phoneNumber() == '') || (self.firstOrLastName() == '' && self.phoneNumber() != '')) {
+                alert('Both Firstname/Lastname and phone number required to search');
+                self.message('Both Firstname/Lastname and phone number required to search');
+                showNoti_.error('Both Firstname/Lastname and phone number required to search', false);
+                $('#errorAlert').addClass('in').toggle();
+                return false;
+            }
+            else if (self.accountNumber() != '' || self.firstOrLastName() != '' || self.creditorName() != '' || self.originalAccountNumber() != '') {
                 $.ajax({
                     url: baseUrl + '/api/Accounts/',
                     type: 'GET',
                     contentType: 'application/json',
-                    data: { pageNo: self.CurrentPage(), pageSize: self.PageSize(), phone: '', userRole: userRole, roleEntityValue: roleEntityValue, firstOrLastName: self.firstOrLastName, accountNumber: self.accountNumber(), creditorName: self.creditorName(), accountOriginal: self.originalAccountNumber() },
+                    data: { pageNo: self.CurrentPage(), pageSize: self.PageSize(), phone: self.phoneNumber(), userRole: userRole, roleEntityValue: roleEntityValue, firstOrLastName: self.firstOrLastName, accountNumber: self.accountNumber(), creditorName: self.creditorName(), accountOriginal: self.originalAccountNumber() },
                     dataType: 'json',
                     async: true,
                     success: function (data) {
@@ -1136,8 +1151,13 @@
                     }
                 });
             }
-            else
+            else {
                 alert('Please enter at least one search criteria');
+                self.message('Please enter at least one search criteria');
+                showNoti_.error('Please enter at least one search criteria', false);
+                $('#errorAlert').addClass('in').toggle();
+                return false;
+            }
         }
         self.saveComplaint = function () {
             $('#messageSummary ul').empty();
