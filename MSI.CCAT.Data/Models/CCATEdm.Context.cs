@@ -103,8 +103,8 @@ namespace MSI.CCAT.Data.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("GetAccountsByAgency", mergeOption, idParameter);
         }
-    
-        public virtual ObjectResult<Tbl_Account> AccountSearch(string firstOrLastName, string accountNumber, string creditorName, string accountOriginal, string roleEntityValue, string role)
+
+        public virtual ObjectResult<Tbl_Account> AccountSearch(string firstOrLastName, string accountNumber, string creditorName, string accountOriginal, string roleEntityValue, string role, string phone, int pageNo)
         {
             var firstOrLastNameParameter = firstOrLastName != null ?
                 new ObjectParameter("firstOrLastName", firstOrLastName) :
@@ -129,11 +129,17 @@ namespace MSI.CCAT.Data.Models
             var roleParameter = role != null ?
                 new ObjectParameter("role", role) :
                 new ObjectParameter("role", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("AccountSearch", firstOrLastNameParameter, accountNumberParameter, creditorNameParameter, accountOriginalParameter, roleEntityValueParameter, roleParameter);
+
+            var phoneParameter = string.IsNullOrEmpty(phone) ?
+                new ObjectParameter("phoneNumber", typeof(string)):new ObjectParameter("phoneNumber", phone);
+
+            var pageNoParameter = pageNo == null?
+                new ObjectParameter("pageNo", typeof(int)) : new ObjectParameter("pageNo", pageNo);
+
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("AccountSearch", firstOrLastNameParameter, accountNumberParameter, creditorNameParameter, accountOriginalParameter, roleEntityValueParameter, roleParameter, phoneParameter, pageNoParameter);
         }
-    
-        public virtual ObjectResult<Tbl_Account> AccountSearch(string firstOrLastName, string accountNumber, string creditorName, string accountOriginal, string roleEntityValue, string role, MergeOption mergeOption)
+
+        public virtual ObjectResult<Tbl_Account> AccountSearch(string firstOrLastName, string accountNumber, string creditorName, string accountOriginal, string roleEntityValue, string role, string phone, int pageNo, MergeOption mergeOption)
         {
             var firstOrLastNameParameter = firstOrLastName != null ?
                 new ObjectParameter("firstOrLastName", firstOrLastName) :
@@ -158,7 +164,13 @@ namespace MSI.CCAT.Data.Models
             var roleParameter = role != null ?
                 new ObjectParameter("role", role) :
                 new ObjectParameter("role", typeof(string));
-    
+
+            var phoneParameter = string.IsNullOrEmpty(phone) ?
+               new ObjectParameter("phoneNumber", typeof(string)) : new ObjectParameter("phoneNumber", phone);
+
+            var pageNoParameter = pageNo == null ?
+                new ObjectParameter("pageNo", typeof(int)) : new ObjectParameter("pageNo", pageNo);
+
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("AccountSearch", mergeOption, firstOrLastNameParameter, accountNumberParameter, creditorNameParameter, accountOriginalParameter, roleEntityValueParameter, roleParameter);
         }
     }

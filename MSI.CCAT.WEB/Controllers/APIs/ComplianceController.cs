@@ -17,14 +17,14 @@ namespace Cascade.Web.Controllers
         {
         }
 
-        public IEnumerable<Tbl_Account> Get(string userRole, string roleEntityValue = "", string firstOrLastName = "", string accountNumber = "", string creditorName = "", string accountOriginal = "")
+        public IEnumerable<Tbl_Account> Get(int? pageNo,string userRole, string roleEntityValue = "", string firstOrLastName = "", string accountNumber = "", string creditorName = "", string accountOriginal = "", string phone = "")
         {
             IEnumerable<Tbl_Account> accounts = null;
 
             try
             {
                 DataQueries query = new DataQueries();
-                accounts = query.GetAccounts(firstOrLastName, accountNumber, creditorName, accountOriginal, roleEntityValue, (UserRole) Enum.Parse(typeof(UserRole),userRole));
+                accounts = query.GetAccounts(firstOrLastName, accountNumber, creditorName, accountOriginal, roleEntityValue,phone,(pageNo.HasValue)? pageNo.Value:0, (UserRole) Enum.Parse(typeof(UserRole),userRole));
             }
             catch (Exception ex)
             {

@@ -66,13 +66,13 @@ namespace Cascade.Data.Repositories
             return debtors.AsEnumerable<MSI_Debtor>();
         }
 
-        public IEnumerable<Tbl_Account> GetAccounts(string firstOrLastName, string accountNumber, string creditorName, string accountOriginal, string roleEntityValue, UserRole role)
+        public IEnumerable<Tbl_Account> GetAccounts(string firstOrLastName, string accountNumber, string creditorName, string accountOriginal, string roleEntityValue, string phone, int pageNo,UserRole role)
         {
             IEnumerable<Tbl_Account> accounts = null;
             try
             {
                 IUnitOfWork uow = new UnitOfWork("CCATDBEntities");
-                accounts = (uow as UnitOfWork).AccountRepository.AccountSearch( firstOrLastName,  accountNumber,  creditorName,  accountOriginal,  roleEntityValue,  role.ToString());
+                accounts = (uow as UnitOfWork).AccountRepository.AccountSearch( firstOrLastName,  accountNumber,  creditorName,  accountOriginal,  roleEntityValue,  role.ToString(), phone, pageNo);
                 ////accounts = uow.Repository<Tbl_Account>().GetAll();
                 //accounts = (uow as UnitOfWork).AccountRepository.GetAccounts();
                 //if (role == UserRole.CollectionAgency)
