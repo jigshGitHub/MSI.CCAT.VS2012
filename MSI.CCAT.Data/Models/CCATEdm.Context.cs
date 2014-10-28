@@ -104,7 +104,7 @@ namespace MSI.CCAT.Data.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("GetAccountsByAgency", mergeOption, idParameter);
         }
 
-        public virtual ObjectResult<Tbl_Account> AccountSearch(string firstOrLastName, string accountNumber, string creditorName, string accountOriginal, string roleEntityValue, string role, string phone, int pageNo)
+        public virtual ObjectResult<vw_Account> AccountSearch(string firstOrLastName, string accountNumber, string creditorName, string accountOriginal, string roleEntityValue, string role, string phone, int? pageNo, int? pageSize)
         {
             var firstOrLastNameParameter = firstOrLastName != null ?
                 new ObjectParameter("firstOrLastName", firstOrLastName) :
@@ -133,13 +133,16 @@ namespace MSI.CCAT.Data.Models
             var phoneParameter = string.IsNullOrEmpty(phone) ?
                 new ObjectParameter("phoneNumber", typeof(string)):new ObjectParameter("phoneNumber", phone);
 
-            var pageNoParameter = pageNo == null?
-                new ObjectParameter("pageNo", typeof(int)) : new ObjectParameter("pageNo", pageNo);
+            var pageNoParameter = pageNo.HasValue?
+                new ObjectParameter("pageNo", pageNo.Value) : new ObjectParameter("pageNo", typeof(int));
 
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("AccountSearch", firstOrLastNameParameter, accountNumberParameter, creditorNameParameter, accountOriginalParameter, roleEntityValueParameter, roleParameter, phoneParameter, pageNoParameter);
+            var pageSizeParameter = pageSize.HasValue?
+                new ObjectParameter("pageSize", pageSize.Value) : new ObjectParameter("pageSize", typeof(int));
+
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<vw_Account>("AccountSearch", firstOrLastNameParameter, accountNumberParameter, creditorNameParameter, accountOriginalParameter, roleEntityValueParameter, roleParameter, phoneParameter, pageNoParameter, pageSizeParameter);
         }
 
-        public virtual ObjectResult<Tbl_Account> AccountSearch(string firstOrLastName, string accountNumber, string creditorName, string accountOriginal, string roleEntityValue, string role, string phone, int pageNo, MergeOption mergeOption)
+        public virtual ObjectResult<vw_Account> AccountSearch(string firstOrLastName, string accountNumber, string creditorName, string accountOriginal, string roleEntityValue, string role, string phone, int? pageNo, int? pageSize, MergeOption mergeOption)
         {
             var firstOrLastNameParameter = firstOrLastName != null ?
                 new ObjectParameter("firstOrLastName", firstOrLastName) :
@@ -168,10 +171,13 @@ namespace MSI.CCAT.Data.Models
             var phoneParameter = string.IsNullOrEmpty(phone) ?
                new ObjectParameter("phoneNumber", typeof(string)) : new ObjectParameter("phoneNumber", phone);
 
-            var pageNoParameter = pageNo == null ?
-                new ObjectParameter("pageNo", typeof(int)) : new ObjectParameter("pageNo", pageNo);
+            var pageNoParameter = pageNo.HasValue ?
+                new ObjectParameter("pageNo", pageNo.Value) : new ObjectParameter("pageNo", typeof(int));
 
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("AccountSearch", mergeOption, firstOrLastNameParameter, accountNumberParameter, creditorNameParameter, accountOriginalParameter, roleEntityValueParameter, roleParameter);
+            var pageSizeParameter = pageSize.HasValue ?
+                new ObjectParameter("pageSize", pageSize.Value) : new ObjectParameter("pageSize", typeof(int));
+
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<vw_Account>("AccountSearch", mergeOption, firstOrLastNameParameter, accountNumberParameter, creditorNameParameter, accountOriginalParameter, roleEntityValueParameter, roleParameter, pageNoParameter, pageSizeParameter);
         }
     }
 }

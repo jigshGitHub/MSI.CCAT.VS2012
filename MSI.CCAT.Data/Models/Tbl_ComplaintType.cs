@@ -14,7 +14,14 @@ namespace MSI.CCAT.Data.Models
     
     public partial class Tbl_ComplaintType
     {
+        public Tbl_ComplaintType()
+        {
+            this.Tbl_ComplaintMain = new HashSet<Tbl_ComplaintMain>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
+    
+        public virtual ICollection<Tbl_ComplaintMain> Tbl_ComplaintMain { get; set; }
     }
 }

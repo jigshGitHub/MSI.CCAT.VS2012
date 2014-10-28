@@ -36,6 +36,58 @@
                         <td data-bind="text: accountOriginal"></td>
                     </tr>
                 </tbody>
+                <tr>
+                    <td colspan="4">
+                        <div class="pagination">
+                            <ul class="pagination">
+                                <!-- ko if:CurrentPage() === 1 -->
+                                <li class="disabled">
+                                    <a href="#" class="disabledPage">&laquo;&laquo;</a></li>
+                                <!-- /ko -->
+                                <!-- ko ifnot:CurrentPage() === 1 -->
+                                <li>
+                                    <a href="#" data-bind="click: function(){ CurrentPage(1); }">&laquo;&laquo;</a></li>
+                                <!-- /ko -->
+                                <!-- ko if:HasPrevPage -->
+                                <li>
+                                    <a href="#" data-bind="click: function(){ CurrentPage(CurrentPage() - 1); }">&laquo;</a></li>
+                                <!-- /ko -->
+                                <!-- ko ifnot:HasPrevPage -->
+                                <li class="disabled">
+                                    <a href="#" class="disabledPage">&laquo;</a></li>
+                                <!-- /ko -->
+                                <!-- ko foreach:Pages -->
+                                <!-- ko if:$data === $parent.CurrentPage() -->
+                                <li class="active">
+                                    <span class="currentPage" data-bind="text: $data"></span>
+                                </li>
+                                <!-- /ko -->
+                                <!-- ko if:$data !== $parent.CurrentPage() -->
+                                <li>
+                                    <a href="#" data-bind="text: $data, click: function(){ $parent.CurrentPage($data); }"></a>
+                                </li>
+                                <!-- /ko -->
+                                <!-- /ko -->
+                                <!-- ko if:HasNextPage -->
+                                <li>
+                                    <a href="#" data-bind="click: function(){ CurrentPage(CurrentPage() + 1); }">&raquo;</a></li>
+                                <!-- /ko -->
+                                <!-- ko ifnot:HasNextPage -->
+                                <li class="disabled">
+                                    <a href="#" class="disabledPage">&raquo;</a></li>
+                                <!-- /ko -->
+                                <!-- ko ifnot:CurrentPage() === LastPage() -->
+                                <li>
+                                    <a href="#" data-bind="click: function(){ CurrentPage(LastPage()); }">&raquo;&raquo;</a></li>
+                                <!-- /ko -->
+                                <!-- ko if:CurrentPage() === LastPage() -->
+                                <li class="disabled">
+                                    <a href="#" class="disabledPage">&raquo;&raquo;</a></li>
+                                <!-- /ko -->
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
             </table>
         </div>
         <div class="modal-footer" /> 
@@ -1048,7 +1100,7 @@
                     url: baseUrl + '/api/Accounts/',
                     type: 'GET',
                     contentType: 'application/json',
-                    data: { pageNo: 1, phone:'',userRole: userRole, roleEntityValue: roleEntityValue, firstOrLastName: self.firstOrLastName, accountNumber: self.accountNumber(), creditorName: self.creditorName(), accountOriginal: self.originalAccountNumber() },
+                    data: { pageNo: self.CurrentPage(), pageSize: self.PageSize(), phone: '', userRole: userRole, roleEntityValue: roleEntityValue, firstOrLastName: self.firstOrLastName, accountNumber: self.accountNumber(), creditorName: self.creditorName(), accountOriginal: self.originalAccountNumber() },
                     dataType: 'json',
                     async: true,
                     success: function (data) {
@@ -1062,7 +1114,10 @@
                         }
                         else {
                             if (data.length > 0) {
+                                self.debtors([]);
+
                                 if (data.length > 1) {
+                                    self.TotalItemCount(data[0].TotalCount);
                                     $.each(data, function (i, item) {
                                         self.debtors.push(new pimsDebtor(item.AccountNumber, item.FirstName, item.LastName, '', item.Address, '', item.City, '', item.Zip, item.LastFourSSN, item.MobilePhone, item.HomePhone, item.WorkPhone, ((item.DebtCurrentBalance == undefined) ? '' : formatCurrency(item.DebtCurrentBalance)), ((item.DebtPurchaseBalance == undefined) ? '' : formatCurrency(item.DebtPurchaseBalance)), item.CreditorName, item.AccountOriginal));
                                         //$("#debtorResults").dialog('open');
@@ -1189,6 +1244,63 @@
             return (self.userRole() == 'CollectionAgency') ? false : true;
         }, self);
         self.validationErrors = ko.observableArray([]);
+
+        self.CurrentPage = ko.observable(1);
+        self.TotalItemCount = ko.observable(0);
+        self.PageSize = ko.observable(25);
+        self.PageSlide = ko.observable(2);
+
+        self.LastPage = ko.computed(function () {
+            return Math.floor((self.TotalItemCount() - 1) / self.PageSize()) + 1;
+        });
+
+        self.HasNextPage = ko.computed(function () {
+            return self.CurrentPage() < self.LastPage();
+        });
+
+        self.HasPrevPage = ko.computed(function () {
+            return self.CurrentPage() > 1;
+        });
+
+        self.FirstItemIndex = ko.computed(function () {
+            return self.PageSize() * (self.CurrentPage() - 1) + 1;
+        });
+
+        self.LastItemIndex = ko.computed(function () {
+            return Math.min(self.FirstItemIndex() + self.PageSize() - 1, self.TotalItemCount());
+        });
+
+        self.ThisPageCount = ko.computed(function () {
+            var mod = self.LastItemIndex() % self.PageSize();
+            if (mod > 0) return mod;
+            return self.PageSize();
+        });
+
+        self.Pages = ko.computed(function () {
+            var pageCount = self.LastPage();
+            var pageFrom = Math.max(1, self.CurrentPage() - self.PageSlide());
+            var pageTo = Math.min(pageCount, self.CurrentPage() + self.PageSlide());
+            pageFrom = Math.max(1, Math.min(pageTo - 2 * self.PageSlide(), pageFrom));
+            pageTo = Math.min(pageCount, Math.max(pageFrom + 2 * self.PageSlide(), pageTo));
+
+            var result = [];
+            for (var i = pageFrom; i <= pageTo; i++) {
+                result.push(i);
+            }
+            return result;
+        });
+
+        self.CurrentPage.subscribe(function () {
+            var maximumRows = self.PageSize();
+            var startIndex = self.CurrentPage();
+            
+            console.log('maximumRows=' + maximumRows + ',startIndex=' + startIndex);
+            // setting 'total results'. This should be in your result callback
+            // in this example we grab it from the form.
+            //var totalItemCount = self.SetTotalResults();
+            //self.TotalResults(totalItemCount);
+            self.getAccounts();
+        });
     }
 
     $(document).ready(function () {

@@ -32,9 +32,9 @@ namespace MSI.CCAT.Data.Repositories
             return (this.DatabaseFactory.Get() as CCATDBEntities).GetAccountsByAgency(agencyId);
         }
 
-        public IEnumerable<Tbl_Account> AccountSearch(string firstOrLastName, string accountNumber, string creditorName, string accountOriginal, string roleEntityValue, string role, string phone, int pageNo)
+        public IEnumerable<vw_Account> AccountSearch(string firstOrLastName, string accountNumber, string creditorName, string accountOriginal, string roleEntityValue, string role, string phone, int? pageNo, int? pageSize)
         {
-            return (this.DatabaseFactory.Get() as CCATDBEntities).AccountSearch(firstOrLastName, accountNumber, creditorName, accountOriginal, roleEntityValue, role, phone, pageNo);
+            return (this.DatabaseFactory.Get() as CCATDBEntities).AccountSearch(firstOrLastName, accountNumber, creditorName, accountOriginal, roleEntityValue, role, phone, pageNo, pageSize);
         }
     }
 }

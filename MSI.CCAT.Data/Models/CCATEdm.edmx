@@ -36,6 +36,46 @@
           <EntitySet Name="Tbl_QuestionModule" EntityType="CCATDBModel.Store.Tbl_QuestionModule" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_QuestionResponse" EntityType="CCATDBModel.Store.Tbl_QuestionResponse" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_States" EntityType="CCATDBModel.Store.Tbl_States" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="vw_Account" EntityType="CCATDBModel.Store.vw_Account" store:Type="Views" store:Schema="dbo" store:Name="vw_Account">
+            <DefiningQuery>SELECT 
+      [vw_Account].[TotalCount] AS [TotalCount], 
+      [vw_Account].[AccountNumber] AS [AccountNumber], 
+      [vw_Account].[CreditorName] AS [CreditorName], 
+      [vw_Account].[AccountOriginal] AS [AccountOriginal], 
+      [vw_Account].[LastName] AS [LastName], 
+      [vw_Account].[FirstName] AS [FirstName], 
+      [vw_Account].[City] AS [City], 
+      [vw_Account].[Address] AS [Address], 
+      [vw_Account].[Zip] AS [Zip], 
+      [vw_Account].[HomePhone] AS [HomePhone], 
+      [vw_Account].[WorkPhone] AS [WorkPhone], 
+      [vw_Account].[MobilePhone] AS [MobilePhone], 
+      [vw_Account].[LastFourSSN] AS [LastFourSSN], 
+      [vw_Account].[DebtPurchaseBalance] AS [DebtPurchaseBalance], 
+      [vw_Account].[DebtCurrentBalance] AS [DebtCurrentBalance], 
+      [vw_Account].[CreatedOn] AS [CreatedOn], 
+      [vw_Account].[CreatedBy] AS [CreatedBy], 
+      [vw_Account].[UpdatedOn] AS [UpdatedOn], 
+      [vw_Account].[UpdatedBy] AS [UpdatedBy], 
+      [vw_Account].[StateId] AS [StateId], 
+      [vw_Account].[AgencyId] AS [AgencyId], 
+      [vw_Account].[OwnerId] AS [OwnerId], 
+      [vw_Account].[LawFirmId] AS [LawFirmId], 
+      [vw_Account].[CreditIssuerId] AS [CreditIssuerId], 
+      [vw_Account].[CollectorUserName] AS [CollectorUserName], 
+      [vw_Account].[Cur] AS [Cur], 
+      [vw_Account].[Thirty] AS [Thirty], 
+      [vw_Account].[Sixty] AS [Sixty], 
+      [vw_Account].[Ninety] AS [Ninety], 
+      [vw_Account].[OneTwenty] AS [OneTwenty], 
+      [vw_Account].[Address2] AS [Address2], 
+      [vw_Account].[ST] AS [ST], 
+      [vw_Account].[LastPaymentDate] AS [LastPaymentDate], 
+      [vw_Account].[IsActive] AS [IsActive], 
+      [vw_Account].[Agency] AS [Agency], 
+      [vw_Account].[State] AS [State]
+      FROM [dbo].[vw_Account] AS [vw_Account]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__aspnet_Me__Appli__7FEAFD3E" Association="CCATDBModel.Store.FK__aspnet_Me__Appli__7FEAFD3E">
             <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
             <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
@@ -102,6 +142,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_ComplaintStatus" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_Tbl_ComplaintStatus">
             <End Role="Tbl_ComplaintStatus" EntitySet="Tbl_ComplaintStatus" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_ComplaintType" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_Tbl_ComplaintType">
+            <End Role="Tbl_ComplaintType" EntitySet="Tbl_ComplaintType" />
             <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
           </AssociationSet>
           <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_DebtorContactMethods" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_Tbl_DebtorContactMethods">
@@ -605,6 +649,50 @@
           <Property Name="Name" Type="varchar" MaxLength="50" />
           <Property Name="Value" Type="varchar" MaxLength="2" />
         </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'CCATDBDev.dbo.vw_Account' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="vw_Account">
+          <Key>
+            <PropertyRef Name="AccountNumber" />
+          </Key>
+          <Property Name="TotalCount" Type="int" />
+          <Property Name="AccountNumber" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="CreditorName" Type="varchar" MaxLength="150" />
+          <Property Name="AccountOriginal" Type="varchar" MaxLength="25" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="150" />
+          <Property Name="Zip" Type="varchar" MaxLength="50" />
+          <Property Name="HomePhone" Type="varchar" MaxLength="50" />
+          <Property Name="WorkPhone" Type="varchar" MaxLength="50" />
+          <Property Name="MobilePhone" Type="varchar" MaxLength="50" />
+          <Property Name="LastFourSSN" Type="varchar" MaxLength="50" />
+          <Property Name="DebtPurchaseBalance" Type="money" />
+          <Property Name="DebtCurrentBalance" Type="money" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="AgencyId" Type="int" />
+          <Property Name="OwnerId" Type="int" />
+          <Property Name="LawFirmId" Type="int" />
+          <Property Name="CreditIssuerId" Type="int" />
+          <Property Name="CollectorUserName" Type="varchar" MaxLength="50" />
+          <Property Name="Cur" Type="money" />
+          <Property Name="Thirty" Type="money" />
+          <Property Name="Sixty" Type="money" />
+          <Property Name="Ninety" Type="money" />
+          <Property Name="OneTwenty" Type="money" />
+          <Property Name="Address2" Type="varchar" MaxLength="50" />
+          <Property Name="ST" Type="varchar" MaxLength="3" />
+          <Property Name="LastPaymentDate" Type="date" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="Agency" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="2" />
+        </EntityType>
         <Association Name="FK__aspnet_Me__Appli__7FEAFD3E">
           <End Role="aspnet_Applications" Type="CCATDBModel.Store.aspnet_Applications" Multiplicity="1" />
           <End Role="aspnet_Membership" Type="CCATDBModel.Store.aspnet_Membership" Multiplicity="*" />
@@ -809,6 +897,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Tbl_ComplaintMain_Tbl_ComplaintType">
+          <End Role="Tbl_ComplaintType" Type="CCATDBModel.Store.Tbl_ComplaintType" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_ComplaintType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="ComplaintTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tbl_ComplaintMain_Tbl_DebtorContactMethods">
           <End Role="Tbl_DebtorContactMethods" Type="CCATDBModel.Store.Tbl_DebtorContactMethods" Multiplicity="0..1" />
           <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
@@ -958,8 +1058,12 @@
           <Parameter Name="accountNumber" Type="varchar" Mode="In" />
           <Parameter Name="creditorName" Type="varchar" Mode="In" />
           <Parameter Name="accountOriginal" Type="varchar" Mode="In" />
+          <Parameter Name="phoneNumber" Type="varchar" Mode="In" />
           <Parameter Name="roleEntityValue" Type="varchar" Mode="In" />
           <Parameter Name="role" Type="nvarchar" Mode="In" />
+          <Parameter Name="orderBy" Type="varchar(max)" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="pageNo" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_GetAccounts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_GetAccountsByAgency" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -1120,15 +1224,24 @@
           <FunctionImport Name="GetAccountsByAgency" EntitySet="Tbl_Account" ReturnType="Collection(CCATDBModel.Tbl_Account)">
           <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="AccountSearch" EntitySet="Tbl_Account" ReturnType="Collection(CCATDBModel.Tbl_Account)">
+          <FunctionImport Name="AccountSearch" EntitySet="vw_Account" ReturnType="Collection(CCATDBModel.vw_Account)">
             <Parameter Name="firstOrLastName" Mode="In" Type="String" />
             <Parameter Name="accountNumber" Mode="In" Type="String" />
             <Parameter Name="creditorName" Mode="In" Type="String" />
             <Parameter Name="accountOriginal" Mode="In" Type="String" />
+            <Parameter Name="phoneNumber" Mode="In" Type="String" />
             <Parameter Name="roleEntityValue" Mode="In" Type="String" />
             <Parameter Name="role" Mode="In" Type="String" />
+            <Parameter Name="orderBy" Mode="In" Type="String" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="pageNo" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="Tbl_ComplaintType" EntityType="CCATDBModel.Tbl_ComplaintType" />
+          <EntitySet Name="vw_Account" EntityType="CCATDBModel.vw_Account" />
+          <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_ComplaintType" Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_ComplaintType">
+            <End Role="Tbl_ComplaintType" EntitySet="Tbl_ComplaintType" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Tbl_QuestionResponse">
           <Key>
@@ -1710,6 +1823,7 @@
           <Property Type="DateTime" Name="CreatedDateTime" Precision="3" />
           <Property Type="DateTime" Name="UpdatedDateTime" Precision="3" />
           <Property Type="Int32" Name="ComplaintTypeID" />
+          <NavigationProperty Name="Tbl_ComplaintType" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_ComplaintType" FromRole="Tbl_ComplaintMain" ToRole="Tbl_ComplaintType" />
         </EntityType>
         <Association Name="FK_Tbl_ComplaintMain_Tbl_Account">
           <End Type="CCATDBModel.Tbl_Account" Role="Tbl_Account" Multiplicity="0..1" />
@@ -2044,7 +2158,61 @@
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_ComplaintType" FromRole="Tbl_ComplaintType" ToRole="Tbl_ComplaintMain" />
         </EntityType>
+        <EntityType Name="vw_Account">
+          <Key>
+            <PropertyRef Name="AccountNumber" />
+          </Key>
+          <Property Type="Int32" Name="TotalCount" />
+          <Property Type="String" Name="AccountNumber" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CreditorName" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AccountOriginal" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FirstName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Address" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Zip" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="HomePhone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="WorkPhone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MobilePhone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastFourSSN" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="DebtPurchaseBalance" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="DebtCurrentBalance" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="StateId" />
+          <Property Type="Int32" Name="AgencyId" />
+          <Property Type="Int32" Name="OwnerId" />
+          <Property Type="Int32" Name="LawFirmId" />
+          <Property Type="Int32" Name="CreditIssuerId" />
+          <Property Type="String" Name="CollectorUserName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="Cur" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="Thirty" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="Sixty" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="Ninety" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="OneTwenty" Precision="19" Scale="4" />
+          <Property Type="String" Name="Address2" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ST" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="LastPaymentDate" Precision="0" />
+          <Property Type="Boolean" Name="IsActive" />
+          <Property Type="String" Name="Agency" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="State" MaxLength="2" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Tbl_ComplaintMain_Tbl_ComplaintType">
+          <End Type="CCATDBModel.Tbl_ComplaintType" Role="Tbl_ComplaintType" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_ComplaintType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="ComplaintTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2535,6 +2703,48 @@
               <MappingFragment StoreEntitySet="Tbl_ComplaintType">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_Account">
+            <EntityTypeMapping TypeName="CCATDBModel.vw_Account">
+              <MappingFragment StoreEntitySet="vw_Account">
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Agency" ColumnName="Agency" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="LastPaymentDate" ColumnName="LastPaymentDate" />
+                <ScalarProperty Name="ST" ColumnName="ST" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="OneTwenty" ColumnName="OneTwenty" />
+                <ScalarProperty Name="Ninety" ColumnName="Ninety" />
+                <ScalarProperty Name="Sixty" ColumnName="Sixty" />
+                <ScalarProperty Name="Thirty" ColumnName="Thirty" />
+                <ScalarProperty Name="Cur" ColumnName="Cur" />
+                <ScalarProperty Name="CollectorUserName" ColumnName="CollectorUserName" />
+                <ScalarProperty Name="CreditIssuerId" ColumnName="CreditIssuerId" />
+                <ScalarProperty Name="LawFirmId" ColumnName="LawFirmId" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="DebtCurrentBalance" ColumnName="DebtCurrentBalance" />
+                <ScalarProperty Name="DebtPurchaseBalance" ColumnName="DebtPurchaseBalance" />
+                <ScalarProperty Name="LastFourSSN" ColumnName="LastFourSSN" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+                <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="AccountOriginal" ColumnName="AccountOriginal" />
+                <ScalarProperty Name="CreditorName" ColumnName="CreditorName" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

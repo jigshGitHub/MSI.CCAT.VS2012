@@ -202,6 +202,9 @@
     <Compile Include="Models\Tbl_States.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\vw_Account.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
     <Compile Include="module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountsRepository.cs" />

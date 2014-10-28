@@ -73,5 +73,6 @@ namespace MSI.CCAT.Data.Models
         public virtual Tbl_FinalActionSteps Tbl_FinalActionSteps { get; set; }
         public virtual Tbl_OwnerResponses Tbl_OwnerResponses { get; set; }
         public virtual Tbl_ComplaintStatus Tbl_ComplaintStatus { get; set; }
+        public virtual Tbl_ComplaintType Tbl_ComplaintType { get; set; }
     }
 }

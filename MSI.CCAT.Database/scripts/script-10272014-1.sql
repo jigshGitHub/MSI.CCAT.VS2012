@@ -1,23 +1,24 @@
-USE [CCATDB]
-GO
-
-/****** Object:  Index [IxLastnameFirstname]    Script Date: 10/27/2014 18:24:10 ******/
 IF  EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[Tbl_Account]') AND name = N'IxLastnameFirstname')
-DROP INDEX [IxLastnameFirstname] ON [dbo].[Tbl_Account] WITH ( ONLINE = OFF )
+	DROP INDEX [IxLastnameFirstname] ON [dbo].[Tbl_Account] WITH ( ONLINE = OFF )
 GO
 
-USE [CCATDB]
+IF  EXISTS (SELECT * FROM sys.indexes WHERE object_id = OBJECT_ID(N'[dbo].[Tbl_Account]') AND name = N'IX_SearchFields')
+	DROP INDEX [IX_SearchFields] ON [dbo].[Tbl_Account] WITH ( ONLINE = OFF )
 GO
 
-/****** Object:  Index [IxLastnameFirstname]    Script Date: 10/27/2014 18:24:10 ******/
-CREATE NONCLUSTERED INDEX [IxLastnameFirstname] ON [dbo].[Tbl_Account] 
+CREATE NONCLUSTERED INDEX [IX_SearchFields] ON [dbo].[Tbl_Account]
 (
 	[LastName] ASC,
-	[FirstName] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+	[FirstName] ASC,
+	[AccountNumber] ASC,
+	[AccountOriginal] ASC,
+	[HomePhone] ASC,
+	[CreditorName] ASC,
+	[WorkPhone] ASC,
+	[MobilePhone] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 GO
 
-/****** Object:  StoredProcedure [dbo].[sp_AccountSearch]    Script Date: 10/27/2014 18:29:32 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_AccountSearch]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_AccountSearch]
 GO
@@ -50,7 +51,7 @@ CREATE Procedure [dbo].[sp_AccountSearch](
 
 , @orderBy VARCHAR(MAX) = 'LastName, FirstName ASC'  -- Required 
 
-, @pageSize INT = 50
+, @pageSize INT = 25
 
 , @pageNo INT = 0 )
 
@@ -66,7 +67,7 @@ BEGIN
 	@agencyId INT	     
 
 
-	SET @SELECTClause = ' SELECT * FROM TBL_ACCOUNT ';
+	SET @SELECTClause = ' SELECT * FROM vw_Account ';
 
 	SET @WHEREClause = ' WHERE 1=1 ';
 
@@ -75,9 +76,9 @@ BEGIN
 
 	BEGIN
 
-	PRINT @role;
+		PRINT @role;
 
-	IF LEN(@roleEntityValue) > 0 
+		IF LEN(@roleEntityValue) > 0 
 
 	BEGIN
 
@@ -88,7 +89,7 @@ BEGIN
 
 	END
 
-END
+	END
 
 
 	IF @role = 'DebtOwner'
@@ -107,7 +108,6 @@ END
 
 	END
 
-
 	IF LEN(@firstOrLastName) > 0 
 
 	BEGIN
@@ -116,7 +116,6 @@ END
 
 	END
 
-
 	IF LEN(@accountNumber) > 0 
 
 	BEGIN
@@ -124,7 +123,6 @@ END
 		SET @WHEREClause = @WHEREClause + ' AND AccountNumber = ''' + @accountNumber + '''';
 
 	END
-
 
 	IF LEN(@creditorName) > 0 
 
@@ -200,18 +198,25 @@ END
 				[Address2],
 				[ST],
 				[LastPaymentDate],
-				[IsActive]  ';
+				[IsActive],
+				[Agency],
+				[State]  ';
 	
 	SET @Q = @Q + '	FROM CTE_pageResult';
 
 	IF @pageTop > 0 
 	BEGIN 
-		SET @Q = @Q + ' WHERE RowIndex BETWEEN ' + CAST(@pageTop AS VARCHAR(10)) + ' AND ' + CAST(@pageBottom AS VARCHAR(10))+ ' ORDER BY ' + @orderBy
+		SET @Q = @Q + ' WHERE RowIndex BETWEEN ' + CAST(@pageTop AS VARCHAR(10)) + ' AND ' + CAST(@pageBottom AS VARCHAR(10))
 	END
 	
 	PRINT @Q
 	EXEC (@Q)	    
 END
+
+--EXEC [dbo].[sp_AccountSearch] @firstOrLastName='Alvares',@roleEntityValue='DCI', @role='CollectionAgency', @pageNo = 6
+--EXEC [dbo].[sp_AccountSearch] @accountNumber='21681789',@roleEntityValue='DCI', @role='CollectionAgency', @pageNo = 1
+--EXEC [dbo].[sp_AccountSearch] @accountOriginal='534122935542', @roleEntityValue='DCI', @role='CollectionAgency', @pageNo = 1
+
 
 GO
 
