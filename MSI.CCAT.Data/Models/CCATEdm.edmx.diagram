@@ -54,8 +54,8 @@
         <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_ComplaintStatus" />
         <EntityTypeShape EntityType="CCATDBModel.aspnet_Applications" Width="1.5" PointX="3.34516959048117" PointY="23.954462584086908" />
         <EntityTypeShape EntityType="CCATDBModel.aspnet_Membership" Width="1.5" PointX="5.0566204660835776" PointY="21.943662906970673" />
-        <EntityTypeShape EntityType="CCATDBModel.aspnet_Roles" Width="1.5" PointX="9.9664315348334753" PointY="19.361357235983647" />
-        <EntityTypeShape EntityType="CCATDBModel.aspnet_Users" Width="1.5" PointX="4.7181622612840322" PointY="9.4450349851721125" />
+        <EntityTypeShape EntityType="CCATDBModel.aspnet_Roles" Width="1.5" PointX="12.75" PointY="19" />
+        <EntityTypeShape EntityType="CCATDBModel.aspnet_Users" Width="1.5" PointX="14.125" PointY="10.75" />
         <AssociationConnector Association="CCATDBModel.FK__aspnet_Me__Appli__32E0915F" />
         <AssociationConnector Association="CCATDBModel.FK__aspnet_Ro__Appli__5535A963" />
         <AssociationConnector Association="CCATDBModel.FK__aspnet_Us__Appli__1ED998B2" />
@@ -64,6 +64,8 @@
         <EntityTypeShape EntityType="CCATDBModel.Tbl_ComplaintType" Width="1.5" PointX="3.8186357020487245" PointY="21.706994603251569" />
         <EntityTypeShape EntityType="CCATDBModel.vw_Account" Width="1.5" PointX="8.5" PointY="30.125" />
         <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_ComplaintType" />
+        <AssociationConnector Association="CCATDBModel.FK__aspnet_Us__Manag__4CF5691D" />
+        <EntityTypeShape EntityType="CCATDBModel.vw_aspnet_membership" Width="1.5" PointX="6.25" PointY="30" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

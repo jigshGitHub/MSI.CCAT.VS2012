@@ -30,6 +30,7 @@ namespace MSI.CCAT.Data.Repositories
         T GetById(long id);
         T GetById(string id);
         T GetById(int id);
+        T GetById(Guid id);
         IEnumerable<T> GetAll();
         IEnumerable<T> GetAll(string include);
         IEnumerable<T> GetMany(Expression<Func<T, bool>> where);
@@ -91,6 +92,10 @@ namespace MSI.CCAT.Data.Repositories
             return dbset.Find(id);
         }
         public T GetById(int id)
+        {
+            return dbset.Find(id);
+        }
+        public T GetById(Guid id)
         {
             return dbset.Find(id);
         }

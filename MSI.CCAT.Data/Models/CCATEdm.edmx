@@ -76,6 +76,32 @@
       [vw_Account].[State] AS [State]
       FROM [dbo].[vw_Account] AS [vw_Account]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="vw_aspnet_membership" EntityType="CCATDBModel.Store.vw_aspnet_membership" store:Type="Views" store:Schema="dbo" store:Name="vw_aspnet_membership">
+            <DefiningQuery>SELECT 
+      [vw_aspnet_membership].[UserName] AS [UserName], 
+      [vw_aspnet_membership].[LastActivityDate] AS [LastActivityDate], 
+      [vw_aspnet_membership].[AgencyId] AS [AgencyId], 
+      [vw_aspnet_membership].[AgencyName] AS [AgencyName], 
+      [vw_aspnet_membership].[OwnerId] AS [OwnerId], 
+      [vw_aspnet_membership].[OwnerName] AS [OwnerName], 
+      [vw_aspnet_membership].[LawFirmId] AS [LawFirmId], 
+      [vw_aspnet_membership].[LawFirmName] AS [LawFirmName], 
+      [vw_aspnet_membership].[ManagerId] AS [ManagerId], 
+      [vw_aspnet_membership].[ManagerUsername] AS [ManagerUsername], 
+      [vw_aspnet_membership].[RoleName] AS [RoleName], 
+      [vw_aspnet_membership].[FirstName] AS [FirstName], 
+      [vw_aspnet_membership].[LastName] AS [LastName], 
+      [vw_aspnet_membership].[RoleEntityValue] AS [RoleEntityValue], 
+      [vw_aspnet_membership].[UserId] AS [UserId], 
+      [vw_aspnet_membership].[Email] AS [Email], 
+      [vw_aspnet_membership].[IsLockedOut] AS [IsLockedOut], 
+      [vw_aspnet_membership].[IsApproved] AS [IsApproved], 
+      [vw_aspnet_membership].[LastLoginDate] AS [LastLoginDate], 
+      [vw_aspnet_membership].[LastPasswordChangedDate] AS [LastPasswordChangedDate], 
+      [vw_aspnet_membership].[LastLockoutDate] AS [LastLockoutDate], 
+      [vw_aspnet_membership].[Comment] AS [Comment]
+      FROM [dbo].[vw_aspnet_membership] AS [vw_aspnet_membership]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__aspnet_Me__Appli__7FEAFD3E" Association="CCATDBModel.Store.FK__aspnet_Me__Appli__7FEAFD3E">
             <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
             <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
@@ -91,6 +117,10 @@
           <AssociationSet Name="FK__aspnet_Us__Appli__078C1F06" Association="CCATDBModel.Store.FK__aspnet_Us__Appli__078C1F06">
             <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Us__Manag__4CF5691D" Association="CCATDBModel.Store.FK__aspnet_Us__Manag__4CF5691D">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_Users1" EntitySet="aspnet_Users" />
           </AssociationSet>
           <AssociationSet Name="FK__aspnet_Us__RoleI__0880433F" Association="CCATDBModel.Store.FK__aspnet_Us__RoleI__0880433F">
             <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
@@ -257,6 +287,7 @@
           <Property Name="OwnerId" Type="int" />
           <Property Name="LawFirmId" Type="int" />
           <Property Name="CreditIssuerId" Type="int" />
+          <Property Name="ManagerId" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="aspnet_UsersInRoles">
           <Key>
@@ -693,6 +724,43 @@
           <Property Name="Agency" Type="varchar" MaxLength="50" />
           <Property Name="State" Type="varchar" MaxLength="2" />
         </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'CCATDBDev.dbo.vw_aspnet_membership' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="vw_aspnet_membership">
+          <Key>
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="LastActivityDate" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="IsLockedOut" />
+            <PropertyRef Name="IsApproved" />
+            <PropertyRef Name="LastLoginDate" />
+            <PropertyRef Name="LastPasswordChangedDate" />
+            <PropertyRef Name="LastLockoutDate" />
+          </Key>
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+          <Property Name="AgencyId" Type="int" />
+          <Property Name="AgencyName" Type="varchar" MaxLength="50" />
+          <Property Name="OwnerId" Type="int" />
+          <Property Name="OwnerName" Type="varchar" MaxLength="150" />
+          <Property Name="LawFirmId" Type="int" />
+          <Property Name="LawFirmName" Type="varchar" MaxLength="50" />
+          <Property Name="ManagerId" Type="uniqueidentifier" />
+          <Property Name="ManagerUsername" Type="nvarchar" MaxLength="256" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="256" />
+          <Property Name="FirstName" Type="nvarchar" />
+          <Property Name="LastName" Type="nvarchar" />
+          <Property Name="RoleEntityValue" Type="nvarchar" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="IsLockedOut" Type="bit" Nullable="false" />
+          <Property Name="IsApproved" Type="bit" Nullable="false" />
+          <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+          <Property Name="LastPasswordChangedDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLockoutDate" Type="datetime" Nullable="false" />
+          <Property Name="Comment" Type="ntext" />
+        </EntityType>
         <Association Name="FK__aspnet_Me__Appli__7FEAFD3E">
           <End Role="aspnet_Applications" Type="CCATDBModel.Store.aspnet_Applications" Multiplicity="1" />
           <End Role="aspnet_Membership" Type="CCATDBModel.Store.aspnet_Membership" Multiplicity="*" />
@@ -738,6 +806,18 @@
             </Principal>
             <Dependent Role="aspnet_Users">
               <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Us__Manag__4CF5691D">
+          <End Role="aspnet_Users" Type="CCATDBModel.Store.aspnet_Users" Multiplicity="0..1" />
+          <End Role="aspnet_Users1" Type="CCATDBModel.Store.aspnet_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_Users1">
+              <PropertyRef Name="ManagerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1242,6 +1322,11 @@
             <End Role="Tbl_ComplaintType" EntitySet="Tbl_ComplaintType" />
             <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
           </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Us__Manag__4CF5691D" Association="CCATDBModel.FK__aspnet_Us__Manag__4CF5691D">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_Users1" EntitySet="aspnet_Users" />
+          </AssociationSet>
+          <EntitySet Name="vw_aspnet_membership" EntityType="CCATDBModel.vw_aspnet_membership" />
           </EntityContainer>
         <EntityType Name="Tbl_QuestionResponse">
           <Key>
@@ -2012,6 +2097,7 @@
           <Property Type="Int32" Name="OwnerId" />
           <Property Type="Int32" Name="LawFirmId" />
           <Property Type="Int32" Name="CreditIssuerId" />
+          <Property Type="Guid" Name="ManagerId" />
         </EntityType>
         <Association Name="FK__aspnet_Me__Appli__32E0915F">
           <End Type="CCATDBModel.aspnet_Applications" Role="aspnet_Applications" Multiplicity="1" />
@@ -2213,6 +2299,52 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__aspnet_Us__Manag__4CF5691D">
+          <End Type="CCATDBModel.aspnet_Users" Role="aspnet_Users" Multiplicity="0..1" />
+          <End Type="CCATDBModel.aspnet_Users" Role="aspnet_Users1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_Users1">
+              <PropertyRef Name="ManagerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vw_aspnet_membership">
+          <Key>
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="LastActivityDate" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="IsLockedOut" />
+            <PropertyRef Name="IsApproved" />
+            <PropertyRef Name="LastLoginDate" />
+            <PropertyRef Name="LastPasswordChangedDate" />
+            <PropertyRef Name="LastLockoutDate" />
+          </Key>
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="LastActivityDate" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="AgencyId" />
+          <Property Type="String" Name="AgencyName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="OwnerId" />
+          <Property Type="String" Name="OwnerName" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="LawFirmId" />
+          <Property Type="String" Name="LawFirmName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Guid" Name="ManagerId" />
+          <Property Type="String" Name="ManagerUsername" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="RoleName" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FirstName" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastName" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="RoleEntityValue" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="Email" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsLockedOut" Nullable="false" />
+          <Property Type="Boolean" Name="IsApproved" Nullable="false" />
+          <Property Type="DateTime" Name="LastLoginDate" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="LastPasswordChangedDate" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="LastLockoutDate" Nullable="false" Precision="3" />
+          <Property Type="String" Name="Comment" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2669,6 +2801,7 @@
           <EntitySetMapping Name="aspnet_Users">
             <EntityTypeMapping TypeName="CCATDBModel.aspnet_Users">
               <MappingFragment StoreEntitySet="aspnet_Users">
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
                 <ScalarProperty Name="CreditIssuerId" ColumnName="CreditIssuerId" />
                 <ScalarProperty Name="LawFirmId" ColumnName="LawFirmId" />
                 <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
@@ -2745,6 +2878,34 @@
                 <ScalarProperty Name="CreditorName" ColumnName="CreditorName" />
                 <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
                 <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_aspnet_membership">
+            <EntityTypeMapping TypeName="CCATDBModel.vw_aspnet_membership">
+              <MappingFragment StoreEntitySet="vw_aspnet_membership">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
+                <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleEntityValue" ColumnName="RoleEntityValue" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="ManagerUsername" ColumnName="ManagerUsername" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="LawFirmName" ColumnName="LawFirmName" />
+                <ScalarProperty Name="LawFirmId" ColumnName="LawFirmId" />
+                <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="AgencyName" ColumnName="AgencyName" />
+                <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
+                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

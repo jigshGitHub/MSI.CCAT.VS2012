@@ -11,7 +11,8 @@ using WebMatrix.WebData;
 using MSI.CCAT.WEB.Filters;
 using MSI.CCAT.WEB.Models;
 using MSI.CCAT.WEB.ApplicationIntegration;
-
+using MSI.CCAT.Data.Models;
+using MSI.CCAT.Data.Repositories;
 namespace MSI.CCAT.WEB.Controllers
 {
     [Authorize]
@@ -284,34 +285,94 @@ namespace MSI.CCAT.WEB.Controllers
             }
 
         }
-        [HttpPost]
-        public void UpdateUser(string userId, string firstName, string lastName, string email, string role, string roleEntityValue)
+
+        public ActionResult GetAllAgencyManagersUsers()
         {
+            try
+            {
+                IUnitOfWork uo = new MSI.CCAT.Data.Repositories.UnitOfWork("CCATDBEntities");
+                var data = from m in uo.Repository<vw_aspnet_membership>().GetAll().Where(userRecord => userRecord.RoleName == "AgencyManager")
+                           select new LookUp( m.LastName + ", " + m.FirstName, m.UserId.ToString());
+                return Json(data, JsonRequestBehavior.AllowGet); ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        [HttpPost]
+        public void UpdateUser(string userId, string firstName, string lastName, string email, string role, string roleEntityValue, string agencyManager ="")
+        {
+            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(role) || (role == "AgencyCollector" && string.IsNullOrEmpty(agencyManager)))
+                throw new Exception ("Required fields are not passed");
             string userName = firstName.ToLower() + "." + lastName.ToLower();
             AccountProfile profile;
-            if (!string.IsNullOrEmpty(userId))
+            try
             {
-                profile = new AccountProfile(UserEntitiesDataFactory.GetUser(Guid.Parse(userId)).UserName);
-                UserEntitiesDataFactory.UpdateUser(userId, email);
-                UserEntitiesDataFactory.UpdateRole(userId, role);
-            }
-            else
-            {
-                if (UserEntitiesDataFactory.IsUserExits(userName))
+                if (!string.IsNullOrEmpty(userId))
                 {
-                    userName = UserEntitiesDataFactory.GetUsername(userName);
+                    profile = new AccountProfile(UserEntitiesDataFactory.GetUser(Guid.Parse(userId)).UserName);
+                    UserEntitiesDataFactory.UpdateUser(userId, email);
+                    UserEntitiesDataFactory.UpdateRole(userId, role);
+                }
+                else
+                {
+                    if (UserEntitiesDataFactory.IsUserExits(userName))
+                    {
+                        userName = UserEntitiesDataFactory.GetUsername(userName);
+                    }
+
+                    userId = UserEntitiesDataFactory.CreateUserWithRoles(userName, email, role).ToString();
+                    profile = new AccountProfile(userName);
                 }
 
-                userId = UserEntitiesDataFactory.CreateUserWithRoles(userName, email, role).ToString();
-                profile = new AccountProfile(userName);
-            }
+                profile.FirstName = firstName;
+                profile.LastName = lastName;
+                if (!string.IsNullOrEmpty(roleEntityValue))
+                    profile.RoleEntityValue = roleEntityValue;
 
-            profile.FirstName = firstName;
-            profile.LastName = lastName;
-            if (!string.IsNullOrEmpty(roleEntityValue))
-                profile.RoleEntityValue = roleEntityValue;
+                if (role == "AgencyCollector")
+                {
+                    IUnitOfWork uo = new UnitOfWork("CCATDBEntities");
+                    IRepository<aspnet_Users> repo = uo.Repository<aspnet_Users>();
+                    aspnet_Users user = repo.GetById(new Guid(userId));
+
+                    user.ManagerId = new Guid(agencyManager);
+
+                    repo.Update(user);
+                    uo.Save();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
-        
+
+        //private void UpdateUserRoleEntityValue(string userId, string role, string roleEntityValue)
+        //{
+
+        //    if (!string.IsNullOrEmpty(role))
+        //    {
+        //        MSI.CCAT.Data.Repositories.IUnitOfWork uo = new MSI.CCAT.Data.Repositories.UnitOfWork("CCATDBEntities");
+        //        MSI.CCAT.Data.Repositories.IRepository<MSI.CCAT.Data.Models.aspnet_Users> repo = uo.Repository<MSI.CCAT.Data.Models.aspnet_Users>();
+        //        MSI.CCAT.Data.Models.aspnet_Users user = repo.GetById(userId);
+        //        if (user != null)
+        //        {
+        //            if (role == "CollectionAgency" || role == "AgencyCollector" || role == "AgencyManager" || role == "AgencyCompliance")
+        //                user.AgencyId = uo.Repository<MSI.CCAT.Data.Models.Tbl_Agency>().GetAll().Where(record => record.Name == roleEntityValue).Single().AgencyId;
+        //            else if (role == "CollectionLawfirm")
+        //                user.LawFirmId = int.Parse(roleEntityValue);
+        //            else if (role == "CreditIssuer")
+        //                user.CreditIssuerId = int.Parse(roleEntityValue);
+
+        //            repo.Update(user);
+        //        }
+        //    }
+        //}
+
     }
     #region Original Code Genereted
     //[Authorize]

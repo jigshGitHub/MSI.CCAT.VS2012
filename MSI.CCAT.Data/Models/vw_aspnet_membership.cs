@@ -12,28 +12,29 @@ namespace MSI.CCAT.Data.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class aspnet_Users
+    public partial class vw_aspnet_membership
     {
-        public aspnet_Users()
-        {
-            this.aspnet_Roles = new HashSet<aspnet_Roles>();
-        }
-    
-        public System.Guid ApplicationId { get; set; }
-        public System.Guid UserId { get; set; }
         public string UserName { get; set; }
-        public string LoweredUserName { get; set; }
-        public string MobileAlias { get; set; }
-        public bool IsAnonymous { get; set; }
         public System.DateTime LastActivityDate { get; set; }
         public Nullable<int> AgencyId { get; set; }
+        public string AgencyName { get; set; }
         public Nullable<int> OwnerId { get; set; }
+        public string OwnerName { get; set; }
         public Nullable<int> LawFirmId { get; set; }
-        public Nullable<int> CreditIssuerId { get; set; }
+        public string LawFirmName { get; set; }
         public Nullable<System.Guid> ManagerId { get; set; }
-    
-        public virtual aspnet_Applications aspnet_Applications { get; set; }
-        public virtual aspnet_Membership aspnet_Membership { get; set; }
-        public virtual ICollection<aspnet_Roles> aspnet_Roles { get; set; }
+        public string ManagerUsername { get; set; }
+        public string RoleName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string RoleEntityValue { get; set; }
+        public System.Guid UserId { get; set; }
+        public string Email { get; set; }
+        public bool IsLockedOut { get; set; }
+        public bool IsApproved { get; set; }
+        public System.DateTime LastLoginDate { get; set; }
+        public System.DateTime LastPasswordChangedDate { get; set; }
+        public System.DateTime LastLockoutDate { get; set; }
+        public string Comment { get; set; }
     }
 }
