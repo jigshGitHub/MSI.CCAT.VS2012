@@ -294,13 +294,17 @@
             return applicationRoles;
         }, self);
         self.showEditContainer = ko.observable(false);
+        
         self.role.subscribe(function (roleSelected) {
             self.makeAgenciesVisible(false);
             self.makeLawFirmVivible(false);
             self.makeCreditIssuersVisible(false);
             self.makeDebtOwnersVisible(false);
-            if (roleSelected == 'CollectionAgency') {
+            if (roleSelected == 'CollectionAgency' || roleSelected == 'AgencyCollector' || roleSelected == 'AgencyManager' || roleSelected == 'AgencyCompliance') {
                 self.roleKeyTitle('Collection Agency');
+                if (roleSelected == 'AgencyCollector' || roleSelected == 'AgencyManager' || roleSelected == 'AgencyCompliance') {
+                    self.agencySelected('DCI');
+                }
                 self.makeAgenciesVisible(true);
             }
             else if (roleSelected == 'CollectionLawfirm') {
