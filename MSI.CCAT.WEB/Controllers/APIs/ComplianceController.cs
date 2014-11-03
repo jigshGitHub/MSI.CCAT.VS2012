@@ -111,7 +111,7 @@ namespace Cascade.Web.Controllers
                             if (complaint.ComplaintStatusId == (int)ComplaintStatus.SFOA)
                                 complaint.ComplaintStatusId = (int)ComplaintStatus.ORIP;
                         }
-                        if (userRole == UserRole.CollectionAgency.ToString())
+                        if (userRole == UserRole.CollectionAgency.ToString() || userRole == UserRole.AgencyCollector.ToString() || userRole == UserRole.AgencyCompliance.ToString() || userRole == UserRole.AgencyManager.ToString())
                             complaint.IsViewedByAgency = true;
                         uo.Repository<Tbl_ComplaintMain>().Update(complaint);
                         uo.Save();
@@ -238,6 +238,8 @@ namespace Cascade.Web.Controllers
                     uo.Repository<Tbl_ComplaintMain>().Update(complaintToSave);
                     complaintToSave.UpdatedBy = complaint.UpdatedBy;
                     complaintToSave.UpdatedDateTime = DateTime.Now;
+                    if (string.IsNullOrEmpty(complaintToSave.AgencyCollectorUserId.ToString()) && role == UserRole.AgencyCollector)
+                        complaintToSave.AgencyCollectorUserId = complaint.UpdatedBy;
                     uo.Save();
                 }
                 else
@@ -247,6 +249,8 @@ namespace Cascade.Web.Controllers
                     complaintToSave.CreatedDateTime = DateTime.Now;
                     complaintToSave.UpdatedDateTime = DateTime.Now;
                     uo.Repository<Tbl_ComplaintMain>().Add(complaintToSave);
+                    if (role == UserRole.AgencyCollector)
+                        complaintToSave.AgencyCollectorUserId = complaint.CreatedBy;
                     uo.Save();
                 }
                 
@@ -285,7 +289,7 @@ namespace Cascade.Web.Controllers
             try
             {
                 uo = new UnitOfWork("CCATDBEntities");
-                if (userRole == UserRole.CollectionAgency)
+                if (userRole == UserRole.CollectionAgency || userRole == UserRole.AgencyCollector || userRole == UserRole.AgencyCompliance || userRole == UserRole.AgencyManager)
                 {
                     return CollectionAgencyGetComplaintStatus(uo.Repository<Tbl_ComplaintMain>().GetAll().Where(r => r.AccountNumber == accountNumber && r.ComplaintId == complaintToAnalize.ComplaintId).SingleOrDefault(), complaintToAnalize);
                 }

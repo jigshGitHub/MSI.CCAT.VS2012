@@ -66,6 +66,7 @@
         <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_ComplaintType" />
         <AssociationConnector Association="CCATDBModel.FK__aspnet_Us__Manag__4CF5691D" />
         <EntityTypeShape EntityType="CCATDBModel.vw_aspnet_membership" Width="1.5" PointX="6.25" PointY="30" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_aspnet_users" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -223,7 +223,7 @@ function complianceVM(userId, userAgency) {
         });
 
         function evaluateStatusId(userRole) {
-            if (userRole == 'CollectionAgency') {
+            if (userRole == 'CollectionAgency' || userRole == 'AgencyCollector' || userRole == 'AgencyCompliance' || userRole == 'AgencyManager') {
             }
             else if (userRole == 'DebtOwner') {
             }

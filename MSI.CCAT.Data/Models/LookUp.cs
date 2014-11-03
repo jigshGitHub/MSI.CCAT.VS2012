@@ -25,6 +25,9 @@ namespace MSI.CCAT.Data.Models
         CollectionLawfirm,
         CreditIssuer,
         DebtOwner,
+        AgencyCollector,
+        AgencyCompliance,
+        AgencyManager
     }
     public enum ComplaintStatus
     {

@@ -158,6 +158,10 @@
             <End Role="Tbl_States" EntitySet="Tbl_States" />
             <End Role="Tbl_Agency" EntitySet="Tbl_Agency" />
           </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_aspnet_users" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_aspnet_users">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
           <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_Account" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_Tbl_Account">
             <End Role="Tbl_Account" EntitySet="Tbl_Account" />
             <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
@@ -485,6 +489,7 @@
           <Property Name="UpdatedDateTime" Type="datetime" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="ComplaintTypeID" Type="int" />
+          <Property Name="AgencyCollectorUserId" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="Tbl_ComplaintReceivedBy">
           <Key>
@@ -929,6 +934,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Tbl_ComplaintMain_aspnet_users">
+          <End Role="aspnet_Users" Type="CCATDBModel.Store.aspnet_Users" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="AgencyCollectorUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tbl_ComplaintMain_Tbl_Account">
           <End Role="Tbl_Account" Type="CCATDBModel.Store.Tbl_Account" Multiplicity="0..1" />
           <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
@@ -1327,6 +1344,10 @@
             <End Role="aspnet_Users1" EntitySet="aspnet_Users" />
           </AssociationSet>
           <EntitySet Name="vw_aspnet_membership" EntityType="CCATDBModel.vw_aspnet_membership" />
+          <AssociationSet Name="FK_Tbl_ComplaintMain_aspnet_users" Association="CCATDBModel.FK_Tbl_ComplaintMain_aspnet_users">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Tbl_QuestionResponse">
           <Key>
@@ -1909,6 +1930,8 @@
           <Property Type="DateTime" Name="UpdatedDateTime" Precision="3" />
           <Property Type="Int32" Name="ComplaintTypeID" />
           <NavigationProperty Name="Tbl_ComplaintType" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_ComplaintType" FromRole="Tbl_ComplaintMain" ToRole="Tbl_ComplaintType" />
+          <Property Type="Guid" Name="AgencyCollectorUserId" />
+          <NavigationProperty Name="aspnet_Users" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_aspnet_users" FromRole="Tbl_ComplaintMain" ToRole="aspnet_Users" />
         </EntityType>
         <Association Name="FK_Tbl_ComplaintMain_Tbl_Account">
           <End Type="CCATDBModel.Tbl_Account" Role="Tbl_Account" Multiplicity="0..1" />
@@ -2077,7 +2100,6 @@
           <Property Type="String" Name="LoweredRoleName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Description" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="aspnet_Applications" Relationship="CCATDBModel.FK__aspnet_Ro__Appli__5535A963" FromRole="aspnet_Roles" ToRole="aspnet_Applications" />
-          <NavigationProperty Name="aspnet_Users" Relationship="CCATDBModel.aspnet_UsersInRoles" FromRole="aspnet_Roles" ToRole="aspnet_Users" />
         </EntityType>
         <EntityType Name="aspnet_Users">
           <Key>
@@ -2345,6 +2367,18 @@
           <Property Type="DateTime" Name="LastLockoutDate" Nullable="false" Precision="3" />
           <Property Type="String" Name="Comment" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <Association Name="FK_Tbl_ComplaintMain_aspnet_users">
+          <End Type="CCATDBModel.aspnet_Users" Role="aspnet_Users" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="AgencyCollectorUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2689,6 +2723,7 @@
           <EntitySetMapping Name="Tbl_ComplaintMain">
             <EntityTypeMapping TypeName="CCATDBModel.Tbl_ComplaintMain">
               <MappingFragment StoreEntitySet="Tbl_ComplaintMain">
+                <ScalarProperty Name="AgencyCollectorUserId" ColumnName="AgencyCollectorUserId" />
                 <ScalarProperty Name="ComplaintTypeID" ColumnName="ComplaintTypeID" />
                 <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
                 <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />

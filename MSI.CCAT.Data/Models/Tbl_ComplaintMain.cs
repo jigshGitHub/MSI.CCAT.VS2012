@@ -63,6 +63,7 @@ namespace MSI.CCAT.Data.Models
         public Nullable<System.DateTime> CreatedDateTime { get; set; }
         public Nullable<System.DateTime> UpdatedDateTime { get; set; }
         public Nullable<int> ComplaintTypeID { get; set; }
+        public Nullable<System.Guid> AgencyCollectorUserId { get; set; }
     
         public virtual Tbl_Account Tbl_Account { get; set; }
         public virtual Tbl_ComplaintIssues Tbl_ComplaintIssues { get; set; }
@@ -74,5 +75,6 @@ namespace MSI.CCAT.Data.Models
         public virtual Tbl_OwnerResponses Tbl_OwnerResponses { get; set; }
         public virtual Tbl_ComplaintStatus Tbl_ComplaintStatus { get; set; }
         public virtual Tbl_ComplaintType Tbl_ComplaintType { get; set; }
+        public virtual aspnet_Users aspnet_Users { get; set; }
     }
 }
