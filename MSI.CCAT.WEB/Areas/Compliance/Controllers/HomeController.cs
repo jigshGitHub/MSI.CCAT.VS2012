@@ -24,7 +24,7 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
     {
         private IFileProcessor fileProcessor = new FileProcessor();
 
-        
+
         //
         // GET: /Compliance/Home/
 
@@ -44,7 +44,7 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
             _pageInfo.LayoutPage = "";
             return View("Report" + reportType, _pageInfo);
         }
-        
+
         //public ActionResult GetReportData(string ReportType)
         //{
         //    var dataQueries = new DataQueries();
@@ -66,18 +66,24 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
             string _sql_base_ReportQuery_rt = string.Format(_sql_base_ReportQuery, reportType);
 
             //Now change based on the role
-            if (hdnUserRole == "CollectionAgency" || hdnUserRole == "DebtOwner")
+            if (hdnUserRole == "CollectionAgency"
+                || hdnUserRole == "DebtOwner"
+                || hdnUserRole == "AgencyCollector"
+                || hdnUserRole == "AgencyManager"
+                || hdnUserRole == "AgencyCompliance")
             {
                 //Then we need to change the SQL
-                if (hdnUserRole == "CollectionAgency")
+                if (hdnUserRole == "CollectionAgency" || hdnUserRole == "AgencyCollector"
+                || hdnUserRole == "AgencyManager"
+                || hdnUserRole == "AgencyCompliance")
                 {
                     _sql_base_ReportQuery_rt = _sql_base_ReportQuery_rt + " and ag.Name = '{0}'";
-                    
+
                 }
                 if (hdnUserRole == "DebtOwner")
                 {
                     _sql_base_ReportQuery_rt = _sql_base_ReportQuery_rt + " and act.OwnerId = {0}";
-                    
+
                 }
                 _sql_base_ReportQuery_rt = string.Format(_sql_base_ReportQuery_rt, roleEntityValue);
 
@@ -86,17 +92,17 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
 
             string SQL = "";
             SQL = (!string.IsNullOrEmpty(where) ? _sql_base_ReportQuery_rt + " " + where : _sql_base_ReportQuery_rt);
-             
+
             try
             {
-                db = new DBFactory("CCATDBEntities");  
+                db = new DBFactory("CCATDBEntities");
                 rdr = db.ExecuteReader("get_pagedDataSet", new SqlParameter("@SQL", SQL), new SqlParameter("@OrderBy", OrderBy), new SqlParameter("@pageSize", pageSize), new SqlParameter("@pageNo", pageNo));
                 data = new List<ComplianceReportResult_Ext>();
                 ComplianceReportResult_Ext record;
                 while (rdr.Read())
                 {
                     record = new ComplianceReportResult_Ext();
-                    
+
                     record.LastName = rdr["LastName"].ToString();
                     record.FirstName = rdr["FirstName"].ToString();
                     record.ComPlaintId = rdr["ComPlaintId"].ToString();
@@ -122,12 +128,12 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
                         record.ResponseTimeDays = Convert.ToInt32(rdr["ResponseTimeDays"]);
                     if (rdr["TotalResponseTimeDays"] != DBNull.Value)
                         record.TotalResponseTimeDays = Convert.ToInt32(rdr["TotalResponseTimeDays"]);
-                    
+
                     if (rdr["count_"] != DBNull.Value)
                         record.count_ = Convert.ToInt32(rdr["count_"]);
                     if (rdr["rowNo"] != DBNull.Value)
                         record.rowNo = Convert.ToInt64(rdr["rowNo"]);
-                    
+
                     if (record.ComplaintDate.ToString() == "1/1/1900 12:00:00 AM")
                     {
                         record.ComplaintDate = null;
@@ -214,7 +220,7 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
                         _where = "and (" + _where + ")";
 
                         if (string.IsNullOrEmpty(_sortOptions)) _sortOptions = "ComplaintId ASC";
-                        _list = GetReportData(roleEntityValue, hdnUserRole,_where, _sortOptions, _pageSize, _pageNo, reportType);
+                        _list = GetReportData(roleEntityValue, hdnUserRole, _where, _sortOptions, _pageSize, _pageNo, reportType);
                     }
                     #endregion
                 }
@@ -224,10 +230,10 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
             {
                 //Coming here when SearchText is null
                 if (string.IsNullOrEmpty(_sortOptions)) _sortOptions = "ComplaintId ASC";
-                _list = GetReportData(roleEntityValue, hdnUserRole,"", _sortOptions, _pageSize, _pageNo, reportType);
+                _list = GetReportData(roleEntityValue, hdnUserRole, "", _sortOptions, _pageSize, _pageNo, reportType);
             }
             #endregion
-                        
+
 
             //Now send back the Json Response
             if (_list.Count() > 0)
@@ -265,9 +271,9 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
 			INNER JOIN Tbl_ComplaintIssues ci on ci.Id = cm.IssuesId
 			INNER JOIN Tbl_ComplaintStatus cs on cs.Id = cm.ComplaintStatusId
 			WHERE cs.Value = '{0}'";
-        
+
         #endregion
-        
+
         //public ActionResult Export(string ReportType)
         //{
         //    Response.AddHeader("Content-Type", "application/vnd.ms-excel");
@@ -280,7 +286,7 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
         //    return PartialView("Export", results);
 
         //}
-        
+
         //
         // GET: /Compliance/Home/Details/5
 
@@ -304,9 +310,9 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
         {
             //ViewBag.UserID = UserId.ToString();
             ViewBag.Account = (string.IsNullOrEmpty(id)) ? "" : id;
-            ViewBag.ComplaintID = (string.IsNullOrEmpty(complaintId)) ? "" : complaintId; 
+            ViewBag.ComplaintID = (string.IsNullOrEmpty(complaintId)) ? "" : complaintId;
             ViewBag.AgencyID = (string.IsNullOrEmpty("agency")) ? "" : agency;
-  //          ViewBag.UserRole = UserRoles.First().ToLower();
+            //          ViewBag.UserRole = UserRoles.First().ToLower();
             return PartialView();
         }
 
