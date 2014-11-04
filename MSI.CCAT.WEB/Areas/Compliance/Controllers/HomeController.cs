@@ -73,9 +73,7 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
                 || hdnUserRole == "AgencyCompliance")
             {
                 //Then we need to change the SQL
-                if (hdnUserRole == "CollectionAgency" || hdnUserRole == "AgencyCollector"
-                || hdnUserRole == "AgencyManager"
-                || hdnUserRole == "AgencyCompliance")
+                if (hdnUserRole == "CollectionAgency" || hdnUserRole == "AgencyCollector")
                 {
                     _sql_base_ReportQuery_rt = _sql_base_ReportQuery_rt + " and ag.Name = '{0}'";
 

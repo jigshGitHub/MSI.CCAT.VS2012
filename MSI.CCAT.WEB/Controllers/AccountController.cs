@@ -350,7 +350,7 @@ namespace MSI.CCAT.WEB.Controllers
                 throw ex;
             }
         }
-
+        #region Expected Future DEVELOPMENT
         //private void UpdateUserRoleEntityValue(string userId, string role, string roleEntityValue)
         //{
 
@@ -372,7 +372,7 @@ namespace MSI.CCAT.WEB.Controllers
         //        }
         //    }
         //}
-
+        #endregion
     }
     #region Original Code Genereted
     //[Authorize]

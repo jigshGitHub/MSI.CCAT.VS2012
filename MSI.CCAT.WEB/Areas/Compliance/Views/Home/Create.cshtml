@@ -1221,7 +1221,7 @@
 
         /* Show/Hide Options */
         self.showComplaintSumittedToAgencyInfo = ko.computed(function () {
-            if (self.userRole() == 'CollectionAgency' || self.userRole() == 'AgencyCollector' || self.userRole() == 'AgencyCompliance' || self.userRole() == 'AgencyManager')
+            if (self.userRole() == 'CollectionAgency' || self.userRole() == 'AgencyCollector')
                 return true;
             return false;
         }).bind(self);
@@ -1261,7 +1261,7 @@
                 self.showComplaintClosure(true);
         }
         self.isDebtOwnerProcessVisible = ko.computed(function () {
-            return (self.userRole() == 'CollectionAgency' || self.userRole() == 'AgencyCollector' || self.userRole() == 'AgencyCompliance' || self.userRole() == 'AgencyManager') ? false : true;
+            return (self.userRole() == 'CollectionAgency' || self.userRole() == 'AgencyCollector') ? false : true;
         }, self);
         self.validationErrors = ko.observableArray([]);
 

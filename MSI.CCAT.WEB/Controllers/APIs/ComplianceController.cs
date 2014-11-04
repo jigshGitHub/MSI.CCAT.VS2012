@@ -111,7 +111,7 @@ namespace Cascade.Web.Controllers
                             if (complaint.ComplaintStatusId == (int)ComplaintStatus.SFOA)
                                 complaint.ComplaintStatusId = (int)ComplaintStatus.ORIP;
                         }
-                        if (userRole == UserRole.CollectionAgency.ToString() || userRole == UserRole.AgencyCollector.ToString() || userRole == UserRole.AgencyCompliance.ToString() || userRole == UserRole.AgencyManager.ToString())
+                        if (userRole == UserRole.CollectionAgency.ToString() || userRole == UserRole.AgencyCollector.ToString())
                             complaint.IsViewedByAgency = true;
                         uo.Repository<Tbl_ComplaintMain>().Update(complaint);
                         uo.Save();
@@ -289,11 +289,11 @@ namespace Cascade.Web.Controllers
             try
             {
                 uo = new UnitOfWork("CCATDBEntities");
-                if (userRole == UserRole.CollectionAgency || userRole == UserRole.AgencyCollector || userRole == UserRole.AgencyCompliance || userRole == UserRole.AgencyManager)
+                if (userRole == UserRole.CollectionAgency || userRole == UserRole.AgencyCollector)
                 {
                     return CollectionAgencyGetComplaintStatus(uo.Repository<Tbl_ComplaintMain>().GetAll().Where(r => r.AccountNumber == accountNumber && r.ComplaintId == complaintToAnalize.ComplaintId).SingleOrDefault(), complaintToAnalize);
                 }
-                if (userRole == UserRole.DebtOwner)
+                if (userRole == UserRole.DebtOwner || userRole == UserRole.AgencyCompliance || userRole == UserRole.AgencyManager)
                 {
                     return DebtOwnerGetComplaintStatus(uo.Repository<Tbl_ComplaintMain>().GetAll().Where(r => r.AccountNumber == accountNumber && r.ComplaintId == complaintToAnalize.ComplaintId).SingleOrDefault(), complaintToAnalize);
                 }
