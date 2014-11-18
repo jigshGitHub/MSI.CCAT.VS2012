@@ -1,8 +1,11 @@
 select r.RoleName, u.* from aspnet_Users u inner join aspnet_UsersInRoles ur on ur.UserId = u.UserId inner join aspnet_Roles r on r.RoleId = ur.RoleId order by u.LastActivityDate desc;
 select * from Tbl_ModulesForRoles mfr inner join module m on m.moduleId = mfr.ModuleId 
-select u.UserName,p.* from aspnet_profile p inner join aspnet_Users u on u.UserId = p.UserId;
+select u.UserName,dbo.fn_GetProfileElement(,p.* from aspnet_profile p inner join aspnet_Users u on u.UserId = p.UserId;
 
-select * from Tbl_Account where OwnerId=32 order by AccountNumber asc
+select o.OwnerContact_FirstName + ' ' +  o.OwnerContact_LastName as owner, a.Name,ac.* from Tbl_Account ac 
+left join tbl_agency a on a.AgencyId = ac.AgencyId 
+left join Tbl_Owner o on o.OwnerId = ac.OwnerId
+where ac.accountnumber = '11114444' ac.OwnerId=32 order by AccountNumber asc
 select p.*, u.* from aspnet_Users u inner join aspnet_Profile p on p.UserId = u.UserId order by LastUpdatedDate  desc
 select * from Tbl_Agency
 
@@ -21,3 +24,7 @@ select * from Tbl_ComplaintMain where AccountNumber = '10458503'
 update Tbl_ComplaintMain set ComplaintStatusId = 4 where ComplaintId = 'MSI-555-129'
 
 --delete from Tbl_ComplaintMain where AccountNumber = '10458503' and ComplaintId like 'MSI-132%'
+
+select * from [dbo].[vw_aspnet_membership] where username = 'msi.demoagency'
+
+

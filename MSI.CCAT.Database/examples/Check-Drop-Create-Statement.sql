@@ -21,6 +21,12 @@ BEGIN
 ALTER TABLE [dbo].[tableName] DROP CONSTRAINT [constraintName]
 END
 
+--Drop Primary Key constraint
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[constraintName]') AND type = 'K')
+BEGIN
+ALTER TABLE [dbo].[tableName] DROP CONSTRAINT [constraintName]
+END
+
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[functionName]') AND type in (N'FN'))
 DROP FUNCTION [dbo].[functionName]
 GO
