@@ -105,7 +105,7 @@ namespace Cascade.Web.Controllers
                     complaint = uo.Repository<Tbl_ComplaintMain>().GetAll().Where(record => record.AccountNumber == accountNumber && record.ComplaintId == complaintId).FirstOrDefault();
                     if (!string.IsNullOrEmpty(userRole))
                     {
-                        if (userRole == UserRole.DebtOwner.ToString())
+                        if (userRole == UserRole.DebtOwner.ToString() || userRole == UserRole.AgencyCompliance.ToString() || userRole == UserRole.AgencyManager.ToString())
                         {
                             complaint.IsViewedByOwner = true;
                             if (complaint.ComplaintStatusId == (int)ComplaintStatus.SFOA)
@@ -313,7 +313,15 @@ namespace Cascade.Web.Controllers
                 #region NCRA
                 if (presentComplaint == null)
                 {
-                    return complaintStatus = (complaintToAnalize.DebtorIdentityVerifiedYN.Value) ? ComplaintStatus.NCIP:ComplaintStatus.NCRA;
+                    complaintStatus = (complaintToAnalize.DebtorIdentityVerifiedYN.Value) ? ComplaintStatus.NCIP:ComplaintStatus.NCRA;
+
+                    if (complaintStatus == ComplaintStatus.NCIP
+                    && complaintToAnalize.ComplaintSubmittedToOwnerYN.Value == true
+                    && complaintToAnalize.ComplaintSubmittedDate.HasValue == true
+                    && complaintToAnalize.DebtorAgreeYN.Value == false
+                    && complaintToAnalize.FinalActionStepId.HasValue == false)
+                        complaintStatus = ComplaintStatus.SFOA;
+                    return complaintStatus;
                 }
                 #endregion
 
@@ -325,7 +333,16 @@ namespace Cascade.Web.Controllers
                     && complaintToAnalize.DebtorIdentityVerifiedYN.Value == true
                     && complaintToAnalize.MoreInfoReqdFromDebtorYN.Value == false
                     && complaintToAnalize.MoreInfoRequestedDate.HasValue == false)
+                {
                     complaintStatus = ComplaintStatus.NCIP;
+
+                    if (complaintStatus == ComplaintStatus.NCIP
+                    && complaintToAnalize.ComplaintSubmittedToOwnerYN.Value == true
+                    && complaintToAnalize.ComplaintSubmittedDate.HasValue == true
+                    && complaintToAnalize.DebtorAgreeYN.Value == false
+                    && complaintToAnalize.FinalActionStepId.HasValue == false)
+                        complaintStatus = ComplaintStatus.SFOA;
+                }
                 if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.AAI
                     && complaintToAnalize.MoreInfoReceivedFromDebtorYN.Value == true
                     && complaintToAnalize.MoreInfoReceivedDate.HasValue == true

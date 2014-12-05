@@ -636,7 +636,7 @@ hdnComplaintId
     function pageViewModel(userId, userAgency, accountNumber, userRole) {
         //console.log(userId + ',' + accountNumber + ',' + userAgency + ',' + userRole);
         var self = this;
-        if (userRole == 'DebtOwner')
+        if (userRole == 'DebtOwner' || userRole == 'AgencyCompliance' || userRole == 'AgencyManager')
             userAgency = '';
         self.complianceModel = new complianceVM(userId, userAgency);
         self.pimsAccountNumber = ko.observable(accountNumber);

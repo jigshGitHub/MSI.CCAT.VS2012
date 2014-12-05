@@ -142,6 +142,16 @@ function complianceVM(userId, userAgency) {
             self.moreInfoFromAgencyReceivedDate('');
         }
     }, self);
+    self.ownerResponseId.subscribe(function (value) {
+        if (value == '1') {
+            var todaysDate = new Date();
+            todaysDate.setDate(todaysDate.getDate());
+            self.ownerResponseDate($.datepicker.formatDate('mm/dd/yy', todaysDate));
+        }
+        else {
+            self.ownerResponseDate('');
+        }
+    }, self);
 
     self.save = function (userRole, callback) {
         var json = JSON.stringify({
