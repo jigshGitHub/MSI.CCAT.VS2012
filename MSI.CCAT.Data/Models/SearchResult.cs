@@ -570,6 +570,7 @@ namespace MSI.Data.Models
         public DateTime? DateRequested;
         public DateTime? DateSubmitted;
         public DateTime? AgencyRequestDate;
+        public DateTime? OwnerResponseDate;
         public int? ResponseTimeDays;
         public int? TotalResponseTimeDays;
         public int count_ { get; set; }

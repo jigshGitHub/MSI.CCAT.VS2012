@@ -37,6 +37,7 @@ namespace MSI.CCAT.Data.Models
         SFOA,
         ORIP,
         RC,
-        BLANK
+        BLANK,
+        ACR
     }
 }

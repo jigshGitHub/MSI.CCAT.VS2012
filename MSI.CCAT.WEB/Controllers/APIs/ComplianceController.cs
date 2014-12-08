@@ -312,112 +312,98 @@ namespace Cascade.Web.Controllers
             {
                 #region NCRA
                 if (presentComplaint == null)
-                {
                     complaintStatus = (complaintToAnalize.DebtorIdentityVerifiedYN.Value) ? ComplaintStatus.NCIP:ComplaintStatus.NCRA;
-
-                    if (complaintStatus == ComplaintStatus.NCIP
-                    && complaintToAnalize.ComplaintSubmittedToOwnerYN.Value == true
-                    && complaintToAnalize.ComplaintSubmittedDate.HasValue == true
-                    && complaintToAnalize.DebtorAgreeYN.Value == false
-                    && complaintToAnalize.FinalActionStepId.HasValue == false)
-                        complaintStatus = ComplaintStatus.SFOA;
-                    return complaintStatus;
-                }
+                else
+                    complaintStatus = (ComplaintStatus)presentComplaint.ComplaintStatusId;
                 #endregion
 
-                complaintStatus = (ComplaintStatus)presentComplaint.ComplaintStatusId;
+                
 
                 #region NCIP
 
-                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.NCRA
+                if (complaintStatus == ComplaintStatus.NCRA
                     && complaintToAnalize.DebtorIdentityVerifiedYN.Value == true
                     && complaintToAnalize.MoreInfoReqdFromDebtorYN.Value == false
                     && complaintToAnalize.MoreInfoRequestedDate.HasValue == false)
-                {
-                    complaintStatus = ComplaintStatus.NCIP;
-
-                    if (complaintStatus == ComplaintStatus.NCIP
-                    && complaintToAnalize.ComplaintSubmittedToOwnerYN.Value == true
-                    && complaintToAnalize.ComplaintSubmittedDate.HasValue == true
-                    && complaintToAnalize.DebtorAgreeYN.Value == false
-                    && complaintToAnalize.FinalActionStepId.HasValue == false)
-                        complaintStatus = ComplaintStatus.SFOA;
-                }
-                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.AAI
+                        complaintStatus = ComplaintStatus.NCIP;
+                if (complaintStatus == ComplaintStatus.AAI
                     && complaintToAnalize.MoreInfoReceivedFromDebtorYN.Value == true
                     && complaintToAnalize.MoreInfoReceivedDate.HasValue == true
                     && complaintToAnalize.MoreInfoFromAgencyReceivedYN.Value == false
                     && complaintToAnalize.MoreInfoFromAgencyReceivedDate.HasValue == false
                     && complaintToAnalize.ComplaintSubmittedToOwnerYN.Value == false
                     && complaintToAnalize.ComplaintSubmittedDate.HasValue == false)
-                    complaintStatus = ComplaintStatus.NCIP;
-                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.AAI
+                        complaintStatus = ComplaintStatus.NCIP;
+                if (complaintStatus == ComplaintStatus.AAI
                     && complaintToAnalize.MoreInfoFromAgencyReceivedYN.Value == true
                     && complaintToAnalize.MoreInfoFromAgencyReceivedDate.HasValue == true
                     && complaintToAnalize.ComplaintSubmittedToOwnerYN.Value == false
                     && complaintToAnalize.ComplaintSubmittedDate.HasValue == false)
-                    complaintStatus = ComplaintStatus.NCIP;                
+                        complaintStatus = ComplaintStatus.NCIP;                
 
                 #endregion
 
                 #region AAI
 
-                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.NCRA
+                if (complaintStatus == ComplaintStatus.NCRA
                     && complaintToAnalize.DebtorIdentityVerifiedYN.Value == true
                     && complaintToAnalize.MoreInfoReqdFromDebtorYN.Value == true
                     && complaintToAnalize.MoreInfoRequestedDate.HasValue == true
                     && !string.IsNullOrEmpty(complaintToAnalize.MoreInfoRequested))
-                    complaintStatus = ComplaintStatus.AAI;
+                        complaintStatus = ComplaintStatus.AAI;
 
-                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.NCIP
+                if (complaintStatus == ComplaintStatus.NCIP
                     && complaintToAnalize.MoreInfoReqdFromDebtorYN.Value == true
                     && complaintToAnalize.MoreInfoRequestedDate.HasValue == true
                     && (!string.IsNullOrEmpty(complaintToAnalize.MoreInfoRequested)
                     && complaintToAnalize.ComplaintSubmittedToOwnerYN.Value == false
                     && complaintToAnalize.ComplaintSubmittedDate.HasValue == false))
-                    complaintStatus = ComplaintStatus.AAI;
+                        complaintStatus = ComplaintStatus.AAI;
 
                 #endregion
 
                 #region SFOA
 
-                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.NCIP
+                if (complaintStatus == ComplaintStatus.NCIP
                     && complaintToAnalize.ComplaintSubmittedToOwnerYN.Value == true
                     && complaintToAnalize.ComplaintSubmittedDate.HasValue == true
                     && complaintToAnalize.DebtorAgreeYN.Value == false
                     && complaintToAnalize.FinalActionStepId.HasValue == false)
-                    complaintStatus = ComplaintStatus.SFOA;
+                        complaintStatus = ComplaintStatus.SFOA;
 
-                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.AAI
+                if (complaintStatus == ComplaintStatus.AAI
                     && complaintToAnalize.MoreInfoReceivedFromDebtorYN.Value == true
                     && complaintToAnalize.MoreInfoReceivedDate.HasValue == true
                     && complaintToAnalize.MoreInfoFromAgencyReceivedYN.Value == false
                     && complaintToAnalize.MoreInfoFromAgencyReceivedDate.HasValue == false
                     && complaintToAnalize.ComplaintSubmittedToOwnerYN.Value == true
                     && complaintToAnalize.ComplaintSubmittedDate.HasValue == true)
-                    complaintStatus = ComplaintStatus.SFOA;
+                        complaintStatus = ComplaintStatus.SFOA;
 
-                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.AAI
+                if (complaintStatus == ComplaintStatus.AAI
                     && complaintToAnalize.MoreInfoFromAgencyReceivedYN.Value == true
                     && complaintToAnalize.MoreInfoFromAgencyReceivedDate.HasValue == true
                     && complaintToAnalize.ComplaintSubmittedToOwnerYN.Value == true
                     && complaintToAnalize.ComplaintSubmittedDate.HasValue == true)
-                    complaintStatus = ComplaintStatus.SFOA;
+                        complaintStatus = ComplaintStatus.SFOA;
+
+                #endregion
+
+                #region ACR
+
+                if (complaintStatus == ComplaintStatus.ACR
+                    && complaintToAnalize.AgencyResponseToDebtorDate.HasValue == true
+                    && complaintToAnalize.FinalActionStepId.HasValue == false)
+                    complaintStatus = ComplaintStatus.ACR;
 
                 #endregion
 
                 #region RC
 
-                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.NCIP
-                    && complaintToAnalize.DebtorAgreeYN.Value == true
+                if (complaintStatus == ComplaintStatus.ACR
+                    && complaintToAnalize.AgencyResponseToDebtorDate.HasValue == true
                     && complaintToAnalize.FinalActionStepId.HasValue == true)
-                    complaintStatus = ComplaintStatus.RC;
-
-                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.NCIP
-                    && complaintToAnalize.DebtorAgreeYN.Value == false 
-                    && complaintToAnalize.NeedFurtherActionYN.Value == true
-                    && complaintToAnalize.FinalActionStepId.HasValue == true)
-                    complaintStatus = ComplaintStatus.RC;
+                    complaintStatus = ComplaintStatus.RC;                
 
                 #endregion
             }
@@ -442,18 +428,18 @@ namespace Cascade.Web.Controllers
 
                 complaintStatus = (ComplaintStatus)presentComplaint.ComplaintStatusId;
 
-                #region NCIP
+                #region ACR
 
-                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.ORIP
+                if (complaintStatus == ComplaintStatus.ORIP
                     && complaintToAnalize.OwnerResponseId.HasValue == true
                     && complaintToAnalize.OwnerResponseDate.HasValue == true)
-                    complaintStatus = ComplaintStatus.NCIP;
+                    complaintStatus = ComplaintStatus.ACR;
 
                 #endregion
 
                 #region AAI
 
-                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.ORIP
+                if (complaintStatus == ComplaintStatus.ORIP
                     && complaintToAnalize.MoreInfoReqdFromDebtorYN.Value == true
                     && complaintToAnalize.MoreInfoRequestedDate.HasValue == true
                     && (!string.IsNullOrEmpty(complaintToAnalize.MoreInfoRequested))
@@ -463,7 +449,7 @@ namespace Cascade.Web.Controllers
                     && complaintToAnalize.OwnerResponseDate.HasValue == false)
                     complaintStatus = ComplaintStatus.AAI;
 
-                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.ORIP
+                if (complaintStatus == ComplaintStatus.ORIP
                     && complaintToAnalize.MoreInfoFromAgencyYN.Value == true
                     && complaintToAnalize.MoreInfoFromAgencyRequestedDate.HasValue == true
                     && (!string.IsNullOrEmpty(complaintToAnalize.MoreInfoFromAgencyRequested))
@@ -471,7 +457,7 @@ namespace Cascade.Web.Controllers
                     && complaintToAnalize.OwnerResponseDate.HasValue == false)
                     complaintStatus = ComplaintStatus.AAI;
 
-                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.ORIP
+                if (complaintStatus == ComplaintStatus.ORIP
                     && presentComplaint.MoreInfoReqdFromDebtorYN.Value == true
                     && presentComplaint.MoreInfoRequestedDate.HasValue == true
                     && complaintToAnalize.MoreInfoReqdFromDebtorYN.Value == true
@@ -480,7 +466,7 @@ namespace Cascade.Web.Controllers
                     && complaintToAnalize.OwnerResponseDate.HasValue == false)
                     complaintStatus = ComplaintStatus.AAI;
 
-                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.ORIP
+                if (complaintStatus == ComplaintStatus.ORIP
                     && presentComplaint.MoreInfoReqdFromDebtorYN.Value == false
                     && presentComplaint.MoreInfoRequestedDate.HasValue == false
                     && complaintToAnalize.MoreInfoReqdFromDebtorYN.Value == true
@@ -494,7 +480,7 @@ namespace Cascade.Web.Controllers
 
                 #region ORIP
 
-                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.AAI
+                if (complaintStatus == ComplaintStatus.AAI
                     && complaintToAnalize.MoreInfoFromAgencyYN.Value == true
                     && complaintToAnalize.MoreInfoFromAgencyRequestedDate.HasValue == true
                     && (!string.IsNullOrEmpty(complaintToAnalize.MoreInfoFromAgencyRequested))
@@ -506,7 +492,7 @@ namespace Cascade.Web.Controllers
                 #endregion
                 #region SFOA
 
-                if (presentComplaint.ComplaintStatusId == (int)ComplaintStatus.NCIP
+                if (complaintStatus == ComplaintStatus.NCIP
                     && complaintToAnalize.ComplaintSubmittedToOwnerYN.Value == true
                     && complaintToAnalize.ComplaintSubmittedDate.HasValue == true)
                     complaintStatus = ComplaintStatus.SFOA;

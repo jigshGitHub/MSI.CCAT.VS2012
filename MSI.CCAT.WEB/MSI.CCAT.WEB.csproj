@@ -1910,6 +1910,7 @@
     <Content Include="Areas\Compliance\Views\Home\_complianceORP.cshtml" />
     <Content Include="Areas\Compliance\Views\Home\_complianceRC.cshtml" />
     <Content Include="Areas\Compliance\Views\Home\_complianceSOA.cshtml" />
+    <Content Include="Areas\Compliance\Views\Home\ReportACR.cshtml" />
     <None Include="Properties\PublishProfiles\WebDeploy-DevEnvt.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\application.js" />

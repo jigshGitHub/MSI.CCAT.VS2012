@@ -122,6 +122,8 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
                         record.DateSubmitted = Convert.ToDateTime(rdr["DateSubmitted"]);
                     if (rdr["AgencyRequestDate"] != DBNull.Value)
                         record.AgencyRequestDate = Convert.ToDateTime(rdr["AgencyRequestDate"]);
+                    if (rdr["OwnerResponseDate"] != DBNull.Value)
+                        record.OwnerResponseDate = Convert.ToDateTime(rdr["OwnerResponseDate"]);
                     if (rdr["ResponseTimeDays"] != DBNull.Value)
                         record.ResponseTimeDays = Convert.ToInt32(rdr["ResponseTimeDays"]);
                     if (rdr["TotalResponseTimeDays"] != DBNull.Value)
@@ -262,7 +264,8 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
 			CONVERT(varchar(20),cm.AgencyResponseToDebtorDate,101) as ResolvedDate,
 			ci.Name as ComplaintIssue,
 			cm.TotalResponseTimeDays,0 as ResponseTimeDays,
-			ag.Name AS AgencyId
+			ag.Name AS AgencyId,            
+			cm.OwnerResponseDate
 			FROM Tbl_ComplaintMain cm
 			INNER JOIN Tbl_Account act on act.AccountNumber = cm.AccountNumber
 			INNER JOIN Tbl_Agency ag on ag.AgencyId = act.AgencyId 

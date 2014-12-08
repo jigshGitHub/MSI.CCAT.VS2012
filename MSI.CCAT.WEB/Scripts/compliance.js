@@ -77,6 +77,7 @@ function complianceVM(userId, userAgency) {
     self.complaintDocUrl = ko.observable('');
     self.debtOwnerProcessDocument = ko.observable('');
     self.debtOwnerProcessDocUrl = ko.observable('');
+    self.enableOwnerResponseDate = ko.observable(false);
 
     self.complaintSubmitedToAgency_YesNo.subscribe(function (value) {
         if (value == 'true') {
@@ -143,13 +144,13 @@ function complianceVM(userId, userAgency) {
         }
     }, self);
     self.ownerResponseId.subscribe(function (value) {
-        if (value == '1') {
+        self.enableOwnerResponseDate(false);
+        self.ownerResponseDate('');
+        if (value != undefined && value.length > 0) {
             var todaysDate = new Date();
             todaysDate.setDate(todaysDate.getDate());
             self.ownerResponseDate($.datepicker.formatDate('mm/dd/yy', todaysDate));
-        }
-        else {
-            self.ownerResponseDate('');
+            self.enableOwnerResponseDate(true);
         }
     }, self);
 
