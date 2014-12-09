@@ -45,6 +45,27 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
             return View("Report" + reportType, _pageInfo);
         }
 
+        [HttpGet]
+        public JsonResult GetComplianceReportData(string searchText, string reportType, string roleEntityValue, string hdnUserRole, int? page, int? pageSize)
+        {
+            string sortOptions = BuildSortOptions(HttpContext.Request.QueryString["sort[0][field]"], HttpContext.Request.QueryString["sort[0][dir]"]);
+            string whereClause = BuildWhereClause(reportType, RoleEntityValue, UserRoles.First(), searchText);
+
+            List<ComplianceReportResult_Ext> _list = BuildReport(whereClause, sortOptions, (pageSize.HasValue ? pageSize.Value : 10), (page.HasValue ? page.Value : 1));
+
+
+            if (_list.Count() > 0)
+            {
+                return Json(new { success = true, __count = _list.FirstOrDefault().count_, results = _list.ToList() }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { success = true, __count = 0 }, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+        #region Not Used
         //public ActionResult GetReportData(string ReportType)
         //{
         //    var dataQueries = new DataQueries();
@@ -55,102 +76,102 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
         //    return PartialView("_compliance" + ReportType, results);
 
         //}
+        
+        //public static List<ComplianceReportResult_Ext> GetReportData(string roleEntityValue, string hdnUserRole, string where, string OrderBy, int pageSize, int pageNo, string reportType)
+        //{
+        //    DBFactory db;
+        //    SqlDataReader rdr;
+        //    List<ComplianceReportResult_Ext> data = null;
 
-        public static List<ComplianceReportResult_Ext> GetReportData(string roleEntityValue, string hdnUserRole, string where, string OrderBy, int pageSize, int pageNo, string reportType)
-        {
-            DBFactory db;
-            SqlDataReader rdr;
-            List<ComplianceReportResult_Ext> data = null;
+        //    //Get the Base SQL statement
+        //    string _sql_base_ReportQuery_rt = string.Format(_sql_base_ReportQuery, reportType);
 
-            //Get the Base SQL statement
-            string _sql_base_ReportQuery_rt = string.Format(_sql_base_ReportQuery, reportType);
+        //    //Now change based on the role
+        //    if (hdnUserRole == "CollectionAgency"
+        //        || hdnUserRole == "DebtOwner"
+        //        || hdnUserRole == "AgencyCollector"
+        //        || hdnUserRole == "AgencyManager"
+        //        || hdnUserRole == "AgencyCompliance")
+        //    {
+        //        //Then we need to change the SQL
+        //        if (hdnUserRole == "CollectionAgency" || hdnUserRole == "AgencyCollector" || hdnUserRole == "AgencyManager" || hdnUserRole == "AgencyCompliance")
+        //        {
+        //            _sql_base_ReportQuery_rt = _sql_base_ReportQuery_rt + " and ag.Name = '{0}'";
 
-            //Now change based on the role
-            if (hdnUserRole == "CollectionAgency"
-                || hdnUserRole == "DebtOwner"
-                || hdnUserRole == "AgencyCollector"
-                || hdnUserRole == "AgencyManager"
-                || hdnUserRole == "AgencyCompliance")
-            {
-                //Then we need to change the SQL
-                if (hdnUserRole == "CollectionAgency" || hdnUserRole == "AgencyCollector" || hdnUserRole == "AgencyManager" || hdnUserRole == "AgencyCompliance")
-                {
-                    _sql_base_ReportQuery_rt = _sql_base_ReportQuery_rt + " and ag.Name = '{0}'";
+        //        }
+        //        if (hdnUserRole == "DebtOwner")
+        //        {
+        //            _sql_base_ReportQuery_rt = _sql_base_ReportQuery_rt + " and act.OwnerId = {0}";
 
-                }
-                if (hdnUserRole == "DebtOwner")
-                {
-                    _sql_base_ReportQuery_rt = _sql_base_ReportQuery_rt + " and act.OwnerId = {0}";
+        //        }
+        //        _sql_base_ReportQuery_rt = string.Format(_sql_base_ReportQuery_rt, roleEntityValue);
 
-                }
-                _sql_base_ReportQuery_rt = string.Format(_sql_base_ReportQuery_rt, roleEntityValue);
-
-            }
+        //    }
 
 
-            string SQL = "";
-            SQL = (!string.IsNullOrEmpty(where) ? _sql_base_ReportQuery_rt + " " + where : _sql_base_ReportQuery_rt);
+        //    string SQL = "";
+        //    SQL = (!string.IsNullOrEmpty(where) ? _sql_base_ReportQuery_rt + " " + where : _sql_base_ReportQuery_rt);
 
-            try
-            {
-                db = new DBFactory("CCATDBEntities");
-                rdr = db.ExecuteReader("get_pagedDataSet", new SqlParameter("@SQL", SQL), new SqlParameter("@OrderBy", OrderBy), new SqlParameter("@pageSize", pageSize), new SqlParameter("@pageNo", pageNo));
-                data = new List<ComplianceReportResult_Ext>();
-                ComplianceReportResult_Ext record;
-                while (rdr.Read())
-                {
-                    record = new ComplianceReportResult_Ext();
+        //    try
+        //    {
+        //        db = new DBFactory("CCATDBEntities");
+        //        rdr = db.ExecuteReader("get_pagedDataSet", new SqlParameter("@SQL", SQL), new SqlParameter("@OrderBy", OrderBy), new SqlParameter("@pageSize", pageSize), new SqlParameter("@pageNo", pageNo));
+        //        data = new List<ComplianceReportResult_Ext>();
+        //        ComplianceReportResult_Ext record;
+        //        while (rdr.Read())
+        //        {
+        //            record = new ComplianceReportResult_Ext();
 
-                    record.LastName = rdr["LastName"].ToString();
-                    record.FirstName = rdr["FirstName"].ToString();
-                    record.ComPlaintId = rdr["ComPlaintId"].ToString();
-                    record.LastFourSSN = rdr["LastFourSSN"].ToString();
-                    record.AccountNumber = rdr["Accountnumber"].ToString();
+        //            record.LastName = rdr["LastName"].ToString();
+        //            record.FirstName = rdr["FirstName"].ToString();
+        //            record.ComPlaintId = rdr["ComPlaintId"].ToString();
+        //            record.LastFourSSN = rdr["LastFourSSN"].ToString();
+        //            record.AccountNumber = rdr["Accountnumber"].ToString();
 
-                    if (rdr["AgencyId"] != DBNull.Value)
-                        record.AgencyId = rdr["AgencyId"].ToString();
+        //            if (rdr["AgencyId"] != DBNull.Value)
+        //                record.AgencyId = rdr["AgencyId"].ToString();
 
-                    if (rdr["ComplaintIssue"] != DBNull.Value)
-                        record.ComplaintIssue = rdr["ComplaintIssue"].ToString();
-                    if (rdr["ComplaintDate"] != DBNull.Value)
-                        record.ComplaintDate = Convert.ToDateTime(rdr["ComplaintDate"]);
-                    if (rdr["ResolvedDate"] != DBNull.Value)
-                        record.ResolvedDate = Convert.ToDateTime(rdr["ResolvedDate"]);
-                    if (rdr["DateRequested"] != DBNull.Value)
-                        record.DateRequested = Convert.ToDateTime(rdr["DateRequested"]);
-                    if (rdr["DateSubmitted"] != DBNull.Value)
-                        record.DateSubmitted = Convert.ToDateTime(rdr["DateSubmitted"]);
-                    if (rdr["AgencyRequestDate"] != DBNull.Value)
-                        record.AgencyRequestDate = Convert.ToDateTime(rdr["AgencyRequestDate"]);
-                    if (rdr["OwnerResponseDate"] != DBNull.Value)
-                        record.OwnerResponseDate = Convert.ToDateTime(rdr["OwnerResponseDate"]);
-                    if (rdr["ResponseTimeDays"] != DBNull.Value)
-                        record.ResponseTimeDays = Convert.ToInt32(rdr["ResponseTimeDays"]);
-                    if (rdr["TotalResponseTimeDays"] != DBNull.Value)
-                        record.TotalResponseTimeDays = Convert.ToInt32(rdr["TotalResponseTimeDays"]);
+        //            if (rdr["ComplaintIssue"] != DBNull.Value)
+        //                record.ComplaintIssue = rdr["ComplaintIssue"].ToString();
+        //            if (rdr["ComplaintDate"] != DBNull.Value)
+        //                record.ComplaintDate = Convert.ToDateTime(rdr["ComplaintDate"]);
+        //            if (rdr["ResolvedDate"] != DBNull.Value)
+        //                record.ResolvedDate = Convert.ToDateTime(rdr["ResolvedDate"]);
+        //            if (rdr["DateRequested"] != DBNull.Value)
+        //                record.DateRequested = Convert.ToDateTime(rdr["DateRequested"]);
+        //            if (rdr["DateSubmitted"] != DBNull.Value)
+        //                record.DateSubmitted = Convert.ToDateTime(rdr["DateSubmitted"]);
+        //            if (rdr["AgencyRequestDate"] != DBNull.Value)
+        //                record.AgencyRequestDate = Convert.ToDateTime(rdr["AgencyRequestDate"]);
+        //            if (rdr["OwnerResponseDate"] != DBNull.Value)
+        //                record.OwnerResponseDate = Convert.ToDateTime(rdr["OwnerResponseDate"]);
+        //            if (rdr["ResponseTimeDays"] != DBNull.Value)
+        //                record.ResponseTimeDays = Convert.ToInt32(rdr["ResponseTimeDays"]);
+        //            if (rdr["TotalResponseTimeDays"] != DBNull.Value)
+        //                record.TotalResponseTimeDays = Convert.ToInt32(rdr["TotalResponseTimeDays"]);
 
-                    if (rdr["count_"] != DBNull.Value)
-                        record.count_ = Convert.ToInt32(rdr["count_"]);
-                    if (rdr["rowNo"] != DBNull.Value)
-                        record.rowNo = Convert.ToInt64(rdr["rowNo"]);
+        //            if (rdr["count_"] != DBNull.Value)
+        //                record.count_ = Convert.ToInt32(rdr["count_"]);
+        //            if (rdr["rowNo"] != DBNull.Value)
+        //                record.rowNo = Convert.ToInt64(rdr["rowNo"]);
 
-                    if (record.ComplaintDate.ToString() == "1/1/1900 12:00:00 AM")
-                    {
-                        record.ComplaintDate = null;
-                    }
-                    data.Add(record);
+        //            if (record.ComplaintDate.ToString() == "1/1/1900 12:00:00 AM")
+        //            {
+        //                record.ComplaintDate = null;
+        //            }
+        //            data.Add(record);
 
-                }
-                //Close the datareader
-                rdr.Close();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Exception in DataQueries.GetReportData:" + ex.Message);
-            }
-            return data;
-        }
-
+        //        }
+        //        //Close the datareader
+        //        rdr.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception("Exception in DataQueries.GetReportData:" + ex.Message);
+        //    }
+        //    return data;
+        //}
+        #endregion
         #region [ If a SQL reserved word is entered in "Search Text", skip the word ]
         public static string kill_sqlBlacklistWord(string searchText)
         {
@@ -167,86 +188,86 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
         }
         #endregion
 
+        #region OLD GetComplianceReportData
+        //[HttpGet]
+        //public JsonResult GetComplianceReportData(string searchText, string reportType, string roleEntityValue, string hdnUserRole, int? page, int? pageSize)
+        //{
+        //    #region [[ Let us make sure we have correct information for Searching....]]
+        //    //Agency Name
+        //    roleEntityValue = RoleEntityValue;
+        //    //User Role
+        //    hdnUserRole = UserRoles.First();
+        //    #endregion
 
-        [HttpGet]
-        public JsonResult GetComplianceReportData(string searchText, string reportType, string roleEntityValue, string hdnUserRole, int? page, int? pageSize)
-        {
-            #region [[ Let us make sure we have correct information for Searching....]]
-            //Agency Name
-            roleEntityValue = RoleEntityValue;
-            //User Role
-            hdnUserRole = UserRoles.First();
-            #endregion
+        //    #region [ Retrieve "Sort" options ]
+        //    string sortField = HttpContext.Request.QueryString["sort[0][field]"];
+        //    string sortDir = HttpContext.Request.QueryString["sort[0][dir]"];
 
-            #region [ Retrieve "Sort" options ]
-            string sortField = HttpContext.Request.QueryString["sort[0][field]"];
-            string sortDir = HttpContext.Request.QueryString["sort[0][dir]"];
+        //    int _pageSize = (pageSize == null ? 10 : pageSize.Value);
+        //    int _pageNo = (page == null ? 1 : page.Value);
 
-            int _pageSize = (pageSize == null ? 10 : pageSize.Value);
-            int _pageNo = (page == null ? 1 : page.Value);
+        //    string _sortOptions = "";
+        //    if (!string.IsNullOrEmpty(sortField))
+        //        _sortOptions = sortField;
+        //    if (!string.IsNullOrEmpty(sortField) && !string.IsNullOrEmpty(sortDir))
+        //        _sortOptions = _sortOptions + " " + sortDir;
+        //    #endregion
 
-            string _sortOptions = "";
-            if (!string.IsNullOrEmpty(sortField))
-                _sortOptions = sortField;
-            if (!string.IsNullOrEmpty(sortField) && !string.IsNullOrEmpty(sortDir))
-                _sortOptions = _sortOptions + " " + sortDir;
-            #endregion
+        //    #region [[ For NCRA, RC, AAI, NCIP, ORIP, SFOA Report ]]
+        //    List<ComplianceReportResult_Ext> _list = new List<ComplianceReportResult_Ext>();
+        //    if (!string.IsNullOrEmpty(searchText))
+        //    {
+        //        searchText = kill_sqlBlacklistWord(searchText);
 
-            #region [[ For NCRA, RC, AAI, NCIP, ORIP, SFOA Report ]]
-            List<ComplianceReportResult_Ext> _list = new List<ComplianceReportResult_Ext>();
-            if (!string.IsNullOrEmpty(searchText))
-            {
-                searchText = kill_sqlBlacklistWord(searchText);
+        //        if (string.IsNullOrEmpty(_sortOptions))
+        //            _sortOptions = "ComplaintId";
 
-                if (string.IsNullOrEmpty(_sortOptions))
-                    _sortOptions = "ComplaintId";
+        //        string _where = "";
 
-                string _where = "";
+        //        if (!string.IsNullOrEmpty(searchText))
+        //        {
+        //            #region [ Split Search Text > string1, string2 & string3 and create "Where" statement ]
+        //            char[] delimiterChars = { ' ', ',', '.', ';', ':', '|', '\t' };
 
-                if (!string.IsNullOrEmpty(searchText))
-                {
-                    #region [ Split Search Text > string1, string2 & string3 and create "Where" statement ]
-                    char[] delimiterChars = { ' ', ',', '.', ';', ':', '|', '\t' };
+        //            string[] words = searchText.Split(delimiterChars);
 
-                    string[] words = searchText.Split(delimiterChars);
+        //            if (words.Count() > 0)
+        //            {
+        //                _where = string.Format("cm.ComPlaintId LIKE '%{0}%' OR act.LastName LIKE '%{0}%'", words[0]);
+        //                for (int i = 1; i < words.Length; i++)
+        //                {
+        //                    _where = _where + string.Format("OR cm.ComPlaintId LIKE '%{0}%' OR act.LastName LIKE '%{0}%'", words[i]);
+        //                }
+        //                _where = "and (" + _where + ")";
 
-                    if (words.Count() > 0)
-                    {
-                        _where = string.Format("cm.ComPlaintId LIKE '%{0}%' OR act.LastName LIKE '%{0}%'", words[0]);
-                        for (int i = 1; i < words.Length; i++)
-                        {
-                            _where = _where + string.Format("OR cm.ComPlaintId LIKE '%{0}%' OR act.LastName LIKE '%{0}%'", words[i]);
-                        }
-                        _where = "and (" + _where + ")";
+        //                if (string.IsNullOrEmpty(_sortOptions)) _sortOptions = "ComplaintId ASC";
+        //                _list = GetReportData(roleEntityValue, hdnUserRole, _where, _sortOptions, _pageSize, _pageNo, reportType);
+        //            }
+        //            #endregion
+        //        }
 
-                        if (string.IsNullOrEmpty(_sortOptions)) _sortOptions = "ComplaintId ASC";
-                        _list = GetReportData(roleEntityValue, hdnUserRole, _where, _sortOptions, _pageSize, _pageNo, reportType);
-                    }
-                    #endregion
-                }
-
-            }
-            else
-            {
-                //Coming here when SearchText is null
-                if (string.IsNullOrEmpty(_sortOptions)) _sortOptions = "ComplaintId ASC";
-                _list = GetReportData(roleEntityValue, hdnUserRole, "", _sortOptions, _pageSize, _pageNo, reportType);
-            }
-            #endregion
+        //    }
+        //    else
+        //    {
+        //        //Coming here when SearchText is null
+        //        if (string.IsNullOrEmpty(_sortOptions)) _sortOptions = "ComplaintId ASC";
+        //        _list = GetReportData(roleEntityValue, hdnUserRole, "", _sortOptions, _pageSize, _pageNo, reportType);
+        //    }
+        //    #endregion
 
 
-            //Now send back the Json Response
-            if (_list.Count() > 0)
-            {
-                return Json(new { success = true, __count = _list.FirstOrDefault().count_, results = _list.ToList() }, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return Json(new { success = true, __count = 0 }, JsonRequestBehavior.AllowGet);
-            }
+        //    //Now send back the Json Response
+        //    if (_list.Count() > 0)
+        //    {
+        //        return Json(new { success = true, __count = _list.FirstOrDefault().count_, results = _list.ToList() }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    else
+        //    {
+        //        return Json(new { success = true, __count = 0 }, JsonRequestBehavior.AllowGet);
+        //    }
 
-        }
-
+        //}
+        #endregion
         #region [[ SQL Statements for Reports ]]
         const string _sql_base_ReportQuery = @"SELECT  
 			cm.ComplaintId,
@@ -425,5 +446,126 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
         {
             return File(fileProcessor.GetFilePath(fileName), "text/plain", fileName.Split(new char[] { '_' })[1]);
         }
+
+        #region Private Functions/Methods
+
+        private string BuildWhereBasedOnSearchText(string searchText)
+        {
+            string where = "";
+
+            #region [[ For NCRA, RC, AAI, NCIP, ORIP, SFOA Report ]]
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                searchText = kill_sqlBlacklistWord(searchText);
+
+                if (!string.IsNullOrEmpty(searchText))
+                {
+                    #region [ Split Search Text > string1, string2 & string3 and create "Where" statement ]
+                    char[] delimiterChars = { ' ', ',', '.', ';', ':', '|', '\t' };
+
+                    string[] words = searchText.Split(delimiterChars);
+
+                    if (words.Count() > 0)
+                    {
+                        where = string.Format(" cm.ComplaintId LIKE '%{0}%' OR act.LastName LIKE '%{0}%'", words[0]);
+                        for (int i = 1; i < words.Length; i++)
+                        {
+                            where = where + string.Format(" OR cm.ComplaintId LIKE '%{0}%' OR act.LastName LIKE '%{0}%'", words[i]);
+                        }
+                        where = " and (" + where + ")";
+                    }
+                    #endregion
+                }
+
+            }
+            #endregion
+            return where;
+        }
+
+        private string BuildWhereClause(string reportType, string roleEntityValue, string hdnUserRole, string searchText)
+        {
+            string where = " WHERE cs.Value = '" + reportType + "'";
+
+            where = where + BuildWhereBasedOnSearchText(searchText);
+
+            return where;
+        }
+
+
+        private string BuildSortOptions(string sortField, string sortDir)
+        {
+            string _sortOptions = (!string.IsNullOrEmpty(sortField)) ? sortField : " ComplaintId";
+            _sortOptions = (!string.IsNullOrEmpty(sortField) && !string.IsNullOrEmpty(sortDir)) ? _sortOptions + " " + sortDir : _sortOptions + " ASC";
+
+            return _sortOptions;
+        }
+
+        private List<ComplianceReportResult_Ext> BuildReport(string where, string OrderBy, int pageSize, int pageNo)
+        {
+            DBFactory db;
+            SqlDataReader rdr;
+            List<ComplianceReportResult_Ext> data = null;
+
+            try
+            {
+                db = new DBFactory("CCATDBEntities");
+                rdr = db.ExecuteReader("sp_ReportSearch", new SqlParameter("@userId", UserId.ToString()), new SqlParameter("@where", where), new SqlParameter("@OrderBy", OrderBy), new SqlParameter("@pageSize", pageSize), new SqlParameter("@pageNo", pageNo));
+                data = new List<ComplianceReportResult_Ext>();
+                ComplianceReportResult_Ext record;
+                while (rdr.Read())
+                {
+                    record = new ComplianceReportResult_Ext();
+
+                    record.LastName = rdr["LastName"].ToString();
+                    record.FirstName = rdr["FirstName"].ToString();
+                    record.ComPlaintId = rdr["ComPlaintId"].ToString();
+                    record.LastFourSSN = rdr["LastFourSSN"].ToString();
+                    record.AccountNumber = rdr["Accountnumber"].ToString();
+
+                    if (rdr["AgencyId"] != DBNull.Value)
+                        record.AgencyId = rdr["AgencyId"].ToString();
+
+                    if (rdr["ComplaintIssue"] != DBNull.Value)
+                        record.ComplaintIssue = rdr["ComplaintIssue"].ToString();
+                    if (rdr["ComplaintDate"] != DBNull.Value)
+                        record.ComplaintDate = Convert.ToDateTime(rdr["ComplaintDate"]);
+                    if (rdr["ResolvedDate"] != DBNull.Value)
+                        record.ResolvedDate = Convert.ToDateTime(rdr["ResolvedDate"]);
+                    if (rdr["DateRequested"] != DBNull.Value)
+                        record.DateRequested = Convert.ToDateTime(rdr["DateRequested"]);
+                    if (rdr["DateSubmitted"] != DBNull.Value)
+                        record.DateSubmitted = Convert.ToDateTime(rdr["DateSubmitted"]);
+                    if (rdr["AgencyRequestDate"] != DBNull.Value)
+                        record.AgencyRequestDate = Convert.ToDateTime(rdr["AgencyRequestDate"]);
+                    if (rdr["OwnerResponseDate"] != DBNull.Value)
+                        record.OwnerResponseDate = Convert.ToDateTime(rdr["OwnerResponseDate"]);
+                    if (rdr["ResponseTimeDays"] != DBNull.Value)
+                        record.ResponseTimeDays = Convert.ToInt32(rdr["ResponseTimeDays"]);
+                    if (rdr["TotalResponseTimeDays"] != DBNull.Value)
+                        record.TotalResponseTimeDays = Convert.ToInt32(rdr["TotalResponseTimeDays"]);
+
+                    if (rdr["count_"] != DBNull.Value)
+                        record.count_ = Convert.ToInt32(rdr["count_"]);
+                    if (rdr["rowNo"] != DBNull.Value)
+                        record.rowNo = Convert.ToInt64(rdr["rowNo"]);
+
+                    if (record.ComplaintDate.ToString() == "1/1/1900 12:00:00 AM")
+                    {
+                        record.ComplaintDate = null;
+                    }
+                    data.Add(record);
+
+                }
+                //Close the datareader
+                rdr.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in DataQueries.GetReportData:" + ex.Message);
+            }
+            return data;
+        }
+
+        #endregion
     }
 }
