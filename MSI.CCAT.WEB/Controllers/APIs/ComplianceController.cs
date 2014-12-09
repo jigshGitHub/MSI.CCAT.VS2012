@@ -222,7 +222,6 @@ namespace Cascade.Web.Controllers
                 complaintToSave.FinalActionStepId = complaint.FinalActionStepId;
                 if (complaint.ComplaintSubmittedToOwnerYN.Value)
                     complaintToSave.IsViewedByOwner = false;
-                complaintToSave.CreatedBy = complaint.CreatedBy;
                 complaintToSave.IsViewedByAgency = complaint.IsViewedByAgency;
                 complaintToSave.IsActive = true;
                 complaintToSave.ComplaintStatusId = (int)GetComplaintStatus(role, complaint.AccountNumber, complaintToSave);
@@ -240,7 +239,6 @@ namespace Cascade.Web.Controllers
                     complaintToSave.UpdatedDateTime = DateTime.Now;
                     if (string.IsNullOrEmpty(complaintToSave.AgencyCollectorUserId.ToString()) && role == UserRole.AgencyCollector)
                         complaintToSave.AgencyCollectorUserId = complaint.UpdatedBy;
-                    uo.Save();
                 }
                 else
                 {
@@ -251,8 +249,8 @@ namespace Cascade.Web.Controllers
                     uo.Repository<Tbl_ComplaintMain>().Add(complaintToSave);
                     if (role == UserRole.AgencyCollector)
                         complaintToSave.AgencyCollectorUserId = complaint.CreatedBy;
-                    uo.Save();
                 }
+                uo.Save();
                 
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException validationException)
