@@ -45,6 +45,15 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
             return View("Report" + reportType, _pageInfo);
         }
 
+        public ActionResult FilteredComplaints()
+        {            
+            ViewBag.RoleEntityValue = RoleEntityValue;
+            ViewBag.UserRole = UserRoles.First();
+            pageInfo _pageInfo = new pageInfo() { title = "Filtered Complaints" };
+            _pageInfo.LayoutPage = "";
+            return View(_pageInfo);
+        }
+
         [HttpGet]
         public JsonResult GetComplianceReportData(string searchText, string reportType, string roleEntityValue, string hdnUserRole, int? page, int? pageSize)
         {

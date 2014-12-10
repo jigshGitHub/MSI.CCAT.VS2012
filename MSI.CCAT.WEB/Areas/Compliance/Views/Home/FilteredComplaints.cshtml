@@ -1,0 +1,205 @@
+﻿@using MSI.CCAT.WEB.Models
+@model MSI.CCAT.WEB.Models.pageInfo
+
+@{
+    ViewBag.Title = @Model.title;
+    Layout = null;
+}
+
+@Html.Hidden("reportType", "NCIP")
+@Html.Hidden("roleEntityValue", (string)(@ViewBag.RoleEntityValue))
+@Html.Hidden("hdnUserRole", (string)(@ViewBag.UserRole))
+
+
+<div id="workspaceContainer" class="container-fluid">
+    <div class="row-fluid">
+        <div class='page-title'>Filtered Complaints</div>
+    </div>
+    <br />
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="span2">
+                <select id="listManagers" data-bind="options: managers, optionsValue: 'Value', optionsCaption: 'Select Agency Manager(s)', optionsText: 'Text', selectedOptions: selectedManagers, visible:showManagerSelection,enable:enableCollectorsGet" multiple="multiple">
+                </select>
+            </div>
+            <div class="span10">
+                <select id="listCollectors" data-bind="options: collectors, optionsValue: 'Value', optionsCaption: 'Select Agency Collector(s)', optionsText: 'Text', selectedOptions: selectedCollectors, visible:showCollectorSelection" multiple="multiple">
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="span2">
+                <button id="btnGetCollectors" class="btn tip-right" type="button" data-bind="click:bindCollectors,visible:showManagerSelection,enable:enableCollectorsGet">Next</button>&nbsp;<div class="span6"><button id="btnReset" class="btn tip-right" type="button" data-bind="click:reset,visible:showReset">Reset</button>
+            </div>
+
+        </div>
+    </div>
+    <div class="row-fluid" style="margin-top: 10px">
+        <div id="bodyContainer">
+            <div id="filteredGrid" class="k-content"></div>
+        </div>
+    </div>
+</div>
+
+@* Key pressed at Searchbox -> Search Button Click *@
+<script>
+    function triggerSearch(e) {
+        var unicode = e.keyCode ? e.keyCode : e.charCode;
+        if (unicode == 13) {
+            $("#btnSearch").click();
+        }
+    }
+</script>
+<script src="~/Scripts/application.js" type="text/javascript"></script>
+
+
+<style type="text/css">
+    .k-grid999 tbody .k-button {
+        min-width: 12px;
+        width: 50px;
+        height: 25px;
+        vertical-align: middle;
+    }
+</style>
+
+<script>
+    var yesNoOptions = [{ Text: 'No', Value: 'false' }, { Text: 'Yes', Value: 'true' }];
+    var pageVm;
+    function pageViewModel(role) {
+        var self = this;
+        self.userRole = role;
+        self.get_gridDataSource = function (searchText) {
+            var dataSource = {
+                type: "json",
+                transport: {
+                    read: {
+                        url: baseUrl + "/Compliance/Home/GetComplianceReportData",
+                        dataType: "json",
+                        data: { searchText: searchText, reportType: $('#reportType').val(), roleEntityValue: $('#roleEntityValue').val(), hdnUserRole: $('#hdnUserRole').val() },
+                        cache: false //This is required othewise grid does not refresh after Edit operation in IE
+                    }
+                },
+                schema: {
+                    data: "results",
+                    total: "__count",
+                    model: {
+                        fields: {
+                            ComPlaintId: { type: 'string' },
+                            AccountNumber: { type: 'string' },
+                            LastName: { type: 'string' },
+                            FirstName: { type: 'string' },
+                            LastFourSSN: { type: 'string' },
+                            ComplaintDate: { type: "date" },
+                            ComplaintIssue: { type: 'string' }
+                        }
+                    }
+                },
+                pageSize: 10,
+                serverPaging: true,
+                serverFiltering: true,
+                serverSorting: true
+            };
+            return dataSource;
+        }
+        self.get_kendoGridData = function (searchText) {
+            var dataSource = self.get_gridDataSource(searchText)
+            var kendoGridData = {
+                dataSource: dataSource,
+                height: 480,
+                filterable: false,
+                sortable: true,
+                pageable: {
+                    refresh: true,
+                    pageSizes: true
+                },
+                resizable: true,
+                columnMenu: true,
+                scrollable: true,
+                navigatable: true,
+                selectable: true,
+                columns: [
+                    {
+                        command: [
+                                    { id: "edit", name: "edit", template: "<a class='k-button k-grid-edit editsa' title='View/Edit' style='min-width:16px;'><span class='k-icon k-edit'></span></a>" },
+                        ], title: " ", width: "20px"
+                    },
+                    { field: "ComPlaintId", title: "Complaint ID", width: "80px" },
+                    { field: "AccountNumber", title: "Account#", width: "80px" },
+                    { field: "LastName", title: "Last Name", width: "60px" },
+                    { field: "FirstName", title: "First Name", width: "60px" },
+                    { field: "LastFourSSN", title: "Last 4 SSN", width: "50px" },
+                    { field: "ComplaintDate", title: "Start Date", width: "60px", format: "{0:MM/dd/yy}" },
+                    { field: "ComplaintIssue", title: "Issue", width: "60px" }
+
+                ]
+            }
+            return kendoGridData;
+        }
+        self.bind_FilteredData = function () {
+            var kendoGridData = self.get_kendoGridData("");
+            console.log('Binding data');
+            $("#filteredGrid").kendoGrid(kendoGridData);
+        }
+
+        self.showManagerSelection = ko.computed(function () {
+            if (self.userRole == 'AgencyCompliance')
+                return true;
+            else
+                return false;
+        }, self);
+        self.managers = ko.observableArray();
+        self.selectedManagers = ko.observableArray();
+        self.enableCollectorsGet = ko.observable(true);
+
+        self.bindManagers = function () {
+            if (self.showManagerSelection()) {
+                $.getJSON(baseUrl + '/api/Compliance/GetManagers').done(function (response) {
+                    $.each(response, function (i, item) {
+                        self.managers.push(item);
+                    });
+                });
+            }
+        };
+
+
+        
+        self.collectors = ko.observableArray();
+        self.selectedCollectors = ko.observableArray();
+        self.showCollectorSelection = ko.computed(function () {
+            return (self.collectors().length > 0);
+        }, self);
+
+        self.bindCollectors = function () {
+            if (self.selectedManagers().length == 1 && self.selectedManagers()[0] == undefined) {
+                self.selectedManagers([]);
+                return;
+            }
+            self.enableCollectorsGet(false);
+            var managers = '';
+            $.each(self.selectedManagers(), function (i, item) {                
+                if(item != undefined)
+                    managers = managers + item + ',';
+            });
+            managers = managers.substring(0, managers.length - 1);
+            console.log(managers);
+        };
+
+        self.showReset = ko.computed(function () {
+            return (!self.enableCollectorsGet());
+        }, self);
+
+        self.reset = function () {
+            self.enableCollectorsGet(true);
+            self.selectedManagers([]);
+        };
+    }
+    $(document).ready(function () {
+        var userRole = $('#hdnUserRole').val();
+        pageVm = new pageViewModel(userRole);
+        ko.applyBindings(pageVm, $('#workspaceContainer')[0]);
+        pageVm.bindManagers();
+        //pageVm.bind_FilteredData();
+    });
+</script>

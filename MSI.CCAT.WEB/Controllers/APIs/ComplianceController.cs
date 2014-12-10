@@ -270,6 +270,34 @@ namespace Cascade.Web.Controllers
             return complaintToSave;
         }
 
+        public IEnumerable<LookUp> GetManagers()
+        {
+            UnitOfWork uo = new UnitOfWork("CCATDBEntities");
+            IEnumerable<LookUp> lookupData = from manager in uo.Repository<vw_aspnet_membership>().GetAll()
+                         where manager.RoleName == "AgencyManager"
+                         orderby manager.LastName ascending
+                         select new LookUp(manager.LastName + " " + manager.FirstName, manager.UserId.ToString());
+            return lookupData;
+        }
+        public IEnumerable<LookUp> GetCollectorsByManagers(string managerIds)
+        {
+            IEnumerable<LookUp> lookupData = null;
+            if (!string.IsNullOrEmpty(managerIds))
+            {
+                var managers = managerIds.Split(new char[] { ',' });
+                UnitOfWork uo = new UnitOfWork("CCATDBEntities");
+                var data = from collector in uo.Repository<vw_aspnet_membership>().GetAll()
+                             where collector.RoleName == "AgencyCollector"
+                             orderby collector.LastName ascending
+                             select new { LastName = collector.LastName , FirstName = collector.FirstName, UserId = collector.UserId.ToString(), ManagerId = collector.ManagerId.ToString()};
+                lookupData = (from r in data join filteredManager in managers on r.ManagerId equals filteredManager select new LookUp(r.LastName + " " + r.FirstName, r.UserId.ToString()));
+                
+            }
+            return lookupData;
+        }
+
+        #region Private Functions/Methods
+
         private void PopulateComplaintID(Tbl_ComplaintMain complaint)
         {
             if (string.IsNullOrEmpty(complaint.ComplaintId.ToString()))
@@ -555,6 +583,8 @@ namespace Cascade.Web.Controllers
             return complaintStatus;
 
         }
+
+        #endregion
     }
     public class DateHelper
     {
