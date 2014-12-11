@@ -19,11 +19,11 @@
     <div class="row-fluid">
         <div class="span12">
             <div class="span2">
-                <select id="listManagers" data-bind="options: managers, optionsValue: 'Value', optionsCaption: 'Select Agency Manager(s)', optionsText: 'Text', selectedOptions: selectedManagers, visible:showManagerSelection,enable:enableCollectorsGet" multiple="multiple">
+                <select id="listManagers" data-bind="options: managers, optionsValue: 'Value', optionsCaption: 'Select Agency Manager(s)', optionsText: 'Text', selectedOptions: selectedManagers, visible:showManagerSelection,enable:enableManagerSelection" multiple="multiple">
                 </select>
             </div>
             <div class="span10">
-                <select id="listCollectors" data-bind="options: collectors, optionsValue: 'Value', optionsCaption: 'Select Agency Collector(s)', optionsText: 'Text', selectedOptions: selectedCollectors, visible:showCollectorSelection" multiple="multiple">
+                <select id="listCollectors" data-bind="options: collectors, optionsValue: 'Value', optionsCaption: 'Select Agency Collector(s)', optionsText: 'Text', selectedOptions: selectedCollectors, visible:showCollectorSelection,enable:enableCollectorSelection" multiple="multiple">
                 </select>
             </div>
         </div>
@@ -31,7 +31,7 @@
     <div class="row-fluid">
         <div class="span12">
             <div class="span2">
-                <button id="btnGetCollectors" class="btnContainer" type="button" data-bind="click:bindCollectors,visible:showCollectorsGet,enable:enableCollectorsGet">Next</button>&nbsp;<button id="btnReset" class="btnContainer" type="button" data-bind="click:reset,visible:showReset">Reset</button>
+                <button id="btnGetCollectors" class="btnContainer" type="button" data-bind="click:bindCollectors,visible:showCollectorsGet,enable:enableManagerSelection">Next</button>&nbsp;<button id="btnReset" class="btnContainer" type="button" data-bind="click:reset,visible:showReset">Reset</button>
             </div>
             <div class="span10">
                 <button id="btnGetComplaints" class="btnContainer" type="button" data-bind="click:getComplaints,visible:showFinish">Finish</button>
@@ -142,7 +142,7 @@
         }
         self.bind_FilteredData = function (collectors) {
             var kendoGridData = self.get_kendoGridData('', collectors);
-            console.log('Binding data');
+            $("#filteredGrid").show();
             $("#filteredGrid").kendoGrid(kendoGridData);
         }
 
@@ -161,7 +161,7 @@
             else
                 return true;
         }, self);
-        self.enableCollectorsGet = ko.observable(true);
+        self.enableManagerSelection = ko.observable(true);
 
         self.bindManagers = function () {
             if (self.showManagerSelection()) {
@@ -180,13 +180,14 @@
         self.showCollectorSelection = ko.computed(function () {
             return (self.collectors().length > 0);
         }, self);
+        self.enableCollectorSelection = ko.observable(true);
 
         self.bindCollectors = function () {
             if (self.selectedManagers().length == 1 && self.selectedManagers()[0] == undefined) {
                 self.selectedManagers([]);
                 return;
             }
-            self.enableCollectorsGet(false);
+            self.enableManagerSelection(false);
             var managers = '';
             $.each(self.selectedManagers(), function (i, item) {                
                 if(item != undefined)
@@ -205,7 +206,7 @@
         };
 
         self.showReset = ko.computed(function () {
-            return (!self.enableCollectorsGet());
+            return (!self.enableManagerSelection());
         }, self);
 
         self.showFinish = ko.computed(function () {
@@ -217,10 +218,13 @@
         }, self);
 
         self.reset = function () {
-            self.enableCollectorsGet(true);
+            self.enableManagerSelection(true);
+            self.enableCollectorSelection(true);
             self.selectedManagers([]);
             self.collectors([]);
             self.selectedCollectors([]);
+            $("#filteredGrid").data("kendoGrid").dataSource.data([]);
+            $("#filteredGrid").hide();
         };
 
         self.getComplaints = function () {
@@ -232,6 +236,7 @@
             collectors = collectors.substring(0, collectors.length - 1);
             console.log(collectors);
             if (collectors.length > 0) {
+                //self.enableCollectorSelection(false);
                 pageVm.bind_FilteredData(collectors);
             }
         }
