@@ -560,6 +560,10 @@ namespace MSI.Data.Models
     {
         public string LastName;
         public string FirstName;
+        public string FullName;
+        public string AgentLastName;
+        public string AgentFirstName;
+        public string AgentFullName;
         public string AccountNumber;
         public string ComPlaintId;
         public string LastFourSSN;
@@ -571,6 +575,7 @@ namespace MSI.Data.Models
         public DateTime? DateSubmitted;
         public DateTime? AgencyRequestDate;
         public DateTime? OwnerResponseDate;
+        public DateTime? UpdatedDateTime;
         public int? ResponseTimeDays;
         public int? TotalResponseTimeDays;
         public int count_ { get; set; }

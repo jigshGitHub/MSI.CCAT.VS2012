@@ -74,6 +74,10 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
 
                     record.LastName = rdr["LastName"].ToString();
                     record.FirstName = rdr["FirstName"].ToString();
+                    record.FullName = rdr["LastName"].ToString() + " " + rdr["FirstName"].ToString();
+                    record.AgentLastName = rdr["AgentLastName"].ToString();
+                    record.AgentFirstName = rdr["AgentFirstName"].ToString();
+                    record.AgentFullName = rdr["AgentLastName"].ToString() + " " + rdr["AgentFirstName"].ToString();
                     record.ComPlaintId = rdr["ComPlaintId"].ToString();
                     record.LastFourSSN = rdr["LastFourSSN"].ToString();
                     record.AccountNumber = rdr["Accountnumber"].ToString();
@@ -95,6 +99,8 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
                         record.AgencyRequestDate = Convert.ToDateTime(rdr["AgencyRequestDate"]);
                     if (rdr["OwnerResponseDate"] != DBNull.Value)
                         record.OwnerResponseDate = Convert.ToDateTime(rdr["OwnerResponseDate"]);
+                    if (rdr["UpdatedDateTime"] != DBNull.Value)
+                        record.UpdatedDateTime = Convert.ToDateTime(rdr["UpdatedDateTime"]);
                     if (rdr["ResponseTimeDays"] != DBNull.Value)
                         record.ResponseTimeDays = Convert.ToInt32(rdr["ResponseTimeDays"]);
                     if (rdr["TotalResponseTimeDays"] != DBNull.Value)

@@ -33,47 +33,36 @@ BEGIN CATCH
                );
 END CATCH;
 
-
-DROP FUNCTION [dbo].[fn_GetTableSplitString]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[fn_GetTableSplitString]') AND type in (N'FN'))
+	DROP FUNCTION [dbo].[fn_GetTableSplitString]
 GO
-
 Create FUNCTION [dbo].[fn_GetTableSplitString](  
     @sInputList VARCHAR(MAX) -- List of delimited items  
 	,@sDelimiter CHAR(1)-- delimiter that separates items  
 ) RETURNS @List TABLE (item VARCHAR(100))  
   
 BEGIN  
-DECLARE @sItem VARCHAR(100)  
+	DECLARE @sItem VARCHAR(100)  
   
-WHILE CHARINDEX(@sDelimiter,@sInputList,0) <> 0  
- BEGIN  
- SELECT  
-  @sItem=RTRIM(LTRIM(SUBSTRING(@sInputList,1,CHARINDEX(@sDelimiter,@sInputList,0)-1))),  
-  @sInputList=RTRIM(LTRIM(SUBSTRING(@sInputList,CHARINDEX(@sDelimiter,@sInputList,0)+LEN(@sDelimiter),LEN(@sInputList))))  
+	WHILE CHARINDEX(@sDelimiter,@sInputList,0) <> 0  
+	 BEGIN  
+	 SELECT  
+	  @sItem=RTRIM(LTRIM(SUBSTRING(@sInputList,1,CHARINDEX(@sDelimiter,@sInputList,0)-1))),  
+	  @sInputList=RTRIM(LTRIM(SUBSTRING(@sInputList,CHARINDEX(@sDelimiter,@sInputList,0)+LEN(@sDelimiter),LEN(@sInputList))))  
    
- IF LEN(@sItem) > 0  
-  INSERT INTO @List SELECT @sItem  
- END  
+	 IF LEN(@sItem) > 0  
+	  INSERT INTO @List SELECT @sItem  
+	 END  
   
-IF LEN(@sInputList) > 0  
- INSERT INTO @List SELECT @sInputList -- Put the last item in  
-RETURN  
+	IF LEN(@sInputList) > 0  
+	 INSERT INTO @List SELECT @sInputList -- Put the last item in  
+	RETURN  
 END
 GO
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_FilteredReportSearch]') AND type in (N'P', N'PC'))
-
 DROP PROCEDURE [dbo].[sp_FilteredReportSearch]
 GO
-
-
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-
 
 Create Procedure [dbo].[sp_FilteredReportSearch] (@OrderBy VARCHAR(MAX),@pageSize INT,@pageNo INT, @managerUserIds VARCHAR(MAX)='', @collectorUserIds VARCHAR(MAX), @userId VARCHAR(100))
 AS
@@ -97,7 +86,7 @@ SELECT  @roleEntityValue = RoleEntityValue, @role = RoleName FROM [dbo].[vw_aspn
 SET @sql = 'SELECT  
 			cm.ComplaintId,
 			cm.AccountNumber,  
-			ISNULL (act.LastName,'''') as LastName, 
+			ISNULL(act.LastName,'''') as LastName, 
 			ISNULL(act.FirstName,'''') as FirstName,
 			ISNULL(act.LastFourSSN,'''') as LastFourSSN,
             -- Field no 28
@@ -111,12 +100,16 @@ SET @sql = 'SELECT
 			ci.Name as ComplaintIssue,
 			cm.TotalResponseTimeDays,0 as ResponseTimeDays,
 			ag.Name AS AgencyId,            
-			cm.OwnerResponseDate
+			cm.OwnerResponseDate,
+			ISNULL(m.LastName,'''') as AgentLastName, 
+			ISNULL(m.FirstName,'''') as AgentFirstName,
+			cm.UpdatedDateTime
 			FROM Tbl_ComplaintMain cm
 			INNER JOIN Tbl_Account act on act.AccountNumber = cm.AccountNumber
 			INNER JOIN Tbl_Agency ag on ag.AgencyId = act.AgencyId 
 			INNER JOIN Tbl_ComplaintIssues ci on ci.Id = cm.IssuesId
-			INNER JOIN Tbl_ComplaintStatus cs on cs.Id = cm.ComplaintStatusId';
+			INNER JOIN Tbl_ComplaintStatus cs on cs.Id = cm.ComplaintStatusId 
+			LEFT JOIN [vw_aspnet_membership] m on m.UserId = cm.AgencyCollectorUserId';
 
 SET @where = ' WHERE cs.Value <> ''RC'' AND ag.Name = ''' + @roleEntityValue + '''';
 
