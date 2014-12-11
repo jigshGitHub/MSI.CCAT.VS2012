@@ -55,12 +55,88 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
         }
 
         [HttpGet]
+        public JsonResult GetComplianceReportDataFiltered(string searchText, string managerIds, string collectorIds, int? page, int? pageSize)
+        {
+            DBFactory db;
+            SqlDataReader rdr;
+            List<ComplianceReportResult_Ext> data = null;
+            string sortOptions = BuildCommonReportSortOptions(HttpContext.Request.QueryString["sort[0][field]"], HttpContext.Request.QueryString["sort[0][dir]"]);
+            
+            try
+            {
+                db = new DBFactory("CCATDBEntities");
+                rdr = db.ExecuteReader("sp_FilteredReportSearch", new SqlParameter("@userId", UserId.ToString()), new SqlParameter("@collectorUserIds", collectorIds), new SqlParameter("@OrderBy", sortOptions), new SqlParameter("@pageSize", (pageSize.HasValue ? pageSize.Value : 10)), new SqlParameter("@pageNo", (page.HasValue ? page.Value : 1)));
+                data = new List<ComplianceReportResult_Ext>();
+                ComplianceReportResult_Ext record;
+                while (rdr.Read())
+                {
+                    record = new ComplianceReportResult_Ext();
+
+                    record.LastName = rdr["LastName"].ToString();
+                    record.FirstName = rdr["FirstName"].ToString();
+                    record.ComPlaintId = rdr["ComPlaintId"].ToString();
+                    record.LastFourSSN = rdr["LastFourSSN"].ToString();
+                    record.AccountNumber = rdr["Accountnumber"].ToString();
+
+                    if (rdr["AgencyId"] != DBNull.Value)
+                        record.AgencyId = rdr["AgencyId"].ToString();
+
+                    if (rdr["ComplaintIssue"] != DBNull.Value)
+                        record.ComplaintIssue = rdr["ComplaintIssue"].ToString();
+                    if (rdr["ComplaintDate"] != DBNull.Value)
+                        record.ComplaintDate = Convert.ToDateTime(rdr["ComplaintDate"]);
+                    if (rdr["ResolvedDate"] != DBNull.Value)
+                        record.ResolvedDate = Convert.ToDateTime(rdr["ResolvedDate"]);
+                    if (rdr["DateRequested"] != DBNull.Value)
+                        record.DateRequested = Convert.ToDateTime(rdr["DateRequested"]);
+                    if (rdr["DateSubmitted"] != DBNull.Value)
+                        record.DateSubmitted = Convert.ToDateTime(rdr["DateSubmitted"]);
+                    if (rdr["AgencyRequestDate"] != DBNull.Value)
+                        record.AgencyRequestDate = Convert.ToDateTime(rdr["AgencyRequestDate"]);
+                    if (rdr["OwnerResponseDate"] != DBNull.Value)
+                        record.OwnerResponseDate = Convert.ToDateTime(rdr["OwnerResponseDate"]);
+                    if (rdr["ResponseTimeDays"] != DBNull.Value)
+                        record.ResponseTimeDays = Convert.ToInt32(rdr["ResponseTimeDays"]);
+                    if (rdr["TotalResponseTimeDays"] != DBNull.Value)
+                        record.TotalResponseTimeDays = Convert.ToInt32(rdr["TotalResponseTimeDays"]);
+
+                    if (rdr["count_"] != DBNull.Value)
+                        record.count_ = Convert.ToInt32(rdr["count_"]);
+                    if (rdr["rowNo"] != DBNull.Value)
+                        record.rowNo = Convert.ToInt64(rdr["rowNo"]);
+
+                    if (record.ComplaintDate.ToString() == "1/1/1900 12:00:00 AM")
+                    {
+                        record.ComplaintDate = null;
+                    }
+                    data.Add(record);
+
+                }
+                //Close the datareader
+                rdr.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Exception in DataQueries.GetReportData:" + ex.Message);
+            }
+
+            if (data.Count() > 0)
+            {
+                return Json(new { success = true, __count = data.FirstOrDefault().count_, results = data.ToList() }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { success = true, __count = 0 }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpGet]
         public JsonResult GetComplianceReportData(string searchText, string reportType, string roleEntityValue, string hdnUserRole, int? page, int? pageSize)
         {
-            string sortOptions = BuildSortOptions(HttpContext.Request.QueryString["sort[0][field]"], HttpContext.Request.QueryString["sort[0][dir]"]);
-            string whereClause = BuildWhereClause(reportType, RoleEntityValue, UserRoles.First(), searchText);
+            string sortOptions = BuildCommonReportSortOptions(HttpContext.Request.QueryString["sort[0][field]"], HttpContext.Request.QueryString["sort[0][dir]"]);
+            string whereClause = BuildCommonReportWhereClause(reportType, RoleEntityValue, UserRoles.First(), searchText);
 
-            List<ComplianceReportResult_Ext> _list = BuildReport(whereClause, sortOptions, (pageSize.HasValue ? pageSize.Value : 10), (page.HasValue ? page.Value : 1));
+            List<ComplianceReportResult_Ext> _list = BuildCommonReport(whereClause, sortOptions, (pageSize.HasValue ? pageSize.Value : 10), (page.HasValue ? page.Value : 1));
 
 
             if (_list.Count() > 0)
@@ -491,7 +567,7 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
             return where;
         }
 
-        private string BuildWhereClause(string reportType, string roleEntityValue, string hdnUserRole, string searchText)
+        private string BuildCommonReportWhereClause(string reportType, string roleEntityValue, string hdnUserRole, string searchText)
         {
             string where = " WHERE cs.Value = '" + reportType + "'";
 
@@ -501,7 +577,7 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
         }
 
 
-        private string BuildSortOptions(string sortField, string sortDir)
+        private string BuildCommonReportSortOptions(string sortField, string sortDir)
         {
             string _sortOptions = (!string.IsNullOrEmpty(sortField)) ? sortField : " ComplaintId";
             _sortOptions = (!string.IsNullOrEmpty(sortField) && !string.IsNullOrEmpty(sortDir)) ? _sortOptions + " " + sortDir : _sortOptions + " ASC";
@@ -509,7 +585,7 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
             return _sortOptions;
         }
 
-        private List<ComplianceReportResult_Ext> BuildReport(string where, string OrderBy, int pageSize, int pageNo)
+        private List<ComplianceReportResult_Ext> BuildCommonReport(string where, string OrderBy, int pageSize, int pageNo)
         {
             DBFactory db;
             SqlDataReader rdr;

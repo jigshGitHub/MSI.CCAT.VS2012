@@ -35,13 +35,13 @@ update Tbl_ComplaintMain set ComplaintStatusId = 4 where ComplaintId = 'MSI-555-
 --delete from Tbl_ComplaintMain where AccountNumber = '10458503' and ComplaintId like 'MSI-132%'
 
 select * from [dbo].[vw_aspnet_membership] where username in('cheryl.prince','hugh.nichols','john.ac','tom.ac','john.dow','msi.agencymanager','john.am')--'msi.agencyuser','msi.owneruser'
---SELECT cm.agencyCollectoruserid,  act.OwnerId,cs.Value,cs.Id,cs.Value,cm.ownerresponsedate, cm.ComplaintStatusId,cm.ComplaintId, cm.AccountNumber,  ISNULL (act.LastName,'''') as LastName, ISNULL(act.FirstName,'''') as FirstName, ISNULL(act.LastFourSSN,'''') as LastFourSSN, CONVERT(varchar(20),cm.ComplaintDate,101) as ComplaintDate, CONVERT(varchar(20),cm.MoreInfoRequestedDate,101) as DateRequested, CONVERT(varchar(20),cm.ComplaintSubmittedDate,101) as DateSubmitted, CONVERT(varchar(20),cm.MoreInfoFromAgencyRequestedDate,101) as AgencyRequestDate, CONVERT(varchar(20),cm.AgencyResponseToDebtorDate,101) as ResolvedDate, ci.Name as ComplaintIssue, cm.TotalResponseTimeDays,0 as ResponseTimeDays, ag.Name AS AgencyId
---FROM Tbl_ComplaintMain cm
---INNER JOIN Tbl_Account act on act.AccountNumber = cm.AccountNumber
---INNER JOIN Tbl_Agency ag on ag.AgencyId = act.AgencyId 
---INNER JOIN Tbl_ComplaintIssues ci on ci.Id = cm.IssuesId
---INNER JOIN Tbl_ComplaintStatus cs on cs.Id = cm.ComplaintStatusId
---WHERE cm.accountnumber = '10019132'-- cs.Value = 'NCRA' and act.OwnerId = 32
+SELECT cm.agencyCollectoruserid,  act.OwnerId,cs.Value,cs.Id,cs.Value,cm.ownerresponsedate, cm.ComplaintStatusId,cm.ComplaintId, cm.AccountNumber,  ISNULL (act.LastName,'''') as LastName, ISNULL(act.FirstName,'''') as FirstName, ISNULL(act.LastFourSSN,'''') as LastFourSSN, CONVERT(varchar(20),cm.ComplaintDate,101) as ComplaintDate, CONVERT(varchar(20),cm.MoreInfoRequestedDate,101) as DateRequested, CONVERT(varchar(20),cm.ComplaintSubmittedDate,101) as DateSubmitted, CONVERT(varchar(20),cm.MoreInfoFromAgencyRequestedDate,101) as AgencyRequestDate, CONVERT(varchar(20),cm.AgencyResponseToDebtorDate,101) as ResolvedDate, ci.Name as ComplaintIssue, cm.TotalResponseTimeDays,0 as ResponseTimeDays, ag.Name AS AgencyId
+FROM Tbl_ComplaintMain cm
+INNER JOIN Tbl_Account act on act.AccountNumber = cm.AccountNumber
+INNER JOIN Tbl_Agency ag on ag.AgencyId = act.AgencyId 
+INNER JOIN Tbl_ComplaintIssues ci on ci.Id = cm.IssuesId
+INNER JOIN Tbl_ComplaintStatus cs on cs.Id = cm.ComplaintStatusId
+WHERE cm.accountnumber = '10012184'-- cs.Value = 'NCRA' and act.OwnerId = 32
 
 SELECT  
 			v.RoleName,
@@ -74,6 +74,10 @@ SELECT
 select * from aspnet_membership where userid in ('273381B3-5B4F-4BEF-BA38-2C958A429F23','13B9E4F6-E651-424C-9C45-F3EC720C6E40')
 
 --update aspnet_membership set password = 'Y9RdDQZTsjr4H/xWSc8NEPge4Ew=' , passwordsalt = 'QIwACtnWsRwpb0UXpAPtiw==' where userid in ('450AFCD9-7A03-495F-A83A-5160950A61EA','FC44B518-61A1-4A44-8593-124BCFCB0132','20D06581-E16C-4229-933E-D60FA514D809')
---delete from Tbl_ComplaintMain where accountnumber = '10019132'
+--delete from Tbl_ComplaintMain where accountnumber = '10012184'
 ----update Tbl_ComplaintMain set complaintdate = '12/01/2014' where accountnumber = '10019132'
 ----update Tbl_ComplaintMain set complaintstatusid = 2 where accountnumber = '10019132'
+
+
+select * from [dbo].[vw_aspnet_membership] where RoleName IN ('AgencyCollector','AgencyManager')
+select * from [dbo].[vw_aspnet_membership] where ManagerId In ('20D06581-E16C-4229-933E-D60FA514D809','6E3419BE-69C6-4114-B237-803AF84AA73E')

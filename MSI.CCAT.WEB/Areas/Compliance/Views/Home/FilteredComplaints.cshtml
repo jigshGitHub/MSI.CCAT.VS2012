@@ -31,7 +31,10 @@
     <div class="row-fluid">
         <div class="span12">
             <div class="span2">
-                <button id="btnGetCollectors" class="btn tip-right" type="button" data-bind="click:bindCollectors,visible:showManagerSelection,enable:enableCollectorsGet">Next</button>&nbsp;<div class="span6"><button id="btnReset" class="btn tip-right" type="button" data-bind="click:reset,visible:showReset">Reset</button>
+                <button id="btnGetCollectors" class="btnContainer" type="button" data-bind="click:bindCollectors,visible:showCollectorsGet,enable:enableCollectorsGet">Next</button>&nbsp;<button id="btnReset" class="btnContainer" type="button" data-bind="click:reset,visible:showReset">Reset</button>
+            </div>
+            <div class="span10">
+                <button id="btnGetComplaints" class="btnContainer" type="button" data-bind="click:getComplaints,visible:showFinish">Finish</button>
             </div>
 
         </div>
@@ -70,14 +73,14 @@
     function pageViewModel(role) {
         var self = this;
         self.userRole = role;
-        self.get_gridDataSource = function (searchText) {
+        self.get_gridDataSource = function (searchText, collectorIds) {
             var dataSource = {
                 type: "json",
                 transport: {
                     read: {
-                        url: baseUrl + "/Compliance/Home/GetComplianceReportData",
+                        url: baseUrl + "/Compliance/Home/GetComplianceReportDataFiltered",
                         dataType: "json",
-                        data: { searchText: searchText, reportType: $('#reportType').val(), roleEntityValue: $('#roleEntityValue').val(), hdnUserRole: $('#hdnUserRole').val() },
+                        data: { searchText: searchText, collectorIds: collectorIds },
                         cache: false //This is required othewise grid does not refresh after Edit operation in IE
                     }
                 },
@@ -103,8 +106,8 @@
             };
             return dataSource;
         }
-        self.get_kendoGridData = function (searchText) {
-            var dataSource = self.get_gridDataSource(searchText)
+        self.get_kendoGridData = function (searchText, collectorIds) {
+            var dataSource = self.get_gridDataSource(searchText, collectorIds)
             var kendoGridData = {
                 dataSource: dataSource,
                 height: 480,
@@ -137,8 +140,8 @@
             }
             return kendoGridData;
         }
-        self.bind_FilteredData = function () {
-            var kendoGridData = self.get_kendoGridData("");
+        self.bind_FilteredData = function (collectors) {
+            var kendoGridData = self.get_kendoGridData('', collectors);
             console.log('Binding data');
             $("#filteredGrid").kendoGrid(kendoGridData);
         }
@@ -151,6 +154,13 @@
         }, self);
         self.managers = ko.observableArray();
         self.selectedManagers = ko.observableArray();
+        self.showCollectorsGet = ko.computed(function () {
+            if ((self.selectedManagers().length == 1 && self.selectedManagers()[0] == undefined) || self.selectedManagers().length == 0) {
+                return false;
+            }
+            else
+                return true;
+        }, self);
         self.enableCollectorsGet = ko.observable(true);
 
         self.bindManagers = function () {
@@ -184,16 +194,47 @@
             });
             managers = managers.substring(0, managers.length - 1);
             console.log(managers);
+            if (managers.length > 0) {
+                $.getJSON(baseUrl + '/api/Compliance/GetCollectorsByManagers?managerIds=' + managers).done(function (response) {
+                    //console.log(response);
+                    $.each(response, function (i, item) {
+                        self.collectors.push(item);
+                    });
+                });
+            }
         };
 
         self.showReset = ko.computed(function () {
             return (!self.enableCollectorsGet());
         }, self);
 
+        self.showFinish = ko.computed(function () {
+            if ((self.selectedCollectors().length == 1 && self.selectedCollectors()[0] == undefined) || self.selectedCollectors().length == 0) {
+                return false;
+            }
+            else
+                return true;
+        }, self);
+
         self.reset = function () {
             self.enableCollectorsGet(true);
             self.selectedManagers([]);
+            self.collectors([]);
+            self.selectedCollectors([]);
         };
+
+        self.getComplaints = function () {
+            var collectors = '';
+            $.each(self.selectedCollectors(), function (i, item) {
+                if(item != undefined)
+                    collectors = collectors + item + ',';
+            });
+            collectors = collectors.substring(0, collectors.length - 1);
+            console.log(collectors);
+            if (collectors.length > 0) {
+                pageVm.bind_FilteredData(collectors);
+            }
+        }
     }
     $(document).ready(function () {
         var userRole = $('#hdnUserRole').val();
