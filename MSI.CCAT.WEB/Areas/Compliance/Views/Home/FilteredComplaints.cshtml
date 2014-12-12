@@ -9,6 +9,7 @@
 @Html.Hidden("reportType", "NCIP")
 @Html.Hidden("roleEntityValue", (string)(@ViewBag.RoleEntityValue))
 @Html.Hidden("hdnUserRole", (string)(@ViewBag.UserRole))
+@Html.Hidden("hdnUserId",(string)(@ViewBag.UserId))
 
 
 <div id="workspaceContainer" class="container-fluid">
@@ -26,17 +27,6 @@
                 <select id="listCollectors" data-bind="options: collectors, optionsValue: 'Value', optionsCaption: 'Select Agency Collector(s)', optionsText: 'Text', selectedOptions: selectedCollectors, visible:showCollectorSelection,enable:enableCollectorSelection" multiple="multiple">
                 </select>
             </div>
-        </div>
-    </div>
-    <div class="row-fluid">
-        <div class="span12">
-            <div class="span2">
-                <button id="btnGetCollectors" class="btnContainer" type="button" data-bind="click:bindCollectors,visible:showCollectorsGet,enable:enableManagerSelection">Next</button>&nbsp;<button id="btnReset" class="btnContainer" type="button" data-bind="click:reset,visible:showReset">Reset</button>
-            </div>
-            <div class="span10">
-                <button id="btnGetComplaints" class="btnContainer" type="button" data-bind="click:getComplaints,visible:showFinish">Finish</button>
-            </div>
-
         </div>
     </div>
     <div class="row-fluid" style="margin-top: 10px">
@@ -70,9 +60,10 @@
 <script>
     var yesNoOptions = [{ Text: 'No', Value: 'false' }, { Text: 'Yes', Value: 'true' }];
     var pageVm;
-    function pageViewModel(role) {
+    function pageViewModel(role, userId) {
         var self = this;
         self.userRole = role;
+        self.userId = userId;
         self.get_gridDataSource = function (searchText, collectorIds) {
             var dataSource = {
                 type: "json",
@@ -158,78 +149,83 @@
         }, self);
         self.managers = ko.observableArray();
         self.selectedManagers = ko.observableArray();
-        self.showCollectorsGet = ko.computed(function () {
-            if ((self.selectedManagers().length == 1 && self.selectedManagers()[0] == undefined) || self.selectedManagers().length == 0) {
-                return false;
-            }
-            else
-                return true;
+        self.enableManagerSelection = ko.observable(true);        
+        self.noMangerSelected = ko.computed(function () {
+            return (self.selectedManagers().length == 1 && self.selectedManagers()[0] == undefined);
         }, self);
-        self.enableManagerSelection = ko.observable(true);
-
-        self.bindManagers = function () {
-            if (self.showManagerSelection()) {
-                $.getJSON(baseUrl + '/api/Compliance/GetManagers').done(function (response) {
-                    $.each(response, function (i, item) {
-                        self.managers.push(item);
-                    });
+        self.selectedManagers.subscribe(function () {
+            console.log(self.selectedManagers()[0]);
+            self.collectors([]);
+            self.resetGrid();
+            if (!self.noMangerSelected()) {
+                var managers = '';
+                $.each(self.selectedManagers(), function (i, item) {
+                    if (item != undefined)
+                        managers = managers + item + ',';
                 });
+                managers = managers.substring(0, managers.length - 1);
+                console.log(managers);
+                if (managers.length > 0) {
+                    self.bindCollectors(managers);
+                }
+            }
+        });
+        self.retrieveManagers = function () {
+            if (self.showManagerSelection()) {
+                self.bindManagers();
+            }
+            if (self.userRole == 'AgencyManager') {
+                self.selectedManagers.push(self.userId );
             }
         };
-
-
-        
+        self.bindManagers = function () {
+            $.getJSON(baseUrl + '/api/Compliance/GetManagers').done(function (response) {
+                $.each(response, function (i, item) {
+                    self.managers.push(item);
+                });
+            });
+        };
+                
         self.collectors = ko.observableArray();
         self.selectedCollectors = ko.observableArray();
         self.showCollectorSelection = ko.computed(function () {
             return (self.collectors().length > 0);
         }, self);
-        self.enableCollectorSelection = ko.observable(true);
-
-        self.bindCollectors = function () {
-            if (self.selectedManagers().length == 1 && self.selectedManagers()[0] == undefined) {
-                self.selectedManagers([]);
+        self.noCollectorSelected = ko.computed(function () {
+            return (self.selectedCollectors().length == 1 && self.selectedCollectors()[0] == undefined);
+        }, self);
+        self.selectedCollectors.subscribe(function () {
+            if (!self.noCollectorSelected()) {
+                var collectors = '';
+                $.each(self.selectedCollectors(), function (i, item) {
+                    if (item != undefined)
+                        collectors = collectors + item + ',';
+                });
+                collectors = collectors.substring(0, collectors.length - 1);
+                console.log(collectors);
+                if (collectors.length > 0) {
+                    pageVm.bind_FilteredData(collectors);
+                }
                 return;
             }
-            self.enableManagerSelection(false);
-            var managers = '';
-            $.each(self.selectedManagers(), function (i, item) {                
-                if(item != undefined)
-                    managers = managers + item + ',';
-            });
-            managers = managers.substring(0, managers.length - 1);
-            console.log(managers);
-            if (managers.length > 0) {
-                $.getJSON(baseUrl + '/api/Compliance/GetCollectorsByManagers?managerIds=' + managers).done(function (response) {
-                    //console.log(response);
-                    $.each(response, function (i, item) {
-                        self.collectors.push(item);
-                    });
+            self.resetGrid();
+        });
+
+        self.enableCollectorSelection = ko.observable(true);
+
+        self.bindCollectors = function (managers) {
+            $.getJSON(baseUrl + '/api/Compliance/GetCollectorsByManagers?managerIds=' + managers).done(function (response) {
+                $.each(response, function (i, item) {
+                    self.collectors.push(item);
                 });
-            }
+            });
         };
-
-        self.showReset = ko.computed(function () {
-            return (!self.enableManagerSelection());
-        }, self);
-
-        self.showFinish = ko.computed(function () {
-            if ((self.selectedCollectors().length == 1 && self.selectedCollectors()[0] == undefined) || self.selectedCollectors().length == 0) {
-                return false;
+        self.resetGrid = function () {
+            if ($("#filteredGrid").data("kendoGrid") != undefined) {
+                $("#filteredGrid").data("kendoGrid").dataSource.data([]);
+                $("#filteredGrid").hide();
             }
-            else
-                return true;
-        }, self);
-
-        self.reset = function () {
-            self.enableManagerSelection(true);
-            self.enableCollectorSelection(true);
-            self.selectedManagers([]);
-            self.collectors([]);
-            self.selectedCollectors([]);
-            $("#filteredGrid").data("kendoGrid").dataSource.data([]);
-            $("#filteredGrid").hide();
-        };
+        }
 
         self.getComplaints = function () {
             var collectors = '';
@@ -247,9 +243,10 @@
     }
     $(document).ready(function () {
         var userRole = $('#hdnUserRole').val();
-        pageVm = new pageViewModel(userRole);
+        var userId = $('#hdnUserId').val();
+        pageVm = new pageViewModel(userRole, userId);
         ko.applyBindings(pageVm, $('#workspaceContainer')[0]);
-        pageVm.bindManagers();
+        pageVm.retrieveManagers();
         //pageVm.bind_FilteredData();
     });
 </script>

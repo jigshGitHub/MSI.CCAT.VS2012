@@ -49,6 +49,7 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
         {            
             ViewBag.RoleEntityValue = RoleEntityValue;
             ViewBag.UserRole = UserRoles.First();
+            ViewBag.UserId = UserId.ToString();
             pageInfo _pageInfo = new pageInfo() { title = "Filtered Complaints" };
             _pageInfo.LayoutPage = "";
             return View(_pageInfo);
