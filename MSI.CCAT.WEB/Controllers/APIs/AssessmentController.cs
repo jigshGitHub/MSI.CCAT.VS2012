@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using MSI.CCAT.Business;
 using MSI.CCAT.Business.BusinessModels;
-namespace MSI.CCAT.API.Controllers
+namespace MSI.CCAT.WEB.Controllers.APIs
 {
     public class AssessmentController : ApiController
     {

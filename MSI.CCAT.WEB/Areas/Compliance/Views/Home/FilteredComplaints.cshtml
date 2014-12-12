@@ -179,7 +179,7 @@
             }
         };
         self.bindManagers = function () {
-            $.getJSON(baseUrl + '/api/Compliance/GetManagers').done(function (response) {
+            $.getJSON(baseUrl + '/api/Membership/GetManagers').done(function (response) {
                 $.each(response, function (i, item) {
                     self.managers.push(item);
                 });
@@ -214,7 +214,7 @@
         self.enableCollectorSelection = ko.observable(true);
 
         self.bindCollectors = function (managers) {
-            $.getJSON(baseUrl + '/api/Compliance/GetCollectorsByManagers?managerIds=' + managers).done(function (response) {
+            $.getJSON(baseUrl + '/api/Membership/GetCollectorsByManagers?managerIds=' + managers).done(function (response) {
                 $.each(response, function (i, item) {
                     self.collectors.push(item);
                 });

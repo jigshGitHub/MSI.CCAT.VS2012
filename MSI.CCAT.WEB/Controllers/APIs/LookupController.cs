@@ -8,7 +8,7 @@ using Cascade.Data.Models;
 using Cascade.Data.Repositories;
 using MSI.CCAT.Data.Models;
 using MSI.CCAT.Data.Repositories;
-namespace Cascade.Web.Controllers
+namespace MSI.CCAT.WEB.Controllers.APIs
 {
     public class LookupController : ApiController
     {

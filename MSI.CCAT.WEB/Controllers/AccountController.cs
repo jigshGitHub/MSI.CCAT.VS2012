@@ -286,21 +286,21 @@ namespace MSI.CCAT.WEB.Controllers
 
         }
 
-        public ActionResult GetAllAgencyManagersUsers()
-        {
-            try
-            {
-                IUnitOfWork uo = new MSI.CCAT.Data.Repositories.UnitOfWork("CCATDBEntities");
-                var data = from m in uo.Repository<vw_aspnet_membership>().GetAll().Where(userRecord => userRecord.RoleName == "AgencyManager")
-                           select new LookUp( m.LastName + ", " + m.FirstName, m.UserId.ToString());
-                return Json(data, JsonRequestBehavior.AllowGet); ;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+        //public ActionResult GetAllAgencyManagersUsers()
+        //{
+        //    try
+        //    {
+        //        IUnitOfWork uo = new MSI.CCAT.Data.Repositories.UnitOfWork("CCATDBEntities");
+        //        var data = from m in uo.Repository<vw_aspnet_membership>().GetAll().Where(userRecord => userRecord.RoleName == "AgencyManager")
+        //                   select new LookUp( m.LastName + ", " + m.FirstName, m.UserId.ToString());
+        //        return Json(data, JsonRequestBehavior.AllowGet); ;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
 
-        }
+        //}
 
         [HttpPost]
         public void UpdateUser(string userId, string firstName, string lastName, string email, string role, string roleEntityValue, string agencyManager ="")

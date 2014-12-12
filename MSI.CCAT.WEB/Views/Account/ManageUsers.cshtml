@@ -319,31 +319,7 @@
             if (roleSelected == 'CollectionAgency' || roleSelected == 'AgencyCollector' || roleSelected == 'AgencyManager' || roleSelected == 'AgencyCompliance') {
                 self.roleKeyTitle('Collection Agency');
                 if (roleSelected == 'AgencyCollector' || roleSelected == 'AgencyManager' || roleSelected == 'AgencyCompliance') {
-                    self.agencySelected('DCI');
-                    if (roleSelected == 'AgencyCollector' && self.agencyManagers().length == 0) {
-                        $.ajax({
-                            url: baseUrl + '/Account/GetAllAgencyManagersUsers/',
-                            type: 'GET',
-                            contentType: 'application/json',
-                            dataType: 'json',
-                            async: false,
-                            success: function (data) {
-                                //log(data.length);
-                                if (data.length > 0) {
-                                    self.agencyManagers.push({Text:'Select...', Value:''});
-                                    $.each(data, function (i, item) {
-                                        log(item);
-                                        self.agencyManagers.push(item);
-                                    });
-                                    log('agencyManagers loaded...');
-                                    self.agencyManagerSelected('');
-                                }
-                            },
-                            error: function (xhr, status, somthing) {
-                                log(status);
-                            }
-                        });
-                    }
+                    self.agencySelected('DCI');                    
                 }
                 self.makeAgenciesVisible(true);
             }
@@ -364,6 +340,36 @@
                 self.makeAgenciesVisible(false);
             }
         }.bind(self));
+        self.agencySelected.subscribe(function (agency) {
+            self.agencyManagers([]);
+            if (self.role() == 'AgencyCollector' && self.agencyManagers().length == 0) {
+                self.bindAgencyManagers(agency);
+            }
+        });
+        self.bindAgencyManagers = function (agency) {
+            $.ajax({
+                url: baseUrl + '/api/Membership/GetManagers?roleEntityValue=' + agency,
+                type: 'GET',
+                contentType: 'application/json',
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    //log(data.length);
+                    if (data.length > 0) {
+                        self.agencyManagers.push({ Text: 'Select...', Value: '' });
+                        $.each(data, function (i, item) {
+                            log(item);
+                            self.agencyManagers.push(item);
+                        });
+                        log('agencyManagers loaded...');
+                        self.agencyManagerSelected('');
+                    }
+                },
+                error: function (xhr, status, somthing) {
+                    log(status);
+                }
+            });
+        }
 
         self.save = function () {
             var roleEntityValue;
