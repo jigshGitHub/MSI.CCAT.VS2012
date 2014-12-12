@@ -34,7 +34,7 @@ update Tbl_ComplaintMain set ComplaintStatusId = 4 where ComplaintId = 'MSI-555-
 
 --delete from Tbl_ComplaintMain where AccountNumber = '10458503' and ComplaintId like 'MSI-132%'
 
-select * from [dbo].[vw_aspnet_membership] where username in('cheryl.prince','hugh.nichols','john.ac','tom.ac','john.dow','msi.agencymanager','john.am')--'msi.agencyuser','msi.owneruser'
+select * from [dbo].[vw_aspnet_membership] where username in('jc.agComp','cheryl.prince','hugh.nichols','john.ac','tom.ac','john.dow','msi.agencymanager','john.am')--'msi.agencyuser','msi.owneruser'
 SELECT cm.agencyCollectoruserid,  act.OwnerId,cs.Value,cs.Id,cs.Value,cm.ownerresponsedate, cm.ComplaintStatusId,cm.ComplaintId, u.userName,cm.AccountNumber,  ISNULL (act.LastName,'''') as LastName, ISNULL(act.FirstName,'''') as FirstName, ISNULL(act.LastFourSSN,'''') as LastFourSSN, CONVERT(varchar(20),cm.ComplaintDate,101) as ComplaintDate, CONVERT(varchar(20),cm.MoreInfoRequestedDate,101) as DateRequested, CONVERT(varchar(20),cm.ComplaintSubmittedDate,101) as DateSubmitted, CONVERT(varchar(20),cm.MoreInfoFromAgencyRequestedDate,101) as AgencyRequestDate, CONVERT(varchar(20),cm.AgencyResponseToDebtorDate,101) as ResolvedDate, ci.Name as ComplaintIssue, cm.TotalResponseTimeDays,0 as ResponseTimeDays, ag.Name AS AgencyId
 FROM Tbl_ComplaintMain cm
 INNER JOIN Tbl_Account act on act.AccountNumber = cm.AccountNumber
@@ -78,33 +78,16 @@ select * from aspnet_membership where userid in ('273381B3-5B4F-4BEF-BA38-2C958A
 --delete from Tbl_ComplaintMain where accountnumber = '10012184'
 ----update Tbl_ComplaintMain set complaintdate = '12/01/2014' where accountnumber = '10019132'
 ----update Tbl_ComplaintMain set complaintstatusid = 2 where accountnumber = '10019132'
+select * from aspnet_Profile where userid='46F37B76-8C34-4E21-B896-413E50933FB6'
+--update aspnet_Profile set PropertyValuesString = 'MSImsiagClr' where userid='46F37B76-8C34-4E21-B896-413E50933FB6'
 
-
-select * from [dbo].[vw_aspnet_membership] where RoleName IN ('AgencyCollector')--AgencyManager'),'')
+select * from [dbo].[vw_aspnet_membership] where RoleName IN ('AgencyManager','AgencyCollector','AgencyCompliance') and RoleEntityValue = 'DCI'
 select * from [dbo].[vw_aspnet_membership] where ManagerId In ('20D06581-E16C-4229-933E-D60FA514D809','6E3419BE-69C6-4114-B237-803AF84AA73E')
 
 --EXEC [sp_FilteredReportSearch] 'ComplaintID ASC',10,1,'','FC44B518-61A1-4A44-8593-124BCFCB0132,450AFCD9-7A03-495F-A83A-5160950A61EA','5B0036B0-245B-4C55-90E4-37EB123771F3'
 
-SELECT  
-			cm.ComplaintId,
-			cm.AccountNumber,  
-			ISNULL (act.LastName,'') as LastName, 
-			ISNULL(act.FirstName,'') as FirstName,
-			ISNULL(act.LastFourSSN,'') as LastFourSSN,
-            -- Field no 28
-			CONVERT(varchar(20),cm.ComplaintDate,101) as ComplaintDate,
-            -- Field no 36
-			CONVERT(varchar(20),cm.MoreInfoRequestedDate,101) as DateRequested,
-            -- Field no 42
-			CONVERT(varchar(20),cm.ComplaintSubmittedDate,101) as DateSubmitted,
-			CONVERT(varchar(20),cm.MoreInfoFromAgencyRequestedDate,101) as AgencyRequestDate,
-			CONVERT(varchar(20),cm.AgencyResponseToDebtorDate,101) as ResolvedDate,
-			ci.Name as ComplaintIssue,
-			cm.TotalResponseTimeDays,0 as ResponseTimeDays,
-			ag.Name AS AgencyId,            
-			cm.OwnerResponseDate
-			FROM Tbl_ComplaintMain cm
-			INNER JOIN Tbl_Account act on act.AccountNumber = cm.AccountNumber
-			INNER JOIN Tbl_Agency ag on ag.AgencyId = act.AgencyId 
-			INNER JOIN Tbl_ComplaintIssues ci on ci.Id = cm.IssuesId
-			INNER JOIN Tbl_ComplaintStatus cs on cs.Id = cm.ComplaintStatusId WHERE cs.Value <> 'RC' AND ag.Name = 'DCI' AND (cm.CreatedBy IN (SELECT * FROM dbo.[fn_GetTableSplitString]('FC44B518-61A1-4A44-8593-124BCFCB0132,450AFCD9-7A03-495F-A83A-5160950A61EA',',')))
+
+--delete from aspnet_profile where userId in ('46F37B76-8C34-4E21-B896-413E50933FB6','26334469-2BFC-4124-9D02-86B86CC1FAA2','3DD66290-6835-4FDA-A6D3-DBC3D8B1E95F');
+--delete from aspnet_UsersInRoles where userId in ('46F37B76-8C34-4E21-B896-413E50933FB6','26334469-2BFC-4124-9D02-86B86CC1FAA2','3DD66290-6835-4FDA-A6D3-DBC3D8B1E95F');
+--delete from aspnet_users where userId in ('46F37B76-8C34-4E21-B896-413E50933FB6','26334469-2BFC-4124-9D02-86B86CC1FAA2','3DD66290-6835-4FDA-A6D3-DBC3D8B1E95F');
+--delete from aspnet_Membership where userId in ('46F37B76-8C34-4E21-B896-413E50933FB6','26334469-2BFC-4124-9D02-86B86CC1FAA2','3DD66290-6835-4FDA-A6D3-DBC3D8B1E95F');
