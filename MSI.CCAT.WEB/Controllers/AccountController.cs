@@ -305,7 +305,7 @@ namespace MSI.CCAT.WEB.Controllers
         [HttpPost]
         public void UpdateUser(string userId, string firstName, string lastName, string email, string role, string roleEntityValue, string agencyManager ="")
         {
-            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(role) || (role == "AgencyCollector" && string.IsNullOrEmpty(agencyManager)))
+            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(role) || (role == "AgencyCollector" && string.IsNullOrEmpty(agencyManager.Trim())))
                 throw new Exception ("Required fields are not passed");
             string userName = firstName.ToLower() + "." + lastName.ToLower();
             AccountProfile profile;

@@ -319,7 +319,7 @@
             if (roleSelected == 'CollectionAgency' || roleSelected == 'AgencyCollector' || roleSelected == 'AgencyManager' || roleSelected == 'AgencyCompliance') {
                 self.roleKeyTitle('Collection Agency');
                 if (roleSelected == 'AgencyCollector' || roleSelected == 'AgencyManager' || roleSelected == 'AgencyCompliance') {
-                    self.agencySelected('DCI');                    
+                    //self.agencySelected('DCI');                    
                 }
                 self.makeAgenciesVisible(true);
             }
@@ -356,13 +356,13 @@
                 success: function (data) {
                     //log(data.length);
                     if (data.length > 0) {
-                        self.agencyManagers.push({ Text: 'Select...', Value: '' });
+                        //self.agencyManagers.push({ Text: 'Select...', Value: '' });
                         $.each(data, function (i, item) {
-                            log(item);
+                            //log(item);
                             self.agencyManagers.push(item);
                         });
                         log('agencyManagers loaded...');
-                        self.agencyManagerSelected('');
+                        self.agencyManagerSelected(' ');
                     }
                 },
                 error: function (xhr, status, somthing) {
@@ -385,7 +385,7 @@
                     showNoti_.error('Collection Agency value is required!!', false);
                     return false;
                 }
-                else if (self.role() == 'AgencyCollector' && self.agencyManagerSelected() == '') {
+                else if (self.role() == 'AgencyCollector' && self.agencyManagerSelected() == ' ') {
                     showNoti_.error('Agency Manager value is required!!', false);
                     return false;
                 }
@@ -455,7 +455,9 @@
             self.lawFirmSelected('');
             self.debtOwnerSelected('');
             self.agencyManagerSelected('');
+            self.agencySelected('')
             self.agencyManagers([]);
+            self.role('');
         }
         self.saveCancel = function () {
             self.clear();
