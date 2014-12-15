@@ -20,11 +20,21 @@
     <div class="row-fluid">
         <div class="span12">
             <div class="span2">
-                <select id="listManagers" data-bind="options: managers, optionsValue: 'Value', optionsCaption: 'Select Agency Manager(s)', optionsText: 'Text', selectedOptions: selectedManagers, visible:showManagerSelection,enable:enableManagerSelection" multiple="multiple">
+                Agency Manager
+            </div>
+            <div class="span10">
+                Agency Collector
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="span2">
+                <select id="listManagers" data-bind="options: managers, optionsValue: 'Value', optionsCaption: '--Select All--', optionsText: 'Text', selectedOptions: selectedManagers, visible:showManagerSelection,enable:enableManagerSelection" multiple="multiple">
                 </select>
             </div>
             <div class="span10">
-                <select id="listCollectors" data-bind="options: collectors, optionsValue: 'Value', optionsCaption: 'Select Agency Collector(s)', optionsText: 'Text', selectedOptions: selectedCollectors, visible:showCollectorSelection,enable:enableCollectorSelection" multiple="multiple">
+                <select id="listCollectors" data-bind="options: collectors, optionsValue: 'Value', optionsCaption: '--Select All--', optionsText: 'Text', selectedOptions: selectedCollectors, visible:showCollectorSelection,enable:enableCollectorSelection" multiple="multiple">
                 </select>
             </div>
         </div>
@@ -150,24 +160,24 @@
         self.managers = ko.observableArray();
         self.selectedManagers = ko.observableArray();
         self.enableManagerSelection = ko.observable(true);        
-        self.noMangerSelected = ko.computed(function () {
+        self.allManagerSelected = ko.computed(function () {
             return (self.selectedManagers().length == 1 && self.selectedManagers()[0] == undefined);
         }, self);
         self.selectedManagers.subscribe(function () {
-            console.log(self.selectedManagers()[0]);
+            //console.log(self.selectedManagers()[0]);
             self.collectors([]);
             self.resetGrid();
-            if (!self.noMangerSelected()) {
-                var managers = '';
-                $.each(self.selectedManagers(), function (i, item) {
-                    if (item != undefined)
-                        managers = managers + item + ',';
-                });
-                managers = managers.substring(0, managers.length - 1);
-                console.log(managers);
-                if (managers.length > 0) {
-                    self.bindCollectors(managers);
-                }
+            var managers = '';
+            var selectedManagers = (self.allManagerSelected()) ? self.managers() : self.selectedManagers();
+            //console.log(selectedManagers);
+            $.each(selectedManagers, function (i, item) {
+                if (item != undefined)
+                    managers = managers +( (item.Value == undefined) ? item : item.Value) + ',';
+            });
+            //console.log(managers);
+            managers = managers.substring(0, managers.length - 1);            
+            if (managers.length > 0) {
+                self.bindCollectors(managers);
             }
         });
         self.retrieveManagers = function () {
@@ -191,24 +201,23 @@
         self.showCollectorSelection = ko.computed(function () {
             return (self.collectors().length > 0);
         }, self);
-        self.noCollectorSelected = ko.computed(function () {
+        self.allCollectorSelected = ko.computed(function () {
             return (self.selectedCollectors().length == 1 && self.selectedCollectors()[0] == undefined);
         }, self);
-        self.selectedCollectors.subscribe(function () {
-            if (!self.noCollectorSelected()) {
-                var collectors = '';
-                $.each(self.selectedCollectors(), function (i, item) {
-                    if (item != undefined)
-                        collectors = collectors + item + ',';
-                });
-                collectors = collectors.substring(0, collectors.length - 1);
-                console.log(collectors);
-                if (collectors.length > 0) {
-                    pageVm.bind_FilteredData(collectors);
-                }
-                return;
-            }
-            self.resetGrid();
+        self.selectedCollectors.subscribe(function () {            
+            var collectors = '';
+            var selectedCollectors = (self.allCollectorSelected()) ? self.collectors() : self.selectedCollectors();
+            //console.log(selectedManagers);
+            $.each(selectedCollectors, function (i, item) {
+                if (item != undefined)
+                    collectors = collectors + ((item.Value == undefined) ? item : item.Value) + ',';
+            });
+            collectors = collectors.substring(0, collectors.length - 1);
+            //console.log(collectors);
+            if (collectors.length > 0)
+                pageVm.bind_FilteredData(collectors);
+            return;
+            //self.resetGrid();
         });
 
         self.enableCollectorSelection = ko.observable(true);
@@ -247,6 +256,18 @@
         pageVm = new pageViewModel(userRole, userId);
         ko.applyBindings(pageVm, $('#workspaceContainer')[0]);
         pageVm.retrieveManagers();
-        //pageVm.bind_FilteredData();
+
+         @*Edit record*@
+        $('#filteredGrid').on('click', '.editsa', function (e) {
+            e.preventDefault();
+            var dataItem = $("#filteredGrid").data("kendoGrid").dataItem($(this).closest("tr"));
+            @*Now let us clear what we have on this page*@
+            $('#workspaceContainer').children().remove();
+            var path = baseUrl + "/Compliance/Home/ViewEdit?id=" + dataItem.AccountNumber + "&agency=" + dataItem.AgencyId + "&complaintId=" + dataItem.ComPlaintId;
+            $.get(path, function (data) {
+                @*Now Refill the data*@
+                $('#workspaceContainer').html(data);
+            });
+        });
     });
 </script>
