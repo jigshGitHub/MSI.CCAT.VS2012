@@ -790,7 +790,7 @@
                 contentType: "application/json; charset=utf-8",
                 async: false,
                 success: function (data) {
-                    console.log(data);
+                    //console.log(data);
                     setComplaint(data);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -805,7 +805,7 @@
             //self.saveVisible(true);
         }
         self.selectedDebtor = function (debtor) {
-            console.log('selected debtor');
+            //console.log('selected debtor');
             self.getComplaint(debtor.account());
 
             $("#debtorResults").modal('hide');
@@ -1083,16 +1083,6 @@
             return localFinalActionSteps;
         }, self);
 
-
-        //self.complianceModel.agency.subscribe(function (agencySelected) {
-        //    if (self.accountNumber()) {
-        //        console.log('agency subscribe');
-        //        self.getComplaint(self.accountNumber());
-        //        //self.complianceModel.complaintID(self.createComplaintId());
-        //    }
-
-        //}.bind(self));
-
         self.resetSearchCriteria = function () {
             self.accountNumber('');
             self.firstOrLastName('');
@@ -1139,7 +1129,7 @@
                                     });
                                 }
                                 else {
-                                    console.log('only 1 record');
+                                    //console.log('only 1 record');
                                     self.getComplaint(data[0].AccountNumber);
                                 }
                             }
@@ -1178,9 +1168,6 @@
 
             log(self.validationErrors().length);
             if (self.validationErrors().length > 0) {
-                //$.each(self.validationErrors(), function (i, item) {
-                //    $('#messageSummary ul').append('<li>' + item + '</li>');
-                //});
                 $("#messageSummary").modal();
             }
             else {
@@ -1199,7 +1186,7 @@
                         }
                     }
                     else {
-                        console.log(response.ExceptionMessage);
+                        //console.log(response.ExceptionMessage);
                         self.message(response.Message);
                         showNoti_.error(self.message(), false);
                         $('#errorAlert').addClass('in').toggle();
@@ -1315,7 +1302,7 @@
             var maximumRows = self.PageSize();
             var startIndex = self.CurrentPage();
             
-            console.log('maximumRows=' + maximumRows + ',startIndex=' + startIndex);
+            //console.log('maximumRows=' + maximumRows + ',startIndex=' + startIndex);
             // setting 'total results'. This should be in your result callback
             // in this example we grab it from the form.
             //var totalItemCount = self.SetTotalResults();
