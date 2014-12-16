@@ -48,6 +48,7 @@ SELECT
 			v.RoleName,
 			v.ManagerUsername,
 			v.UserName,
+			v.FirstName, v.LastName,
 			cm.createdby, cm.ComplaintId,
 			cm.AccountNumber,  
 			ISNULL (act.LastName,'') as LastName, 
@@ -66,18 +67,19 @@ SELECT
 			ag.Name AS AgencyId,            
 			cm.OwnerResponseDate
 			FROM Tbl_ComplaintMain cm
-			INNER JOIN [dbo].[vw_aspnet_membership] v ON v.UserId = cm.CreatedBy
+			LEFT JOIN [dbo].[vw_aspnet_membership] v ON v.UserId = cm.UpdatedBy
 			INNER JOIN Tbl_Account act on act.AccountNumber = cm.AccountNumber
 			INNER JOIN Tbl_Agency ag on ag.AgencyId = act.AgencyId 
 			INNER JOIN Tbl_ComplaintIssues ci on ci.Id = cm.IssuesId
-			INNER JOIN Tbl_ComplaintStatus cs on cs.Id = cm.ComplaintStatusId WHERE cs.Value = 'NCRA' AND ag.Name = 'DCI' AND (cm.CreatedBy = '450AFCD9-7A03-495F-A83A-5160950A61EA' OR cm.CreatedBy IN ( SELECT UserId FROM dbo.aspnet_Users WHERE ManagerId = '20D06581-E16C-4229-933E-D60FA514D809'))
+			INNER JOIN Tbl_ComplaintStatus cs on cs.Id = cm.ComplaintStatusId WHERE cs.Value = 'NCIP' AND ag.Name = 'DCI' AND (cm.CreatedBy = '450AFCD9-7A03-495F-A83A-5160950A61EA' OR cm.CreatedBy IN ( SELECT UserId FROM dbo.aspnet_Users WHERE ManagerId = '20D06581-E16C-4229-933E-D60FA514D809'))
 
 select * from aspnet_membership where userid in ('273381B3-5B4F-4BEF-BA38-2C958A429F23','13B9E4F6-E651-424C-9C45-F3EC720C6E40')
 
 --update aspnet_membership set password = 'Y9RdDQZTsjr4H/xWSc8NEPge4Ew=' , passwordsalt = 'QIwACtnWsRwpb0UXpAPtiw==' where userid in ('450AFCD9-7A03-495F-A83A-5160950A61EA','FC44B518-61A1-4A44-8593-124BCFCB0132','20D06581-E16C-4229-933E-D60FA514D809')
 --delete from Tbl_ComplaintMain where accountnumber = '10012184'
 ----update Tbl_ComplaintMain set complaintdate = '12/01/2014' where accountnumber = '10019132'
-----update Tbl_ComplaintMain set complaintstatusid = 2 where accountnumber = '10019132'
+----update Tbl_ComplaintMain set complaintstatusid = 9 where accountnumber = '10012152'
+----update Tbl_ComplaintMain set updatedby = NULL where complaintid = 'DCI-152-501'--'450AFCD9-7A03-495F-A83A-5160950A61EA'
 select * from aspnet_Profile where userid='46F37B76-8C34-4E21-B896-413E50933FB6'
 --update aspnet_Profile set PropertyValuesString = 'MSImsiagClr' where userid='46F37B76-8C34-4E21-B896-413E50933FB6'
 

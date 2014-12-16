@@ -614,6 +614,13 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
                     record.LastFourSSN = rdr["LastFourSSN"].ToString();
                     record.AccountNumber = rdr["Accountnumber"].ToString();
 
+                    if (rdr["UpdatedByLastName"] != DBNull.Value)
+                        record.UpdatedByLastName = rdr["UpdatedByLastName"].ToString();
+                    if (rdr["UpdatedByFirstName"] != DBNull.Value)
+                        record.UpdatedByFirstName = rdr["UpdatedByFirstName"].ToString();
+                    if (rdr["UpdatedByLastName"] != DBNull.Value && rdr["UpdatedByFirstName"] != DBNull.Value)
+                        record.UpdatedByFullName = rdr["UpdatedByLastName"].ToString() + " " + rdr["UpdatedByFirstName"].ToString();
+
                     if (rdr["AgencyId"] != DBNull.Value)
                         record.AgencyId = rdr["AgencyId"].ToString();
 
@@ -631,6 +638,8 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
                         record.AgencyRequestDate = Convert.ToDateTime(rdr["AgencyRequestDate"]);
                     if (rdr["OwnerResponseDate"] != DBNull.Value)
                         record.OwnerResponseDate = Convert.ToDateTime(rdr["OwnerResponseDate"]);
+                    if (rdr["UpdatedDateTime"] != DBNull.Value)
+                        record.UpdatedDateTime = Convert.ToDateTime(rdr["UpdatedDateTime"]);
                     if (rdr["ResponseTimeDays"] != DBNull.Value)
                         record.ResponseTimeDays = Convert.ToInt32(rdr["ResponseTimeDays"]);
                     if (rdr["TotalResponseTimeDays"] != DBNull.Value)

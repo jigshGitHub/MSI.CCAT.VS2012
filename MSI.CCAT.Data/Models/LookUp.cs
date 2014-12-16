@@ -38,6 +38,7 @@ namespace MSI.CCAT.Data.Models
         ORIP,
         RC,
         BLANK,
-        ACR
+        ACR,
+        EC
     }
 }
