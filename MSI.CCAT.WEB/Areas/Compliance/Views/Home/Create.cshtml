@@ -416,7 +416,6 @@
                             </td>
                             <td style="text-align: left; width: 20%">
                                 <input type="text" data-bind="value: complaintID, enable: false" />
-                            *
                             <td style="text-align: right; width: 20%">Complaint Date
                             </td>
                             <td style="text-align: center; width: 1%">:
@@ -1172,8 +1171,6 @@
                 self.validationErrors.push('Last Name is a required field');
             if (self.complianceModel.firstName() == '' || self.complianceModel.firstName() == undefined)
                 self.validationErrors.push('First Name is a required field');
-            if (self.complianceModel.complaintID() == '' || self.complianceModel.complaintID() == undefined)
-                self.validationErrors.push('Complaint ID is a required field');
             if (self.complianceModel.complaintDate() == '' || self.complianceModel.complaintDate() == undefined)
                 self.validationErrors.push('Complaint Date is a required field');
             if (self.complianceModel.complaintIssueId() == '' || self.complianceModel.complaintIssueId() == undefined)
@@ -1187,6 +1184,10 @@
                 $("#messageSummary").modal();
             }
             else {
+                if (self.complianceModel.complaintID() == '' || self.complianceModel.complaintID() == undefined) {
+                    //self.validationErrors.push('Complaint ID is a required field');
+                    self.complianceModel.complaintID(self.createComplaintId());
+                }
                 self.complianceModel.save(self.userRole(), function (response) {
                     if (response.ExceptionMessage == undefined || response.ExceptionMessage == null) {
                         self.message('Data saved successfully!');

@@ -23,9 +23,10 @@ a.Name = 'DCI'
 order by AccountNumber asc
 select p.*, u.* from aspnet_Users u inner join aspnet_Profile p on p.UserId = u.UserId order by LastUpdatedDate  desc
 select * from Tbl_Agency
-
+select * from tbl_account where accountnumber = '79852631'
+--delete from tbl_account where accountnumber = '79852631'
 select * from Tbl_Owner 
-select * from Tbl_ComplaintMain order by UpdatedDateTime desc
+--delete from Tbl_ComplaintMain where accountnumber = '79852631' order by UpdatedDateTime desc
 
 
 
@@ -79,7 +80,7 @@ select * from aspnet_membership where userid in ('273381B3-5B4F-4BEF-BA38-2C958A
 --delete from Tbl_ComplaintMain where accountnumber = '10012184'
 ----update Tbl_ComplaintMain set complaintdate = '12/01/2014' where accountnumber = '10019132'
 ----update Tbl_ComplaintMain set complaintstatusid = 9 where accountnumber = '10012152'
-----update Tbl_ComplaintMain set updatedby = NULL where complaintid = 'DCI-152-501'--'450AFCD9-7A03-495F-A83A-5160950A61EA'
+----update Tbl_ComplaintMain set updatedby = '450AFCD9-7A03-495F-A83A-5160950A61EA' where complaintid = 'DCI-152-501'--'450AFCD9-7A03-495F-A83A-5160950A61EA'
 select * from aspnet_Profile where userid='46F37B76-8C34-4E21-B896-413E50933FB6'
 --update aspnet_Profile set PropertyValuesString = 'MSImsiagClr' where userid='46F37B76-8C34-4E21-B896-413E50933FB6'
 

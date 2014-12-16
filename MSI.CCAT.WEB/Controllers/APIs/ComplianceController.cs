@@ -36,29 +36,37 @@ namespace MSI.CCAT.WEB.Controllers.APIs
         {
             UnitOfWork uo = null;
             Tbl_Account accountToSave = null;
+            bool editingRequired = true;
             try
             {
                 uo = new UnitOfWork("CCATDBEntities");
                 accountToSave = uo.AccountRepository.GetById(account.AccountNumber);
-                if (accountToSave != null)
+                if (accountToSave == null)
                 {
-                    accountToSave.Address = account.Address;
-                    accountToSave.Address2 = account.Address2;
-                    accountToSave.City = account.City;
-                    accountToSave.DebtCurrentBalance = account.DebtCurrentBalance;
-                    accountToSave.DebtPurchaseBalance = account.DebtPurchaseBalance;
-                    accountToSave.FirstName = account.FirstName;
-                    accountToSave.HomePhone = account.HomePhone;
-                    accountToSave.LastFourSSN = account.LastFourSSN;
-                    accountToSave.LastName = account.LastName;
-                    accountToSave.MobilePhone = account.MobilePhone;
-                    accountToSave.StateId = account.StateId;
-                    accountToSave.WorkPhone = account.WorkPhone;
-                    accountToSave.Zip = account.Zip;
-                
-                    uo.Repository<Tbl_Account>().Update(accountToSave);
-                    uo.Save();
+                    accountToSave = new Tbl_Account();
+                    accountToSave.AgencyId = (account.AgencyId == null) ? uo.Repository<Tbl_Agency>().GetAll().Where(r => r.Name == account.Tbl_Agency.Name).SingleOrDefault().AgencyId:account.AgencyId ;
+                    editingRequired = false;
                 }
+                accountToSave.AccountNumber = account.AccountNumber;
+                accountToSave.Address = account.Address;
+                accountToSave.Address2 = account.Address2;
+                accountToSave.City = account.City;
+                accountToSave.DebtCurrentBalance = account.DebtCurrentBalance;
+                accountToSave.DebtPurchaseBalance = account.DebtPurchaseBalance;
+                accountToSave.FirstName = account.FirstName;
+                accountToSave.HomePhone = account.HomePhone;
+                accountToSave.LastFourSSN = account.LastFourSSN;
+                accountToSave.LastName = account.LastName;
+                accountToSave.MobilePhone = account.MobilePhone;
+                accountToSave.StateId = account.StateId;
+                accountToSave.WorkPhone = account.WorkPhone;
+                accountToSave.Zip = account.Zip;
+
+                if (editingRequired)
+                    uo.Repository<Tbl_Account>().Update(accountToSave);
+                else
+                    uo.Repository<Tbl_Account>().Add(accountToSave);
+                uo.Save();
             }
             catch (Exception ex)
             {
@@ -155,7 +163,7 @@ namespace MSI.CCAT.WEB.Controllers.APIs
             try
             {
                 if (string.IsNullOrEmpty(complaint.AccountNumber) || string.IsNullOrEmpty(complaint.ComplaintId))
-                    throw new Exception("Accountnumber and CompaintId is required to search");
+                    throw new Exception("Accountnumber and ComplaintId is required to save complaint.");
 
                 role = MSI.CCAT.Business.AccountBus.GetUserRole(complaint.CreatedBy.ToString());
                 uo = new UnitOfWork("CCATDBEntities");
@@ -172,8 +180,8 @@ namespace MSI.CCAT.WEB.Controllers.APIs
                     complaintToSave = new Tbl_ComplaintMain();
                 }
 
-                complaint.Tbl_Account = uo.AccountRepository.GetAccounts(complaint.AccountNumber).Single();
-                complaint.Tbl_Account.Tbl_Agency = uo.Repository<Tbl_Agency>().GetById(complaint.Tbl_Account.AgencyId.Value);
+                complaintToSave.Tbl_Account = uo.AccountRepository.GetAccounts(complaint.AccountNumber).Single();
+                complaintToSave.Tbl_Account.Tbl_Agency = uo.Repository<Tbl_Agency>().GetById(complaintToSave.Tbl_Account.AgencyId.Value);
                 complaintToSave.AccountNumber = complaint.AccountNumber;
                 complaintToSave.DebtorIdentityVerifiedYN = complaint.DebtorIdentityVerifiedYN;
                 complaintToSave.DebtorContactMethodId = complaint.DebtorContactMethodId;
@@ -271,16 +279,6 @@ namespace MSI.CCAT.WEB.Controllers.APIs
         }
         
         #region Private Functions/Methods
-
-        private void PopulateComplaintID(Tbl_ComplaintMain complaint)
-        {
-            if (string.IsNullOrEmpty(complaint.ComplaintId.ToString()))
-            {
-                Random rnd = new Random();
-
-                complaint.ComplaintId = complaint.Tbl_Account.AgencyId + "-" + complaint.AccountNumber.Substring(5, 10) + "-" + rnd.Next(101, 999).ToString();
-            }
-        }
 
         private ComplaintStatus GetComplaintStatus(UserRole userRole, string accountNumber, Tbl_ComplaintMain complaintToAnalize)
         {
