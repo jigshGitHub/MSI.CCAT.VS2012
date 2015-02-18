@@ -62,6 +62,7 @@
                 total: "__count",
                 model: {
                     fields: {
+                        AgentFullName: { type: 'string' },
                         ComPlaintId: { type: 'string' },
                         AccountNumber: { type: 'string' },
                         LastName: { type: 'string' },
@@ -113,6 +114,7 @@
                                 { id: "edit", name: "edit", template: "<a class='k-button k-grid-edit editsa' title='View/Edit' style='min-width:16px;'><span class='k-icon k-edit'></span></a>" },
                     ], title: " ", width: "20px"
                 },
+                { field: "AgentFullName", title: "Agent Name", width: "80px" },
                 { field: "ComPlaintId", title: "Complaint ID", width: "60px" },
                 { field: "AccountNumber", title: "Account#", width: "60px" },
                 { field: "LastName", title: "Last Name", width: "60px" },

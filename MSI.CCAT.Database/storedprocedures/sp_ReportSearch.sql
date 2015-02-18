@@ -16,7 +16,6 @@ CREATE Procedure [dbo].[sp_ReportSearch] (@OrderBy VARCHAR(MAX),@pageSize INT,@p
 AS
 
 DECLARE	
--- @where VARCHAR(MAX), @userId VARCHAR(100),
 @pageTop INT,
 @pageBottom INT,
 @sql VARCHAR(MAX),
@@ -25,10 +24,16 @@ DECLARE
 @roleEntityValue VARCHAR(50),
 @role VARCHAR(50)
 
+/*
+For debuggin purpose
+DECLARE @OrderBy VARCHAR(MAX),@pageSize INT,@pageNo INT, @where VARCHAR(MAX), @userId VARCHAR(100);
 
---SET @userId = '5B0036B0-245B-4C55-90E4-37EB123771F3';
---SET @where  = ' WHERE cs.Value = ''NCRA'' ';
-
+SET @pageNo = 1;
+SET @pageSize = 10;
+SET @OrderBy = ' ComplaintId ASC';
+SET @userId = '9a0bee10-1bbd-45ad-81fc-c1e5a70d2115';
+SET @where  = ' WHERE cs.Value = ''NCRA'' ';
+*/
 
 SET @pageNo = @pageNo - 1    
 SET @pageTop = (@pageNo * @pageSize) + 1  
@@ -92,9 +97,12 @@ SET @sql = 'SELECT
 			cm.OwnerResponseDate,
 			v.FirstName AS UpdatedByFirstName, 
 			v.LastName AS UpdatedByLastName,
-			cm.UpdatedDateTime
+			cm.UpdatedDateTime,
+			ISNULL(m.LastName,'''') as AgentLastName, 
+			ISNULL(m.FirstName,'''') as AgentFirstName 
 			FROM Tbl_ComplaintMain cm 
-			LEFT JOIN [dbo].[vw_aspnet_membership] v ON v.UserId = cm.UpdatedBy
+			LEFT JOIN [dbo].[vw_aspnet_membership] v ON v.UserId = cm.UpdatedBy 
+			LEFT JOIN [dbo].[vw_aspnet_membership] m on m.UserId = cm.AgencyCollectorUserId 
 			INNER JOIN Tbl_Account act on act.AccountNumber = cm.AccountNumber
 			INNER JOIN Tbl_Agency ag on ag.AgencyId = act.AgencyId 
 			INNER JOIN Tbl_ComplaintIssues ci on ci.Id = cm.IssuesId
