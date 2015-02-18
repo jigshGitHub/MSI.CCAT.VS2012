@@ -1092,14 +1092,15 @@
 
         self.getAccounts = function () {
             self.message('');
-            if ((self.firstOrLastName() != '' && self.phoneNumber() == '') || (self.firstOrLastName() == '' && self.phoneNumber() != '')) {
-                alert('Both Firstname/Lastname and phone number required to search');
-                self.message('Both Firstname/Lastname and phone number required to search');
-                showNoti_.error('Both Firstname/Lastname and phone number required to search', false);
-                $('#errorAlert').addClass('in').toggle();
-                return false;
-            }
-            else if (self.accountNumber() != '' || self.firstOrLastName() != '' || self.creditorName() != '' || self.originalAccountNumber() != '') {
+            //if ((self.firstOrLastName() != '' && self.phoneNumber() == '') || (self.firstOrLastName() == '' && self.phoneNumber() != '')) {
+            //    alert('Both Firstname/Lastname and phone number required to search');
+            //    self.message('Both Firstname/Lastname and phone number required to search');
+            //    showNoti_.error('Both Firstname/Lastname and phone number required to search', false);
+            //    $('#errorAlert').addClass('in').toggle();
+            //    return false;
+            //}
+            //else if (self.accountNumber() != '' || self.firstOrLastName() != '' || self.creditorName() != '' || self.originalAccountNumber() != '') {
+            if (self.phoneNumber() != '' || self.accountNumber() != '' || self.firstOrLastName() != '' || self.creditorName() != '' || self.originalAccountNumber() != '') {
                 $.ajax({
                     url: baseUrl + '/api/Accounts/',
                     type: 'GET',

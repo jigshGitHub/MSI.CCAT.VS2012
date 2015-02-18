@@ -76,9 +76,16 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
                     record.LastName = rdr["LastName"].ToString();
                     record.FirstName = rdr["FirstName"].ToString();
                     record.FullName = rdr["LastName"].ToString() + " " + rdr["FirstName"].ToString();
-                    record.AgentLastName = rdr["AgentLastName"].ToString();
-                    record.AgentFirstName = rdr["AgentFirstName"].ToString();
-                    record.AgentFullName = rdr["AgentLastName"].ToString() + " " + rdr["AgentFirstName"].ToString();
+                    if (!string.IsNullOrEmpty(rdr["AgentLastName"].ToString()))
+                    {
+                        record.AgentLastName = rdr["AgentLastName"].ToString();
+                        record.AgentFullName = rdr["AgentLastName"].ToString() + " " + rdr["AgentFirstName"].ToString();
+                    }
+                    if (!string.IsNullOrEmpty(rdr["AgentFirstName"].ToString()))
+                    {
+                        record.AgentFirstName = rdr["AgentFirstName"].ToString();
+                        record.AgentFullName = record.AgentFullName + " " + rdr["AgentFirstName"].ToString();
+                    }
                     record.ComPlaintId = rdr["ComPlaintId"].ToString();
                     record.LastFourSSN = rdr["LastFourSSN"].ToString();
                     record.AccountNumber = rdr["Accountnumber"].ToString();
@@ -644,7 +651,17 @@ namespace MSI.CCAT.WEB.Areas.Compliance.Controllers
                         record.ResponseTimeDays = Convert.ToInt32(rdr["ResponseTimeDays"]);
                     if (rdr["TotalResponseTimeDays"] != DBNull.Value)
                         record.TotalResponseTimeDays = Convert.ToInt32(rdr["TotalResponseTimeDays"]);
-
+                    if (!string.IsNullOrEmpty(rdr["AgentLastName"].ToString()))
+                    {
+                        record.AgentLastName = rdr["AgentLastName"].ToString();
+                        record.AgentFullName = rdr["AgentLastName"].ToString() + " " + rdr["AgentFirstName"].ToString();
+                    }
+                    if (!string.IsNullOrEmpty(rdr["AgentFirstName"].ToString()))
+                    {
+                        record.AgentFirstName = rdr["AgentFirstName"].ToString();
+                        record.AgentFullName = record.AgentFullName + " " + rdr["AgentFirstName"].ToString();
+                    }
+                    
                     if (rdr["count_"] != DBNull.Value)
                         record.count_ = Convert.ToInt32(rdr["count_"]);
                     if (rdr["rowNo"] != DBNull.Value)
