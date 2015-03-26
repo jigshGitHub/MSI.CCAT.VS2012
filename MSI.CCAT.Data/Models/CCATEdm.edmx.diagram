@@ -67,6 +67,60 @@
         <AssociationConnector Association="CCATDBModel.FK__aspnet_Us__Manag__4CF5691D" />
         <EntityTypeShape EntityType="CCATDBModel.vw_aspnet_membership" Width="1.5" PointX="6.25" PointY="30" />
         <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_aspnet_users" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_Allegation1" Width="1.5" PointX="8.3144112640593253" PointY="29.690215184209038" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_Allegation2" Width="1.5" PointX="8.391505500484028" PointY="26.837846589664856" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_CA1AssignedTo" Width="1.5" PointX="8.3934957331016165" PointY="22.921867083256071" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_CA1Recommendation" Width="1.5" PointX="6.2401737935096833" PointY="30.562887742446218" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_CA1RootCause" Width="1.5" PointX="10.178278113798367" PointY="0.24104425322313061" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_CA1Violation" Width="1.5" PointX="1.8233252716359334" PointY="7.3458654318684085" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_CA2AssignedTo" Width="1.5" PointX="3.670927926744767" PointY="20.323146248386774" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_CA2Recommendation" Width="1.5" PointX="4.20792416492846" PointY="8.1229444631016552" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_CA2RootCause" Width="1.5" PointX="9.9727208008862664" PointY="11.681329047158979" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_CA2Violation" Width="1.5" PointX="0.69998546349815349" PointY="25.577484410990721" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_CA3AssignedTo" Width="1.5" PointX="8.5685488416666864" PointY="1.6037838764506318" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_CA3Recommendation" Width="1.5" PointX="10.337085942894726" PointY="3.4290484205954934" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_CA3RootCause" Width="1.5" PointX="2.2599459729436533" PointY="17.195081227084195" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_CA3Violation" Width="1.5" PointX="1.4797361406868959" PointY="17.338647075620781" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_ComplaintAgainst" Width="1.5" PointX="6.6765027487075432" PointY="19.179883250584773" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_ComplaintCategory" Width="1.5" PointX="4.1848236565407477" PointY="27.103721258744468" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_ComplaintClassification" Width="1.5" PointX="11.817602522586286" PointY="29.0254157171703" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_ComplaintIntakeStatus" Width="1.5" PointX="7.8693805131453" PointY="30.637523814401369" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_OwnershipStatus" Width="1.5" PointX="0.56094739239707" PointY="6.0833418844655816" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_ResolutionRequest" Width="1.5" PointX="11.754686431845039" PointY="28.838695941883465" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_RootCause1" Width="1.5" PointX="3.4429562033354104" PointY="21.730019370899544" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_RootCause2" Width="1.5" PointX="5.0465549458966379" PointY="8.6704585294567327" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_RootCause3" Width="1.5" PointX="5.6081119317599164" PointY="16.254361264526082" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_Stakeholder1" Width="1.5" PointX="1.4722512184978702" PointY="4.6273876152128857" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_Stakeholder2" Width="1.5" PointX="4.4829502163841157" PointY="4.4568501582633937" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_Stakeholder3" Width="1.5" PointX="4.4029177987961647" PointY="10.015538756742858" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_ViolationAlleged" Width="1.5" PointX="0.88105400692720626" PointY="1.7234960057416446" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_Allegation1" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_Allegation2" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA1AssignedTo" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA1Recommendation" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA1RootCause" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA1Violation" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA2AssignedTo" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA2Recommendation" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA2RootCause" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA2Violation" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA3AssignedTo" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA3Recommendation" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA3RootCause" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA3Violation" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_ComplaintAgainst" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_ComplaintCategory" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_ComplaintClassification" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_ComplaintIntakeStatus" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_OwnershipStatus" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_ResolutionRequest" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_RootCause1" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_RootCause2" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_RootCause3" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_Stakeholder1" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_Stakeholder2" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_Stakeholder3" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_ViolationAlleged" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

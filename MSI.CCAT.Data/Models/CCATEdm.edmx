@@ -11,6 +11,33 @@
           <EntitySet Name="aspnet_Roles" EntityType="CCATDBModel.Store.aspnet_Roles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="aspnet_Users" EntityType="CCATDBModel.Store.aspnet_Users" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="aspnet_UsersInRoles" EntityType="CCATDBModel.Store.aspnet_UsersInRoles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_Allegation1" EntityType="CCATDBModel.Store.LU_Allegation1" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_Allegation2" EntityType="CCATDBModel.Store.LU_Allegation2" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_CA1AssignedTo" EntityType="CCATDBModel.Store.LU_CA1AssignedTo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_CA1Recommendation" EntityType="CCATDBModel.Store.LU_CA1Recommendation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_CA1RootCause" EntityType="CCATDBModel.Store.LU_CA1RootCause" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_CA1Violation" EntityType="CCATDBModel.Store.LU_CA1Violation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_CA2AssignedTo" EntityType="CCATDBModel.Store.LU_CA2AssignedTo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_CA2Recommendation" EntityType="CCATDBModel.Store.LU_CA2Recommendation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_CA2RootCause" EntityType="CCATDBModel.Store.LU_CA2RootCause" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_CA2Violation" EntityType="CCATDBModel.Store.LU_CA2Violation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_CA3AssignedTo" EntityType="CCATDBModel.Store.LU_CA3AssignedTo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_CA3Recommendation" EntityType="CCATDBModel.Store.LU_CA3Recommendation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_CA3RootCause" EntityType="CCATDBModel.Store.LU_CA3RootCause" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_CA3Violation" EntityType="CCATDBModel.Store.LU_CA3Violation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_ComplaintAgainst" EntityType="CCATDBModel.Store.LU_ComplaintAgainst" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_ComplaintCategory" EntityType="CCATDBModel.Store.LU_ComplaintCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_ComplaintClassification" EntityType="CCATDBModel.Store.LU_ComplaintClassification" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_ComplaintIntakeStatus" EntityType="CCATDBModel.Store.LU_ComplaintIntakeStatus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_OwnershipStatus" EntityType="CCATDBModel.Store.LU_OwnershipStatus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_ResolutionRequest" EntityType="CCATDBModel.Store.LU_ResolutionRequest" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_RootCause1" EntityType="CCATDBModel.Store.LU_RootCause1" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_RootCause2" EntityType="CCATDBModel.Store.LU_RootCause2" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_RootCause3" EntityType="CCATDBModel.Store.LU_RootCause3" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_Stakeholder1" EntityType="CCATDBModel.Store.LU_Stakeholder1" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_Stakeholder2" EntityType="CCATDBModel.Store.LU_Stakeholder2" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_Stakeholder3" EntityType="CCATDBModel.Store.LU_Stakeholder3" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_ViolationAlleged" EntityType="CCATDBModel.Store.LU_ViolationAlleged" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="module" EntityType="CCATDBModel.Store.module" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="pageMenu" EntityType="CCATDBModel.Store.pageMenu" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="pageMenuGroup" EntityType="CCATDBModel.Store.pageMenuGroup" store:Type="Tables" Schema="dbo" />
@@ -118,7 +145,7 @@
             <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
           </AssociationSet>
-          <AssociationSet Name="FK__aspnet_Us__Manag__4CF5691D" Association="CCATDBModel.Store.FK__aspnet_Us__Manag__4CF5691D">
+          <AssociationSet Name="FK__aspnet_Us__Manag__3DB3258D" Association="CCATDBModel.Store.FK__aspnet_Us__Manag__3DB3258D">
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
             <End Role="aspnet_Users1" EntitySet="aspnet_Users" />
           </AssociationSet>
@@ -160,6 +187,114 @@
           </AssociationSet>
           <AssociationSet Name="FK_Tbl_ComplaintMain_aspnet_users" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_aspnet_users">
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_Allegation1" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_Allegation1">
+            <End Role="LU_Allegation1" EntitySet="LU_Allegation1" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_Allegation2" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_Allegation2">
+            <End Role="LU_Allegation2" EntitySet="LU_Allegation2" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA1AssignedTo" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_CA1AssignedTo">
+            <End Role="LU_CA1AssignedTo" EntitySet="LU_CA1AssignedTo" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA1Recommendation" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_CA1Recommendation">
+            <End Role="LU_CA1Recommendation" EntitySet="LU_CA1Recommendation" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA1RootCause" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_CA1RootCause">
+            <End Role="LU_CA1RootCause" EntitySet="LU_CA1RootCause" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA1Violation" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_CA1Violation">
+            <End Role="LU_CA1Violation" EntitySet="LU_CA1Violation" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA2AssignedTo" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_CA2AssignedTo">
+            <End Role="LU_CA2AssignedTo" EntitySet="LU_CA2AssignedTo" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA2Recommendation" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_CA2Recommendation">
+            <End Role="LU_CA2Recommendation" EntitySet="LU_CA2Recommendation" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA2RootCause" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_CA2RootCause">
+            <End Role="LU_CA2RootCause" EntitySet="LU_CA2RootCause" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA2Violation" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_CA2Violation">
+            <End Role="LU_CA2Violation" EntitySet="LU_CA2Violation" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA3AssignedTo" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_CA3AssignedTo">
+            <End Role="LU_CA3AssignedTo" EntitySet="LU_CA3AssignedTo" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA3Recommendation" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_CA3Recommendation">
+            <End Role="LU_CA3Recommendation" EntitySet="LU_CA3Recommendation" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA3RootCause" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_CA3RootCause">
+            <End Role="LU_CA3RootCause" EntitySet="LU_CA3RootCause" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA3Violation" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_CA3Violation">
+            <End Role="LU_CA3Violation" EntitySet="LU_CA3Violation" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_ComplaintAgainst" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_ComplaintAgainst">
+            <End Role="LU_ComplaintAgainst" EntitySet="LU_ComplaintAgainst" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_ComplaintCategory" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_ComplaintCategory">
+            <End Role="LU_ComplaintCategory" EntitySet="LU_ComplaintCategory" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_ComplaintClassification" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_ComplaintClassification">
+            <End Role="LU_ComplaintClassification" EntitySet="LU_ComplaintClassification" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_ComplaintIntakeStatus" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_ComplaintIntakeStatus">
+            <End Role="LU_ComplaintIntakeStatus" EntitySet="LU_ComplaintIntakeStatus" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_OwnershipStatus" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_OwnershipStatus">
+            <End Role="LU_OwnershipStatus" EntitySet="LU_OwnershipStatus" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_ResolutionRequest" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_ResolutionRequest">
+            <End Role="LU_ResolutionRequest" EntitySet="LU_ResolutionRequest" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_RootCause1" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_RootCause1">
+            <End Role="LU_RootCause1" EntitySet="LU_RootCause1" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_RootCause2" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_RootCause2">
+            <End Role="LU_RootCause2" EntitySet="LU_RootCause2" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_RootCause3" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_RootCause3">
+            <End Role="LU_RootCause3" EntitySet="LU_RootCause3" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_Stakeholder1" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_Stakeholder1">
+            <End Role="LU_Stakeholder1" EntitySet="LU_Stakeholder1" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_Stakeholder2" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_Stakeholder2">
+            <End Role="LU_Stakeholder2" EntitySet="LU_Stakeholder2" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_Stakeholder3" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_Stakeholder3">
+            <End Role="LU_Stakeholder3" EntitySet="LU_Stakeholder3" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_ViolationAlleged" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_LU_ViolationAlleged">
+            <End Role="LU_ViolationAlleged" EntitySet="LU_ViolationAlleged" />
             <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
           </AssociationSet>
           <AssociationSet Name="FK_Tbl_ComplaintMain_Tbl_Account" Association="CCATDBModel.Store.FK_Tbl_ComplaintMain_Tbl_Account">
@@ -300,6 +435,195 @@
           </Key>
           <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LU_Allegation1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_Allegation2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_CA1AssignedTo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_CA1Recommendation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_CA1RootCause">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_CA1Violation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_CA2AssignedTo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_CA2Recommendation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_CA2RootCause">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_CA2Violation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_CA3AssignedTo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_CA3Recommendation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_CA3RootCause">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_CA3Violation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_ComplaintAgainst">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_ComplaintCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_ComplaintClassification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_ComplaintIntakeStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_OwnershipStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_ResolutionRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_RootCause1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_RootCause2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_RootCause3">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_Stakeholder1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_Stakeholder2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_Stakeholder3">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_ViolationAlleged">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
         <EntityType Name="module">
           <Key>
@@ -490,6 +814,74 @@
           <Property Name="IsActive" Type="bit" />
           <Property Name="ComplaintTypeID" Type="int" />
           <Property Name="AgencyCollectorUserId" Type="uniqueidentifier" />
+          <Property Name="LU_Stakeholder3Id" Type="int" />
+          <Property Name="LU_CA2RecommendationId" Type="int" />
+          <Property Name="LU_CA3RecommendationId" Type="int" />
+          <Property Name="CA1Audience" Type="varchar" MaxLength="100" />
+          <Property Name="Date_CA1" Type="datetime" />
+          <Property Name="LU_CA1ViolationId" Type="int" />
+          <Property Name="LU_CA1RootCauseId" Type="int" />
+          <Property Name="LU_CA1RecommendationId" Type="int" />
+          <Property Name="LU_CA1AssignedToId" Type="int" />
+          <Property Name="Date_CA1ReportBack" Type="datetime" />
+          <Property Name="YN_CA1Followed" Type="bit" />
+          <Property Name="Date_CA1Administered" Type="datetime" />
+          <Property Name="YN_CA1StateLawApplicable" Type="bit" />
+          <Property Name="Notes_CA1" Type="varchar(max)" />
+          <Property Name="CA2Audience" Type="varchar" MaxLength="100" />
+          <Property Name="Date_CA2" Type="datetime" />
+          <Property Name="LU_CA2ViolationId" Type="int" />
+          <Property Name="LU_CA2RootCauseId" Type="int" />
+          <Property Name="LU_CA2AssignedToId" Type="int" />
+          <Property Name="Date_CA2ReportBack" Type="datetime" />
+          <Property Name="YN_CA2Followed" Type="bit" />
+          <Property Name="Date_CA2Administered" Type="datetime" />
+          <Property Name="YN_CA2StateLawApplicable" Type="bit" />
+          <Property Name="Notes_CA2" Type="varchar(max)" />
+          <Property Name="CA3Audience" Type="varchar" MaxLength="100" />
+          <Property Name="Date_CA3" Type="datetime" />
+          <Property Name="LU_CA3ViolationId" Type="int" />
+          <Property Name="LU_CA3RootCauseId" Type="int" />
+          <Property Name="LU_CA3AssignedToId" Type="int" />
+          <Property Name="Date_CA3ReportBack" Type="datetime" />
+          <Property Name="YN_CA3Followed" Type="bit" />
+          <Property Name="Date_CA3Administered" Type="datetime" />
+          <Property Name="YN_C32StateLawApplicable" Type="bit" />
+          <Property Name="Notes_CA3" Type="varchar(max)" />
+          <Property Name="LU_ComplaintIntakeStatusId" Type="int" />
+          <Property Name="Date_RequiredResolution" Type="datetime" />
+          <Property Name="LU_ComplaintClassificationId" Type="int" />
+          <Property Name="LU_ComplaintCategoryId" Type="int" />
+          <Property Name="SourceReferenceNumber" Type="varchar" MaxLength="100" />
+          <Property Name="IfAttorney" Type="varchar" MaxLength="100" />
+          <Property Name="LU_ComplaintAgainstId" Type="int" />
+          <Property Name="LU_ViolationAllegedId" Type="int" />
+          <Property Name="LU_Allegation1Id" Type="int" />
+          <Property Name="LU_Allegation2Id" Type="int" />
+          <Property Name="PortfolioId" Type="varchar" MaxLength="50" />
+          <Property Name="LU_OwnershipStatusId" Type="int" />
+          <Property Name="LU_ResolutionRequestId" Type="int" />
+          <Property Name="Notes_ComplaintIntake" Type="varchar(max)" />
+          <Property Name="LU_RootCause1Id" Type="int" />
+          <Property Name="YN_Improvement1" Type="bit" />
+          <Property Name="YN_ReferenceCA1" Type="bit" />
+          <Property Name="LU_Stakeholder1Id" Type="int" />
+          <Property Name="LU_RootCause2Id" Type="int" />
+          <Property Name="YN_Improvement2" Type="bit" />
+          <Property Name="YN_ReferForCA2" Type="bit" />
+          <Property Name="LU_Stakeholder2Id" Type="int" />
+          <Property Name="LU_RootCause3Id" Type="int" />
+          <Property Name="YN_IsIssueValid" Type="bit" />
+          <Property Name="Notes_Investivation" Type="varchar(max)" />
+          <Property Name="Date_Resolution" Type="datetime" />
+          <Property Name="Resolution" Type="varchar(max)" />
+          <Property Name="YN_DisputeResolution" Type="bit" />
+          <Property Name="AccountClosedBalance" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="Damages" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="OurAttorneyFees" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="OtherCosts" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="TotalCost" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="Notes_Resolution" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Tbl_ComplaintReceivedBy">
           <Key>
@@ -686,7 +1078,7 @@
           <Property Name="Value" Type="varchar" MaxLength="2" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'CCATDBDev.dbo.vw_Account' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'CCATDB.dbo.vw_Account' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="vw_Account">
           <Key>
@@ -730,7 +1122,7 @@
           <Property Name="State" Type="varchar" MaxLength="2" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'CCATDBDev.dbo.vw_aspnet_membership' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'CCATDB.dbo.vw_aspnet_membership' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="vw_aspnet_membership">
           <Key>
@@ -814,7 +1206,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__aspnet_Us__Manag__4CF5691D">
+        <Association Name="FK__aspnet_Us__Manag__3DB3258D">
           <End Role="aspnet_Users" Type="CCATDBModel.Store.aspnet_Users" Multiplicity="0..1" />
           <End Role="aspnet_Users1" Type="CCATDBModel.Store.aspnet_Users" Multiplicity="*" />
           <ReferentialConstraint>
@@ -943,6 +1335,330 @@
             </Principal>
             <Dependent Role="Tbl_ComplaintMain">
               <PropertyRef Name="AgencyCollectorUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_Allegation1">
+          <End Role="LU_Allegation1" Type="CCATDBModel.Store.LU_Allegation1" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_Allegation1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_Allegation1Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_Allegation2">
+          <End Role="LU_Allegation2" Type="CCATDBModel.Store.LU_Allegation2" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_Allegation2">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_Allegation2Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA1AssignedTo">
+          <End Role="LU_CA1AssignedTo" Type="CCATDBModel.Store.LU_CA1AssignedTo" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA1AssignedTo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA1AssignedToId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA1Recommendation">
+          <End Role="LU_CA1Recommendation" Type="CCATDBModel.Store.LU_CA1Recommendation" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA1Recommendation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA1RecommendationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA1RootCause">
+          <End Role="LU_CA1RootCause" Type="CCATDBModel.Store.LU_CA1RootCause" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA1RootCause">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA1RootCauseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA1Violation">
+          <End Role="LU_CA1Violation" Type="CCATDBModel.Store.LU_CA1Violation" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA1Violation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA1ViolationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA2AssignedTo">
+          <End Role="LU_CA2AssignedTo" Type="CCATDBModel.Store.LU_CA2AssignedTo" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA2AssignedTo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA2AssignedToId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA2Recommendation">
+          <End Role="LU_CA2Recommendation" Type="CCATDBModel.Store.LU_CA2Recommendation" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA2Recommendation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA2RecommendationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA2RootCause">
+          <End Role="LU_CA2RootCause" Type="CCATDBModel.Store.LU_CA2RootCause" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA2RootCause">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA2RootCauseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA2Violation">
+          <End Role="LU_CA2Violation" Type="CCATDBModel.Store.LU_CA2Violation" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA2Violation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA2ViolationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA3AssignedTo">
+          <End Role="LU_CA3AssignedTo" Type="CCATDBModel.Store.LU_CA3AssignedTo" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA3AssignedTo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA3AssignedToId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA3Recommendation">
+          <End Role="LU_CA3Recommendation" Type="CCATDBModel.Store.LU_CA3Recommendation" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA3Recommendation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA3RecommendationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA3RootCause">
+          <End Role="LU_CA3RootCause" Type="CCATDBModel.Store.LU_CA3RootCause" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA3RootCause">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA3RootCauseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA3Violation">
+          <End Role="LU_CA3Violation" Type="CCATDBModel.Store.LU_CA3Violation" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA3Violation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA3ViolationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_ComplaintAgainst">
+          <End Role="LU_ComplaintAgainst" Type="CCATDBModel.Store.LU_ComplaintAgainst" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_ComplaintAgainst">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_ComplaintAgainstId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_ComplaintCategory">
+          <End Role="LU_ComplaintCategory" Type="CCATDBModel.Store.LU_ComplaintCategory" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_ComplaintCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_ComplaintCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_ComplaintClassification">
+          <End Role="LU_ComplaintClassification" Type="CCATDBModel.Store.LU_ComplaintClassification" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_ComplaintClassification">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_ComplaintClassificationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_ComplaintIntakeStatus">
+          <End Role="LU_ComplaintIntakeStatus" Type="CCATDBModel.Store.LU_ComplaintIntakeStatus" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_ComplaintIntakeStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_ComplaintIntakeStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_OwnershipStatus">
+          <End Role="LU_OwnershipStatus" Type="CCATDBModel.Store.LU_OwnershipStatus" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_OwnershipStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_OwnershipStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_ResolutionRequest">
+          <End Role="LU_ResolutionRequest" Type="CCATDBModel.Store.LU_ResolutionRequest" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_ResolutionRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_ResolutionRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_RootCause1">
+          <End Role="LU_RootCause1" Type="CCATDBModel.Store.LU_RootCause1" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_RootCause1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_RootCause1Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_RootCause2">
+          <End Role="LU_RootCause2" Type="CCATDBModel.Store.LU_RootCause2" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_RootCause2">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_RootCause2Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_RootCause3">
+          <End Role="LU_RootCause3" Type="CCATDBModel.Store.LU_RootCause3" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_RootCause3">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_RootCause3Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_Stakeholder1">
+          <End Role="LU_Stakeholder1" Type="CCATDBModel.Store.LU_Stakeholder1" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_Stakeholder1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_Stakeholder1Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_Stakeholder2">
+          <End Role="LU_Stakeholder2" Type="CCATDBModel.Store.LU_Stakeholder2" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_Stakeholder2">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_Stakeholder2Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_Stakeholder3">
+          <End Role="LU_Stakeholder3" Type="CCATDBModel.Store.LU_Stakeholder3" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_Stakeholder3">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_Stakeholder3Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_ViolationAlleged">
+          <End Role="LU_ViolationAlleged" Type="CCATDBModel.Store.LU_ViolationAlleged" Multiplicity="0..1" />
+          <End Role="Tbl_ComplaintMain" Type="CCATDBModel.Store.Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_ViolationAlleged">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_ViolationAllegedId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1346,6 +2062,141 @@
           <EntitySet Name="vw_aspnet_membership" EntityType="CCATDBModel.vw_aspnet_membership" />
           <AssociationSet Name="FK_Tbl_ComplaintMain_aspnet_users" Association="CCATDBModel.FK_Tbl_ComplaintMain_aspnet_users">
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <EntitySet Name="LU_Allegation1" EntityType="CCATDBModel.LU_Allegation1" />
+          <EntitySet Name="LU_Allegation2" EntityType="CCATDBModel.LU_Allegation2" />
+          <EntitySet Name="LU_CA1AssignedTo" EntityType="CCATDBModel.LU_CA1AssignedTo" />
+          <EntitySet Name="LU_CA1Recommendation" EntityType="CCATDBModel.LU_CA1Recommendation" />
+          <EntitySet Name="LU_CA1RootCause" EntityType="CCATDBModel.LU_CA1RootCause" />
+          <EntitySet Name="LU_CA1Violation" EntityType="CCATDBModel.LU_CA1Violation" />
+          <EntitySet Name="LU_CA2AssignedTo" EntityType="CCATDBModel.LU_CA2AssignedTo" />
+          <EntitySet Name="LU_CA2Recommendation" EntityType="CCATDBModel.LU_CA2Recommendation" />
+          <EntitySet Name="LU_CA2RootCause" EntityType="CCATDBModel.LU_CA2RootCause" />
+          <EntitySet Name="LU_CA2Violation" EntityType="CCATDBModel.LU_CA2Violation" />
+          <EntitySet Name="LU_CA3AssignedTo" EntityType="CCATDBModel.LU_CA3AssignedTo" />
+          <EntitySet Name="LU_CA3Recommendation" EntityType="CCATDBModel.LU_CA3Recommendation" />
+          <EntitySet Name="LU_CA3RootCause" EntityType="CCATDBModel.LU_CA3RootCause" />
+          <EntitySet Name="LU_CA3Violation" EntityType="CCATDBModel.LU_CA3Violation" />
+          <EntitySet Name="LU_ComplaintAgainst" EntityType="CCATDBModel.LU_ComplaintAgainst" />
+          <EntitySet Name="LU_ComplaintCategory" EntityType="CCATDBModel.LU_ComplaintCategory" />
+          <EntitySet Name="LU_ComplaintClassification" EntityType="CCATDBModel.LU_ComplaintClassification" />
+          <EntitySet Name="LU_ComplaintIntakeStatus" EntityType="CCATDBModel.LU_ComplaintIntakeStatus" />
+          <EntitySet Name="LU_OwnershipStatus" EntityType="CCATDBModel.LU_OwnershipStatus" />
+          <EntitySet Name="LU_ResolutionRequest" EntityType="CCATDBModel.LU_ResolutionRequest" />
+          <EntitySet Name="LU_RootCause1" EntityType="CCATDBModel.LU_RootCause1" />
+          <EntitySet Name="LU_RootCause2" EntityType="CCATDBModel.LU_RootCause2" />
+          <EntitySet Name="LU_RootCause3" EntityType="CCATDBModel.LU_RootCause3" />
+          <EntitySet Name="LU_Stakeholder1" EntityType="CCATDBModel.LU_Stakeholder1" />
+          <EntitySet Name="LU_Stakeholder2" EntityType="CCATDBModel.LU_Stakeholder2" />
+          <EntitySet Name="LU_Stakeholder3" EntityType="CCATDBModel.LU_Stakeholder3" />
+          <EntitySet Name="LU_ViolationAlleged" EntityType="CCATDBModel.LU_ViolationAlleged" />
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_Allegation1" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_Allegation1">
+            <End Role="LU_Allegation1" EntitySet="LU_Allegation1" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_Allegation2" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_Allegation2">
+            <End Role="LU_Allegation2" EntitySet="LU_Allegation2" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA1AssignedTo" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA1AssignedTo">
+            <End Role="LU_CA1AssignedTo" EntitySet="LU_CA1AssignedTo" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA1Recommendation" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA1Recommendation">
+            <End Role="LU_CA1Recommendation" EntitySet="LU_CA1Recommendation" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA1RootCause" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA1RootCause">
+            <End Role="LU_CA1RootCause" EntitySet="LU_CA1RootCause" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA1Violation" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA1Violation">
+            <End Role="LU_CA1Violation" EntitySet="LU_CA1Violation" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA2AssignedTo" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA2AssignedTo">
+            <End Role="LU_CA2AssignedTo" EntitySet="LU_CA2AssignedTo" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA2Recommendation" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA2Recommendation">
+            <End Role="LU_CA2Recommendation" EntitySet="LU_CA2Recommendation" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA2RootCause" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA2RootCause">
+            <End Role="LU_CA2RootCause" EntitySet="LU_CA2RootCause" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA2Violation" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA2Violation">
+            <End Role="LU_CA2Violation" EntitySet="LU_CA2Violation" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA3AssignedTo" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA3AssignedTo">
+            <End Role="LU_CA3AssignedTo" EntitySet="LU_CA3AssignedTo" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA3Recommendation" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA3Recommendation">
+            <End Role="LU_CA3Recommendation" EntitySet="LU_CA3Recommendation" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA3RootCause" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA3RootCause">
+            <End Role="LU_CA3RootCause" EntitySet="LU_CA3RootCause" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_CA3Violation" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA3Violation">
+            <End Role="LU_CA3Violation" EntitySet="LU_CA3Violation" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_ComplaintAgainst" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_ComplaintAgainst">
+            <End Role="LU_ComplaintAgainst" EntitySet="LU_ComplaintAgainst" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_ComplaintCategory" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_ComplaintCategory">
+            <End Role="LU_ComplaintCategory" EntitySet="LU_ComplaintCategory" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_ComplaintClassification" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_ComplaintClassification">
+            <End Role="LU_ComplaintClassification" EntitySet="LU_ComplaintClassification" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_ComplaintIntakeStatus" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_ComplaintIntakeStatus">
+            <End Role="LU_ComplaintIntakeStatus" EntitySet="LU_ComplaintIntakeStatus" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_OwnershipStatus" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_OwnershipStatus">
+            <End Role="LU_OwnershipStatus" EntitySet="LU_OwnershipStatus" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_ResolutionRequest" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_ResolutionRequest">
+            <End Role="LU_ResolutionRequest" EntitySet="LU_ResolutionRequest" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_RootCause1" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_RootCause1">
+            <End Role="LU_RootCause1" EntitySet="LU_RootCause1" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_RootCause2" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_RootCause2">
+            <End Role="LU_RootCause2" EntitySet="LU_RootCause2" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_RootCause3" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_RootCause3">
+            <End Role="LU_RootCause3" EntitySet="LU_RootCause3" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_Stakeholder1" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_Stakeholder1">
+            <End Role="LU_Stakeholder1" EntitySet="LU_Stakeholder1" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_Stakeholder2" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_Stakeholder2">
+            <End Role="LU_Stakeholder2" EntitySet="LU_Stakeholder2" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_Stakeholder3" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_Stakeholder3">
+            <End Role="LU_Stakeholder3" EntitySet="LU_Stakeholder3" />
+            <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ComplaintMain_LU_ViolationAlleged" Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_ViolationAlleged">
+            <End Role="LU_ViolationAlleged" EntitySet="LU_ViolationAlleged" />
             <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
           </AssociationSet>
           </EntityContainer>
@@ -1932,6 +2783,101 @@
           <NavigationProperty Name="Tbl_ComplaintType" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_ComplaintType" FromRole="Tbl_ComplaintMain" ToRole="Tbl_ComplaintType" />
           <Property Type="Guid" Name="AgencyCollectorUserId" />
           <NavigationProperty Name="aspnet_Users" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_aspnet_users" FromRole="Tbl_ComplaintMain" ToRole="aspnet_Users" />
+          <Property Type="Int32" Name="LU_Stakeholder3Id" />
+          <Property Type="Int32" Name="LU_CA2RecommendationId" />
+          <Property Type="Int32" Name="LU_CA3RecommendationId" />
+          <Property Type="String" Name="CA1Audience" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Date_CA1" Precision="3" />
+          <Property Type="Int32" Name="LU_CA1ViolationId" />
+          <Property Type="Int32" Name="LU_CA1RootCauseId" />
+          <Property Type="Int32" Name="LU_CA1RecommendationId" />
+          <Property Type="Int32" Name="LU_CA1AssignedToId" />
+          <Property Type="DateTime" Name="Date_CA1ReportBack" Precision="3" />
+          <Property Type="Boolean" Name="YN_CA1Followed" />
+          <Property Type="DateTime" Name="Date_CA1Administered" Precision="3" />
+          <Property Type="Boolean" Name="YN_CA1StateLawApplicable" />
+          <Property Type="String" Name="Notes_CA1" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CA2Audience" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Date_CA2" Precision="3" />
+          <Property Type="Int32" Name="LU_CA2ViolationId" />
+          <Property Type="Int32" Name="LU_CA2RootCauseId" />
+          <Property Type="Int32" Name="LU_CA2AssignedToId" />
+          <Property Type="DateTime" Name="Date_CA2ReportBack" Precision="3" />
+          <Property Type="Boolean" Name="YN_CA2Followed" />
+          <Property Type="DateTime" Name="Date_CA2Administered" Precision="3" />
+          <Property Type="Boolean" Name="YN_CA2StateLawApplicable" />
+          <Property Type="String" Name="Notes_CA2" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CA3Audience" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Date_CA3" Precision="3" />
+          <Property Type="Int32" Name="LU_CA3ViolationId" />
+          <Property Type="Int32" Name="LU_CA3RootCauseId" />
+          <Property Type="Int32" Name="LU_CA3AssignedToId" />
+          <Property Type="DateTime" Name="Date_CA3ReportBack" Precision="3" />
+          <Property Type="Boolean" Name="YN_CA3Followed" />
+          <Property Type="DateTime" Name="Date_CA3Administered" Precision="3" />
+          <Property Type="Boolean" Name="YN_C32StateLawApplicable" />
+          <Property Type="String" Name="Notes_CA3" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="LU_ComplaintIntakeStatusId" />
+          <Property Type="DateTime" Name="Date_RequiredResolution" Precision="3" />
+          <Property Type="Int32" Name="LU_ComplaintClassificationId" />
+          <Property Type="Int32" Name="LU_ComplaintCategoryId" />
+          <Property Type="String" Name="SourceReferenceNumber" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="IfAttorney" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="LU_ComplaintAgainstId" />
+          <Property Type="Int32" Name="LU_ViolationAllegedId" />
+          <Property Type="Int32" Name="LU_Allegation1Id" />
+          <Property Type="Int32" Name="LU_Allegation2Id" />
+          <Property Type="String" Name="PortfolioId" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="LU_OwnershipStatusId" />
+          <Property Type="Int32" Name="LU_ResolutionRequestId" />
+          <Property Type="String" Name="Notes_ComplaintIntake" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="LU_RootCause1Id" />
+          <Property Type="Boolean" Name="YN_Improvement1" />
+          <Property Type="Boolean" Name="YN_ReferenceCA1" />
+          <Property Type="Int32" Name="LU_Stakeholder1Id" />
+          <Property Type="Int32" Name="LU_RootCause2Id" />
+          <Property Type="Boolean" Name="YN_Improvement2" />
+          <Property Type="Boolean" Name="YN_ReferForCA2" />
+          <Property Type="Int32" Name="LU_Stakeholder2Id" />
+          <Property Type="Int32" Name="LU_RootCause3Id" />
+          <Property Type="Boolean" Name="YN_IsIssueValid" />
+          <Property Type="String" Name="Notes_Investivation" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Date_Resolution" Precision="3" />
+          <Property Type="String" Name="Resolution" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="YN_DisputeResolution" />
+          <Property Type="Decimal" Name="AccountClosedBalance" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="Damages" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="OurAttorneyFees" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="OtherCosts" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="TotalCost" Precision="15" Scale="2" />
+          <Property Type="String" Name="Notes_Resolution" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="LU_Allegation1" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_Allegation1" FromRole="Tbl_ComplaintMain" ToRole="LU_Allegation1" />
+          <NavigationProperty Name="LU_Allegation2" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_Allegation2" FromRole="Tbl_ComplaintMain" ToRole="LU_Allegation2" />
+          <NavigationProperty Name="LU_CA1AssignedTo" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA1AssignedTo" FromRole="Tbl_ComplaintMain" ToRole="LU_CA1AssignedTo" />
+          <NavigationProperty Name="LU_CA1Recommendation" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA1Recommendation" FromRole="Tbl_ComplaintMain" ToRole="LU_CA1Recommendation" />
+          <NavigationProperty Name="LU_CA1RootCause" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA1RootCause" FromRole="Tbl_ComplaintMain" ToRole="LU_CA1RootCause" />
+          <NavigationProperty Name="LU_CA1Violation" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA1Violation" FromRole="Tbl_ComplaintMain" ToRole="LU_CA1Violation" />
+          <NavigationProperty Name="LU_CA2AssignedTo" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA2AssignedTo" FromRole="Tbl_ComplaintMain" ToRole="LU_CA2AssignedTo" />
+          <NavigationProperty Name="LU_CA2Recommendation" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA2Recommendation" FromRole="Tbl_ComplaintMain" ToRole="LU_CA2Recommendation" />
+          <NavigationProperty Name="LU_CA2RootCause" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA2RootCause" FromRole="Tbl_ComplaintMain" ToRole="LU_CA2RootCause" />
+          <NavigationProperty Name="LU_CA2Violation" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA2Violation" FromRole="Tbl_ComplaintMain" ToRole="LU_CA2Violation" />
+          <NavigationProperty Name="LU_CA3AssignedTo" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA3AssignedTo" FromRole="Tbl_ComplaintMain" ToRole="LU_CA3AssignedTo" />
+          <NavigationProperty Name="LU_CA3Recommendation" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA3Recommendation" FromRole="Tbl_ComplaintMain" ToRole="LU_CA3Recommendation" />
+          <NavigationProperty Name="LU_CA3RootCause" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA3RootCause" FromRole="Tbl_ComplaintMain" ToRole="LU_CA3RootCause" />
+          <NavigationProperty Name="LU_CA3Violation" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA3Violation" FromRole="Tbl_ComplaintMain" ToRole="LU_CA3Violation" />
+          <NavigationProperty Name="LU_ComplaintAgainst" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_ComplaintAgainst" FromRole="Tbl_ComplaintMain" ToRole="LU_ComplaintAgainst" />
+          <NavigationProperty Name="LU_ComplaintCategory" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_ComplaintCategory" FromRole="Tbl_ComplaintMain" ToRole="LU_ComplaintCategory" />
+          <NavigationProperty Name="LU_ComplaintClassification" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_ComplaintClassification" FromRole="Tbl_ComplaintMain" ToRole="LU_ComplaintClassification" />
+          <NavigationProperty Name="LU_ComplaintIntakeStatus" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_ComplaintIntakeStatus" FromRole="Tbl_ComplaintMain" ToRole="LU_ComplaintIntakeStatus" />
+          <NavigationProperty Name="LU_OwnershipStatus" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_OwnershipStatus" FromRole="Tbl_ComplaintMain" ToRole="LU_OwnershipStatus" />
+          <NavigationProperty Name="LU_ResolutionRequest" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_ResolutionRequest" FromRole="Tbl_ComplaintMain" ToRole="LU_ResolutionRequest" />
+          <NavigationProperty Name="LU_RootCause1" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_RootCause1" FromRole="Tbl_ComplaintMain" ToRole="LU_RootCause1" />
+          <NavigationProperty Name="LU_RootCause2" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_RootCause2" FromRole="Tbl_ComplaintMain" ToRole="LU_RootCause2" />
+          <NavigationProperty Name="LU_RootCause3" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_RootCause3" FromRole="Tbl_ComplaintMain" ToRole="LU_RootCause3" />
+          <NavigationProperty Name="LU_Stakeholder1" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_Stakeholder1" FromRole="Tbl_ComplaintMain" ToRole="LU_Stakeholder1" />
+          <NavigationProperty Name="LU_Stakeholder2" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_Stakeholder2" FromRole="Tbl_ComplaintMain" ToRole="LU_Stakeholder2" />
+          <NavigationProperty Name="LU_Stakeholder3" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_Stakeholder3" FromRole="Tbl_ComplaintMain" ToRole="LU_Stakeholder3" />
+          <NavigationProperty Name="LU_ViolationAlleged" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_ViolationAlleged" FromRole="Tbl_ComplaintMain" ToRole="LU_ViolationAlleged" />
         </EntityType>
         <Association Name="FK_Tbl_ComplaintMain_Tbl_Account">
           <End Type="CCATDBModel.Tbl_Account" Role="Tbl_Account" Multiplicity="0..1" />
@@ -2379,6 +3325,546 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="LU_Allegation1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_Allegation1" FromRole="LU_Allegation1" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_Allegation2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_Allegation2" FromRole="LU_Allegation2" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_CA1AssignedTo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA1AssignedTo" FromRole="LU_CA1AssignedTo" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_CA1Recommendation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA1Recommendation" FromRole="LU_CA1Recommendation" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_CA1RootCause">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA1RootCause" FromRole="LU_CA1RootCause" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_CA1Violation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA1Violation" FromRole="LU_CA1Violation" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_CA2AssignedTo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA2AssignedTo" FromRole="LU_CA2AssignedTo" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_CA2Recommendation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA2Recommendation" FromRole="LU_CA2Recommendation" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_CA2RootCause">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA2RootCause" FromRole="LU_CA2RootCause" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_CA2Violation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA2Violation" FromRole="LU_CA2Violation" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_CA3AssignedTo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA3AssignedTo" FromRole="LU_CA3AssignedTo" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_CA3Recommendation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA3Recommendation" FromRole="LU_CA3Recommendation" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_CA3RootCause">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA3RootCause" FromRole="LU_CA3RootCause" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_CA3Violation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_CA3Violation" FromRole="LU_CA3Violation" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_ComplaintAgainst">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_ComplaintAgainst" FromRole="LU_ComplaintAgainst" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_ComplaintCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_ComplaintCategory" FromRole="LU_ComplaintCategory" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_ComplaintClassification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_ComplaintClassification" FromRole="LU_ComplaintClassification" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_ComplaintIntakeStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_ComplaintIntakeStatus" FromRole="LU_ComplaintIntakeStatus" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_OwnershipStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_OwnershipStatus" FromRole="LU_OwnershipStatus" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_ResolutionRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_ResolutionRequest" FromRole="LU_ResolutionRequest" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_RootCause1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_RootCause1" FromRole="LU_RootCause1" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_RootCause2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_RootCause2" FromRole="LU_RootCause2" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_RootCause3">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_RootCause3" FromRole="LU_RootCause3" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_Stakeholder1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_Stakeholder1" FromRole="LU_Stakeholder1" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_Stakeholder2">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_Stakeholder2" FromRole="LU_Stakeholder2" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_Stakeholder3">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_Stakeholder3" FromRole="LU_Stakeholder3" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <EntityType Name="LU_ViolationAlleged">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_LU_ViolationAlleged" FromRole="LU_ViolationAlleged" ToRole="Tbl_ComplaintMain" />
+        </EntityType>
+        <Association Name="FK_Tbl_ComplaintMain_LU_Allegation1">
+          <End Type="CCATDBModel.LU_Allegation1" Role="LU_Allegation1" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_Allegation1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_Allegation1Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_Allegation2">
+          <End Type="CCATDBModel.LU_Allegation2" Role="LU_Allegation2" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_Allegation2">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_Allegation2Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA1AssignedTo">
+          <End Type="CCATDBModel.LU_CA1AssignedTo" Role="LU_CA1AssignedTo" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA1AssignedTo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA1AssignedToId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA1Recommendation">
+          <End Type="CCATDBModel.LU_CA1Recommendation" Role="LU_CA1Recommendation" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA1Recommendation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA1RecommendationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA1RootCause">
+          <End Type="CCATDBModel.LU_CA1RootCause" Role="LU_CA1RootCause" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA1RootCause">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA1RootCauseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA1Violation">
+          <End Type="CCATDBModel.LU_CA1Violation" Role="LU_CA1Violation" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA1Violation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA1ViolationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA2AssignedTo">
+          <End Type="CCATDBModel.LU_CA2AssignedTo" Role="LU_CA2AssignedTo" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA2AssignedTo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA2AssignedToId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA2Recommendation">
+          <End Type="CCATDBModel.LU_CA2Recommendation" Role="LU_CA2Recommendation" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA2Recommendation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA2RecommendationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA2RootCause">
+          <End Type="CCATDBModel.LU_CA2RootCause" Role="LU_CA2RootCause" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA2RootCause">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA2RootCauseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA2Violation">
+          <End Type="CCATDBModel.LU_CA2Violation" Role="LU_CA2Violation" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA2Violation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA2ViolationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA3AssignedTo">
+          <End Type="CCATDBModel.LU_CA3AssignedTo" Role="LU_CA3AssignedTo" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA3AssignedTo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA3AssignedToId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA3Recommendation">
+          <End Type="CCATDBModel.LU_CA3Recommendation" Role="LU_CA3Recommendation" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA3Recommendation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA3RecommendationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA3RootCause">
+          <End Type="CCATDBModel.LU_CA3RootCause" Role="LU_CA3RootCause" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA3RootCause">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA3RootCauseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_CA3Violation">
+          <End Type="CCATDBModel.LU_CA3Violation" Role="LU_CA3Violation" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CA3Violation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_CA3ViolationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_ComplaintAgainst">
+          <End Type="CCATDBModel.LU_ComplaintAgainst" Role="LU_ComplaintAgainst" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_ComplaintAgainst">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_ComplaintAgainstId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_ComplaintCategory">
+          <End Type="CCATDBModel.LU_ComplaintCategory" Role="LU_ComplaintCategory" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_ComplaintCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_ComplaintCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_ComplaintClassification">
+          <End Type="CCATDBModel.LU_ComplaintClassification" Role="LU_ComplaintClassification" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_ComplaintClassification">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_ComplaintClassificationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_ComplaintIntakeStatus">
+          <End Type="CCATDBModel.LU_ComplaintIntakeStatus" Role="LU_ComplaintIntakeStatus" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_ComplaintIntakeStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_ComplaintIntakeStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_OwnershipStatus">
+          <End Type="CCATDBModel.LU_OwnershipStatus" Role="LU_OwnershipStatus" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_OwnershipStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_OwnershipStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_ResolutionRequest">
+          <End Type="CCATDBModel.LU_ResolutionRequest" Role="LU_ResolutionRequest" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_ResolutionRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_ResolutionRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_RootCause1">
+          <End Type="CCATDBModel.LU_RootCause1" Role="LU_RootCause1" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_RootCause1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_RootCause1Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_RootCause2">
+          <End Type="CCATDBModel.LU_RootCause2" Role="LU_RootCause2" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_RootCause2">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_RootCause2Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_RootCause3">
+          <End Type="CCATDBModel.LU_RootCause3" Role="LU_RootCause3" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_RootCause3">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_RootCause3Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_Stakeholder1">
+          <End Type="CCATDBModel.LU_Stakeholder1" Role="LU_Stakeholder1" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_Stakeholder1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_Stakeholder1Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_Stakeholder2">
+          <End Type="CCATDBModel.LU_Stakeholder2" Role="LU_Stakeholder2" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_Stakeholder2">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_Stakeholder2Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_Stakeholder3">
+          <End Type="CCATDBModel.LU_Stakeholder3" Role="LU_Stakeholder3" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_Stakeholder3">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_Stakeholder3Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ComplaintMain_LU_ViolationAlleged">
+          <End Type="CCATDBModel.LU_ViolationAlleged" Role="LU_ViolationAlleged" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ComplaintMain" Role="Tbl_ComplaintMain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_ViolationAlleged">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ComplaintMain">
+              <PropertyRef Name="LU_ViolationAllegedId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2723,6 +4209,74 @@
           <EntitySetMapping Name="Tbl_ComplaintMain">
             <EntityTypeMapping TypeName="CCATDBModel.Tbl_ComplaintMain">
               <MappingFragment StoreEntitySet="Tbl_ComplaintMain">
+                <ScalarProperty Name="Notes_Resolution" ColumnName="Notes_Resolution" />
+                <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+                <ScalarProperty Name="OtherCosts" ColumnName="OtherCosts" />
+                <ScalarProperty Name="OurAttorneyFees" ColumnName="OurAttorneyFees" />
+                <ScalarProperty Name="Damages" ColumnName="Damages" />
+                <ScalarProperty Name="AccountClosedBalance" ColumnName="AccountClosedBalance" />
+                <ScalarProperty Name="YN_DisputeResolution" ColumnName="YN_DisputeResolution" />
+                <ScalarProperty Name="Resolution" ColumnName="Resolution" />
+                <ScalarProperty Name="Date_Resolution" ColumnName="Date_Resolution" />
+                <ScalarProperty Name="Notes_Investivation" ColumnName="Notes_Investivation" />
+                <ScalarProperty Name="YN_IsIssueValid" ColumnName="YN_IsIssueValid" />
+                <ScalarProperty Name="LU_RootCause3Id" ColumnName="LU_RootCause3Id" />
+                <ScalarProperty Name="LU_Stakeholder2Id" ColumnName="LU_Stakeholder2Id" />
+                <ScalarProperty Name="YN_ReferForCA2" ColumnName="YN_ReferForCA2" />
+                <ScalarProperty Name="YN_Improvement2" ColumnName="YN_Improvement2" />
+                <ScalarProperty Name="LU_RootCause2Id" ColumnName="LU_RootCause2Id" />
+                <ScalarProperty Name="LU_Stakeholder1Id" ColumnName="LU_Stakeholder1Id" />
+                <ScalarProperty Name="YN_ReferenceCA1" ColumnName="YN_ReferenceCA1" />
+                <ScalarProperty Name="YN_Improvement1" ColumnName="YN_Improvement1" />
+                <ScalarProperty Name="LU_RootCause1Id" ColumnName="LU_RootCause1Id" />
+                <ScalarProperty Name="Notes_ComplaintIntake" ColumnName="Notes_ComplaintIntake" />
+                <ScalarProperty Name="LU_ResolutionRequestId" ColumnName="LU_ResolutionRequestId" />
+                <ScalarProperty Name="LU_OwnershipStatusId" ColumnName="LU_OwnershipStatusId" />
+                <ScalarProperty Name="PortfolioId" ColumnName="PortfolioId" />
+                <ScalarProperty Name="LU_Allegation2Id" ColumnName="LU_Allegation2Id" />
+                <ScalarProperty Name="LU_Allegation1Id" ColumnName="LU_Allegation1Id" />
+                <ScalarProperty Name="LU_ViolationAllegedId" ColumnName="LU_ViolationAllegedId" />
+                <ScalarProperty Name="LU_ComplaintAgainstId" ColumnName="LU_ComplaintAgainstId" />
+                <ScalarProperty Name="IfAttorney" ColumnName="IfAttorney" />
+                <ScalarProperty Name="SourceReferenceNumber" ColumnName="SourceReferenceNumber" />
+                <ScalarProperty Name="LU_ComplaintCategoryId" ColumnName="LU_ComplaintCategoryId" />
+                <ScalarProperty Name="LU_ComplaintClassificationId" ColumnName="LU_ComplaintClassificationId" />
+                <ScalarProperty Name="Date_RequiredResolution" ColumnName="Date_RequiredResolution" />
+                <ScalarProperty Name="LU_ComplaintIntakeStatusId" ColumnName="LU_ComplaintIntakeStatusId" />
+                <ScalarProperty Name="Notes_CA3" ColumnName="Notes_CA3" />
+                <ScalarProperty Name="YN_C32StateLawApplicable" ColumnName="YN_C32StateLawApplicable" />
+                <ScalarProperty Name="Date_CA3Administered" ColumnName="Date_CA3Administered" />
+                <ScalarProperty Name="YN_CA3Followed" ColumnName="YN_CA3Followed" />
+                <ScalarProperty Name="Date_CA3ReportBack" ColumnName="Date_CA3ReportBack" />
+                <ScalarProperty Name="LU_CA3AssignedToId" ColumnName="LU_CA3AssignedToId" />
+                <ScalarProperty Name="LU_CA3RootCauseId" ColumnName="LU_CA3RootCauseId" />
+                <ScalarProperty Name="LU_CA3ViolationId" ColumnName="LU_CA3ViolationId" />
+                <ScalarProperty Name="Date_CA3" ColumnName="Date_CA3" />
+                <ScalarProperty Name="CA3Audience" ColumnName="CA3Audience" />
+                <ScalarProperty Name="Notes_CA2" ColumnName="Notes_CA2" />
+                <ScalarProperty Name="YN_CA2StateLawApplicable" ColumnName="YN_CA2StateLawApplicable" />
+                <ScalarProperty Name="Date_CA2Administered" ColumnName="Date_CA2Administered" />
+                <ScalarProperty Name="YN_CA2Followed" ColumnName="YN_CA2Followed" />
+                <ScalarProperty Name="Date_CA2ReportBack" ColumnName="Date_CA2ReportBack" />
+                <ScalarProperty Name="LU_CA2AssignedToId" ColumnName="LU_CA2AssignedToId" />
+                <ScalarProperty Name="LU_CA2RootCauseId" ColumnName="LU_CA2RootCauseId" />
+                <ScalarProperty Name="LU_CA2ViolationId" ColumnName="LU_CA2ViolationId" />
+                <ScalarProperty Name="Date_CA2" ColumnName="Date_CA2" />
+                <ScalarProperty Name="CA2Audience" ColumnName="CA2Audience" />
+                <ScalarProperty Name="Notes_CA1" ColumnName="Notes_CA1" />
+                <ScalarProperty Name="YN_CA1StateLawApplicable" ColumnName="YN_CA1StateLawApplicable" />
+                <ScalarProperty Name="Date_CA1Administered" ColumnName="Date_CA1Administered" />
+                <ScalarProperty Name="YN_CA1Followed" ColumnName="YN_CA1Followed" />
+                <ScalarProperty Name="Date_CA1ReportBack" ColumnName="Date_CA1ReportBack" />
+                <ScalarProperty Name="LU_CA1AssignedToId" ColumnName="LU_CA1AssignedToId" />
+                <ScalarProperty Name="LU_CA1RecommendationId" ColumnName="LU_CA1RecommendationId" />
+                <ScalarProperty Name="LU_CA1RootCauseId" ColumnName="LU_CA1RootCauseId" />
+                <ScalarProperty Name="LU_CA1ViolationId" ColumnName="LU_CA1ViolationId" />
+                <ScalarProperty Name="Date_CA1" ColumnName="Date_CA1" />
+                <ScalarProperty Name="CA1Audience" ColumnName="CA1Audience" />
+                <ScalarProperty Name="LU_CA3RecommendationId" ColumnName="LU_CA3RecommendationId" />
+                <ScalarProperty Name="LU_CA2RecommendationId" ColumnName="LU_CA2RecommendationId" />
+                <ScalarProperty Name="LU_Stakeholder3Id" ColumnName="LU_Stakeholder3Id" />
                 <ScalarProperty Name="AgencyCollectorUserId" ColumnName="AgencyCollectorUserId" />
                 <ScalarProperty Name="ComplaintTypeID" ColumnName="ComplaintTypeID" />
                 <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
@@ -2941,6 +4495,222 @@
                 <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
                 <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_Allegation1">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_Allegation1">
+              <MappingFragment StoreEntitySet="LU_Allegation1">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_Allegation2">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_Allegation2">
+              <MappingFragment StoreEntitySet="LU_Allegation2">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_CA1AssignedTo">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_CA1AssignedTo">
+              <MappingFragment StoreEntitySet="LU_CA1AssignedTo">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_CA1Recommendation">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_CA1Recommendation">
+              <MappingFragment StoreEntitySet="LU_CA1Recommendation">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_CA1RootCause">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_CA1RootCause">
+              <MappingFragment StoreEntitySet="LU_CA1RootCause">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_CA1Violation">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_CA1Violation">
+              <MappingFragment StoreEntitySet="LU_CA1Violation">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_CA2AssignedTo">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_CA2AssignedTo">
+              <MappingFragment StoreEntitySet="LU_CA2AssignedTo">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_CA2Recommendation">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_CA2Recommendation">
+              <MappingFragment StoreEntitySet="LU_CA2Recommendation">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_CA2RootCause">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_CA2RootCause">
+              <MappingFragment StoreEntitySet="LU_CA2RootCause">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_CA2Violation">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_CA2Violation">
+              <MappingFragment StoreEntitySet="LU_CA2Violation">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_CA3AssignedTo">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_CA3AssignedTo">
+              <MappingFragment StoreEntitySet="LU_CA3AssignedTo">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_CA3Recommendation">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_CA3Recommendation">
+              <MappingFragment StoreEntitySet="LU_CA3Recommendation">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_CA3RootCause">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_CA3RootCause">
+              <MappingFragment StoreEntitySet="LU_CA3RootCause">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_CA3Violation">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_CA3Violation">
+              <MappingFragment StoreEntitySet="LU_CA3Violation">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_ComplaintAgainst">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_ComplaintAgainst">
+              <MappingFragment StoreEntitySet="LU_ComplaintAgainst">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_ComplaintCategory">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_ComplaintCategory">
+              <MappingFragment StoreEntitySet="LU_ComplaintCategory">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_ComplaintClassification">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_ComplaintClassification">
+              <MappingFragment StoreEntitySet="LU_ComplaintClassification">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_ComplaintIntakeStatus">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_ComplaintIntakeStatus">
+              <MappingFragment StoreEntitySet="LU_ComplaintIntakeStatus">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_OwnershipStatus">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_OwnershipStatus">
+              <MappingFragment StoreEntitySet="LU_OwnershipStatus">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_ResolutionRequest">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_ResolutionRequest">
+              <MappingFragment StoreEntitySet="LU_ResolutionRequest">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_RootCause1">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_RootCause1">
+              <MappingFragment StoreEntitySet="LU_RootCause1">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_RootCause2">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_RootCause2">
+              <MappingFragment StoreEntitySet="LU_RootCause2">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_RootCause3">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_RootCause3">
+              <MappingFragment StoreEntitySet="LU_RootCause3">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_Stakeholder1">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_Stakeholder1">
+              <MappingFragment StoreEntitySet="LU_Stakeholder1">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_Stakeholder2">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_Stakeholder2">
+              <MappingFragment StoreEntitySet="LU_Stakeholder2">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_Stakeholder3">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_Stakeholder3">
+              <MappingFragment StoreEntitySet="LU_Stakeholder3">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_ViolationAlleged">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_ViolationAlleged">
+              <MappingFragment StoreEntitySet="LU_ViolationAlleged">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

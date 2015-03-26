@@ -92,6 +92,87 @@
       <DependentUpon>CCATEdm.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\LookUp.cs" />
+    <Compile Include="Models\LU_Allegation1.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_Allegation2.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_CA1AssignedTo.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_CA1Recommendation.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_CA1RootCause.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_CA1Violation.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_CA2AssignedTo.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_CA2Recommendation.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_CA2RootCause.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_CA2Violation.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_CA3AssignedTo.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_CA3Recommendation.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_CA3RootCause.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_CA3Violation.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_ComplaintAgainst.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_ComplaintCategory.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_ComplaintClassification.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_ComplaintIntakeStatus.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_OwnershipStatus.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_ResolutionRequest.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_RootCause1.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_RootCause2.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_RootCause3.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_Stakeholder1.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_Stakeholder2.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_Stakeholder3.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_ViolationAlleged.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\module.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>

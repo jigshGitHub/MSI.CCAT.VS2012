@@ -57,7 +57,35 @@ namespace MSI.CCAT.Data.Models
         public DbSet<aspnet_Roles> aspnet_Roles { get; set; }
         public DbSet<aspnet_Users> aspnet_Users { get; set; }
         public DbSet<Tbl_ComplaintType> Tbl_ComplaintType { get; set; }
-    
+        public DbSet<vw_Account> vw_Account { get; set; }
+        public DbSet<vw_aspnet_membership> vw_aspnet_membership { get; set; }
+        public DbSet<LU_Allegation1> LU_Allegation1 { get; set; }
+        public DbSet<LU_Allegation2> LU_Allegation2 { get; set; }
+        public DbSet<LU_CA1AssignedTo> LU_CA1AssignedTo { get; set; }
+        public DbSet<LU_CA1Recommendation> LU_CA1Recommendation { get; set; }
+        public DbSet<LU_CA1RootCause> LU_CA1RootCause { get; set; }
+        public DbSet<LU_CA1Violation> LU_CA1Violation { get; set; }
+        public DbSet<LU_CA2AssignedTo> LU_CA2AssignedTo { get; set; }
+        public DbSet<LU_CA2Recommendation> LU_CA2Recommendation { get; set; }
+        public DbSet<LU_CA2RootCause> LU_CA2RootCause { get; set; }
+        public DbSet<LU_CA2Violation> LU_CA2Violation { get; set; }
+        public DbSet<LU_CA3AssignedTo> LU_CA3AssignedTo { get; set; }
+        public DbSet<LU_CA3Recommendation> LU_CA3Recommendation { get; set; }
+        public DbSet<LU_CA3RootCause> LU_CA3RootCause { get; set; }
+        public DbSet<LU_CA3Violation> LU_CA3Violation { get; set; }
+        public DbSet<LU_ComplaintAgainst> LU_ComplaintAgainst { get; set; }
+        public DbSet<LU_ComplaintCategory> LU_ComplaintCategory { get; set; }
+        public DbSet<LU_ComplaintClassification> LU_ComplaintClassification { get; set; }
+        public DbSet<LU_ComplaintIntakeStatus> LU_ComplaintIntakeStatus { get; set; }
+        public DbSet<LU_OwnershipStatus> LU_OwnershipStatus { get; set; }
+        public DbSet<LU_ResolutionRequest> LU_ResolutionRequest { get; set; }
+        public DbSet<LU_RootCause1> LU_RootCause1 { get; set; }
+        public DbSet<LU_RootCause2> LU_RootCause2 { get; set; }
+        public DbSet<LU_RootCause3> LU_RootCause3 { get; set; }
+        public DbSet<LU_Stakeholder1> LU_Stakeholder1 { get; set; }
+        public DbSet<LU_Stakeholder2> LU_Stakeholder2 { get; set; }
+        public DbSet<LU_Stakeholder3> LU_Stakeholder3 { get; set; }
+        public DbSet<LU_ViolationAlleged> LU_ViolationAlleged { get; set; }
         public virtual ObjectResult<Tbl_Account> GetAccounts()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("GetAccounts");
