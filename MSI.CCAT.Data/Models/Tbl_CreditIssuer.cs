@@ -36,6 +36,9 @@ namespace MSI.CCAT.Data.Models
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public string CreatedBy { get; set; }
+        public Nullable<decimal> ClientAccountLastPayAmount { get; set; }
+        public Nullable<System.DateTime> ClientAccountLastPayDate { get; set; }
+        public Nullable<int> ClientAccountNumber { get; set; }
     
         public virtual ICollection<Tbl_Account> Tbl_Account { get; set; }
         public virtual Tbl_Owner Tbl_Owner { get; set; }

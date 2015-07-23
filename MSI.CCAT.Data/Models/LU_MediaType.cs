@@ -12,18 +12,16 @@ namespace MSI.CCAT.Data.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Tbl_DebtorProducts
+    public partial class LU_MediaType
     {
-        public Tbl_DebtorProducts()
+        public LU_MediaType()
         {
-            this.Tbl_ComplaintMain = new HashSet<Tbl_ComplaintMain>();
-            this.Tbl_Account = new HashSet<Tbl_Account>();
+            this.Tbl_MediaDetails = new HashSet<Tbl_MediaDetails>();
         }
     
         public int Id { get; set; }
-        public string Product { get; set; }
+        public string Name { get; set; }
     
-        public virtual ICollection<Tbl_ComplaintMain> Tbl_ComplaintMain { get; set; }
-        public virtual ICollection<Tbl_Account> Tbl_Account { get; set; }
+        public virtual ICollection<Tbl_MediaDetails> Tbl_MediaDetails { get; set; }
     }
 }

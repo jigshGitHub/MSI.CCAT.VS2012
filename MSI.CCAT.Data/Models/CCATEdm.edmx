@@ -11,6 +11,9 @@
           <EntitySet Name="aspnet_Roles" EntityType="CCATDBModel.Store.aspnet_Roles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="aspnet_Users" EntityType="CCATDBModel.Store.aspnet_Users" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="aspnet_UsersInRoles" EntityType="CCATDBModel.Store.aspnet_UsersInRoles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_AccountStatusCurrent" EntityType="CCATDBModel.Store.LU_AccountStatusCurrent" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_AccountStatusPrevious" EntityType="CCATDBModel.Store.LU_AccountStatusPrevious" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_AgencyDesignation" EntityType="CCATDBModel.Store.LU_AgencyDesignation" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="LU_Allegation1" EntityType="CCATDBModel.Store.LU_Allegation1" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="LU_Allegation2" EntityType="CCATDBModel.Store.LU_Allegation2" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="LU_CA1AssignedTo" EntityType="CCATDBModel.Store.LU_CA1AssignedTo" store:Type="Tables" Schema="dbo" />
@@ -29,14 +32,27 @@
           <EntitySet Name="LU_ComplaintCategory" EntityType="CCATDBModel.Store.LU_ComplaintCategory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="LU_ComplaintClassification" EntityType="CCATDBModel.Store.LU_ComplaintClassification" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="LU_ComplaintIntakeStatus" EntityType="CCATDBModel.Store.LU_ComplaintIntakeStatus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_ConsumerGender" EntityType="CCATDBModel.Store.LU_ConsumerGender" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_CurrentResponsibility" EntityType="CCATDBModel.Store.LU_CurrentResponsibility" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_DebtType" EntityType="CCATDBModel.Store.LU_DebtType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_InvestorDesignation" EntityType="CCATDBModel.Store.LU_InvestorDesignation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_MediaType" EntityType="CCATDBModel.Store.LU_MediaType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_OriginalLenderProduct" EntityType="CCATDBModel.Store.LU_OriginalLenderProduct" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_OwnerDesignation" EntityType="CCATDBModel.Store.LU_OwnerDesignation" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="LU_OwnershipStatus" EntityType="CCATDBModel.Store.LU_OwnershipStatus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_PortfolioBLSDesignation" EntityType="CCATDBModel.Store.LU_PortfolioBLSDesignation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_PortfolioResaleRestriction" EntityType="CCATDBModel.Store.LU_PortfolioResaleRestriction" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="LU_ResolutionRequest" EntityType="CCATDBModel.Store.LU_ResolutionRequest" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_ResponsibilityCurrent" EntityType="CCATDBModel.Store.LU_ResponsibilityCurrent" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_ResponsibilityPrevious" EntityType="CCATDBModel.Store.LU_ResponsibilityPrevious" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="LU_RootCause1" EntityType="CCATDBModel.Store.LU_RootCause1" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="LU_RootCause2" EntityType="CCATDBModel.Store.LU_RootCause2" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="LU_RootCause3" EntityType="CCATDBModel.Store.LU_RootCause3" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="LU_Stakeholder1" EntityType="CCATDBModel.Store.LU_Stakeholder1" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="LU_Stakeholder2" EntityType="CCATDBModel.Store.LU_Stakeholder2" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="LU_Stakeholder3" EntityType="CCATDBModel.Store.LU_Stakeholder3" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_TransactionType" EntityType="CCATDBModel.Store.LU_TransactionType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LU_VendorDesignation" EntityType="CCATDBModel.Store.LU_VendorDesignation" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="LU_ViolationAlleged" EntityType="CCATDBModel.Store.LU_ViolationAlleged" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="module" EntityType="CCATDBModel.Store.module" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="pageMenu" EntityType="CCATDBModel.Store.pageMenu" store:Type="Tables" Schema="dbo" />
@@ -49,20 +65,27 @@
           <EntitySet Name="Tbl_ComplaintReceivedBy" EntityType="CCATDBModel.Store.Tbl_ComplaintReceivedBy" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_ComplaintStatus" EntityType="CCATDBModel.Store.Tbl_ComplaintStatus" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_ComplaintType" EntityType="CCATDBModel.Store.Tbl_ComplaintType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_ConsumerDetails" EntityType="CCATDBModel.Store.Tbl_ConsumerDetails" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_Cosigner" EntityType="CCATDBModel.Store.Tbl_Cosigner" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_CreditIssuer" EntityType="CCATDBModel.Store.Tbl_CreditIssuer" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_DebtorContactMethods" EntityType="CCATDBModel.Store.Tbl_DebtorContactMethods" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_DebtorContactTime" EntityType="CCATDBModel.Store.Tbl_DebtorContactTime" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_DebtorProducts" EntityType="CCATDBModel.Store.Tbl_DebtorProducts" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_FinalActionSteps" EntityType="CCATDBModel.Store.Tbl_FinalActionSteps" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_InvestorDetails" EntityType="CCATDBModel.Store.Tbl_InvestorDetails" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_LawFirm" EntityType="CCATDBModel.Store.Tbl_LawFirm" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_MediaDetails" EntityType="CCATDBModel.Store.Tbl_MediaDetails" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_ModulesForRoles" EntityType="CCATDBModel.Store.Tbl_ModulesForRoles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_Owner" EntityType="CCATDBModel.Store.Tbl_Owner" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_OwnerResponses" EntityType="CCATDBModel.Store.Tbl_OwnerResponses" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_PortfolioDetails" EntityType="CCATDBModel.Store.Tbl_PortfolioDetails" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_PortfolioOfAccounts" EntityType="CCATDBModel.Store.Tbl_PortfolioOfAccounts" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_QuestionBank" EntityType="CCATDBModel.Store.Tbl_QuestionBank" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_QuestionDeficient" EntityType="CCATDBModel.Store.Tbl_QuestionDeficient" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_QuestionModule" EntityType="CCATDBModel.Store.Tbl_QuestionModule" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_QuestionResponse" EntityType="CCATDBModel.Store.Tbl_QuestionResponse" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tbl_States" EntityType="CCATDBModel.Store.Tbl_States" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tbl_Vendor" EntityType="CCATDBModel.Store.Tbl_Vendor" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="vw_Account" EntityType="CCATDBModel.Store.vw_Account" store:Type="Views" store:Schema="dbo" store:Name="vw_Account">
             <DefiningQuery>SELECT 
       [vw_Account].[TotalCount] AS [TotalCount], 
@@ -157,6 +180,42 @@
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
             <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account_LU_AccountStatusCurrent" Association="CCATDBModel.Store.FK_Tbl_Account_LU_AccountStatusCurrent">
+            <End Role="LU_AccountStatusCurrent" EntitySet="LU_AccountStatusCurrent" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account_LU_AccountStatusPrevious" Association="CCATDBModel.Store.FK_Tbl_Account_LU_AccountStatusPrevious">
+            <End Role="LU_AccountStatusPrevious" EntitySet="LU_AccountStatusPrevious" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account_LU_DebtType" Association="CCATDBModel.Store.FK_Tbl_Account_LU_DebtType">
+            <End Role="LU_DebtType" EntitySet="LU_DebtType" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account_LU_OriginalLenderProduct" Association="CCATDBModel.Store.FK_Tbl_Account_LU_OriginalLenderProduct">
+            <End Role="LU_OriginalLenderProduct" EntitySet="LU_OriginalLenderProduct" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account_Tbl_ConsumerDetails" Association="CCATDBModel.Store.FK_Tbl_Account_Tbl_ConsumerDetails">
+            <End Role="Tbl_ConsumerDetails" EntitySet="Tbl_ConsumerDetails" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account_Tbl_Cosigner" Association="CCATDBModel.Store.FK_Tbl_Account_Tbl_Cosigner">
+            <End Role="Tbl_Cosigner" EntitySet="Tbl_Cosigner" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account_Tbl_DebtorProducts" Association="CCATDBModel.Store.FK_Tbl_Account_Tbl_DebtorProducts">
+            <End Role="Tbl_DebtorProducts" EntitySet="Tbl_DebtorProducts" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account_Tbl_PortfolioDetails" Association="CCATDBModel.Store.FK_Tbl_Account_Tbl_PortfolioDetails">
+            <End Role="Tbl_PortfolioDetails" EntitySet="Tbl_PortfolioDetails" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account_Tbl_Vendor" Association="CCATDBModel.Store.FK_Tbl_Account_Tbl_Vendor">
+            <End Role="Tbl_Vendor" EntitySet="Tbl_Vendor" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
           <AssociationSet Name="FK_Tbl_Account12_Tbl_Agency" Association="CCATDBModel.Store.FK_Tbl_Account12_Tbl_Agency">
             <End Role="Tbl_Agency" EntitySet="Tbl_Agency" />
             <End Role="Tbl_Account" EntitySet="Tbl_Account" />
@@ -176,6 +235,10 @@
           <AssociationSet Name="FK_Tbl_Account12_Tbl_States" Association="CCATDBModel.Store.FK_Tbl_Account12_Tbl_States">
             <End Role="Tbl_States" EntitySet="Tbl_States" />
             <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Agency_LU_AgencyDesignation" Association="CCATDBModel.Store.FK_Tbl_Agency_LU_AgencyDesignation">
+            <End Role="LU_AgencyDesignation" EntitySet="LU_AgencyDesignation" />
+            <End Role="Tbl_Agency" EntitySet="Tbl_Agency" />
           </AssociationSet>
           <AssociationSet Name="FK_Tbl_Agency_Tbl_Owner" Association="CCATDBModel.Store.FK_Tbl_Agency_Tbl_Owner">
             <End Role="Tbl_Owner" EntitySet="Tbl_Owner" />
@@ -337,6 +400,22 @@
             <End Role="Tbl_OwnerResponses" EntitySet="Tbl_OwnerResponses" />
             <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
           </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ConsumerDetails_LU_ConsumerGender" Association="CCATDBModel.Store.FK_Tbl_ConsumerDetails_LU_ConsumerGender">
+            <End Role="LU_ConsumerGender" EntitySet="LU_ConsumerGender" />
+            <End Role="Tbl_ConsumerDetails" EntitySet="Tbl_ConsumerDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ConsumerDetails_Tbl_States" Association="CCATDBModel.Store.FK_Tbl_ConsumerDetails_Tbl_States">
+            <End Role="Tbl_States" EntitySet="Tbl_States" />
+            <End Role="Tbl_ConsumerDetails" EntitySet="Tbl_ConsumerDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ConsumerDetails_Tbl_States2" Association="CCATDBModel.Store.FK_Tbl_ConsumerDetails_Tbl_States2">
+            <End Role="Tbl_States" EntitySet="Tbl_States" />
+            <End Role="Tbl_ConsumerDetails" EntitySet="Tbl_ConsumerDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Cosigner_Tbl_States" Association="CCATDBModel.Store.FK_Tbl_Cosigner_Tbl_States">
+            <End Role="Tbl_States" EntitySet="Tbl_States" />
+            <End Role="Tbl_Cosigner" EntitySet="Tbl_Cosigner" />
+          </AssociationSet>
           <AssociationSet Name="FK_Tbl_CreditIssuer_Tbl_Owner" Association="CCATDBModel.Store.FK_Tbl_CreditIssuer_Tbl_Owner">
             <End Role="Tbl_Owner" EntitySet="Tbl_Owner" />
             <End Role="Tbl_CreditIssuer" EntitySet="Tbl_CreditIssuer" />
@@ -344,6 +423,14 @@
           <AssociationSet Name="FK_Tbl_CreditIssuer_Tbl_States" Association="CCATDBModel.Store.FK_Tbl_CreditIssuer_Tbl_States">
             <End Role="Tbl_States" EntitySet="Tbl_States" />
             <End Role="Tbl_CreditIssuer" EntitySet="Tbl_CreditIssuer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_InvestorDetails_LU_InvestorDesignation" Association="CCATDBModel.Store.FK_Tbl_InvestorDetails_LU_InvestorDesignation">
+            <End Role="LU_InvestorDesignation" EntitySet="LU_InvestorDesignation" />
+            <End Role="Tbl_InvestorDetails" EntitySet="Tbl_InvestorDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_InvestorDetails_Tbl_States" Association="CCATDBModel.Store.FK_Tbl_InvestorDetails_Tbl_States">
+            <End Role="Tbl_States" EntitySet="Tbl_States" />
+            <End Role="Tbl_InvestorDetails" EntitySet="Tbl_InvestorDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_Tbl_LawFirm_Tbl_Owner" Association="CCATDBModel.Store.FK_Tbl_LawFirm_Tbl_Owner">
             <End Role="Tbl_Owner" EntitySet="Tbl_Owner" />
@@ -353,9 +440,57 @@
             <End Role="Tbl_States" EntitySet="Tbl_States" />
             <End Role="Tbl_LawFirm" EntitySet="Tbl_LawFirm" />
           </AssociationSet>
+          <AssociationSet Name="FK_Tbl_MediaDetails_LU_MediaType" Association="CCATDBModel.Store.FK_Tbl_MediaDetails_LU_MediaType">
+            <End Role="LU_MediaType" EntitySet="LU_MediaType" />
+            <End Role="Tbl_MediaDetails" EntitySet="Tbl_MediaDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_MediaDetails_Tbl_Account" Association="CCATDBModel.Store.FK_Tbl_MediaDetails_Tbl_Account">
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+            <End Role="Tbl_MediaDetails" EntitySet="Tbl_MediaDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Owner_LU_OwnerDesignation" Association="CCATDBModel.Store.FK_Tbl_Owner_LU_OwnerDesignation">
+            <End Role="LU_OwnerDesignation" EntitySet="LU_OwnerDesignation" />
+            <End Role="Tbl_Owner" EntitySet="Tbl_Owner" />
+          </AssociationSet>
           <AssociationSet Name="FK_Tbl_Owner_Tbl_States" Association="CCATDBModel.Store.FK_Tbl_Owner_Tbl_States">
             <End Role="Tbl_States" EntitySet="Tbl_States" />
             <End Role="Tbl_Owner" EntitySet="Tbl_Owner" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_PortfolioDetails_LU_CurrentResponsibility" Association="CCATDBModel.Store.FK_Tbl_PortfolioDetails_LU_CurrentResponsibility">
+            <End Role="LU_CurrentResponsibility" EntitySet="LU_CurrentResponsibility" />
+            <End Role="Tbl_PortfolioDetails" EntitySet="Tbl_PortfolioDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_PortfolioDetails_LU_PortfolioBLSDesignation" Association="CCATDBModel.Store.FK_Tbl_PortfolioDetails_LU_PortfolioBLSDesignation">
+            <End Role="LU_PortfolioBLSDesignation" EntitySet="LU_PortfolioBLSDesignation" />
+            <End Role="Tbl_PortfolioDetails" EntitySet="Tbl_PortfolioDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_PortfolioDetails_LU_PortfolioResaleRestriction" Association="CCATDBModel.Store.FK_Tbl_PortfolioDetails_LU_PortfolioResaleRestriction">
+            <End Role="LU_PortfolioResaleRestriction" EntitySet="LU_PortfolioResaleRestriction" />
+            <End Role="Tbl_PortfolioDetails" EntitySet="Tbl_PortfolioDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_PortfolioDetails_LU_ResponsibilityCurrent" Association="CCATDBModel.Store.FK_Tbl_PortfolioDetails_LU_ResponsibilityCurrent">
+            <End Role="LU_ResponsibilityCurrent" EntitySet="LU_ResponsibilityCurrent" />
+            <End Role="Tbl_PortfolioDetails" EntitySet="Tbl_PortfolioDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_PortfolioDetails_LU_ResponsibilityPrevious" Association="CCATDBModel.Store.FK_Tbl_PortfolioDetails_LU_ResponsibilityPrevious">
+            <End Role="LU_ResponsibilityPrevious" EntitySet="LU_ResponsibilityPrevious" />
+            <End Role="Tbl_PortfolioDetails" EntitySet="Tbl_PortfolioDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_PortfolioDetails_LU_TransactionType" Association="CCATDBModel.Store.FK_Tbl_PortfolioDetails_LU_TransactionType">
+            <End Role="LU_TransactionType" EntitySet="LU_TransactionType" />
+            <End Role="Tbl_PortfolioDetails" EntitySet="Tbl_PortfolioDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_PortfolioDetails_Tbl_InvestorDetails" Association="CCATDBModel.Store.FK_Tbl_PortfolioDetails_Tbl_InvestorDetails">
+            <End Role="Tbl_InvestorDetails" EntitySet="Tbl_InvestorDetails" />
+            <End Role="Tbl_PortfolioDetails" EntitySet="Tbl_PortfolioDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_PortfolioDetails_Tbl_States" Association="CCATDBModel.Store.FK_Tbl_PortfolioDetails_Tbl_States">
+            <End Role="Tbl_States" EntitySet="Tbl_States" />
+            <End Role="Tbl_PortfolioDetails" EntitySet="Tbl_PortfolioDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_PortfolioOfAccounts_Tbl_Account" Association="CCATDBModel.Store.FK_Tbl_PortfolioOfAccounts_Tbl_Account">
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+            <End Role="Tbl_PortfolioOfAccounts" EntitySet="Tbl_PortfolioOfAccounts" />
           </AssociationSet>
           <AssociationSet Name="FK_Tbl_QuestionBank_Tbl_Module" Association="CCATDBModel.Store.FK_Tbl_QuestionBank_Tbl_Module">
             <End Role="Tbl_QuestionModule" EntitySet="Tbl_QuestionModule" />
@@ -364,6 +499,14 @@
           <AssociationSet Name="FK_Tbl_Response_Tbl_QuestionBank" Association="CCATDBModel.Store.FK_Tbl_Response_Tbl_QuestionBank">
             <End Role="Tbl_QuestionBank" EntitySet="Tbl_QuestionBank" />
             <End Role="Tbl_QuestionResponse" EntitySet="Tbl_QuestionResponse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Vendor_LU_VendorDesignation" Association="CCATDBModel.Store.FK_Tbl_Vendor_LU_VendorDesignation">
+            <End Role="LU_VendorDesignation" EntitySet="LU_VendorDesignation" />
+            <End Role="Tbl_Vendor" EntitySet="Tbl_Vendor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Vendor_Tbl_States" Association="CCATDBModel.Store.FK_Tbl_Vendor_Tbl_States">
+            <End Role="Tbl_States" EntitySet="Tbl_States" />
+            <End Role="Tbl_Vendor" EntitySet="Tbl_Vendor" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="aspnet_Applications">
@@ -435,6 +578,27 @@
           </Key>
           <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LU_AccountStatusCurrent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_AccountStatusPrevious">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_AgencyDesignation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
         <EntityType Name="LU_Allegation1">
           <Key>
@@ -562,6 +726,55 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
+        <EntityType Name="LU_ConsumerGender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_CurrentResponsibility">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_DebtType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_InvestorDesignation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_MediaType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_OriginalLenderProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_OwnerDesignation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
         <EntityType Name="LU_OwnershipStatus">
           <Key>
             <PropertyRef Name="Id" />
@@ -569,7 +782,35 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
+        <EntityType Name="LU_PortfolioBLSDesignation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_PortfolioResaleRestriction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
         <EntityType Name="LU_ResolutionRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_ResponsibilityCurrent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_ResponsibilityPrevious">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -612,6 +853,20 @@
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
         <EntityType Name="LU_Stakeholder3">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_TransactionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LU_VendorDesignation">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -701,6 +956,88 @@
           <Property Name="ST" Type="varchar" MaxLength="3" />
           <Property Name="LastPaymentDate" Type="date" />
           <Property Name="IsActive" Type="bit" />
+          <Property Name="AccountNetAmountPaid" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="AccountNetAmountRemaining" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="BlanketSettlementAmount" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="BlanketSettlementPercent" Type="int" />
+          <Property Name="ChainOfTitleAccount" Type="varchar" MaxLength="100" />
+          <Property Name="ChargeOffDate" Type="datetime" />
+          <Property Name="ChargeOffInterest" Type="int" />
+          <Property Name="ChargeOffOtherAmount" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="ChargeOffPrincipal" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="ChargeOffReason" Type="varchar" MaxLength="100" />
+          <Property Name="ConsumerId" Type="int" />
+          <Property Name="CosignerId" Type="int" />
+          <Property Name="CurrentInterestAmount" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="CurrentInterestRate" Type="int" />
+          <Property Name="CurrentPrincipal" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="DaysPastDue" Type="int" />
+          <Property Name="DebtorProductId" Type="int" />
+          <Property Name="DelinquencyDate" Type="datetime" />
+          <Property Name="GrossAmount" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="LastConsumerContactDate" Type="datetime" />
+          <Property Name="LastPaymentAmount" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="LatePaymentFee" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="LU_AccountStatusCurrentId" Type="int" />
+          <Property Name="LU_AccountStatusPreviousId" Type="int" />
+          <Property Name="LU_DebtTypeId" Type="int" />
+          <Property Name="LU_OriginalLenderProductId" Type="int" />
+          <Property Name="NumberofPaymentsMade" Type="int" />
+          <Property Name="NumberofPaymentsRemaining" Type="int" />
+          <Property Name="OpenDate" Type="datetime" />
+          <Property Name="OriginalAccountLastPayAmount" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="OriginalAccountLastPayDate" Type="datetime" />
+          <Property Name="OriginalBalance" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="OriginalInterestAmount" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="OriginalInterestRate" Type="int" />
+          <Property Name="OriginalPrincipal" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="OriginationDate" Type="datetime" />
+          <Property Name="OriginatorName" Type="varchar" MaxLength="50" />
+          <Property Name="PaymentDate" Type="datetime" />
+          <Property Name="PaymentDueDate" Type="datetime" />
+          <Property Name="PortfolioBatchNumber" Type="int" />
+          <Property Name="PortfolioId" Type="int" />
+          <Property Name="PortfolioNumber" Type="int" />
+          <Property Name="PriorLastPaymentAmount" Type="int" />
+          <Property Name="PriorLastPaymentDate" Type="datetime" />
+          <Property Name="PurchaseDate" Type="datetime" />
+          <Property Name="PurchasePrice" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="PutbackDate" Type="datetime" />
+          <Property Name="SaleDate" Type="datetime" />
+          <Property Name="SalesPrice" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="StatusChangeDate" Type="datetime" />
+          <Property Name="TotalAmountDue" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="TotalCostsDue" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="TotalDelinquentAmount" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="TotalInterestDue" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="TotalOtherCostsDue" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="TotalPrincipalDue" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="UnpaidPrincipalBalance" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="VendorFee" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="VendorId" Type="int" />
+          <Property Name="WriteOffAmount" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="WriteOffDate" Type="datetime" />
+          <Property Name="YN_FirstPaymentDefault" Type="bit" />
+          <Property Name="column_a" Type="varchar" MaxLength="100" />
+          <Property Name="column_b" Type="varchar" MaxLength="100" />
+          <Property Name="column_c" Type="varchar" MaxLength="100" />
+          <Property Name="column_d" Type="varchar" MaxLength="100" />
+          <Property Name="column_e" Type="varchar" MaxLength="100" />
+          <Property Name="column_f" Type="int" />
+          <Property Name="column_g" Type="int" />
+          <Property Name="column_h" Type="int" />
+          <Property Name="column_i" Type="int" />
+          <Property Name="column_j" Type="int" />
+          <Property Name="column_k" Type="datetime" />
+          <Property Name="column_l" Type="datetime" />
+          <Property Name="column_m" Type="datetime" />
+          <Property Name="column_n" Type="datetime" />
+          <Property Name="column_o" Type="datetime" />
+          <Property Name="column_p" Type="bit" />
+          <Property Name="column_q" Type="bit" />
+          <Property Name="column_r" Type="bit" />
+          <Property Name="column_s" Type="bit" />
+          <Property Name="column_t" Type="bit" />
         </EntityType>
         <EntityType Name="Tbl_Agency">
           <Key>
@@ -723,6 +1060,20 @@
           <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="AgencyCollectorFirstName" Type="varchar" MaxLength="50" />
+          <Property Name="AgencyCollectorLastName" Type="varchar" MaxLength="50" />
+          <Property Name="AgencyManagerFirstName" Type="varchar" MaxLength="50" />
+          <Property Name="AgencyManagerLastName" Type="varchar" MaxLength="50" />
+          <Property Name="AssignmentDate" Type="datetime" />
+          <Property Name="CommisionAmount" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="CommisionRate" Type="int" />
+          <Property Name="LU_AgencyDesignationId" Type="int" />
+          <Property Name="PlacementDate" Type="datetime" />
+          <Property Name="SettlementAmountRequest" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="SettlementCounterAmount" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="SettlementCounterPercent" Type="int" />
+          <Property Name="SettlementPercentRequest" Type="int" />
+          <Property Name="YN_Placement" Type="bit" />
         </EntityType>
         <EntityType Name="TBL_CHART">
           <Key>
@@ -905,6 +1256,76 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
         </EntityType>
+        <EntityType Name="Tbl_ConsumerDetails">
+          <Key>
+            <PropertyRef Name="ConsumerId" />
+          </Key>
+          <Property Name="Address" Type="varchar" MaxLength="100" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="ConsumerId" Type="int" Nullable="false" />
+          <Property Name="County" Type="varchar" MaxLength="50" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Employer" Type="varchar" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="FullName" Type="varchar" MaxLength="50" />
+          <Property Name="HomePhone" Type="varchar" MaxLength="50" />
+          <Property Name="Last4SSN" Type="int" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="LU_ConsumerGenderId" Type="int" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="MobilePhone" Type="varchar" MaxLength="50" />
+          <Property Name="OldAddress" Type="varchar" MaxLength="100" />
+          <Property Name="OldCellPhone" Type="varchar" MaxLength="50" />
+          <Property Name="OldCity" Type="varchar" MaxLength="50" />
+          <Property Name="OldHomePhone" Type="varchar" MaxLength="50" />
+          <Property Name="OldStateId" Type="int" />
+          <Property Name="OldZip" Type="varchar" MaxLength="50" />
+          <Property Name="SpouseFirstName" Type="varchar" MaxLength="50" />
+          <Property Name="SpouseLastName" Type="varchar" MaxLength="50" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="WorkPhone" Type="varchar" MaxLength="50" />
+          <Property Name="Zip" Type="varchar" MaxLength="50" />
+          <Property Name="column_a" Type="varchar" MaxLength="100" />
+          <Property Name="column_b" Type="varchar" MaxLength="100" />
+          <Property Name="column_c" Type="varchar" MaxLength="100" />
+          <Property Name="column_d" Type="varchar" MaxLength="100" />
+          <Property Name="column_e" Type="varchar" MaxLength="100" />
+          <Property Name="column_f" Type="int" />
+          <Property Name="column_g" Type="int" />
+          <Property Name="column_h" Type="int" />
+          <Property Name="column_i" Type="int" />
+          <Property Name="column_j" Type="int" />
+          <Property Name="column_k" Type="datetime" />
+          <Property Name="column_l" Type="datetime" />
+          <Property Name="column_m" Type="datetime" />
+          <Property Name="column_n" Type="datetime" />
+          <Property Name="column_o" Type="datetime" />
+          <Property Name="column_p" Type="bit" />
+          <Property Name="column_q" Type="bit" />
+          <Property Name="column_r" Type="bit" />
+          <Property Name="column_s" Type="bit" />
+          <Property Name="column_t" Type="bit" />
+        </EntityType>
+        <EntityType Name="Tbl_Cosigner">
+          <Key>
+            <PropertyRef Name="CosignerId" />
+          </Key>
+          <Property Name="Address" Type="varchar" MaxLength="100" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="CosignerId" Type="int" Nullable="false" />
+          <Property Name="County" Type="varchar" MaxLength="50" />
+          <Property Name="DateofBirth" Type="datetime" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="FullName" Type="varchar" MaxLength="50" />
+          <Property Name="Last4SSN" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="Zip" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Tbl_CreditIssuer">
           <Key>
             <PropertyRef Name="CreditIssuerId" />
@@ -926,6 +1347,9 @@
           <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ClientAccountLastPayAmount" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="ClientAccountLastPayDate" Type="datetime" />
+          <Property Name="ClientAccountNumber" Type="int" />
         </EntityType>
         <EntityType Name="Tbl_DebtorContactMethods">
           <Key>
@@ -955,6 +1379,32 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Step" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Tbl_InvestorDetails">
+          <Key>
+            <PropertyRef Name="InvestorId" />
+          </Key>
+          <Property Name="Address" Type="varchar" MaxLength="100" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="50" />
+          <Property Name="Contact_FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="Contact_LastName" Type="varchar" MaxLength="50" />
+          <Property Name="County" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="HomePhone" Type="varchar" MaxLength="50" />
+          <Property Name="InvestmentPercent" Type="int" />
+          <Property Name="InvestorId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="LU_InvestorDesignationId" Type="int" />
+          <Property Name="MobilePhone" Type="varchar" MaxLength="50" />
+          <Property Name="ROIActual" Type="int" />
+          <Property Name="ROIDesired" Type="int" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="WorkPhone" Type="varchar" MaxLength="50" />
+          <Property Name="Zip" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Tbl_LawFirm">
           <Key>
             <PropertyRef Name="LawFirmId" />
@@ -976,6 +1426,45 @@
           <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_MediaDetails">
+          <Key>
+            <PropertyRef Name="MediaId" />
+          </Key>
+          <Property Name="AccountNumber" Type="varchar" MaxLength="25" />
+          <Property Name="AccountOriginal" Type="int" />
+          <Property Name="CompanySubmittedTo" Type="varchar" MaxLength="50" />
+          <Property Name="DateMediaConfirmed" Type="datetime" />
+          <Property Name="DateMediaForwarded" Type="datetime" />
+          <Property Name="DateMediaOrdered" Type="datetime" />
+          <Property Name="DateMediaReceived" Type="datetime" />
+          <Property Name="DateMediaSubmitted" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="LU_MediaTypeId" Type="int" />
+          <Property Name="MediaAvailable" Type="bit" />
+          <Property Name="MediaId" Type="int" Nullable="false" />
+          <Property Name="OwnerMediaFee" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="SellerMediaFee" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="column_a" Type="varchar" MaxLength="100" />
+          <Property Name="column_b" Type="varchar" MaxLength="100" />
+          <Property Name="column_c" Type="varchar" MaxLength="100" />
+          <Property Name="column_d" Type="varchar" MaxLength="100" />
+          <Property Name="column_e" Type="varchar" MaxLength="100" />
+          <Property Name="column_f" Type="int" />
+          <Property Name="column_g" Type="int" />
+          <Property Name="column_h" Type="int" />
+          <Property Name="column_i" Type="int" />
+          <Property Name="column_j" Type="int" />
+          <Property Name="column_k" Type="datetime" />
+          <Property Name="column_l" Type="datetime" />
+          <Property Name="column_m" Type="datetime" />
+          <Property Name="column_n" Type="datetime" />
+          <Property Name="column_o" Type="datetime" />
+          <Property Name="column_p" Type="bit" />
+          <Property Name="column_q" Type="bit" />
+          <Property Name="column_r" Type="bit" />
+          <Property Name="column_s" Type="bit" />
+          <Property Name="column_t" Type="bit" />
         </EntityType>
         <EntityType Name="Tbl_ModulesForRoles">
           <Key>
@@ -1005,6 +1494,7 @@
           <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
           <Property Name="UpdatedOn" Type="datetime" />
           <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="LU_OwnerDesignationId" Type="int" />
         </EntityType>
         <EntityType Name="Tbl_OwnerResponses">
           <Key>
@@ -1015,6 +1505,85 @@
           <Property Name="IsActive" Type="bit" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_PortfolioDetails">
+          <Key>
+            <PropertyRef Name="PortfolioId" />
+          </Key>
+          <Property Name="CashPosition" Type="int" />
+          <Property Name="ChainOfTitlePortfolio" Type="varchar" MaxLength="100" />
+          <Property Name="CompanyAddress" Type="varchar" MaxLength="100" />
+          <Property Name="CompanyCity" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyFax" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyZip" Type="varchar" MaxLength="50" />
+          <Property Name="Contact_Email" Type="varchar" MaxLength="50" />
+          <Property Name="Contact_FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="Contact_LastName" Type="varchar" MaxLength="50" />
+          <Property Name="ContactPhone" Type="varchar" MaxLength="50" />
+          <Property Name="DateSellerPaid" Type="datetime" />
+          <Property Name="InitialRateofReturn" Type="int" />
+          <Property Name="InvestorId" Type="int" />
+          <Property Name="LU_CurrentResponsibilityId" Type="int" />
+          <Property Name="LU_PortfolioBLSDesignationId" Type="int" />
+          <Property Name="LU_PortfolioResaleRestrictionId" Type="int" />
+          <Property Name="LU_ResponsibilityCurrentId" Type="int" />
+          <Property Name="LU_ResponsibilityPreviousId" Type="int" />
+          <Property Name="LU_TransactionTypeId" Type="int" />
+          <Property Name="NumberofPaymentsMade" Type="int" />
+          <Property Name="NumberofPaymentsRemaining" Type="int" />
+          <Property Name="PortfolioBatchNumber" Type="int" />
+          <Property Name="PortfolioClosingDate" Type="datetime" />
+          <Property Name="PortfolioCostBasis" Type="int" />
+          <Property Name="PortfolioCutOffDate" Type="datetime" />
+          <Property Name="PortfolioFaceValue" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="PortfolioId" Type="int" Nullable="false" />
+          <Property Name="PortfolioNetAmountPaid" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="PortfolioNetAmountRemaining" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="PortfolioNumber" Type="int" />
+          <Property Name="PortfolioPurchasePrice" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="PortfolioSaleDate" Type="datetime" />
+          <Property Name="PortfolioSalesPrice" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="PurchaseDate" Type="datetime" />
+          <Property Name="PutbackDeadlineDate" Type="datetime" />
+          <Property Name="PutbackTermDays" Type="int" />
+          <Property Name="RecallDate" Type="datetime" />
+          <Property Name="ReturnOnCapital" Type="int" />
+          <Property Name="SalesBasis" Type="int" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="WeightedAverageCouponRate" Type="int" />
+          <Property Name="WeightedAverageMonths" Type="int" />
+          <Property Name="YN_Recall" Type="bit" />
+          <Property Name="column_a" Type="varchar" MaxLength="100" />
+          <Property Name="column_b" Type="varchar" MaxLength="100" />
+          <Property Name="column_c" Type="varchar" MaxLength="100" />
+          <Property Name="column_d" Type="varchar" MaxLength="100" />
+          <Property Name="column_e" Type="varchar" MaxLength="100" />
+          <Property Name="column_f" Type="int" />
+          <Property Name="column_g" Type="int" />
+          <Property Name="column_h" Type="int" />
+          <Property Name="column_i" Type="int" />
+          <Property Name="column_j" Type="int" />
+          <Property Name="column_k" Type="datetime" />
+          <Property Name="column_l" Type="datetime" />
+          <Property Name="column_m" Type="datetime" />
+          <Property Name="column_n" Type="datetime" />
+          <Property Name="column_o" Type="datetime" />
+          <Property Name="column_p" Type="bit" />
+          <Property Name="column_q" Type="bit" />
+          <Property Name="column_r" Type="bit" />
+          <Property Name="column_s" Type="bit" />
+          <Property Name="column_t" Type="bit" />
+        </EntityType>
+        <EntityType Name="Tbl_PortfolioOfAccounts">
+          <Key>
+            <PropertyRef Name="PortfolioId" />
+          </Key>
+          <Property Name="AccountNumber" Type="varchar" MaxLength="25" />
+          <Property Name="AccountOriginal" Type="int" />
+          <Property Name="PortfolioBatchNumber" Type="int" />
+          <Property Name="PortfolioId" Type="int" Nullable="false" />
+          <Property Name="PortfolioNumber" Type="int" />
         </EntityType>
         <EntityType Name="Tbl_QuestionBank">
           <Key>
@@ -1076,6 +1645,52 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" MaxLength="50" />
           <Property Name="Value" Type="varchar" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="Tbl_Vendor">
+          <Key>
+            <PropertyRef Name="VendorId" />
+          </Key>
+          <Property Name="Address" Type="varchar" MaxLength="100" />
+          <Property Name="AssignmentDate" Type="datetime" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="Fax" Type="varchar" MaxLength="50" />
+          <Property Name="FeeAmount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="FeePercent" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="LU_VendorDesignationId" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="RevocationDate" Type="datetime" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="UpdatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="VendorContact_Email" Type="varchar" MaxLength="100" />
+          <Property Name="VendorContact_FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="VendorContact_LastName" Type="varchar" MaxLength="50" />
+          <Property Name="VendorId" Type="int" Nullable="false" />
+          <Property Name="Zipcode" Type="varchar" MaxLength="50" />
+          <Property Name="column_a" Type="varchar" MaxLength="100" />
+          <Property Name="column_b" Type="varchar" MaxLength="100" />
+          <Property Name="column_c" Type="varchar" MaxLength="100" />
+          <Property Name="column_d" Type="varchar" MaxLength="100" />
+          <Property Name="column_e" Type="varchar" MaxLength="100" />
+          <Property Name="column_f" Type="int" />
+          <Property Name="column_g" Type="int" />
+          <Property Name="column_h" Type="int" />
+          <Property Name="column_i" Type="int" />
+          <Property Name="column_j" Type="int" />
+          <Property Name="column_k" Type="datetime" />
+          <Property Name="column_l" Type="datetime" />
+          <Property Name="column_m" Type="datetime" />
+          <Property Name="column_n" Type="datetime" />
+          <Property Name="column_o" Type="datetime" />
+          <Property Name="column_p" Type="bit" />
+          <Property Name="column_q" Type="bit" />
+          <Property Name="column_r" Type="bit" />
+          <Property Name="column_s" Type="bit" />
+          <Property Name="column_t" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'CCATDB.dbo.vw_Account' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -1242,6 +1857,114 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Tbl_Account_LU_AccountStatusCurrent">
+          <End Role="LU_AccountStatusCurrent" Type="CCATDBModel.Store.LU_AccountStatusCurrent" Multiplicity="0..1" />
+          <End Role="Tbl_Account" Type="CCATDBModel.Store.Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_AccountStatusCurrent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="LU_AccountStatusCurrentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account_LU_AccountStatusPrevious">
+          <End Role="LU_AccountStatusPrevious" Type="CCATDBModel.Store.LU_AccountStatusPrevious" Multiplicity="0..1" />
+          <End Role="Tbl_Account" Type="CCATDBModel.Store.Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_AccountStatusPrevious">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="LU_AccountStatusPreviousId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account_LU_DebtType">
+          <End Role="LU_DebtType" Type="CCATDBModel.Store.LU_DebtType" Multiplicity="0..1" />
+          <End Role="Tbl_Account" Type="CCATDBModel.Store.Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_DebtType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="LU_DebtTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account_LU_OriginalLenderProduct">
+          <End Role="LU_OriginalLenderProduct" Type="CCATDBModel.Store.LU_OriginalLenderProduct" Multiplicity="0..1" />
+          <End Role="Tbl_Account" Type="CCATDBModel.Store.Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_OriginalLenderProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="LU_OriginalLenderProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account_Tbl_ConsumerDetails">
+          <End Role="Tbl_ConsumerDetails" Type="CCATDBModel.Store.Tbl_ConsumerDetails" Multiplicity="0..1" />
+          <End Role="Tbl_Account" Type="CCATDBModel.Store.Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_ConsumerDetails">
+              <PropertyRef Name="ConsumerId" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="ConsumerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account_Tbl_Cosigner">
+          <End Role="Tbl_Cosigner" Type="CCATDBModel.Store.Tbl_Cosigner" Multiplicity="0..1" />
+          <End Role="Tbl_Account" Type="CCATDBModel.Store.Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Cosigner">
+              <PropertyRef Name="CosignerId" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="CosignerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account_Tbl_DebtorProducts">
+          <End Role="Tbl_DebtorProducts" Type="CCATDBModel.Store.Tbl_DebtorProducts" Multiplicity="0..1" />
+          <End Role="Tbl_Account" Type="CCATDBModel.Store.Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_DebtorProducts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="DebtorProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account_Tbl_PortfolioDetails">
+          <End Role="Tbl_PortfolioDetails" Type="CCATDBModel.Store.Tbl_PortfolioDetails" Multiplicity="0..1" />
+          <End Role="Tbl_Account" Type="CCATDBModel.Store.Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_PortfolioDetails">
+              <PropertyRef Name="PortfolioId" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="PortfolioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account_Tbl_Vendor">
+          <End Role="Tbl_Vendor" Type="CCATDBModel.Store.Tbl_Vendor" Multiplicity="0..1" />
+          <End Role="Tbl_Account" Type="CCATDBModel.Store.Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Vendor">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tbl_Account12_Tbl_Agency">
           <End Role="Tbl_Agency" Type="CCATDBModel.Store.Tbl_Agency" Multiplicity="0..1" />
           <End Role="Tbl_Account" Type="CCATDBModel.Store.Tbl_Account" Multiplicity="*" />
@@ -1299,6 +2022,18 @@
             </Principal>
             <Dependent Role="Tbl_Account">
               <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Agency_LU_AgencyDesignation">
+          <End Role="LU_AgencyDesignation" Type="CCATDBModel.Store.LU_AgencyDesignation" Multiplicity="0..1" />
+          <End Role="Tbl_Agency" Type="CCATDBModel.Store.Tbl_Agency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_AgencyDesignation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Agency">
+              <PropertyRef Name="LU_AgencyDesignationId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1782,6 +2517,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Tbl_ConsumerDetails_LU_ConsumerGender">
+          <End Role="LU_ConsumerGender" Type="CCATDBModel.Store.LU_ConsumerGender" Multiplicity="0..1" />
+          <End Role="Tbl_ConsumerDetails" Type="CCATDBModel.Store.Tbl_ConsumerDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_ConsumerGender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ConsumerDetails">
+              <PropertyRef Name="LU_ConsumerGenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ConsumerDetails_Tbl_States">
+          <End Role="Tbl_States" Type="CCATDBModel.Store.Tbl_States" Multiplicity="0..1" />
+          <End Role="Tbl_ConsumerDetails" Type="CCATDBModel.Store.Tbl_ConsumerDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ConsumerDetails">
+              <PropertyRef Name="OldStateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ConsumerDetails_Tbl_States2">
+          <End Role="Tbl_States" Type="CCATDBModel.Store.Tbl_States" Multiplicity="0..1" />
+          <End Role="Tbl_ConsumerDetails" Type="CCATDBModel.Store.Tbl_ConsumerDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ConsumerDetails">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Cosigner_Tbl_States">
+          <End Role="Tbl_States" Type="CCATDBModel.Store.Tbl_States" Multiplicity="0..1" />
+          <End Role="Tbl_Cosigner" Type="CCATDBModel.Store.Tbl_Cosigner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Cosigner">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tbl_CreditIssuer_Tbl_Owner">
           <End Role="Tbl_Owner" Type="CCATDBModel.Store.Tbl_Owner" Multiplicity="0..1" />
           <End Role="Tbl_CreditIssuer" Type="CCATDBModel.Store.Tbl_CreditIssuer" Multiplicity="*" />
@@ -1802,6 +2585,30 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Tbl_CreditIssuer">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_InvestorDetails_LU_InvestorDesignation">
+          <End Role="LU_InvestorDesignation" Type="CCATDBModel.Store.LU_InvestorDesignation" Multiplicity="0..1" />
+          <End Role="Tbl_InvestorDetails" Type="CCATDBModel.Store.Tbl_InvestorDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_InvestorDesignation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_InvestorDetails">
+              <PropertyRef Name="LU_InvestorDesignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_InvestorDetails_Tbl_States">
+          <End Role="Tbl_States" Type="CCATDBModel.Store.Tbl_States" Multiplicity="0..1" />
+          <End Role="Tbl_InvestorDetails" Type="CCATDBModel.Store.Tbl_InvestorDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_InvestorDetails">
               <PropertyRef Name="StateId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1830,6 +2637,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Tbl_MediaDetails_LU_MediaType">
+          <End Role="LU_MediaType" Type="CCATDBModel.Store.LU_MediaType" Multiplicity="0..1" />
+          <End Role="Tbl_MediaDetails" Type="CCATDBModel.Store.Tbl_MediaDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_MediaType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_MediaDetails">
+              <PropertyRef Name="LU_MediaTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_MediaDetails_Tbl_Account">
+          <End Role="Tbl_Account" Type="CCATDBModel.Store.Tbl_Account" Multiplicity="0..1" />
+          <End Role="Tbl_MediaDetails" Type="CCATDBModel.Store.Tbl_MediaDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Account">
+              <PropertyRef Name="AccountNumber" />
+            </Principal>
+            <Dependent Role="Tbl_MediaDetails">
+              <PropertyRef Name="AccountNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Owner_LU_OwnerDesignation">
+          <End Role="LU_OwnerDesignation" Type="CCATDBModel.Store.LU_OwnerDesignation" Multiplicity="0..1" />
+          <End Role="Tbl_Owner" Type="CCATDBModel.Store.Tbl_Owner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_OwnerDesignation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Owner">
+              <PropertyRef Name="LU_OwnerDesignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tbl_Owner_Tbl_States">
           <End Role="Tbl_States" Type="CCATDBModel.Store.Tbl_States" Multiplicity="0..1" />
           <End Role="Tbl_Owner" Type="CCATDBModel.Store.Tbl_Owner" Multiplicity="*" />
@@ -1839,6 +2682,114 @@
             </Principal>
             <Dependent Role="Tbl_Owner">
               <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_PortfolioDetails_LU_CurrentResponsibility">
+          <End Role="LU_CurrentResponsibility" Type="CCATDBModel.Store.LU_CurrentResponsibility" Multiplicity="0..1" />
+          <End Role="Tbl_PortfolioDetails" Type="CCATDBModel.Store.Tbl_PortfolioDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CurrentResponsibility">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_PortfolioDetails">
+              <PropertyRef Name="LU_CurrentResponsibilityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_PortfolioDetails_LU_PortfolioBLSDesignation">
+          <End Role="LU_PortfolioBLSDesignation" Type="CCATDBModel.Store.LU_PortfolioBLSDesignation" Multiplicity="0..1" />
+          <End Role="Tbl_PortfolioDetails" Type="CCATDBModel.Store.Tbl_PortfolioDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_PortfolioBLSDesignation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_PortfolioDetails">
+              <PropertyRef Name="LU_PortfolioBLSDesignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_PortfolioDetails_LU_PortfolioResaleRestriction">
+          <End Role="LU_PortfolioResaleRestriction" Type="CCATDBModel.Store.LU_PortfolioResaleRestriction" Multiplicity="0..1" />
+          <End Role="Tbl_PortfolioDetails" Type="CCATDBModel.Store.Tbl_PortfolioDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_PortfolioResaleRestriction">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_PortfolioDetails">
+              <PropertyRef Name="LU_PortfolioResaleRestrictionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_PortfolioDetails_LU_ResponsibilityCurrent">
+          <End Role="LU_ResponsibilityCurrent" Type="CCATDBModel.Store.LU_ResponsibilityCurrent" Multiplicity="0..1" />
+          <End Role="Tbl_PortfolioDetails" Type="CCATDBModel.Store.Tbl_PortfolioDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_ResponsibilityCurrent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_PortfolioDetails">
+              <PropertyRef Name="LU_ResponsibilityCurrentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_PortfolioDetails_LU_ResponsibilityPrevious">
+          <End Role="LU_ResponsibilityPrevious" Type="CCATDBModel.Store.LU_ResponsibilityPrevious" Multiplicity="0..1" />
+          <End Role="Tbl_PortfolioDetails" Type="CCATDBModel.Store.Tbl_PortfolioDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_ResponsibilityPrevious">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_PortfolioDetails">
+              <PropertyRef Name="LU_ResponsibilityPreviousId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_PortfolioDetails_LU_TransactionType">
+          <End Role="LU_TransactionType" Type="CCATDBModel.Store.LU_TransactionType" Multiplicity="0..1" />
+          <End Role="Tbl_PortfolioDetails" Type="CCATDBModel.Store.Tbl_PortfolioDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_TransactionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_PortfolioDetails">
+              <PropertyRef Name="LU_TransactionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_PortfolioDetails_Tbl_InvestorDetails">
+          <End Role="Tbl_InvestorDetails" Type="CCATDBModel.Store.Tbl_InvestorDetails" Multiplicity="0..1" />
+          <End Role="Tbl_PortfolioDetails" Type="CCATDBModel.Store.Tbl_PortfolioDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_InvestorDetails">
+              <PropertyRef Name="InvestorId" />
+            </Principal>
+            <Dependent Role="Tbl_PortfolioDetails">
+              <PropertyRef Name="InvestorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_PortfolioDetails_Tbl_States">
+          <End Role="Tbl_States" Type="CCATDBModel.Store.Tbl_States" Multiplicity="0..1" />
+          <End Role="Tbl_PortfolioDetails" Type="CCATDBModel.Store.Tbl_PortfolioDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_PortfolioDetails">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_PortfolioOfAccounts_Tbl_Account">
+          <End Role="Tbl_Account" Type="CCATDBModel.Store.Tbl_Account" Multiplicity="0..1" />
+          <End Role="Tbl_PortfolioOfAccounts" Type="CCATDBModel.Store.Tbl_PortfolioOfAccounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Account">
+              <PropertyRef Name="AccountNumber" />
+            </Principal>
+            <Dependent Role="Tbl_PortfolioOfAccounts">
+              <PropertyRef Name="AccountNumber" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1863,6 +2814,30 @@
             </Principal>
             <Dependent Role="Tbl_QuestionResponse">
               <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Vendor_LU_VendorDesignation">
+          <End Role="LU_VendorDesignation" Type="CCATDBModel.Store.LU_VendorDesignation" Multiplicity="0..1" />
+          <End Role="Tbl_Vendor" Type="CCATDBModel.Store.Tbl_Vendor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_VendorDesignation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Vendor">
+              <PropertyRef Name="LU_VendorDesignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Vendor_Tbl_States">
+          <End Role="Tbl_States" Type="CCATDBModel.Store.Tbl_States" Multiplicity="0..1" />
+          <End Role="Tbl_Vendor" Type="CCATDBModel.Store.Tbl_Vendor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Vendor">
+              <PropertyRef Name="StateId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2199,6 +3174,149 @@
             <End Role="LU_ViolationAlleged" EntitySet="LU_ViolationAlleged" />
             <End Role="Tbl_ComplaintMain" EntitySet="Tbl_ComplaintMain" />
           </AssociationSet>
+          <EntitySet Name="LU_AccountStatusCurrent" EntityType="CCATDBModel.LU_AccountStatusCurrent" />
+          <EntitySet Name="LU_AccountStatusPrevious" EntityType="CCATDBModel.LU_AccountStatusPrevious" />
+          <EntitySet Name="LU_AgencyDesignation" EntityType="CCATDBModel.LU_AgencyDesignation" />
+          <EntitySet Name="LU_ConsumerGender" EntityType="CCATDBModel.LU_ConsumerGender" />
+          <EntitySet Name="LU_CurrentResponsibility" EntityType="CCATDBModel.LU_CurrentResponsibility" />
+          <EntitySet Name="LU_DebtType" EntityType="CCATDBModel.LU_DebtType" />
+          <EntitySet Name="LU_InvestorDesignation" EntityType="CCATDBModel.LU_InvestorDesignation" />
+          <EntitySet Name="LU_MediaType" EntityType="CCATDBModel.LU_MediaType" />
+          <EntitySet Name="LU_OriginalLenderProduct" EntityType="CCATDBModel.LU_OriginalLenderProduct" />
+          <EntitySet Name="LU_OwnerDesignation" EntityType="CCATDBModel.LU_OwnerDesignation" />
+          <EntitySet Name="LU_PortfolioBLSDesignation" EntityType="CCATDBModel.LU_PortfolioBLSDesignation" />
+          <EntitySet Name="LU_PortfolioResaleRestriction" EntityType="CCATDBModel.LU_PortfolioResaleRestriction" />
+          <EntitySet Name="LU_ResponsibilityCurrent" EntityType="CCATDBModel.LU_ResponsibilityCurrent" />
+          <EntitySet Name="LU_ResponsibilityPrevious" EntityType="CCATDBModel.LU_ResponsibilityPrevious" />
+          <EntitySet Name="LU_TransactionType" EntityType="CCATDBModel.LU_TransactionType" />
+          <EntitySet Name="LU_VendorDesignation" EntityType="CCATDBModel.LU_VendorDesignation" />
+          <EntitySet Name="Tbl_ConsumerDetails" EntityType="CCATDBModel.Tbl_ConsumerDetails" />
+          <EntitySet Name="Tbl_Cosigner" EntityType="CCATDBModel.Tbl_Cosigner" />
+          <EntitySet Name="Tbl_InvestorDetails" EntityType="CCATDBModel.Tbl_InvestorDetails" />
+          <EntitySet Name="Tbl_MediaDetails" EntityType="CCATDBModel.Tbl_MediaDetails" />
+          <EntitySet Name="Tbl_PortfolioDetails" EntityType="CCATDBModel.Tbl_PortfolioDetails" />
+          <EntitySet Name="Tbl_PortfolioOfAccounts" EntityType="CCATDBModel.Tbl_PortfolioOfAccounts" />
+          <EntitySet Name="Tbl_Vendor" EntityType="CCATDBModel.Tbl_Vendor" />
+          <AssociationSet Name="FK_Tbl_Account_LU_AccountStatusCurrent" Association="CCATDBModel.FK_Tbl_Account_LU_AccountStatusCurrent">
+            <End Role="LU_AccountStatusCurrent" EntitySet="LU_AccountStatusCurrent" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account_LU_AccountStatusPrevious" Association="CCATDBModel.FK_Tbl_Account_LU_AccountStatusPrevious">
+            <End Role="LU_AccountStatusPrevious" EntitySet="LU_AccountStatusPrevious" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Agency_LU_AgencyDesignation" Association="CCATDBModel.FK_Tbl_Agency_LU_AgencyDesignation">
+            <End Role="LU_AgencyDesignation" EntitySet="LU_AgencyDesignation" />
+            <End Role="Tbl_Agency" EntitySet="Tbl_Agency" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ConsumerDetails_LU_ConsumerGender" Association="CCATDBModel.FK_Tbl_ConsumerDetails_LU_ConsumerGender">
+            <End Role="LU_ConsumerGender" EntitySet="LU_ConsumerGender" />
+            <End Role="Tbl_ConsumerDetails" EntitySet="Tbl_ConsumerDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_PortfolioDetails_LU_CurrentResponsibility" Association="CCATDBModel.FK_Tbl_PortfolioDetails_LU_CurrentResponsibility">
+            <End Role="LU_CurrentResponsibility" EntitySet="LU_CurrentResponsibility" />
+            <End Role="Tbl_PortfolioDetails" EntitySet="Tbl_PortfolioDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account_LU_DebtType" Association="CCATDBModel.FK_Tbl_Account_LU_DebtType">
+            <End Role="LU_DebtType" EntitySet="LU_DebtType" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_InvestorDetails_LU_InvestorDesignation" Association="CCATDBModel.FK_Tbl_InvestorDetails_LU_InvestorDesignation">
+            <End Role="LU_InvestorDesignation" EntitySet="LU_InvestorDesignation" />
+            <End Role="Tbl_InvestorDetails" EntitySet="Tbl_InvestorDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_MediaDetails_LU_MediaType" Association="CCATDBModel.FK_Tbl_MediaDetails_LU_MediaType">
+            <End Role="LU_MediaType" EntitySet="LU_MediaType" />
+            <End Role="Tbl_MediaDetails" EntitySet="Tbl_MediaDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account_LU_OriginalLenderProduct" Association="CCATDBModel.FK_Tbl_Account_LU_OriginalLenderProduct">
+            <End Role="LU_OriginalLenderProduct" EntitySet="LU_OriginalLenderProduct" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Owner_LU_OwnerDesignation" Association="CCATDBModel.FK_Tbl_Owner_LU_OwnerDesignation">
+            <End Role="LU_OwnerDesignation" EntitySet="LU_OwnerDesignation" />
+            <End Role="Tbl_Owner" EntitySet="Tbl_Owner" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_PortfolioDetails_LU_PortfolioBLSDesignation" Association="CCATDBModel.FK_Tbl_PortfolioDetails_LU_PortfolioBLSDesignation">
+            <End Role="LU_PortfolioBLSDesignation" EntitySet="LU_PortfolioBLSDesignation" />
+            <End Role="Tbl_PortfolioDetails" EntitySet="Tbl_PortfolioDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_PortfolioDetails_LU_PortfolioResaleRestriction" Association="CCATDBModel.FK_Tbl_PortfolioDetails_LU_PortfolioResaleRestriction">
+            <End Role="LU_PortfolioResaleRestriction" EntitySet="LU_PortfolioResaleRestriction" />
+            <End Role="Tbl_PortfolioDetails" EntitySet="Tbl_PortfolioDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_PortfolioDetails_LU_ResponsibilityCurrent" Association="CCATDBModel.FK_Tbl_PortfolioDetails_LU_ResponsibilityCurrent">
+            <End Role="LU_ResponsibilityCurrent" EntitySet="LU_ResponsibilityCurrent" />
+            <End Role="Tbl_PortfolioDetails" EntitySet="Tbl_PortfolioDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_PortfolioDetails_LU_ResponsibilityPrevious" Association="CCATDBModel.FK_Tbl_PortfolioDetails_LU_ResponsibilityPrevious">
+            <End Role="LU_ResponsibilityPrevious" EntitySet="LU_ResponsibilityPrevious" />
+            <End Role="Tbl_PortfolioDetails" EntitySet="Tbl_PortfolioDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_PortfolioDetails_LU_TransactionType" Association="CCATDBModel.FK_Tbl_PortfolioDetails_LU_TransactionType">
+            <End Role="LU_TransactionType" EntitySet="LU_TransactionType" />
+            <End Role="Tbl_PortfolioDetails" EntitySet="Tbl_PortfolioDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Vendor_LU_VendorDesignation" Association="CCATDBModel.FK_Tbl_Vendor_LU_VendorDesignation">
+            <End Role="LU_VendorDesignation" EntitySet="LU_VendorDesignation" />
+            <End Role="Tbl_Vendor" EntitySet="Tbl_Vendor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account_Tbl_ConsumerDetails" Association="CCATDBModel.FK_Tbl_Account_Tbl_ConsumerDetails">
+            <End Role="Tbl_ConsumerDetails" EntitySet="Tbl_ConsumerDetails" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account_Tbl_Cosigner" Association="CCATDBModel.FK_Tbl_Account_Tbl_Cosigner">
+            <End Role="Tbl_Cosigner" EntitySet="Tbl_Cosigner" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account_Tbl_DebtorProducts" Association="CCATDBModel.FK_Tbl_Account_Tbl_DebtorProducts">
+            <End Role="Tbl_DebtorProducts" EntitySet="Tbl_DebtorProducts" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account_Tbl_PortfolioDetails" Association="CCATDBModel.FK_Tbl_Account_Tbl_PortfolioDetails">
+            <End Role="Tbl_PortfolioDetails" EntitySet="Tbl_PortfolioDetails" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Account_Tbl_Vendor" Association="CCATDBModel.FK_Tbl_Account_Tbl_Vendor">
+            <End Role="Tbl_Vendor" EntitySet="Tbl_Vendor" />
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_MediaDetails_Tbl_Account" Association="CCATDBModel.FK_Tbl_MediaDetails_Tbl_Account">
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+            <End Role="Tbl_MediaDetails" EntitySet="Tbl_MediaDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_PortfolioOfAccounts_Tbl_Account" Association="CCATDBModel.FK_Tbl_PortfolioOfAccounts_Tbl_Account">
+            <End Role="Tbl_Account" EntitySet="Tbl_Account" />
+            <End Role="Tbl_PortfolioOfAccounts" EntitySet="Tbl_PortfolioOfAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ConsumerDetails_Tbl_States" Association="CCATDBModel.FK_Tbl_ConsumerDetails_Tbl_States">
+            <End Role="Tbl_States" EntitySet="Tbl_States" />
+            <End Role="Tbl_ConsumerDetails" EntitySet="Tbl_ConsumerDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_ConsumerDetails_Tbl_States2" Association="CCATDBModel.FK_Tbl_ConsumerDetails_Tbl_States2">
+            <End Role="Tbl_States" EntitySet="Tbl_States" />
+            <End Role="Tbl_ConsumerDetails" EntitySet="Tbl_ConsumerDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Cosigner_Tbl_States" Association="CCATDBModel.FK_Tbl_Cosigner_Tbl_States">
+            <End Role="Tbl_States" EntitySet="Tbl_States" />
+            <End Role="Tbl_Cosigner" EntitySet="Tbl_Cosigner" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_InvestorDetails_Tbl_States" Association="CCATDBModel.FK_Tbl_InvestorDetails_Tbl_States">
+            <End Role="Tbl_States" EntitySet="Tbl_States" />
+            <End Role="Tbl_InvestorDetails" EntitySet="Tbl_InvestorDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_PortfolioDetails_Tbl_InvestorDetails" Association="CCATDBModel.FK_Tbl_PortfolioDetails_Tbl_InvestorDetails">
+            <End Role="Tbl_InvestorDetails" EntitySet="Tbl_InvestorDetails" />
+            <End Role="Tbl_PortfolioDetails" EntitySet="Tbl_PortfolioDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_PortfolioDetails_Tbl_States" Association="CCATDBModel.FK_Tbl_PortfolioDetails_Tbl_States">
+            <End Role="Tbl_States" EntitySet="Tbl_States" />
+            <End Role="Tbl_PortfolioDetails" EntitySet="Tbl_PortfolioDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Vendor_Tbl_States" Association="CCATDBModel.FK_Tbl_Vendor_Tbl_States">
+            <End Role="Tbl_States" EntitySet="Tbl_States" />
+            <End Role="Tbl_Vendor" EntitySet="Tbl_Vendor" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Tbl_QuestionResponse">
           <Key>
@@ -2336,6 +3454,99 @@
           <Property Type="String" Name="ST" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="LastPaymentDate" Precision="0" />
           <Property Type="Boolean" Name="IsActive" />
+          <Property Type="Decimal" Name="AccountNetAmountPaid" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="AccountNetAmountRemaining" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="BlanketSettlementAmount" Precision="15" Scale="2" />
+          <Property Type="Int32" Name="BlanketSettlementPercent" />
+          <Property Type="String" Name="ChainOfTitleAccount" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="ChargeOffDate" Precision="3" />
+          <Property Type="Int32" Name="ChargeOffInterest" />
+          <Property Type="Decimal" Name="ChargeOffOtherAmount" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="ChargeOffPrincipal" Precision="15" Scale="2" />
+          <Property Type="String" Name="ChargeOffReason" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ConsumerId" />
+          <Property Type="Int32" Name="CosignerId" />
+          <Property Type="Decimal" Name="CurrentInterestAmount" Precision="15" Scale="2" />
+          <Property Type="Int32" Name="CurrentInterestRate" />
+          <Property Type="Decimal" Name="CurrentPrincipal" Precision="15" Scale="2" />
+          <Property Type="Int32" Name="DaysPastDue" />
+          <Property Type="Int32" Name="DebtorProductId" />
+          <Property Type="DateTime" Name="DelinquencyDate" Precision="3" />
+          <Property Type="Decimal" Name="GrossAmount" Precision="15" Scale="2" />
+          <Property Type="DateTime" Name="LastConsumerContactDate" Precision="3" />
+          <Property Type="Decimal" Name="LastPaymentAmount" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="LatePaymentFee" Precision="15" Scale="2" />
+          <Property Type="Int32" Name="LU_AccountStatusCurrentId" />
+          <Property Type="Int32" Name="LU_AccountStatusPreviousId" />
+          <Property Type="Int32" Name="LU_DebtTypeId" />
+          <Property Type="Int32" Name="LU_OriginalLenderProductId" />
+          <Property Type="Int32" Name="NumberofPaymentsMade" />
+          <Property Type="Int32" Name="NumberofPaymentsRemaining" />
+          <Property Type="DateTime" Name="OpenDate" Precision="3" />
+          <Property Type="Decimal" Name="OriginalAccountLastPayAmount" Precision="15" Scale="2" />
+          <Property Type="DateTime" Name="OriginalAccountLastPayDate" Precision="3" />
+          <Property Type="Decimal" Name="OriginalBalance" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="OriginalInterestAmount" Precision="15" Scale="2" />
+          <Property Type="Int32" Name="OriginalInterestRate" />
+          <Property Type="Decimal" Name="OriginalPrincipal" Precision="15" Scale="2" />
+          <Property Type="DateTime" Name="OriginationDate" Precision="3" />
+          <Property Type="String" Name="OriginatorName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="PaymentDate" Precision="3" />
+          <Property Type="DateTime" Name="PaymentDueDate" Precision="3" />
+          <Property Type="Int32" Name="PortfolioBatchNumber" />
+          <Property Type="Int32" Name="PortfolioId" />
+          <Property Type="Int32" Name="PortfolioNumber" />
+          <Property Type="Int32" Name="PriorLastPaymentAmount" />
+          <Property Type="DateTime" Name="PriorLastPaymentDate" Precision="3" />
+          <Property Type="DateTime" Name="PurchaseDate" Precision="3" />
+          <Property Type="Decimal" Name="PurchasePrice" Precision="15" Scale="2" />
+          <Property Type="DateTime" Name="PutbackDate" Precision="3" />
+          <Property Type="DateTime" Name="SaleDate" Precision="3" />
+          <Property Type="Decimal" Name="SalesPrice" Precision="15" Scale="2" />
+          <Property Type="DateTime" Name="StatusChangeDate" Precision="3" />
+          <Property Type="Decimal" Name="TotalAmountDue" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="TotalCostsDue" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="TotalDelinquentAmount" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="TotalInterestDue" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="TotalOtherCostsDue" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="TotalPrincipalDue" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="UnpaidPrincipalBalance" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="VendorFee" Precision="15" Scale="2" />
+          <Property Type="Int32" Name="VendorId" />
+          <Property Type="Decimal" Name="WriteOffAmount" Precision="15" Scale="2" />
+          <Property Type="DateTime" Name="WriteOffDate" Precision="3" />
+          <Property Type="Boolean" Name="YN_FirstPaymentDefault" />
+          <Property Type="String" Name="column_a" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="column_b" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="column_c" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="column_d" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="column_e" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="column_f" />
+          <Property Type="Int32" Name="column_g" />
+          <Property Type="Int32" Name="column_h" />
+          <Property Type="Int32" Name="column_i" />
+          <Property Type="Int32" Name="column_j" />
+          <Property Type="DateTime" Name="column_k" Precision="3" />
+          <Property Type="DateTime" Name="column_l" Precision="3" />
+          <Property Type="DateTime" Name="column_m" Precision="3" />
+          <Property Type="DateTime" Name="column_n" Precision="3" />
+          <Property Type="DateTime" Name="column_o" Precision="3" />
+          <Property Type="Boolean" Name="column_p" />
+          <Property Type="Boolean" Name="column_q" />
+          <Property Type="Boolean" Name="column_r" />
+          <Property Type="Boolean" Name="column_s" />
+          <Property Type="Boolean" Name="column_t" />
+          <NavigationProperty Name="LU_AccountStatusCurrent" Relationship="CCATDBModel.FK_Tbl_Account_LU_AccountStatusCurrent" FromRole="Tbl_Account" ToRole="LU_AccountStatusCurrent" />
+          <NavigationProperty Name="LU_AccountStatusPrevious" Relationship="CCATDBModel.FK_Tbl_Account_LU_AccountStatusPrevious" FromRole="Tbl_Account" ToRole="LU_AccountStatusPrevious" />
+          <NavigationProperty Name="LU_DebtType" Relationship="CCATDBModel.FK_Tbl_Account_LU_DebtType" FromRole="Tbl_Account" ToRole="LU_DebtType" />
+          <NavigationProperty Name="LU_OriginalLenderProduct" Relationship="CCATDBModel.FK_Tbl_Account_LU_OriginalLenderProduct" FromRole="Tbl_Account" ToRole="LU_OriginalLenderProduct" />
+          <NavigationProperty Name="Tbl_ConsumerDetails" Relationship="CCATDBModel.FK_Tbl_Account_Tbl_ConsumerDetails" FromRole="Tbl_Account" ToRole="Tbl_ConsumerDetails" />
+          <NavigationProperty Name="Tbl_Cosigner" Relationship="CCATDBModel.FK_Tbl_Account_Tbl_Cosigner" FromRole="Tbl_Account" ToRole="Tbl_Cosigner" />
+          <NavigationProperty Name="Tbl_DebtorProducts" Relationship="CCATDBModel.FK_Tbl_Account_Tbl_DebtorProducts" FromRole="Tbl_Account" ToRole="Tbl_DebtorProducts" />
+          <NavigationProperty Name="Tbl_PortfolioDetails" Relationship="CCATDBModel.FK_Tbl_Account_Tbl_PortfolioDetails" FromRole="Tbl_Account" ToRole="Tbl_PortfolioDetails" />
+          <NavigationProperty Name="Tbl_Vendor" Relationship="CCATDBModel.FK_Tbl_Account_Tbl_Vendor" FromRole="Tbl_Account" ToRole="Tbl_Vendor" />
+          <NavigationProperty Name="Tbl_MediaDetails" Relationship="CCATDBModel.FK_Tbl_MediaDetails_Tbl_Account" FromRole="Tbl_Account" ToRole="Tbl_MediaDetails" />
+          <NavigationProperty Name="Tbl_PortfolioOfAccounts" Relationship="CCATDBModel.FK_Tbl_PortfolioOfAccounts_Tbl_Account" FromRole="Tbl_Account" ToRole="Tbl_PortfolioOfAccounts" />
         </EntityType>
         <EntityType Name="Tbl_Agency">
           <Key>
@@ -2361,6 +3572,21 @@
           <NavigationProperty Name="Tbl_Account" Relationship="CCATDBModel.FK_Tbl_Account12_Tbl_Agency" FromRole="Tbl_Agency" ToRole="Tbl_Account" />
           <NavigationProperty Name="Tbl_Owner" Relationship="CCATDBModel.FK_Tbl_Agency_Tbl_Owner" FromRole="Tbl_Agency" ToRole="Tbl_Owner" />
           <NavigationProperty Name="Tbl_States" Relationship="CCATDBModel.FK_Tbl_Agency_Tbl_States" FromRole="Tbl_Agency" ToRole="Tbl_States" />
+          <Property Type="String" Name="AgencyCollectorFirstName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AgencyCollectorLastName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AgencyManagerFirstName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AgencyManagerLastName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="AssignmentDate" Precision="3" />
+          <Property Type="Decimal" Name="CommisionAmount" Precision="15" Scale="2" />
+          <Property Type="Int32" Name="CommisionRate" />
+          <Property Type="Int32" Name="LU_AgencyDesignationId" />
+          <Property Type="DateTime" Name="PlacementDate" Precision="3" />
+          <Property Type="Decimal" Name="SettlementAmountRequest" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="SettlementCounterAmount" Precision="15" Scale="2" />
+          <Property Type="Int32" Name="SettlementCounterPercent" />
+          <Property Type="Int32" Name="SettlementPercentRequest" />
+          <Property Type="Boolean" Name="YN_Placement" />
+          <NavigationProperty Name="LU_AgencyDesignation" Relationship="CCATDBModel.FK_Tbl_Agency_LU_AgencyDesignation" FromRole="Tbl_Agency" ToRole="LU_AgencyDesignation" />
         </EntityType>
         <EntityType Name="Tbl_ComplaintIssues">
           <Key>
@@ -2402,6 +3628,9 @@
           <NavigationProperty Name="Tbl_Account" Relationship="CCATDBModel.FK_Tbl_Account12_Tbl_CreditIssuer" FromRole="Tbl_CreditIssuer" ToRole="Tbl_Account" />
           <NavigationProperty Name="Tbl_Owner" Relationship="CCATDBModel.FK_Tbl_CreditIssuer_Tbl_Owner" FromRole="Tbl_CreditIssuer" ToRole="Tbl_Owner" />
           <NavigationProperty Name="Tbl_States" Relationship="CCATDBModel.FK_Tbl_CreditIssuer_Tbl_States" FromRole="Tbl_CreditIssuer" ToRole="Tbl_States" />
+          <Property Type="Decimal" Name="ClientAccountLastPayAmount" Precision="15" Scale="2" />
+          <Property Type="DateTime" Name="ClientAccountLastPayDate" Precision="3" />
+          <Property Type="Int32" Name="ClientAccountNumber" />
         </EntityType>
         <EntityType Name="Tbl_DebtorContactMethods">
           <Key>
@@ -2426,6 +3655,7 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Product" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Tbl_ComplaintMain" Relationship="CCATDBModel.FK_Tbl_ComplaintMain_Tbl_DebtorProducts" FromRole="Tbl_DebtorProducts" ToRole="Tbl_ComplaintMain" />
+          <NavigationProperty Name="Tbl_Account" Relationship="CCATDBModel.FK_Tbl_Account_Tbl_DebtorProducts" FromRole="Tbl_DebtorProducts" ToRole="Tbl_Account" />
         </EntityType>
         <EntityType Name="Tbl_FinalActionSteps">
           <Key>
@@ -2485,6 +3715,8 @@
           <NavigationProperty Name="Tbl_CreditIssuer" Relationship="CCATDBModel.FK_Tbl_CreditIssuer_Tbl_Owner" FromRole="Tbl_Owner" ToRole="Tbl_CreditIssuer" />
           <NavigationProperty Name="Tbl_LawFirm" Relationship="CCATDBModel.FK_Tbl_LawFirm_Tbl_Owner" FromRole="Tbl_Owner" ToRole="Tbl_LawFirm" />
           <NavigationProperty Name="Tbl_States" Relationship="CCATDBModel.FK_Tbl_Owner_Tbl_States" FromRole="Tbl_Owner" ToRole="Tbl_States" />
+          <Property Type="Int32" Name="LU_OwnerDesignationId" />
+          <NavigationProperty Name="LU_OwnerDesignation" Relationship="CCATDBModel.FK_Tbl_Owner_LU_OwnerDesignation" FromRole="Tbl_Owner" ToRole="LU_OwnerDesignation" />
         </EntityType>
         <EntityType Name="Tbl_OwnerResponses">
           <Key>
@@ -2509,6 +3741,12 @@
           <NavigationProperty Name="Tbl_CreditIssuer" Relationship="CCATDBModel.FK_Tbl_CreditIssuer_Tbl_States" FromRole="Tbl_States" ToRole="Tbl_CreditIssuer" />
           <NavigationProperty Name="Tbl_LawFirm" Relationship="CCATDBModel.FK_Tbl_LawFirm_Tbl_States" FromRole="Tbl_States" ToRole="Tbl_LawFirm" />
           <NavigationProperty Name="Tbl_Owner" Relationship="CCATDBModel.FK_Tbl_Owner_Tbl_States" FromRole="Tbl_States" ToRole="Tbl_Owner" />
+          <NavigationProperty Name="Tbl_ConsumerDetails" Relationship="CCATDBModel.FK_Tbl_ConsumerDetails_Tbl_States" FromRole="Tbl_States" ToRole="Tbl_ConsumerDetails" />
+          <NavigationProperty Name="Tbl_ConsumerDetails1" Relationship="CCATDBModel.FK_Tbl_ConsumerDetails_Tbl_States2" FromRole="Tbl_States" ToRole="Tbl_ConsumerDetails" />
+          <NavigationProperty Name="Tbl_Cosigner" Relationship="CCATDBModel.FK_Tbl_Cosigner_Tbl_States" FromRole="Tbl_States" ToRole="Tbl_Cosigner" />
+          <NavigationProperty Name="Tbl_InvestorDetails" Relationship="CCATDBModel.FK_Tbl_InvestorDetails_Tbl_States" FromRole="Tbl_States" ToRole="Tbl_InvestorDetails" />
+          <NavigationProperty Name="Tbl_PortfolioDetails" Relationship="CCATDBModel.FK_Tbl_PortfolioDetails_Tbl_States" FromRole="Tbl_States" ToRole="Tbl_PortfolioDetails" />
+          <NavigationProperty Name="Tbl_Vendor" Relationship="CCATDBModel.FK_Tbl_Vendor_Tbl_States" FromRole="Tbl_States" ToRole="Tbl_Vendor" />
         </EntityType>
         <Association Name="FK_Tbl_Account12_Tbl_Agency">
           <End Type="CCATDBModel.Tbl_Agency" Role="Tbl_Agency" Multiplicity="0..1" />
@@ -3865,6 +5103,778 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="LU_AccountStatusCurrent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Account" Relationship="CCATDBModel.FK_Tbl_Account_LU_AccountStatusCurrent" FromRole="LU_AccountStatusCurrent" ToRole="Tbl_Account" />
+        </EntityType>
+        <EntityType Name="LU_AccountStatusPrevious">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Account" Relationship="CCATDBModel.FK_Tbl_Account_LU_AccountStatusPrevious" FromRole="LU_AccountStatusPrevious" ToRole="Tbl_Account" />
+        </EntityType>
+        <EntityType Name="LU_AgencyDesignation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Agency" Relationship="CCATDBModel.FK_Tbl_Agency_LU_AgencyDesignation" FromRole="LU_AgencyDesignation" ToRole="Tbl_Agency" />
+        </EntityType>
+        <EntityType Name="LU_ConsumerGender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_ConsumerDetails" Relationship="CCATDBModel.FK_Tbl_ConsumerDetails_LU_ConsumerGender" FromRole="LU_ConsumerGender" ToRole="Tbl_ConsumerDetails" />
+        </EntityType>
+        <EntityType Name="LU_CurrentResponsibility">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_PortfolioDetails" Relationship="CCATDBModel.FK_Tbl_PortfolioDetails_LU_CurrentResponsibility" FromRole="LU_CurrentResponsibility" ToRole="Tbl_PortfolioDetails" />
+        </EntityType>
+        <EntityType Name="LU_DebtType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Account" Relationship="CCATDBModel.FK_Tbl_Account_LU_DebtType" FromRole="LU_DebtType" ToRole="Tbl_Account" />
+        </EntityType>
+        <EntityType Name="LU_InvestorDesignation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_InvestorDetails" Relationship="CCATDBModel.FK_Tbl_InvestorDetails_LU_InvestorDesignation" FromRole="LU_InvestorDesignation" ToRole="Tbl_InvestorDetails" />
+        </EntityType>
+        <EntityType Name="LU_MediaType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_MediaDetails" Relationship="CCATDBModel.FK_Tbl_MediaDetails_LU_MediaType" FromRole="LU_MediaType" ToRole="Tbl_MediaDetails" />
+        </EntityType>
+        <EntityType Name="LU_OriginalLenderProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Account" Relationship="CCATDBModel.FK_Tbl_Account_LU_OriginalLenderProduct" FromRole="LU_OriginalLenderProduct" ToRole="Tbl_Account" />
+        </EntityType>
+        <EntityType Name="LU_OwnerDesignation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Owner" Relationship="CCATDBModel.FK_Tbl_Owner_LU_OwnerDesignation" FromRole="LU_OwnerDesignation" ToRole="Tbl_Owner" />
+        </EntityType>
+        <EntityType Name="LU_PortfolioBLSDesignation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_PortfolioDetails" Relationship="CCATDBModel.FK_Tbl_PortfolioDetails_LU_PortfolioBLSDesignation" FromRole="LU_PortfolioBLSDesignation" ToRole="Tbl_PortfolioDetails" />
+        </EntityType>
+        <EntityType Name="LU_PortfolioResaleRestriction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_PortfolioDetails" Relationship="CCATDBModel.FK_Tbl_PortfolioDetails_LU_PortfolioResaleRestriction" FromRole="LU_PortfolioResaleRestriction" ToRole="Tbl_PortfolioDetails" />
+        </EntityType>
+        <EntityType Name="LU_ResponsibilityCurrent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_PortfolioDetails" Relationship="CCATDBModel.FK_Tbl_PortfolioDetails_LU_ResponsibilityCurrent" FromRole="LU_ResponsibilityCurrent" ToRole="Tbl_PortfolioDetails" />
+        </EntityType>
+        <EntityType Name="LU_ResponsibilityPrevious">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_PortfolioDetails" Relationship="CCATDBModel.FK_Tbl_PortfolioDetails_LU_ResponsibilityPrevious" FromRole="LU_ResponsibilityPrevious" ToRole="Tbl_PortfolioDetails" />
+        </EntityType>
+        <EntityType Name="LU_TransactionType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_PortfolioDetails" Relationship="CCATDBModel.FK_Tbl_PortfolioDetails_LU_TransactionType" FromRole="LU_TransactionType" ToRole="Tbl_PortfolioDetails" />
+        </EntityType>
+        <EntityType Name="LU_VendorDesignation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Vendor" Relationship="CCATDBModel.FK_Tbl_Vendor_LU_VendorDesignation" FromRole="LU_VendorDesignation" ToRole="Tbl_Vendor" />
+        </EntityType>
+        <EntityType Name="Tbl_ConsumerDetails">
+          <Key>
+            <PropertyRef Name="ConsumerId" />
+          </Key>
+          <Property Type="String" Name="Address" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ConsumerId" Nullable="false" />
+          <Property Type="String" Name="County" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateOfBirth" Precision="3" />
+          <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Employer" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FirstName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FullName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="HomePhone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Last4SSN" />
+          <Property Type="String" Name="LastName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="LU_ConsumerGenderId" />
+          <Property Type="String" Name="MiddleName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MobilePhone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OldAddress" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OldCellPhone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OldCity" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OldHomePhone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="OldStateId" />
+          <Property Type="String" Name="OldZip" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SpouseFirstName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SpouseLastName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="StateId" />
+          <Property Type="String" Name="WorkPhone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Zip" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="column_a" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="column_b" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="column_c" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="column_d" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="column_e" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="column_f" />
+          <Property Type="Int32" Name="column_g" />
+          <Property Type="Int32" Name="column_h" />
+          <Property Type="Int32" Name="column_i" />
+          <Property Type="Int32" Name="column_j" />
+          <Property Type="DateTime" Name="column_k" Precision="3" />
+          <Property Type="DateTime" Name="column_l" Precision="3" />
+          <Property Type="DateTime" Name="column_m" Precision="3" />
+          <Property Type="DateTime" Name="column_n" Precision="3" />
+          <Property Type="DateTime" Name="column_o" Precision="3" />
+          <Property Type="Boolean" Name="column_p" />
+          <Property Type="Boolean" Name="column_q" />
+          <Property Type="Boolean" Name="column_r" />
+          <Property Type="Boolean" Name="column_s" />
+          <Property Type="Boolean" Name="column_t" />
+          <NavigationProperty Name="LU_ConsumerGender" Relationship="CCATDBModel.FK_Tbl_ConsumerDetails_LU_ConsumerGender" FromRole="Tbl_ConsumerDetails" ToRole="LU_ConsumerGender" />
+          <NavigationProperty Name="Tbl_Account" Relationship="CCATDBModel.FK_Tbl_Account_Tbl_ConsumerDetails" FromRole="Tbl_ConsumerDetails" ToRole="Tbl_Account" />
+          <NavigationProperty Name="Tbl_States" Relationship="CCATDBModel.FK_Tbl_ConsumerDetails_Tbl_States" FromRole="Tbl_ConsumerDetails" ToRole="Tbl_States" />
+          <NavigationProperty Name="Tbl_States1" Relationship="CCATDBModel.FK_Tbl_ConsumerDetails_Tbl_States2" FromRole="Tbl_ConsumerDetails" ToRole="Tbl_States" />
+        </EntityType>
+        <EntityType Name="Tbl_Cosigner">
+          <Key>
+            <PropertyRef Name="CosignerId" />
+          </Key>
+          <Property Type="String" Name="Address" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CosignerId" Nullable="false" />
+          <Property Type="String" Name="County" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateofBirth" Precision="3" />
+          <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FirstName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FullName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Last4SSN" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MiddleName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PhoneNumber" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="StateId" />
+          <Property Type="String" Name="Zip" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Account" Relationship="CCATDBModel.FK_Tbl_Account_Tbl_Cosigner" FromRole="Tbl_Cosigner" ToRole="Tbl_Account" />
+          <NavigationProperty Name="Tbl_States" Relationship="CCATDBModel.FK_Tbl_Cosigner_Tbl_States" FromRole="Tbl_Cosigner" ToRole="Tbl_States" />
+        </EntityType>
+        <EntityType Name="Tbl_InvestorDetails">
+          <Key>
+            <PropertyRef Name="InvestorId" />
+          </Key>
+          <Property Type="String" Name="Address" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CompanyName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Contact_FirstName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Contact_LastName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="County" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="String" Name="HomePhone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="InvestmentPercent" />
+          <Property Type="Int32" Name="InvestorId" Nullable="false" />
+          <Property Type="Boolean" Name="IsActive" />
+          <Property Type="Int32" Name="LU_InvestorDesignationId" />
+          <Property Type="String" Name="MobilePhone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ROIActual" />
+          <Property Type="Int32" Name="ROIDesired" />
+          <Property Type="Int32" Name="StateId" />
+          <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="String" Name="WorkPhone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Zip" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="LU_InvestorDesignation" Relationship="CCATDBModel.FK_Tbl_InvestorDetails_LU_InvestorDesignation" FromRole="Tbl_InvestorDetails" ToRole="LU_InvestorDesignation" />
+          <NavigationProperty Name="Tbl_States" Relationship="CCATDBModel.FK_Tbl_InvestorDetails_Tbl_States" FromRole="Tbl_InvestorDetails" ToRole="Tbl_States" />
+          <NavigationProperty Name="Tbl_PortfolioDetails" Relationship="CCATDBModel.FK_Tbl_PortfolioDetails_Tbl_InvestorDetails" FromRole="Tbl_InvestorDetails" ToRole="Tbl_PortfolioDetails" />
+        </EntityType>
+        <EntityType Name="Tbl_MediaDetails">
+          <Key>
+            <PropertyRef Name="MediaId" />
+          </Key>
+          <Property Type="String" Name="AccountNumber" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="AccountOriginal" />
+          <Property Type="String" Name="CompanySubmittedTo" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateMediaConfirmed" Precision="3" />
+          <Property Type="DateTime" Name="DateMediaForwarded" Precision="3" />
+          <Property Type="DateTime" Name="DateMediaOrdered" Precision="3" />
+          <Property Type="DateTime" Name="DateMediaReceived" Precision="3" />
+          <Property Type="DateTime" Name="DateMediaSubmitted" Precision="3" />
+          <Property Type="Boolean" Name="IsActive" />
+          <Property Type="Int32" Name="LU_MediaTypeId" />
+          <Property Type="Boolean" Name="MediaAvailable" />
+          <Property Type="Int32" Name="MediaId" Nullable="false" />
+          <Property Type="Decimal" Name="OwnerMediaFee" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="SellerMediaFee" Precision="15" Scale="2" />
+          <Property Type="String" Name="column_a" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="column_b" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="column_c" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="column_d" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="column_e" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="column_f" />
+          <Property Type="Int32" Name="column_g" />
+          <Property Type="Int32" Name="column_h" />
+          <Property Type="Int32" Name="column_i" />
+          <Property Type="Int32" Name="column_j" />
+          <Property Type="DateTime" Name="column_k" Precision="3" />
+          <Property Type="DateTime" Name="column_l" Precision="3" />
+          <Property Type="DateTime" Name="column_m" Precision="3" />
+          <Property Type="DateTime" Name="column_n" Precision="3" />
+          <Property Type="DateTime" Name="column_o" Precision="3" />
+          <Property Type="Boolean" Name="column_p" />
+          <Property Type="Boolean" Name="column_q" />
+          <Property Type="Boolean" Name="column_r" />
+          <Property Type="Boolean" Name="column_s" />
+          <Property Type="Boolean" Name="column_t" />
+          <NavigationProperty Name="LU_MediaType" Relationship="CCATDBModel.FK_Tbl_MediaDetails_LU_MediaType" FromRole="Tbl_MediaDetails" ToRole="LU_MediaType" />
+          <NavigationProperty Name="Tbl_Account" Relationship="CCATDBModel.FK_Tbl_MediaDetails_Tbl_Account" FromRole="Tbl_MediaDetails" ToRole="Tbl_Account" />
+        </EntityType>
+        <EntityType Name="Tbl_PortfolioDetails">
+          <Key>
+            <PropertyRef Name="PortfolioId" />
+          </Key>
+          <Property Type="Int32" Name="CashPosition" />
+          <Property Type="String" Name="ChainOfTitlePortfolio" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CompanyAddress" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CompanyCity" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CompanyFax" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CompanyName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CompanyZip" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Contact_Email" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Contact_FirstName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Contact_LastName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ContactPhone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateSellerPaid" Precision="3" />
+          <Property Type="Int32" Name="InitialRateofReturn" />
+          <Property Type="Int32" Name="InvestorId" />
+          <Property Type="Int32" Name="LU_CurrentResponsibilityId" />
+          <Property Type="Int32" Name="LU_PortfolioBLSDesignationId" />
+          <Property Type="Int32" Name="LU_PortfolioResaleRestrictionId" />
+          <Property Type="Int32" Name="LU_ResponsibilityCurrentId" />
+          <Property Type="Int32" Name="LU_ResponsibilityPreviousId" />
+          <Property Type="Int32" Name="LU_TransactionTypeId" />
+          <Property Type="Int32" Name="NumberofPaymentsMade" />
+          <Property Type="Int32" Name="NumberofPaymentsRemaining" />
+          <Property Type="Int32" Name="PortfolioBatchNumber" />
+          <Property Type="DateTime" Name="PortfolioClosingDate" Precision="3" />
+          <Property Type="Int32" Name="PortfolioCostBasis" />
+          <Property Type="DateTime" Name="PortfolioCutOffDate" Precision="3" />
+          <Property Type="Decimal" Name="PortfolioFaceValue" Precision="15" Scale="2" />
+          <Property Type="Int32" Name="PortfolioId" Nullable="false" />
+          <Property Type="Decimal" Name="PortfolioNetAmountPaid" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="PortfolioNetAmountRemaining" Precision="15" Scale="2" />
+          <Property Type="Int32" Name="PortfolioNumber" />
+          <Property Type="Decimal" Name="PortfolioPurchasePrice" Precision="15" Scale="2" />
+          <Property Type="DateTime" Name="PortfolioSaleDate" Precision="3" />
+          <Property Type="Decimal" Name="PortfolioSalesPrice" Precision="15" Scale="2" />
+          <Property Type="DateTime" Name="PurchaseDate" Precision="3" />
+          <Property Type="DateTime" Name="PutbackDeadlineDate" Precision="3" />
+          <Property Type="Int32" Name="PutbackTermDays" />
+          <Property Type="DateTime" Name="RecallDate" Precision="3" />
+          <Property Type="Int32" Name="ReturnOnCapital" />
+          <Property Type="Int32" Name="SalesBasis" />
+          <Property Type="Int32" Name="StateId" />
+          <Property Type="Int32" Name="WeightedAverageCouponRate" />
+          <Property Type="Int32" Name="WeightedAverageMonths" />
+          <Property Type="Boolean" Name="YN_Recall" />
+          <Property Type="String" Name="column_a" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="column_b" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="column_c" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="column_d" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="column_e" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="column_f" />
+          <Property Type="Int32" Name="column_g" />
+          <Property Type="Int32" Name="column_h" />
+          <Property Type="Int32" Name="column_i" />
+          <Property Type="Int32" Name="column_j" />
+          <Property Type="DateTime" Name="column_k" Precision="3" />
+          <Property Type="DateTime" Name="column_l" Precision="3" />
+          <Property Type="DateTime" Name="column_m" Precision="3" />
+          <Property Type="DateTime" Name="column_n" Precision="3" />
+          <Property Type="DateTime" Name="column_o" Precision="3" />
+          <Property Type="Boolean" Name="column_p" />
+          <Property Type="Boolean" Name="column_q" />
+          <Property Type="Boolean" Name="column_r" />
+          <Property Type="Boolean" Name="column_s" />
+          <Property Type="Boolean" Name="column_t" />
+          <NavigationProperty Name="LU_CurrentResponsibility" Relationship="CCATDBModel.FK_Tbl_PortfolioDetails_LU_CurrentResponsibility" FromRole="Tbl_PortfolioDetails" ToRole="LU_CurrentResponsibility" />
+          <NavigationProperty Name="LU_PortfolioBLSDesignation" Relationship="CCATDBModel.FK_Tbl_PortfolioDetails_LU_PortfolioBLSDesignation" FromRole="Tbl_PortfolioDetails" ToRole="LU_PortfolioBLSDesignation" />
+          <NavigationProperty Name="LU_PortfolioResaleRestriction" Relationship="CCATDBModel.FK_Tbl_PortfolioDetails_LU_PortfolioResaleRestriction" FromRole="Tbl_PortfolioDetails" ToRole="LU_PortfolioResaleRestriction" />
+          <NavigationProperty Name="LU_ResponsibilityCurrent" Relationship="CCATDBModel.FK_Tbl_PortfolioDetails_LU_ResponsibilityCurrent" FromRole="Tbl_PortfolioDetails" ToRole="LU_ResponsibilityCurrent" />
+          <NavigationProperty Name="LU_ResponsibilityPrevious" Relationship="CCATDBModel.FK_Tbl_PortfolioDetails_LU_ResponsibilityPrevious" FromRole="Tbl_PortfolioDetails" ToRole="LU_ResponsibilityPrevious" />
+          <NavigationProperty Name="LU_TransactionType" Relationship="CCATDBModel.FK_Tbl_PortfolioDetails_LU_TransactionType" FromRole="Tbl_PortfolioDetails" ToRole="LU_TransactionType" />
+          <NavigationProperty Name="Tbl_Account" Relationship="CCATDBModel.FK_Tbl_Account_Tbl_PortfolioDetails" FromRole="Tbl_PortfolioDetails" ToRole="Tbl_Account" />
+          <NavigationProperty Name="Tbl_InvestorDetails" Relationship="CCATDBModel.FK_Tbl_PortfolioDetails_Tbl_InvestorDetails" FromRole="Tbl_PortfolioDetails" ToRole="Tbl_InvestorDetails" />
+          <NavigationProperty Name="Tbl_States" Relationship="CCATDBModel.FK_Tbl_PortfolioDetails_Tbl_States" FromRole="Tbl_PortfolioDetails" ToRole="Tbl_States" />
+        </EntityType>
+        <EntityType Name="Tbl_PortfolioOfAccounts">
+          <Key>
+            <PropertyRef Name="PortfolioId" />
+          </Key>
+          <Property Type="String" Name="AccountNumber" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="AccountOriginal" />
+          <Property Type="Int32" Name="PortfolioBatchNumber" />
+          <Property Type="Int32" Name="PortfolioId" Nullable="false" />
+          <Property Type="Int32" Name="PortfolioNumber" />
+          <NavigationProperty Name="Tbl_Account" Relationship="CCATDBModel.FK_Tbl_PortfolioOfAccounts_Tbl_Account" FromRole="Tbl_PortfolioOfAccounts" ToRole="Tbl_Account" />
+        </EntityType>
+        <EntityType Name="Tbl_Vendor">
+          <Key>
+            <PropertyRef Name="VendorId" />
+          </Key>
+          <Property Type="String" Name="Address" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="AssignmentDate" Precision="3" />
+          <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="String" Name="Fax" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="FeeAmount" Precision="10" Scale="2" />
+          <Property Type="Int32" Name="FeePercent" />
+          <Property Type="Boolean" Name="IsActive" />
+          <Property Type="Int32" Name="LU_VendorDesignationId" />
+          <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Phone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="RevocationDate" Precision="3" />
+          <Property Type="Int32" Name="StateId" />
+          <Property Type="String" Name="UpdatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="String" Name="VendorContact_Email" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="VendorContact_FirstName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="VendorContact_LastName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="VendorId" Nullable="false" />
+          <Property Type="String" Name="Zipcode" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="column_a" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="column_b" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="column_c" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="column_d" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="column_e" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="column_f" />
+          <Property Type="Int32" Name="column_g" />
+          <Property Type="Int32" Name="column_h" />
+          <Property Type="Int32" Name="column_i" />
+          <Property Type="Int32" Name="column_j" />
+          <Property Type="DateTime" Name="column_k" Precision="3" />
+          <Property Type="DateTime" Name="column_l" Precision="3" />
+          <Property Type="DateTime" Name="column_m" Precision="3" />
+          <Property Type="DateTime" Name="column_n" Precision="3" />
+          <Property Type="DateTime" Name="column_o" Precision="3" />
+          <Property Type="Boolean" Name="column_p" />
+          <Property Type="Boolean" Name="column_q" />
+          <Property Type="Boolean" Name="column_r" />
+          <Property Type="Boolean" Name="column_s" />
+          <Property Type="Boolean" Name="column_t" />
+          <NavigationProperty Name="LU_VendorDesignation" Relationship="CCATDBModel.FK_Tbl_Vendor_LU_VendorDesignation" FromRole="Tbl_Vendor" ToRole="LU_VendorDesignation" />
+          <NavigationProperty Name="Tbl_Account" Relationship="CCATDBModel.FK_Tbl_Account_Tbl_Vendor" FromRole="Tbl_Vendor" ToRole="Tbl_Account" />
+          <NavigationProperty Name="Tbl_States" Relationship="CCATDBModel.FK_Tbl_Vendor_Tbl_States" FromRole="Tbl_Vendor" ToRole="Tbl_States" />
+        </EntityType>
+        <Association Name="FK_Tbl_Account_LU_AccountStatusCurrent">
+          <End Type="CCATDBModel.LU_AccountStatusCurrent" Role="LU_AccountStatusCurrent" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_Account" Role="Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_AccountStatusCurrent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="LU_AccountStatusCurrentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account_LU_AccountStatusPrevious">
+          <End Type="CCATDBModel.LU_AccountStatusPrevious" Role="LU_AccountStatusPrevious" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_Account" Role="Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_AccountStatusPrevious">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="LU_AccountStatusPreviousId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Agency_LU_AgencyDesignation">
+          <End Type="CCATDBModel.LU_AgencyDesignation" Role="LU_AgencyDesignation" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_Agency" Role="Tbl_Agency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_AgencyDesignation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Agency">
+              <PropertyRef Name="LU_AgencyDesignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ConsumerDetails_LU_ConsumerGender">
+          <End Type="CCATDBModel.LU_ConsumerGender" Role="LU_ConsumerGender" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ConsumerDetails" Role="Tbl_ConsumerDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_ConsumerGender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ConsumerDetails">
+              <PropertyRef Name="LU_ConsumerGenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_PortfolioDetails_LU_CurrentResponsibility">
+          <End Type="CCATDBModel.LU_CurrentResponsibility" Role="LU_CurrentResponsibility" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_PortfolioDetails" Role="Tbl_PortfolioDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_CurrentResponsibility">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_PortfolioDetails">
+              <PropertyRef Name="LU_CurrentResponsibilityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account_LU_DebtType">
+          <End Type="CCATDBModel.LU_DebtType" Role="LU_DebtType" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_Account" Role="Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_DebtType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="LU_DebtTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_InvestorDetails_LU_InvestorDesignation">
+          <End Type="CCATDBModel.LU_InvestorDesignation" Role="LU_InvestorDesignation" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_InvestorDetails" Role="Tbl_InvestorDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_InvestorDesignation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_InvestorDetails">
+              <PropertyRef Name="LU_InvestorDesignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_MediaDetails_LU_MediaType">
+          <End Type="CCATDBModel.LU_MediaType" Role="LU_MediaType" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_MediaDetails" Role="Tbl_MediaDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_MediaType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_MediaDetails">
+              <PropertyRef Name="LU_MediaTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account_LU_OriginalLenderProduct">
+          <End Type="CCATDBModel.LU_OriginalLenderProduct" Role="LU_OriginalLenderProduct" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_Account" Role="Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_OriginalLenderProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="LU_OriginalLenderProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Owner_LU_OwnerDesignation">
+          <End Type="CCATDBModel.LU_OwnerDesignation" Role="LU_OwnerDesignation" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_Owner" Role="Tbl_Owner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_OwnerDesignation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Owner">
+              <PropertyRef Name="LU_OwnerDesignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_PortfolioDetails_LU_PortfolioBLSDesignation">
+          <End Type="CCATDBModel.LU_PortfolioBLSDesignation" Role="LU_PortfolioBLSDesignation" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_PortfolioDetails" Role="Tbl_PortfolioDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_PortfolioBLSDesignation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_PortfolioDetails">
+              <PropertyRef Name="LU_PortfolioBLSDesignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_PortfolioDetails_LU_PortfolioResaleRestriction">
+          <End Type="CCATDBModel.LU_PortfolioResaleRestriction" Role="LU_PortfolioResaleRestriction" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_PortfolioDetails" Role="Tbl_PortfolioDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_PortfolioResaleRestriction">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_PortfolioDetails">
+              <PropertyRef Name="LU_PortfolioResaleRestrictionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_PortfolioDetails_LU_ResponsibilityCurrent">
+          <End Type="CCATDBModel.LU_ResponsibilityCurrent" Role="LU_ResponsibilityCurrent" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_PortfolioDetails" Role="Tbl_PortfolioDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_ResponsibilityCurrent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_PortfolioDetails">
+              <PropertyRef Name="LU_ResponsibilityCurrentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_PortfolioDetails_LU_ResponsibilityPrevious">
+          <End Type="CCATDBModel.LU_ResponsibilityPrevious" Role="LU_ResponsibilityPrevious" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_PortfolioDetails" Role="Tbl_PortfolioDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_ResponsibilityPrevious">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_PortfolioDetails">
+              <PropertyRef Name="LU_ResponsibilityPreviousId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_PortfolioDetails_LU_TransactionType">
+          <End Type="CCATDBModel.LU_TransactionType" Role="LU_TransactionType" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_PortfolioDetails" Role="Tbl_PortfolioDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_TransactionType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_PortfolioDetails">
+              <PropertyRef Name="LU_TransactionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Vendor_LU_VendorDesignation">
+          <End Type="CCATDBModel.LU_VendorDesignation" Role="LU_VendorDesignation" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_Vendor" Role="Tbl_Vendor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LU_VendorDesignation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Vendor">
+              <PropertyRef Name="LU_VendorDesignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account_Tbl_ConsumerDetails">
+          <End Type="CCATDBModel.Tbl_ConsumerDetails" Role="Tbl_ConsumerDetails" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_Account" Role="Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_ConsumerDetails">
+              <PropertyRef Name="ConsumerId" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="ConsumerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account_Tbl_Cosigner">
+          <End Type="CCATDBModel.Tbl_Cosigner" Role="Tbl_Cosigner" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_Account" Role="Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Cosigner">
+              <PropertyRef Name="CosignerId" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="CosignerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account_Tbl_DebtorProducts">
+          <End Type="CCATDBModel.Tbl_DebtorProducts" Role="Tbl_DebtorProducts" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_Account" Role="Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_DebtorProducts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="DebtorProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account_Tbl_PortfolioDetails">
+          <End Type="CCATDBModel.Tbl_PortfolioDetails" Role="Tbl_PortfolioDetails" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_Account" Role="Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_PortfolioDetails">
+              <PropertyRef Name="PortfolioId" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="PortfolioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Account_Tbl_Vendor">
+          <End Type="CCATDBModel.Tbl_Vendor" Role="Tbl_Vendor" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_Account" Role="Tbl_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Vendor">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="Tbl_Account">
+              <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_MediaDetails_Tbl_Account">
+          <End Type="CCATDBModel.Tbl_Account" Role="Tbl_Account" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_MediaDetails" Role="Tbl_MediaDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Account">
+              <PropertyRef Name="AccountNumber" />
+            </Principal>
+            <Dependent Role="Tbl_MediaDetails">
+              <PropertyRef Name="AccountNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_PortfolioOfAccounts_Tbl_Account">
+          <End Type="CCATDBModel.Tbl_Account" Role="Tbl_Account" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_PortfolioOfAccounts" Role="Tbl_PortfolioOfAccounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Account">
+              <PropertyRef Name="AccountNumber" />
+            </Principal>
+            <Dependent Role="Tbl_PortfolioOfAccounts">
+              <PropertyRef Name="AccountNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ConsumerDetails_Tbl_States">
+          <End Type="CCATDBModel.Tbl_States" Role="Tbl_States" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ConsumerDetails" Role="Tbl_ConsumerDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ConsumerDetails">
+              <PropertyRef Name="OldStateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_ConsumerDetails_Tbl_States2">
+          <End Type="CCATDBModel.Tbl_States" Role="Tbl_States" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_ConsumerDetails" Role="Tbl_ConsumerDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_ConsumerDetails">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Cosigner_Tbl_States">
+          <End Type="CCATDBModel.Tbl_States" Role="Tbl_States" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_Cosigner" Role="Tbl_Cosigner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Cosigner">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_InvestorDetails_Tbl_States">
+          <End Type="CCATDBModel.Tbl_States" Role="Tbl_States" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_InvestorDetails" Role="Tbl_InvestorDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_InvestorDetails">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_PortfolioDetails_Tbl_InvestorDetails">
+          <End Type="CCATDBModel.Tbl_InvestorDetails" Role="Tbl_InvestorDetails" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_PortfolioDetails" Role="Tbl_PortfolioDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_InvestorDetails">
+              <PropertyRef Name="InvestorId" />
+            </Principal>
+            <Dependent Role="Tbl_PortfolioDetails">
+              <PropertyRef Name="InvestorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_PortfolioDetails_Tbl_States">
+          <End Type="CCATDBModel.Tbl_States" Role="Tbl_States" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_PortfolioDetails" Role="Tbl_PortfolioDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_PortfolioDetails">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Vendor_Tbl_States">
+          <End Type="CCATDBModel.Tbl_States" Role="Tbl_States" Multiplicity="0..1" />
+          <End Type="CCATDBModel.Tbl_Vendor" Role="Tbl_Vendor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_States">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tbl_Vendor">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3972,6 +5982,88 @@
           <EntitySetMapping Name="Tbl_Account">
             <EntityTypeMapping TypeName="CCATDBModel.Tbl_Account">
               <MappingFragment StoreEntitySet="Tbl_Account">
+                <ScalarProperty Name="column_t" ColumnName="column_t" />
+                <ScalarProperty Name="column_s" ColumnName="column_s" />
+                <ScalarProperty Name="column_r" ColumnName="column_r" />
+                <ScalarProperty Name="column_q" ColumnName="column_q" />
+                <ScalarProperty Name="column_p" ColumnName="column_p" />
+                <ScalarProperty Name="column_o" ColumnName="column_o" />
+                <ScalarProperty Name="column_n" ColumnName="column_n" />
+                <ScalarProperty Name="column_m" ColumnName="column_m" />
+                <ScalarProperty Name="column_l" ColumnName="column_l" />
+                <ScalarProperty Name="column_k" ColumnName="column_k" />
+                <ScalarProperty Name="column_j" ColumnName="column_j" />
+                <ScalarProperty Name="column_i" ColumnName="column_i" />
+                <ScalarProperty Name="column_h" ColumnName="column_h" />
+                <ScalarProperty Name="column_g" ColumnName="column_g" />
+                <ScalarProperty Name="column_f" ColumnName="column_f" />
+                <ScalarProperty Name="column_e" ColumnName="column_e" />
+                <ScalarProperty Name="column_d" ColumnName="column_d" />
+                <ScalarProperty Name="column_c" ColumnName="column_c" />
+                <ScalarProperty Name="column_b" ColumnName="column_b" />
+                <ScalarProperty Name="column_a" ColumnName="column_a" />
+                <ScalarProperty Name="YN_FirstPaymentDefault" ColumnName="YN_FirstPaymentDefault" />
+                <ScalarProperty Name="WriteOffDate" ColumnName="WriteOffDate" />
+                <ScalarProperty Name="WriteOffAmount" ColumnName="WriteOffAmount" />
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+                <ScalarProperty Name="VendorFee" ColumnName="VendorFee" />
+                <ScalarProperty Name="UnpaidPrincipalBalance" ColumnName="UnpaidPrincipalBalance" />
+                <ScalarProperty Name="TotalPrincipalDue" ColumnName="TotalPrincipalDue" />
+                <ScalarProperty Name="TotalOtherCostsDue" ColumnName="TotalOtherCostsDue" />
+                <ScalarProperty Name="TotalInterestDue" ColumnName="TotalInterestDue" />
+                <ScalarProperty Name="TotalDelinquentAmount" ColumnName="TotalDelinquentAmount" />
+                <ScalarProperty Name="TotalCostsDue" ColumnName="TotalCostsDue" />
+                <ScalarProperty Name="TotalAmountDue" ColumnName="TotalAmountDue" />
+                <ScalarProperty Name="StatusChangeDate" ColumnName="StatusChangeDate" />
+                <ScalarProperty Name="SalesPrice" ColumnName="SalesPrice" />
+                <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+                <ScalarProperty Name="PutbackDate" ColumnName="PutbackDate" />
+                <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="PriorLastPaymentDate" ColumnName="PriorLastPaymentDate" />
+                <ScalarProperty Name="PriorLastPaymentAmount" ColumnName="PriorLastPaymentAmount" />
+                <ScalarProperty Name="PortfolioNumber" ColumnName="PortfolioNumber" />
+                <ScalarProperty Name="PortfolioId" ColumnName="PortfolioId" />
+                <ScalarProperty Name="PortfolioBatchNumber" ColumnName="PortfolioBatchNumber" />
+                <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="OriginatorName" ColumnName="OriginatorName" />
+                <ScalarProperty Name="OriginationDate" ColumnName="OriginationDate" />
+                <ScalarProperty Name="OriginalPrincipal" ColumnName="OriginalPrincipal" />
+                <ScalarProperty Name="OriginalInterestRate" ColumnName="OriginalInterestRate" />
+                <ScalarProperty Name="OriginalInterestAmount" ColumnName="OriginalInterestAmount" />
+                <ScalarProperty Name="OriginalBalance" ColumnName="OriginalBalance" />
+                <ScalarProperty Name="OriginalAccountLastPayDate" ColumnName="OriginalAccountLastPayDate" />
+                <ScalarProperty Name="OriginalAccountLastPayAmount" ColumnName="OriginalAccountLastPayAmount" />
+                <ScalarProperty Name="OpenDate" ColumnName="OpenDate" />
+                <ScalarProperty Name="NumberofPaymentsRemaining" ColumnName="NumberofPaymentsRemaining" />
+                <ScalarProperty Name="NumberofPaymentsMade" ColumnName="NumberofPaymentsMade" />
+                <ScalarProperty Name="LU_OriginalLenderProductId" ColumnName="LU_OriginalLenderProductId" />
+                <ScalarProperty Name="LU_DebtTypeId" ColumnName="LU_DebtTypeId" />
+                <ScalarProperty Name="LU_AccountStatusPreviousId" ColumnName="LU_AccountStatusPreviousId" />
+                <ScalarProperty Name="LU_AccountStatusCurrentId" ColumnName="LU_AccountStatusCurrentId" />
+                <ScalarProperty Name="LatePaymentFee" ColumnName="LatePaymentFee" />
+                <ScalarProperty Name="LastPaymentAmount" ColumnName="LastPaymentAmount" />
+                <ScalarProperty Name="LastConsumerContactDate" ColumnName="LastConsumerContactDate" />
+                <ScalarProperty Name="GrossAmount" ColumnName="GrossAmount" />
+                <ScalarProperty Name="DelinquencyDate" ColumnName="DelinquencyDate" />
+                <ScalarProperty Name="DebtorProductId" ColumnName="DebtorProductId" />
+                <ScalarProperty Name="DaysPastDue" ColumnName="DaysPastDue" />
+                <ScalarProperty Name="CurrentPrincipal" ColumnName="CurrentPrincipal" />
+                <ScalarProperty Name="CurrentInterestRate" ColumnName="CurrentInterestRate" />
+                <ScalarProperty Name="CurrentInterestAmount" ColumnName="CurrentInterestAmount" />
+                <ScalarProperty Name="CosignerId" ColumnName="CosignerId" />
+                <ScalarProperty Name="ConsumerId" ColumnName="ConsumerId" />
+                <ScalarProperty Name="ChargeOffReason" ColumnName="ChargeOffReason" />
+                <ScalarProperty Name="ChargeOffPrincipal" ColumnName="ChargeOffPrincipal" />
+                <ScalarProperty Name="ChargeOffOtherAmount" ColumnName="ChargeOffOtherAmount" />
+                <ScalarProperty Name="ChargeOffInterest" ColumnName="ChargeOffInterest" />
+                <ScalarProperty Name="ChargeOffDate" ColumnName="ChargeOffDate" />
+                <ScalarProperty Name="ChainOfTitleAccount" ColumnName="ChainOfTitleAccount" />
+                <ScalarProperty Name="BlanketSettlementPercent" ColumnName="BlanketSettlementPercent" />
+                <ScalarProperty Name="BlanketSettlementAmount" ColumnName="BlanketSettlementAmount" />
+                <ScalarProperty Name="AccountNetAmountRemaining" ColumnName="AccountNetAmountRemaining" />
+                <ScalarProperty Name="AccountNetAmountPaid" ColumnName="AccountNetAmountPaid" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="LastPaymentDate" ColumnName="LastPaymentDate" />
                 <ScalarProperty Name="ST" ColumnName="ST" />
@@ -4011,6 +6103,20 @@
           <EntitySetMapping Name="Tbl_Agency">
             <EntityTypeMapping TypeName="CCATDBModel.Tbl_Agency">
               <MappingFragment StoreEntitySet="Tbl_Agency">
+                <ScalarProperty Name="YN_Placement" ColumnName="YN_Placement" />
+                <ScalarProperty Name="SettlementPercentRequest" ColumnName="SettlementPercentRequest" />
+                <ScalarProperty Name="SettlementCounterPercent" ColumnName="SettlementCounterPercent" />
+                <ScalarProperty Name="SettlementCounterAmount" ColumnName="SettlementCounterAmount" />
+                <ScalarProperty Name="SettlementAmountRequest" ColumnName="SettlementAmountRequest" />
+                <ScalarProperty Name="PlacementDate" ColumnName="PlacementDate" />
+                <ScalarProperty Name="LU_AgencyDesignationId" ColumnName="LU_AgencyDesignationId" />
+                <ScalarProperty Name="CommisionRate" ColumnName="CommisionRate" />
+                <ScalarProperty Name="CommisionAmount" ColumnName="CommisionAmount" />
+                <ScalarProperty Name="AssignmentDate" ColumnName="AssignmentDate" />
+                <ScalarProperty Name="AgencyManagerLastName" ColumnName="AgencyManagerLastName" />
+                <ScalarProperty Name="AgencyManagerFirstName" ColumnName="AgencyManagerFirstName" />
+                <ScalarProperty Name="AgencyCollectorLastName" ColumnName="AgencyCollectorLastName" />
+                <ScalarProperty Name="AgencyCollectorFirstName" ColumnName="AgencyCollectorFirstName" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
@@ -4050,6 +6156,9 @@
           <EntitySetMapping Name="Tbl_CreditIssuer">
             <EntityTypeMapping TypeName="CCATDBModel.Tbl_CreditIssuer">
               <MappingFragment StoreEntitySet="Tbl_CreditIssuer">
+                <ScalarProperty Name="ClientAccountNumber" ColumnName="ClientAccountNumber" />
+                <ScalarProperty Name="ClientAccountLastPayDate" ColumnName="ClientAccountLastPayDate" />
+                <ScalarProperty Name="ClientAccountLastPayAmount" ColumnName="ClientAccountLastPayAmount" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
@@ -4128,6 +6237,7 @@
           <EntitySetMapping Name="Tbl_Owner">
             <EntityTypeMapping TypeName="CCATDBModel.Tbl_Owner">
               <MappingFragment StoreEntitySet="Tbl_Owner">
+                <ScalarProperty Name="LU_OwnerDesignationId" ColumnName="LU_OwnerDesignationId" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
@@ -4711,6 +6821,401 @@
               <MappingFragment StoreEntitySet="LU_ViolationAlleged">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_AccountStatusCurrent">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_AccountStatusCurrent">
+              <MappingFragment StoreEntitySet="LU_AccountStatusCurrent">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_AccountStatusPrevious">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_AccountStatusPrevious">
+              <MappingFragment StoreEntitySet="LU_AccountStatusPrevious">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_AgencyDesignation">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_AgencyDesignation">
+              <MappingFragment StoreEntitySet="LU_AgencyDesignation">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_ConsumerGender">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_ConsumerGender">
+              <MappingFragment StoreEntitySet="LU_ConsumerGender">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_CurrentResponsibility">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_CurrentResponsibility">
+              <MappingFragment StoreEntitySet="LU_CurrentResponsibility">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_DebtType">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_DebtType">
+              <MappingFragment StoreEntitySet="LU_DebtType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_InvestorDesignation">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_InvestorDesignation">
+              <MappingFragment StoreEntitySet="LU_InvestorDesignation">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_MediaType">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_MediaType">
+              <MappingFragment StoreEntitySet="LU_MediaType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_OriginalLenderProduct">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_OriginalLenderProduct">
+              <MappingFragment StoreEntitySet="LU_OriginalLenderProduct">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_OwnerDesignation">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_OwnerDesignation">
+              <MappingFragment StoreEntitySet="LU_OwnerDesignation">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_PortfolioBLSDesignation">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_PortfolioBLSDesignation">
+              <MappingFragment StoreEntitySet="LU_PortfolioBLSDesignation">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_PortfolioResaleRestriction">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_PortfolioResaleRestriction">
+              <MappingFragment StoreEntitySet="LU_PortfolioResaleRestriction">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_ResponsibilityCurrent">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_ResponsibilityCurrent">
+              <MappingFragment StoreEntitySet="LU_ResponsibilityCurrent">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_ResponsibilityPrevious">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_ResponsibilityPrevious">
+              <MappingFragment StoreEntitySet="LU_ResponsibilityPrevious">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_TransactionType">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_TransactionType">
+              <MappingFragment StoreEntitySet="LU_TransactionType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LU_VendorDesignation">
+            <EntityTypeMapping TypeName="CCATDBModel.LU_VendorDesignation">
+              <MappingFragment StoreEntitySet="LU_VendorDesignation">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_ConsumerDetails">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_ConsumerDetails">
+              <MappingFragment StoreEntitySet="Tbl_ConsumerDetails">
+                <ScalarProperty Name="column_t" ColumnName="column_t" />
+                <ScalarProperty Name="column_s" ColumnName="column_s" />
+                <ScalarProperty Name="column_r" ColumnName="column_r" />
+                <ScalarProperty Name="column_q" ColumnName="column_q" />
+                <ScalarProperty Name="column_p" ColumnName="column_p" />
+                <ScalarProperty Name="column_o" ColumnName="column_o" />
+                <ScalarProperty Name="column_n" ColumnName="column_n" />
+                <ScalarProperty Name="column_m" ColumnName="column_m" />
+                <ScalarProperty Name="column_l" ColumnName="column_l" />
+                <ScalarProperty Name="column_k" ColumnName="column_k" />
+                <ScalarProperty Name="column_j" ColumnName="column_j" />
+                <ScalarProperty Name="column_i" ColumnName="column_i" />
+                <ScalarProperty Name="column_h" ColumnName="column_h" />
+                <ScalarProperty Name="column_g" ColumnName="column_g" />
+                <ScalarProperty Name="column_f" ColumnName="column_f" />
+                <ScalarProperty Name="column_e" ColumnName="column_e" />
+                <ScalarProperty Name="column_d" ColumnName="column_d" />
+                <ScalarProperty Name="column_c" ColumnName="column_c" />
+                <ScalarProperty Name="column_b" ColumnName="column_b" />
+                <ScalarProperty Name="column_a" ColumnName="column_a" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="SpouseLastName" ColumnName="SpouseLastName" />
+                <ScalarProperty Name="SpouseFirstName" ColumnName="SpouseFirstName" />
+                <ScalarProperty Name="OldZip" ColumnName="OldZip" />
+                <ScalarProperty Name="OldStateId" ColumnName="OldStateId" />
+                <ScalarProperty Name="OldHomePhone" ColumnName="OldHomePhone" />
+                <ScalarProperty Name="OldCity" ColumnName="OldCity" />
+                <ScalarProperty Name="OldCellPhone" ColumnName="OldCellPhone" />
+                <ScalarProperty Name="OldAddress" ColumnName="OldAddress" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LU_ConsumerGenderId" ColumnName="LU_ConsumerGenderId" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Last4SSN" ColumnName="Last4SSN" />
+                <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Employer" ColumnName="Employer" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="ConsumerId" ColumnName="ConsumerId" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Cosigner">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_Cosigner">
+              <MappingFragment StoreEntitySet="Tbl_Cosigner">
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Last4SSN" ColumnName="Last4SSN" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DateofBirth" ColumnName="DateofBirth" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="CosignerId" ColumnName="CosignerId" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_InvestorDetails">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_InvestorDetails">
+              <MappingFragment StoreEntitySet="Tbl_InvestorDetails">
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="ROIDesired" ColumnName="ROIDesired" />
+                <ScalarProperty Name="ROIActual" ColumnName="ROIActual" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="LU_InvestorDesignationId" ColumnName="LU_InvestorDesignationId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="InvestorId" ColumnName="InvestorId" />
+                <ScalarProperty Name="InvestmentPercent" ColumnName="InvestmentPercent" />
+                <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="County" ColumnName="County" />
+                <ScalarProperty Name="Contact_LastName" ColumnName="Contact_LastName" />
+                <ScalarProperty Name="Contact_FirstName" ColumnName="Contact_FirstName" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_MediaDetails">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_MediaDetails">
+              <MappingFragment StoreEntitySet="Tbl_MediaDetails">
+                <ScalarProperty Name="column_t" ColumnName="column_t" />
+                <ScalarProperty Name="column_s" ColumnName="column_s" />
+                <ScalarProperty Name="column_r" ColumnName="column_r" />
+                <ScalarProperty Name="column_q" ColumnName="column_q" />
+                <ScalarProperty Name="column_p" ColumnName="column_p" />
+                <ScalarProperty Name="column_o" ColumnName="column_o" />
+                <ScalarProperty Name="column_n" ColumnName="column_n" />
+                <ScalarProperty Name="column_m" ColumnName="column_m" />
+                <ScalarProperty Name="column_l" ColumnName="column_l" />
+                <ScalarProperty Name="column_k" ColumnName="column_k" />
+                <ScalarProperty Name="column_j" ColumnName="column_j" />
+                <ScalarProperty Name="column_i" ColumnName="column_i" />
+                <ScalarProperty Name="column_h" ColumnName="column_h" />
+                <ScalarProperty Name="column_g" ColumnName="column_g" />
+                <ScalarProperty Name="column_f" ColumnName="column_f" />
+                <ScalarProperty Name="column_e" ColumnName="column_e" />
+                <ScalarProperty Name="column_d" ColumnName="column_d" />
+                <ScalarProperty Name="column_c" ColumnName="column_c" />
+                <ScalarProperty Name="column_b" ColumnName="column_b" />
+                <ScalarProperty Name="column_a" ColumnName="column_a" />
+                <ScalarProperty Name="SellerMediaFee" ColumnName="SellerMediaFee" />
+                <ScalarProperty Name="OwnerMediaFee" ColumnName="OwnerMediaFee" />
+                <ScalarProperty Name="MediaId" ColumnName="MediaId" />
+                <ScalarProperty Name="MediaAvailable" ColumnName="MediaAvailable" />
+                <ScalarProperty Name="LU_MediaTypeId" ColumnName="LU_MediaTypeId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DateMediaSubmitted" ColumnName="DateMediaSubmitted" />
+                <ScalarProperty Name="DateMediaReceived" ColumnName="DateMediaReceived" />
+                <ScalarProperty Name="DateMediaOrdered" ColumnName="DateMediaOrdered" />
+                <ScalarProperty Name="DateMediaForwarded" ColumnName="DateMediaForwarded" />
+                <ScalarProperty Name="DateMediaConfirmed" ColumnName="DateMediaConfirmed" />
+                <ScalarProperty Name="CompanySubmittedTo" ColumnName="CompanySubmittedTo" />
+                <ScalarProperty Name="AccountOriginal" ColumnName="AccountOriginal" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_PortfolioDetails">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_PortfolioDetails">
+              <MappingFragment StoreEntitySet="Tbl_PortfolioDetails">
+                <ScalarProperty Name="column_t" ColumnName="column_t" />
+                <ScalarProperty Name="column_s" ColumnName="column_s" />
+                <ScalarProperty Name="column_r" ColumnName="column_r" />
+                <ScalarProperty Name="column_q" ColumnName="column_q" />
+                <ScalarProperty Name="column_p" ColumnName="column_p" />
+                <ScalarProperty Name="column_o" ColumnName="column_o" />
+                <ScalarProperty Name="column_n" ColumnName="column_n" />
+                <ScalarProperty Name="column_m" ColumnName="column_m" />
+                <ScalarProperty Name="column_l" ColumnName="column_l" />
+                <ScalarProperty Name="column_k" ColumnName="column_k" />
+                <ScalarProperty Name="column_j" ColumnName="column_j" />
+                <ScalarProperty Name="column_i" ColumnName="column_i" />
+                <ScalarProperty Name="column_h" ColumnName="column_h" />
+                <ScalarProperty Name="column_g" ColumnName="column_g" />
+                <ScalarProperty Name="column_f" ColumnName="column_f" />
+                <ScalarProperty Name="column_e" ColumnName="column_e" />
+                <ScalarProperty Name="column_d" ColumnName="column_d" />
+                <ScalarProperty Name="column_c" ColumnName="column_c" />
+                <ScalarProperty Name="column_b" ColumnName="column_b" />
+                <ScalarProperty Name="column_a" ColumnName="column_a" />
+                <ScalarProperty Name="YN_Recall" ColumnName="YN_Recall" />
+                <ScalarProperty Name="WeightedAverageMonths" ColumnName="WeightedAverageMonths" />
+                <ScalarProperty Name="WeightedAverageCouponRate" ColumnName="WeightedAverageCouponRate" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="SalesBasis" ColumnName="SalesBasis" />
+                <ScalarProperty Name="ReturnOnCapital" ColumnName="ReturnOnCapital" />
+                <ScalarProperty Name="RecallDate" ColumnName="RecallDate" />
+                <ScalarProperty Name="PutbackTermDays" ColumnName="PutbackTermDays" />
+                <ScalarProperty Name="PutbackDeadlineDate" ColumnName="PutbackDeadlineDate" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="PortfolioSalesPrice" ColumnName="PortfolioSalesPrice" />
+                <ScalarProperty Name="PortfolioSaleDate" ColumnName="PortfolioSaleDate" />
+                <ScalarProperty Name="PortfolioPurchasePrice" ColumnName="PortfolioPurchasePrice" />
+                <ScalarProperty Name="PortfolioNumber" ColumnName="PortfolioNumber" />
+                <ScalarProperty Name="PortfolioNetAmountRemaining" ColumnName="PortfolioNetAmountRemaining" />
+                <ScalarProperty Name="PortfolioNetAmountPaid" ColumnName="PortfolioNetAmountPaid" />
+                <ScalarProperty Name="PortfolioId" ColumnName="PortfolioId" />
+                <ScalarProperty Name="PortfolioFaceValue" ColumnName="PortfolioFaceValue" />
+                <ScalarProperty Name="PortfolioCutOffDate" ColumnName="PortfolioCutOffDate" />
+                <ScalarProperty Name="PortfolioCostBasis" ColumnName="PortfolioCostBasis" />
+                <ScalarProperty Name="PortfolioClosingDate" ColumnName="PortfolioClosingDate" />
+                <ScalarProperty Name="PortfolioBatchNumber" ColumnName="PortfolioBatchNumber" />
+                <ScalarProperty Name="NumberofPaymentsRemaining" ColumnName="NumberofPaymentsRemaining" />
+                <ScalarProperty Name="NumberofPaymentsMade" ColumnName="NumberofPaymentsMade" />
+                <ScalarProperty Name="LU_TransactionTypeId" ColumnName="LU_TransactionTypeId" />
+                <ScalarProperty Name="LU_ResponsibilityPreviousId" ColumnName="LU_ResponsibilityPreviousId" />
+                <ScalarProperty Name="LU_ResponsibilityCurrentId" ColumnName="LU_ResponsibilityCurrentId" />
+                <ScalarProperty Name="LU_PortfolioResaleRestrictionId" ColumnName="LU_PortfolioResaleRestrictionId" />
+                <ScalarProperty Name="LU_PortfolioBLSDesignationId" ColumnName="LU_PortfolioBLSDesignationId" />
+                <ScalarProperty Name="LU_CurrentResponsibilityId" ColumnName="LU_CurrentResponsibilityId" />
+                <ScalarProperty Name="InvestorId" ColumnName="InvestorId" />
+                <ScalarProperty Name="InitialRateofReturn" ColumnName="InitialRateofReturn" />
+                <ScalarProperty Name="DateSellerPaid" ColumnName="DateSellerPaid" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="Contact_LastName" ColumnName="Contact_LastName" />
+                <ScalarProperty Name="Contact_FirstName" ColumnName="Contact_FirstName" />
+                <ScalarProperty Name="Contact_Email" ColumnName="Contact_Email" />
+                <ScalarProperty Name="CompanyZip" ColumnName="CompanyZip" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyFax" ColumnName="CompanyFax" />
+                <ScalarProperty Name="CompanyCity" ColumnName="CompanyCity" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+                <ScalarProperty Name="ChainOfTitlePortfolio" ColumnName="ChainOfTitlePortfolio" />
+                <ScalarProperty Name="CashPosition" ColumnName="CashPosition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_PortfolioOfAccounts">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_PortfolioOfAccounts">
+              <MappingFragment StoreEntitySet="Tbl_PortfolioOfAccounts">
+                <ScalarProperty Name="PortfolioNumber" ColumnName="PortfolioNumber" />
+                <ScalarProperty Name="PortfolioId" ColumnName="PortfolioId" />
+                <ScalarProperty Name="PortfolioBatchNumber" ColumnName="PortfolioBatchNumber" />
+                <ScalarProperty Name="AccountOriginal" ColumnName="AccountOriginal" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Vendor">
+            <EntityTypeMapping TypeName="CCATDBModel.Tbl_Vendor">
+              <MappingFragment StoreEntitySet="Tbl_Vendor">
+                <ScalarProperty Name="column_t" ColumnName="column_t" />
+                <ScalarProperty Name="column_s" ColumnName="column_s" />
+                <ScalarProperty Name="column_r" ColumnName="column_r" />
+                <ScalarProperty Name="column_q" ColumnName="column_q" />
+                <ScalarProperty Name="column_p" ColumnName="column_p" />
+                <ScalarProperty Name="column_o" ColumnName="column_o" />
+                <ScalarProperty Name="column_n" ColumnName="column_n" />
+                <ScalarProperty Name="column_m" ColumnName="column_m" />
+                <ScalarProperty Name="column_l" ColumnName="column_l" />
+                <ScalarProperty Name="column_k" ColumnName="column_k" />
+                <ScalarProperty Name="column_j" ColumnName="column_j" />
+                <ScalarProperty Name="column_i" ColumnName="column_i" />
+                <ScalarProperty Name="column_h" ColumnName="column_h" />
+                <ScalarProperty Name="column_g" ColumnName="column_g" />
+                <ScalarProperty Name="column_f" ColumnName="column_f" />
+                <ScalarProperty Name="column_e" ColumnName="column_e" />
+                <ScalarProperty Name="column_d" ColumnName="column_d" />
+                <ScalarProperty Name="column_c" ColumnName="column_c" />
+                <ScalarProperty Name="column_b" ColumnName="column_b" />
+                <ScalarProperty Name="column_a" ColumnName="column_a" />
+                <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+                <ScalarProperty Name="VendorContact_LastName" ColumnName="VendorContact_LastName" />
+                <ScalarProperty Name="VendorContact_FirstName" ColumnName="VendorContact_FirstName" />
+                <ScalarProperty Name="VendorContact_Email" ColumnName="VendorContact_Email" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="RevocationDate" ColumnName="RevocationDate" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LU_VendorDesignationId" ColumnName="LU_VendorDesignationId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="FeePercent" ColumnName="FeePercent" />
+                <ScalarProperty Name="FeeAmount" ColumnName="FeeAmount" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="AssignmentDate" ColumnName="AssignmentDate" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

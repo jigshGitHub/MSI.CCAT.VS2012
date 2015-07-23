@@ -38,11 +38,13 @@ namespace MSI.CCAT.Data.Models
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
         public string UpdatedBy { get; set; }
+        public Nullable<int> LU_OwnerDesignationId { get; set; }
     
         public virtual ICollection<Tbl_Account> Tbl_Account { get; set; }
         public virtual ICollection<Tbl_Agency> Tbl_Agency { get; set; }
         public virtual ICollection<Tbl_CreditIssuer> Tbl_CreditIssuer { get; set; }
         public virtual ICollection<Tbl_LawFirm> Tbl_LawFirm { get; set; }
         public virtual Tbl_States Tbl_States { get; set; }
+        public virtual LU_OwnerDesignation LU_OwnerDesignation { get; set; }
     }
 }

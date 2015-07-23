@@ -21,6 +21,12 @@ namespace MSI.CCAT.Data.Models
             this.Tbl_CreditIssuer = new HashSet<Tbl_CreditIssuer>();
             this.Tbl_LawFirm = new HashSet<Tbl_LawFirm>();
             this.Tbl_Owner = new HashSet<Tbl_Owner>();
+            this.Tbl_ConsumerDetails = new HashSet<Tbl_ConsumerDetails>();
+            this.Tbl_ConsumerDetails1 = new HashSet<Tbl_ConsumerDetails>();
+            this.Tbl_Cosigner = new HashSet<Tbl_Cosigner>();
+            this.Tbl_InvestorDetails = new HashSet<Tbl_InvestorDetails>();
+            this.Tbl_PortfolioDetails = new HashSet<Tbl_PortfolioDetails>();
+            this.Tbl_Vendor = new HashSet<Tbl_Vendor>();
         }
     
         public int Id { get; set; }
@@ -32,5 +38,11 @@ namespace MSI.CCAT.Data.Models
         public virtual ICollection<Tbl_CreditIssuer> Tbl_CreditIssuer { get; set; }
         public virtual ICollection<Tbl_LawFirm> Tbl_LawFirm { get; set; }
         public virtual ICollection<Tbl_Owner> Tbl_Owner { get; set; }
+        public virtual ICollection<Tbl_ConsumerDetails> Tbl_ConsumerDetails { get; set; }
+        public virtual ICollection<Tbl_ConsumerDetails> Tbl_ConsumerDetails1 { get; set; }
+        public virtual ICollection<Tbl_Cosigner> Tbl_Cosigner { get; set; }
+        public virtual ICollection<Tbl_InvestorDetails> Tbl_InvestorDetails { get; set; }
+        public virtual ICollection<Tbl_PortfolioDetails> Tbl_PortfolioDetails { get; set; }
+        public virtual ICollection<Tbl_Vendor> Tbl_Vendor { get; set; }
     }
 }

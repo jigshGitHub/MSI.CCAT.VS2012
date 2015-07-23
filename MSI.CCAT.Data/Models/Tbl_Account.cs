@@ -17,6 +17,8 @@ namespace MSI.CCAT.Data.Models
         public Tbl_Account()
         {
             this.Tbl_ComplaintMain = new HashSet<Tbl_ComplaintMain>();
+            this.Tbl_MediaDetails = new HashSet<Tbl_MediaDetails>();
+            this.Tbl_PortfolioOfAccounts = new HashSet<Tbl_PortfolioOfAccounts>();
         }
     
         public string AccountNumber { get; set; }
@@ -52,6 +54,88 @@ namespace MSI.CCAT.Data.Models
         public string ST { get; set; }
         public Nullable<System.DateTime> LastPaymentDate { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public Nullable<decimal> AccountNetAmountPaid { get; set; }
+        public Nullable<decimal> AccountNetAmountRemaining { get; set; }
+        public Nullable<decimal> BlanketSettlementAmount { get; set; }
+        public Nullable<int> BlanketSettlementPercent { get; set; }
+        public string ChainOfTitleAccount { get; set; }
+        public Nullable<System.DateTime> ChargeOffDate { get; set; }
+        public Nullable<int> ChargeOffInterest { get; set; }
+        public Nullable<decimal> ChargeOffOtherAmount { get; set; }
+        public Nullable<decimal> ChargeOffPrincipal { get; set; }
+        public string ChargeOffReason { get; set; }
+        public Nullable<int> ConsumerId { get; set; }
+        public Nullable<int> CosignerId { get; set; }
+        public Nullable<decimal> CurrentInterestAmount { get; set; }
+        public Nullable<int> CurrentInterestRate { get; set; }
+        public Nullable<decimal> CurrentPrincipal { get; set; }
+        public Nullable<int> DaysPastDue { get; set; }
+        public Nullable<int> DebtorProductId { get; set; }
+        public Nullable<System.DateTime> DelinquencyDate { get; set; }
+        public Nullable<decimal> GrossAmount { get; set; }
+        public Nullable<System.DateTime> LastConsumerContactDate { get; set; }
+        public Nullable<decimal> LastPaymentAmount { get; set; }
+        public Nullable<decimal> LatePaymentFee { get; set; }
+        public Nullable<int> LU_AccountStatusCurrentId { get; set; }
+        public Nullable<int> LU_AccountStatusPreviousId { get; set; }
+        public Nullable<int> LU_DebtTypeId { get; set; }
+        public Nullable<int> LU_OriginalLenderProductId { get; set; }
+        public Nullable<int> NumberofPaymentsMade { get; set; }
+        public Nullable<int> NumberofPaymentsRemaining { get; set; }
+        public Nullable<System.DateTime> OpenDate { get; set; }
+        public Nullable<decimal> OriginalAccountLastPayAmount { get; set; }
+        public Nullable<System.DateTime> OriginalAccountLastPayDate { get; set; }
+        public Nullable<decimal> OriginalBalance { get; set; }
+        public Nullable<decimal> OriginalInterestAmount { get; set; }
+        public Nullable<int> OriginalInterestRate { get; set; }
+        public Nullable<decimal> OriginalPrincipal { get; set; }
+        public Nullable<System.DateTime> OriginationDate { get; set; }
+        public string OriginatorName { get; set; }
+        public Nullable<System.DateTime> PaymentDate { get; set; }
+        public Nullable<System.DateTime> PaymentDueDate { get; set; }
+        public Nullable<int> PortfolioBatchNumber { get; set; }
+        public Nullable<int> PortfolioId { get; set; }
+        public Nullable<int> PortfolioNumber { get; set; }
+        public Nullable<int> PriorLastPaymentAmount { get; set; }
+        public Nullable<System.DateTime> PriorLastPaymentDate { get; set; }
+        public Nullable<System.DateTime> PurchaseDate { get; set; }
+        public Nullable<decimal> PurchasePrice { get; set; }
+        public Nullable<System.DateTime> PutbackDate { get; set; }
+        public Nullable<System.DateTime> SaleDate { get; set; }
+        public Nullable<decimal> SalesPrice { get; set; }
+        public Nullable<System.DateTime> StatusChangeDate { get; set; }
+        public Nullable<decimal> TotalAmountDue { get; set; }
+        public Nullable<decimal> TotalCostsDue { get; set; }
+        public Nullable<decimal> TotalDelinquentAmount { get; set; }
+        public Nullable<decimal> TotalInterestDue { get; set; }
+        public Nullable<decimal> TotalOtherCostsDue { get; set; }
+        public Nullable<decimal> TotalPrincipalDue { get; set; }
+        public Nullable<decimal> UnpaidPrincipalBalance { get; set; }
+        public Nullable<decimal> VendorFee { get; set; }
+        public Nullable<int> VendorId { get; set; }
+        public Nullable<decimal> WriteOffAmount { get; set; }
+        public Nullable<System.DateTime> WriteOffDate { get; set; }
+        public Nullable<bool> YN_FirstPaymentDefault { get; set; }
+        public string column_a { get; set; }
+        public string column_b { get; set; }
+        public string column_c { get; set; }
+        public string column_d { get; set; }
+        public string column_e { get; set; }
+        public Nullable<int> column_f { get; set; }
+        public Nullable<int> column_g { get; set; }
+        public Nullable<int> column_h { get; set; }
+        public Nullable<int> column_i { get; set; }
+        public Nullable<int> column_j { get; set; }
+        public Nullable<System.DateTime> column_k { get; set; }
+        public Nullable<System.DateTime> column_l { get; set; }
+        public Nullable<System.DateTime> column_m { get; set; }
+        public Nullable<System.DateTime> column_n { get; set; }
+        public Nullable<System.DateTime> column_o { get; set; }
+        public Nullable<bool> column_p { get; set; }
+        public Nullable<bool> column_q { get; set; }
+        public Nullable<bool> column_r { get; set; }
+        public Nullable<bool> column_s { get; set; }
+        public Nullable<bool> column_t { get; set; }
     
         public virtual Tbl_Agency Tbl_Agency { get; set; }
         public virtual Tbl_CreditIssuer Tbl_CreditIssuer { get; set; }
@@ -59,5 +143,17 @@ namespace MSI.CCAT.Data.Models
         public virtual Tbl_Owner Tbl_Owner { get; set; }
         public virtual Tbl_States Tbl_States { get; set; }
         internal virtual ICollection<Tbl_ComplaintMain> Tbl_ComplaintMain { get; private set; }
+
+        public virtual LU_AccountStatusCurrent LU_AccountStatusCurrent { get; set; }
+        public virtual LU_AccountStatusPrevious LU_AccountStatusPrevious { get; set; }
+        public virtual LU_DebtType LU_DebtType { get; set; }
+        public virtual LU_OriginalLenderProduct LU_OriginalLenderProduct { get; set; }
+        public virtual Tbl_ConsumerDetails Tbl_ConsumerDetails { get; set; }
+        public virtual Tbl_Cosigner Tbl_Cosigner { get; set; }
+        public virtual Tbl_DebtorProducts Tbl_DebtorProducts { get; set; }
+        public virtual Tbl_PortfolioDetails Tbl_PortfolioDetails { get; set; }
+        public virtual Tbl_Vendor Tbl_Vendor { get; set; }
+        public virtual ICollection<Tbl_MediaDetails> Tbl_MediaDetails { get; set; }
+        public virtual ICollection<Tbl_PortfolioOfAccounts> Tbl_PortfolioOfAccounts { get; set; }
     }
 }

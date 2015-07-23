@@ -121,6 +121,59 @@
         <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_Stakeholder2" />
         <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_Stakeholder3" />
         <AssociationConnector Association="CCATDBModel.FK_Tbl_ComplaintMain_LU_ViolationAlleged" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_AccountStatusCurrent" Width="1.5" PointX="6.40837231018039" PointY="20.224781314015754" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_AccountStatusPrevious" Width="1.5" PointX="11.546154906761906" PointY="29.259162469422055" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_AgencyDesignation" Width="1.5" PointX="6.5964328193089141" PointY="23.291387032387494" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_ConsumerGender" Width="1.5" PointX="7.2560112957172151" PointY="6.4592856049813729" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_CurrentResponsibility" Width="1.5" PointX="1.6230456911134745" PointY="14.777209944453654" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_DebtType" Width="1.5" PointX="4.4477847406863162" PointY="31.552973717242931" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_InvestorDesignation" Width="1.5" PointX="10.144176988929592" PointY="25.2776599495102" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_MediaType" Width="1.5" PointX="5.4817574068353316" PointY="26.582773399810666" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_OriginalLenderProduct" Width="1.5" PointX="6.33571758788811" PointY="15.324830688221766" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_OwnerDesignation" Width="1.5" PointX="0.30019829249950047" PointY="27.946129484077044" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_PortfolioBLSDesignation" Width="1.5" PointX="1.6965364914836998" PointY="8.13431769988235" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_PortfolioResaleRestriction" Width="1.5" PointX="2.543910815633792" PointY="11.579357256916984" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_ResponsibilityCurrent" Width="1.5" PointX="0.77393607272484155" PointY="13.252215242596444" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_ResponsibilityPrevious" Width="1.5" PointX="2.821604536297547" PointY="24.169357862402386" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_TransactionType" Width="1.5" PointX="11.208470122520099" PointY="6.7356111736668325" />
+        <EntityTypeShape EntityType="CCATDBModel.LU_VendorDesignation" Width="1.5" PointX="2.0902116345661748" PointY="30.789653956326497" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_ConsumerDetails" Width="1.5" PointX="10.705909318619366" PointY="14.852931089165123" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_Cosigner" Width="1.5" PointX="7.2102727700072684" PointY="7.6025850361225125" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_InvestorDetails" Width="1.5" PointX="1.1439353679977056" PointY="13.902756399429755" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_MediaDetails" Width="1.5" PointX="3.0294331605683231" PointY="6.4886824071820275" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_PortfolioDetails" Width="1.5" PointX="6.6890441992734759" PointY="31.023607745311971" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_PortfolioOfAccounts" Width="1.5" PointX="8.3426160497323689" PointY="17.725408279209123" />
+        <EntityTypeShape EntityType="CCATDBModel.Tbl_Vendor" Width="1.5" PointX="7.9881013091598181" PointY="24.015728708363945" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_Account_LU_AccountStatusCurrent" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_Account_LU_AccountStatusPrevious" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_Agency_LU_AgencyDesignation" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ConsumerDetails_LU_ConsumerGender" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_PortfolioDetails_LU_CurrentResponsibility" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_Account_LU_DebtType" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_InvestorDetails_LU_InvestorDesignation" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_MediaDetails_LU_MediaType" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_Account_LU_OriginalLenderProduct" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_Owner_LU_OwnerDesignation" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_PortfolioDetails_LU_PortfolioBLSDesignation" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_PortfolioDetails_LU_PortfolioResaleRestriction" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_PortfolioDetails_LU_ResponsibilityCurrent" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_PortfolioDetails_LU_ResponsibilityPrevious" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_PortfolioDetails_LU_TransactionType" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_Vendor_LU_VendorDesignation" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_Account_Tbl_ConsumerDetails" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_Account_Tbl_Cosigner" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_Account_Tbl_DebtorProducts" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_Account_Tbl_PortfolioDetails" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_Account_Tbl_Vendor" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_MediaDetails_Tbl_Account" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_PortfolioOfAccounts_Tbl_Account" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ConsumerDetails_Tbl_States" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_ConsumerDetails_Tbl_States2" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_Cosigner_Tbl_States" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_InvestorDetails_Tbl_States" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_PortfolioDetails_Tbl_InvestorDetails" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_PortfolioDetails_Tbl_States" />
+        <AssociationConnector Association="CCATDBModel.FK_Tbl_Vendor_Tbl_States" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -36,9 +36,23 @@ namespace MSI.CCAT.Data.Models
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public string CreatedBy { get; set; }
-    
+        public string AgencyCollectorFirstName { get; set; }
+        public string AgencyCollectorLastName { get; set; }
+        public string AgencyManagerFirstName { get; set; }
+        public string AgencyManagerLastName { get; set; }
+        public Nullable<System.DateTime> AssignmentDate { get; set; }
+        public Nullable<decimal> CommisionAmount { get; set; }
+        public Nullable<int> CommisionRate { get; set; }
+        public Nullable<int> LU_AgencyDesignationId { get; set; }
+        public Nullable<System.DateTime> PlacementDate { get; set; }
+        public Nullable<decimal> SettlementAmountRequest { get; set; }
+        public Nullable<decimal> SettlementCounterAmount { get; set; }
+        public Nullable<int> SettlementCounterPercent { get; set; }
+        public Nullable<int> SettlementPercentRequest { get; set; }
+        public Nullable<bool> YN_Placement { get; set; }
         internal virtual ICollection<Tbl_Account> Tbl_Account { get; private set; }
         public virtual Tbl_Owner Tbl_Owner { get; set; }
         public virtual Tbl_States Tbl_States { get; set; }
+        public virtual LU_AgencyDesignation LU_AgencyDesignation { get; set; }
     }
 }

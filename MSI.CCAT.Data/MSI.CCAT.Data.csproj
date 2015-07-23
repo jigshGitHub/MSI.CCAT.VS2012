@@ -92,6 +92,15 @@
       <DependentUpon>CCATEdm.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\LookUp.cs" />
+    <Compile Include="Models\LU_AccountStatusCurrent.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_AccountStatusPrevious.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_AgencyDesignation.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LU_Allegation1.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
@@ -146,10 +155,43 @@
     <Compile Include="Models\LU_ComplaintIntakeStatus.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LU_ConsumerGender.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_CurrentResponsibility.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_DebtType.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_InvestorDesignation.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_MediaType.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_OriginalLenderProduct.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_OwnerDesignation.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LU_OwnershipStatus.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LU_PortfolioBLSDesignation.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_PortfolioResaleRestriction.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LU_ResolutionRequest.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_ResponsibilityCurrent.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_ResponsibilityPrevious.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LU_RootCause1.cs">
@@ -168,6 +210,12 @@
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LU_Stakeholder3.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_TransactionType.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LU_VendorDesignation.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LU_ViolationAlleged.cs">
@@ -217,6 +265,15 @@
       <DependentUpon>CascadeEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SearchResult.cs" />
+    <Compile Include="Models\sp_GetAccountsByAgency_Result.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_GetAccountsByNumber_Result.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_GetAccounts_Result.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tbl_Account.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
@@ -241,6 +298,12 @@
     <Compile Include="Models\Tbl_ComplaintType.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Tbl_ConsumerDetails.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_Cosigner.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tbl_CreditIssuer.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
@@ -256,7 +319,13 @@
     <Compile Include="Models\Tbl_FinalActionSteps.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Tbl_InvestorDetails.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tbl_LawFirm.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_MediaDetails.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_ModulesForRoles.cs">
@@ -266,6 +335,12 @@
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_OwnerResponses.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_PortfolioDetails.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_PortfolioOfAccounts.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_QuestionBank.cs">
@@ -281,6 +356,9 @@
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tbl_States.cs">
+      <DependentUpon>CCATEdm.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tbl_Vendor.cs">
       <DependentUpon>CCATEdm.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vw_Account.cs">

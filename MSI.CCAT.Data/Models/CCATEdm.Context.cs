@@ -15,19 +15,19 @@ namespace MSI.CCAT.Data.Models
     using System.Data.Objects;
     using System.Data.Objects.DataClasses;
     using System.Linq;
-    
+
     public partial class CCATDBEntities : DbContext
     {
         public CCATDBEntities()
             : base("name=CCATDBEntities")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public DbSet<Tbl_QuestionResponse> Tbl_QuestionResponse { get; set; }
         public DbSet<module> modules { get; set; }
         public DbSet<pageMenu> pageMenus { get; set; }
@@ -86,49 +86,73 @@ namespace MSI.CCAT.Data.Models
         public DbSet<LU_Stakeholder2> LU_Stakeholder2 { get; set; }
         public DbSet<LU_Stakeholder3> LU_Stakeholder3 { get; set; }
         public DbSet<LU_ViolationAlleged> LU_ViolationAlleged { get; set; }
+        public DbSet<LU_AccountStatusCurrent> LU_AccountStatusCurrent { get; set; }
+        public DbSet<LU_AccountStatusPrevious> LU_AccountStatusPrevious { get; set; }
+        public DbSet<LU_AgencyDesignation> LU_AgencyDesignation { get; set; }
+        public DbSet<LU_ConsumerGender> LU_ConsumerGender { get; set; }
+        public DbSet<LU_CurrentResponsibility> LU_CurrentResponsibility { get; set; }
+        public DbSet<LU_DebtType> LU_DebtType { get; set; }
+        public DbSet<LU_InvestorDesignation> LU_InvestorDesignation { get; set; }
+        public DbSet<LU_MediaType> LU_MediaType { get; set; }
+        public DbSet<LU_OriginalLenderProduct> LU_OriginalLenderProduct { get; set; }
+        public DbSet<LU_OwnerDesignation> LU_OwnerDesignation { get; set; }
+        public DbSet<LU_PortfolioBLSDesignation> LU_PortfolioBLSDesignation { get; set; }
+        public DbSet<LU_PortfolioResaleRestriction> LU_PortfolioResaleRestriction { get; set; }
+        public DbSet<LU_ResponsibilityCurrent> LU_ResponsibilityCurrent { get; set; }
+        public DbSet<LU_ResponsibilityPrevious> LU_ResponsibilityPrevious { get; set; }
+        public DbSet<LU_TransactionType> LU_TransactionType { get; set; }
+        public DbSet<LU_VendorDesignation> LU_VendorDesignation { get; set; }
+        public DbSet<Tbl_ConsumerDetails> Tbl_ConsumerDetails { get; set; }
+        public DbSet<Tbl_Cosigner> Tbl_Cosigner { get; set; }
+        public DbSet<Tbl_InvestorDetails> Tbl_InvestorDetails { get; set; }
+        public DbSet<Tbl_MediaDetails> Tbl_MediaDetails { get; set; }
+        public DbSet<Tbl_PortfolioDetails> Tbl_PortfolioDetails { get; set; }
+        public DbSet<Tbl_PortfolioOfAccounts> Tbl_PortfolioOfAccounts { get; set; }
+        public DbSet<Tbl_Vendor> Tbl_Vendor { get; set; }
+
         public virtual ObjectResult<Tbl_Account> GetAccounts()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("GetAccounts");
         }
-    
+
         public virtual ObjectResult<Tbl_Account> GetAccounts(MergeOption mergeOption)
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("GetAccounts", mergeOption);
         }
-    
+
         public virtual ObjectResult<Tbl_Account> GetAccountsByNumber(string accountNumber)
         {
             var accountNumberParameter = accountNumber != null ?
                 new ObjectParameter("accountNumber", accountNumber) :
                 new ObjectParameter("accountNumber", typeof(string));
-    
+
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("GetAccountsByNumber", accountNumberParameter);
         }
-    
+
         public virtual ObjectResult<Tbl_Account> GetAccountsByNumber(string accountNumber, MergeOption mergeOption)
         {
             var accountNumberParameter = accountNumber != null ?
                 new ObjectParameter("accountNumber", accountNumber) :
                 new ObjectParameter("accountNumber", typeof(string));
-    
+
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("GetAccountsByNumber", mergeOption, accountNumberParameter);
         }
-    
+
         public virtual ObjectResult<Tbl_Account> GetAccountsByAgency(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
                 new ObjectParameter("id", typeof(int));
-    
+
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("GetAccountsByAgency", idParameter);
         }
-    
+
         public virtual ObjectResult<Tbl_Account> GetAccountsByAgency(Nullable<int> id, MergeOption mergeOption)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
                 new ObjectParameter("id", typeof(int));
-    
+
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Tbl_Account>("GetAccountsByAgency", mergeOption, idParameter);
         }
 
@@ -137,34 +161,34 @@ namespace MSI.CCAT.Data.Models
             var firstOrLastNameParameter = firstOrLastName != null ?
                 new ObjectParameter("firstOrLastName", firstOrLastName) :
                 new ObjectParameter("firstOrLastName", typeof(string));
-    
+
             var accountNumberParameter = accountNumber != null ?
                 new ObjectParameter("accountNumber", accountNumber) :
                 new ObjectParameter("accountNumber", typeof(string));
-    
+
             var creditorNameParameter = creditorName != null ?
                 new ObjectParameter("creditorName", creditorName) :
                 new ObjectParameter("creditorName", typeof(string));
-    
+
             var accountOriginalParameter = accountOriginal != null ?
                 new ObjectParameter("accountOriginal", accountOriginal) :
                 new ObjectParameter("accountOriginal", typeof(string));
-    
+
             var roleEntityValueParameter = roleEntityValue != null ?
                 new ObjectParameter("roleEntityValue", roleEntityValue) :
                 new ObjectParameter("roleEntityValue", typeof(string));
-    
+
             var roleParameter = role != null ?
                 new ObjectParameter("role", role) :
                 new ObjectParameter("role", typeof(string));
 
             var phoneParameter = string.IsNullOrEmpty(phone) ?
-                new ObjectParameter("phoneNumber", typeof(string)):new ObjectParameter("phoneNumber", phone);
+                new ObjectParameter("phoneNumber", typeof(string)) : new ObjectParameter("phoneNumber", phone);
 
-            var pageNoParameter = pageNo.HasValue?
+            var pageNoParameter = pageNo.HasValue ?
                 new ObjectParameter("pageNo", pageNo.Value) : new ObjectParameter("pageNo", typeof(int));
 
-            var pageSizeParameter = pageSize.HasValue?
+            var pageSizeParameter = pageSize.HasValue ?
                 new ObjectParameter("pageSize", pageSize.Value) : new ObjectParameter("pageSize", typeof(int));
 
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<vw_Account>("AccountSearch", firstOrLastNameParameter, accountNumberParameter, creditorNameParameter, accountOriginalParameter, roleEntityValueParameter, roleParameter, phoneParameter, pageNoParameter, pageSizeParameter);
@@ -175,23 +199,23 @@ namespace MSI.CCAT.Data.Models
             var firstOrLastNameParameter = firstOrLastName != null ?
                 new ObjectParameter("firstOrLastName", firstOrLastName) :
                 new ObjectParameter("firstOrLastName", typeof(string));
-    
+
             var accountNumberParameter = accountNumber != null ?
                 new ObjectParameter("accountNumber", accountNumber) :
                 new ObjectParameter("accountNumber", typeof(string));
-    
+
             var creditorNameParameter = creditorName != null ?
                 new ObjectParameter("creditorName", creditorName) :
                 new ObjectParameter("creditorName", typeof(string));
-    
+
             var accountOriginalParameter = accountOriginal != null ?
                 new ObjectParameter("accountOriginal", accountOriginal) :
                 new ObjectParameter("accountOriginal", typeof(string));
-    
+
             var roleEntityValueParameter = roleEntityValue != null ?
                 new ObjectParameter("roleEntityValue", roleEntityValue) :
                 new ObjectParameter("roleEntityValue", typeof(string));
-    
+
             var roleParameter = role != null ?
                 new ObjectParameter("role", role) :
                 new ObjectParameter("role", typeof(string));

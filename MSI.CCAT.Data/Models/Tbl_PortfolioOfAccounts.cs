@@ -12,18 +12,14 @@ namespace MSI.CCAT.Data.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Tbl_DebtorProducts
+    public partial class Tbl_PortfolioOfAccounts
     {
-        public Tbl_DebtorProducts()
-        {
-            this.Tbl_ComplaintMain = new HashSet<Tbl_ComplaintMain>();
-            this.Tbl_Account = new HashSet<Tbl_Account>();
-        }
+        public string AccountNumber { get; set; }
+        public Nullable<int> AccountOriginal { get; set; }
+        public Nullable<int> PortfolioBatchNumber { get; set; }
+        public int PortfolioId { get; set; }
+        public Nullable<int> PortfolioNumber { get; set; }
     
-        public int Id { get; set; }
-        public string Product { get; set; }
-    
-        public virtual ICollection<Tbl_ComplaintMain> Tbl_ComplaintMain { get; set; }
-        public virtual ICollection<Tbl_Account> Tbl_Account { get; set; }
+        public virtual Tbl_Account Tbl_Account { get; set; }
     }
 }
